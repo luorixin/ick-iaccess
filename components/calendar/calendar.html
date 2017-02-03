@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./css/bootstrap_iaccess.css" />
+	<link rel="stylesheet" href="./css/calendar.css" />
+	<script type="text/javascript" src="./jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="./calendar.js"></script>
+	<style type="text/css">
+	/* calendar  ---index.css included*/
+	html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td, h1, h2, h3 {
+	    margin: 0;
+	    padding: 0;
+	    border: none;
+	    outline: 0;
+	    font-size: 100%;
+	    vertical-align: baseline;
+	    background: transparent;
+	}
+	ul { list-style: none; margin: 0;padding: 0}
+	a {color: #333;}
+	body {
+	    font-family: Open Sans, Arial,sans-serif; 
+	    background: white;
+	    padding: 0;
+	    font-size: 12px;
+	    height: 100%;
+	    min-width: 1220px;
+	    width: 100%;
+	}
+	.clearfix{overflow: hidden;zoom:1;}
+	/*calendar*/
+	.date-range{position:relative}
+	.date-range>.arrow-calendar {
+	    position: absolute;
+	    right: 12px;
+	    top: 15px;
+	}
+	.date-range>i {
+	    position: absolute;
+	    top: 6px;
+	    left: 15px;
+	}
+	.date-range-input {
+	    padding-left: 30px;
+	    margin-bottom: 8px;
+	}
+	.xmoCalendarPrev,.xmoCalendarNext{background:none!important;position:relative;}
+	.xmoCalendarPrev .glyphicon,.xmoCalendarNext .glyphicon {
+		position:absolute;
+		width: 12px;
+	    height: 12px;
+	    font-size: 12px;
+	    color: #fff;
+	    line-height: 12px;
+	    }
+	.glyphicon-question-sign{left:0px;cursor: pointer;}
+	</style>
+</head>
+<body>
+	<form action="" method="post" id="form" style="margin:20px;">
+    <!-- table -->
+    <div class="tab-content" id="myTabContent">
+    	<ul class="nav nav-pills event_filter">
+          <li class="filter_icon active">
+            <div class="date-range">
+              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i> 
+              <input type="text" id="daterange" placeholder="时间" value="" class="form-control date-range-input xmoCalendarInputSchedule">
+                 <input type="hidden" id="min" name="begin" value="" />
+              <input type="hidden" id="max" name="end" value="" /> 
+              <span class="caret arrow-calendar"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+	<script type="text/javascript">
+	 $(function() {
+      initCalendar("daterange");
+      });
+	function initCalendar(id) {
+        new xmoCalendar({
+          inputId : '#' + id,
+          lang : 'en', //"zh" "en"
+          initTime : '2013-10-28',
+          menu : [ "last_7_days", "last_30_days", "this_week", "this_month",
+              "this_yeah", "last_week", "last_month", "last_3_month" ],
+          submitCallback : function() {
+            search_column(id);
+          },
+        })
+      }
+
+      function search_column(id) {
+        var during = $("#" + id).val();
+        var duringArr = during.split(" ~ ");
+        $("#min").val(duringArr[0]);
+        $("#max").val(duringArr[1]);
+        //$("#form").submit();
+      }
+
+	</script>
+	
+</body>
+</html>

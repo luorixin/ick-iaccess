@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="./city.css" />
+	<script type="text/javascript" src="./jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="./city.js"></script>
+	<style type="text/css">
+		html,body{height: 100%}
+		.floater {
+		    float:left; 
+		    height:50%; 
+		    margin-bottom:-120px;
+		}
+		.content {
+		    clear:both; 	
+		    height:240px; 
+		    position:relative;
+		}
+	</style>
+</head>
+<body>
+	<form action="" id="cityForm" submit="return false;" methode="post">
+		<input name="result" id="result" type="text"/>
+		<div class="city" id="city" style="width:806px;height:525px"></div>
+		<div class="clear" style="clear:both;padding-bottom:15px;"></div>
+		<input type="button" onclick="getSelected()" value="获取选中id" />
+		
+		
+		
+	</form>
+	<script type="text/javascript">
+	var city = {};
+    var loc = "zh-cn" == "en" ? "en" : "ch";
+    loc="en";
+     $.ajax({
+            type: 'get',
+            url:  "city.json",
+            success: function(data) {
+	              city=new bshare.Ncity({
+	              container:$("#city"),
+	              lang:loc,//英文是en中文是ch
+	              china:data.china,
+	              foreign:data.foreign
+	            });
+	           // city.setSelected(data.result);
+	        }   
+      });
+		
+		function getSelected(){
+			var selected = city.getSelected();	
+			console.log(JSON.stringify(selected) );
+		}
+		function changeResult(value){
+			//alert(value);
+		}
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>客户管理</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="./nav-css/google-font.css">
+  <link rel="stylesheet" type="text/css" href="./bootstrap-xmo/css/bootstrap.css">
+   <link rel="stylesheet" type="text/css" href="./nav-css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="http://xmostg.optimix.asia/css/my_layer.css?9310">
+   <link rel="stylesheet" type="text/css" href="http://xmostg.optimix.asia/stylesheets/chosen.css?9310">
+   <link rel="stylesheet" type="text/css" href="http://xmo.optimix.asia/stylesheets/xmo/application.css?9310">
+   <link rel="stylesheet" type="text/css" href="http://xmo.optimix.asia/stylesheets/xmo/xmo_components.css?9310">
+   <link rel="stylesheet" type="text/css" href="./nav-css/nav.css">
+   <link rel="stylesheet" type="text/css" href="http://iaccess1.optimix.asia/stylesheets/css/chart.css?9310">
+
+	<script type="text/javascript" src="./nav-js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="./nav-js/common.js"></script>
+  <script src="http://xmo.optimix.asia/bootstrap/js/bootstrap.min.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/bootstrap/js/bootstrap-popover.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/jquery.validate.min.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/jquery.form.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/jquery.metadata.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/js/component.js?9310" type="text/javascript"></script>
+
+  <script src="http://xmo.optimix.asia/javascripts/jquery.dataTables.1.9.1.min.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/datatables/FixedColumns.min.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/datatable_sorting_plugin.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/jquery-ui-1.8.21.custom.min.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/underscore-min.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/BS_city/city.js?9310" type="text/javascript"></script>
+  <link href="http://xmo.optimix.asia/stylesheets/BS_city/city.css?9310" media="screen" rel="stylesheet" type="text/css" />
+
+  <link href="http://xmo.optimix.asia/stylesheets/css/redmond/jquery-ui-1.8.17.custom.css?9310" media="all" rel="stylesheet" type="text/css" />
+  <script src="http://xmo.optimix.asia/javascripts/xmo-calendar.js?9310" type="text/javascript"></script>
+  <script src="http://xmo.optimix.asia/javascripts/jquery.xmo_tooltips.js?9310" type="text/javascript"></script>
+  <link href="http://xmo.optimix.asia/stylesheets/css/xmo-calendar.css?9310" media="all" rel="stylesheet" type="text/css" />
+  <script src="http://xmo.optimix.asia/javascripts/weekly_js/jquery.disable.text.select.pack.js?9310" type="text/javascript"></script>
+  <link href="http://xmo.optimix.asia/stylesheets/weekly_css/dayparting.css?9310" media="screen" rel="stylesheet" type="text/css" />
+  <script src="http://xmo.optimix.asia/javascripts/weekly_js/dayparting.js?9310" type="text/javascript"></script>
+  <link href="http://xmo.optimix.asia/stylesheets/multilayer/multilayer.css?9310" media="screen" rel="stylesheet" type="text/css" />
+  <script src="http://xmo.optimix.asia/javascripts/multilayer/multilayer.js?9310" type="text/javascript"></script>
+  <link href="http://xmo.optimix.asia/css/my_layer.css?9310" media="all" rel="stylesheet" type="text/css" />
+  <script src="http://xmo.optimix.asia/javascripts/ZeroClipboard.js" type="text/javascript"></script>
+
+<!--需要修改的css -->
+<style type="text/css">
+/* chart.css */
+.sub-nav-tabs{
+  height: 30px;
+  background-color: transparent;
+  line-height: 30px;
+  border-bottom: 1px solid #e3e3e3;
+  width: 100%;
+  margin: 20px -20px 0px -20px;
+  padding: 0 20px;
+}
+.sub-nav-tabs li{
+  float: left;
+  min-width: 120px;
+  text-align: center;
+  height: 100%;
+  border-radius: 0;
+}
+.sub-nav-tabs li a{
+  height: 29px;
+  background-color: #e8ebec;
+  padding: 0px;
+  line-height: 29px;
+  border: 1px solid #dfdfdf;
+  font-weight: bold;
+  color: #333;
+  border-bottom: none;
+  margin: 0 2px;
+  padding: 0 5px;
+}
+.sub-nav-tabs li.active a{
+  height: 30px;
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-bottom: none;
+  font-weight: bold;
+  margin: 0 2px;
+  padding: 0 5px;
+}
+/*新增*/
+.nav-tabs > li > a{
+  border-radius:0!important;
+}
+</style>
+
+</head>
+    <body>
+    	<div class="container">
+    	<!--头部-->
+      <div class="myheading">
+        <nav class="navbar navbar-inverse">
+          <div class="x-navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="http://xmostg.optimix.asia/" class="navbar-brand" data-toggle="offcanvas">
+                <img src="http://xmostg.optimix.asia/images/logo/xmo.optimix.asia.png" alt="" style="" width="120" height="50">
+              </a>
+            </div>
+
+            <div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1">
+              <!-- Single button -->
+              <div class="x-user-main x-search">
+                <div class="x-user-con x-filter">
+                    <span class="x-top-search-title">
+                      <label  data-toggle="tooltip" data-placement="bottom" title="Advertiser·iClick interative">Advertiser · iClick interative</label>
+
+                      <label class="x-top-search-main" data-toggle="tooltip" data-placement="top" title="Advertiser·iClick interative">
+                        <span>Bank of China</span>
+                        <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">new_client_from_new_nav (hahaxixi)</div></div></div>
+                      </label>
+
+                    </span>
+                    <i class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></i>
+                </div>
+                <div class="x-user-list x-top-search-list">
+                  <span class="nav-arrow"></span>
+                  <div class="x-top-content">
+                    <div class="x-top-search">
+                      <div class="x-top-search-search icon-search">
+                        <i class="fa fa-search"></i>
+                        <input class="input-search" placeholder="Search Clients" id="input-search" autofocus="" style="padding-left: 20px;">
+                      </div>
+                    </div>
+
+                    <div class="x-top-recent">
+                      <label style="font-size:12px;">Recent</label>
+                      <ul>
+
+                        <li><a href="#" class="client_link" id="1316">
+                          <span data-toggle="tooltip" data-placement="top">
+
+                          new_client_from_new_nav (hahaxixi)
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">new_client_from_new_nav (hahaxixi)</div></div></div>
+                          </span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4163">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          jerry_test_12 (test)
+
+                          </span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="42">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          Benchmark Test
+
+                          </span></a>
+                        </li>
+
+                      </ul>
+                      <hr>
+                    </div>
+
+                    <div class="x-top-result">
+                      <label style="font-size:12px;">All Clients</label>
+                      <ul>
+
+                        <li>
+                          <a href="javascript:;" id="4554">
+                            <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            <span  data-toggle="tooltip" data-placement="top" title="Adobe System (HK) Limited (Adobe System (HK) Limited)">
+                            Adobe System (HK) Limited (Adobe System (HK) Limited)
+                            </span>
+                            <span class="x-top-result-tag">AB0123</span>
+                          </a>
+                          <ul class="x-top-tree-child">
+
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0123</span></a></li>
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0124</span></a></li>
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0125</span></a></li>
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0126</span></a></li>
+
+      									</ul>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4553">
+                          <span data-toggle="tooltip" data-placement="top" title="123">
+
+                          Jumeirah Group  (Jumeirah Group )
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">Jumeirah Group  (Jumeirah Group )</div></div></div>
+                        </span><span class="x-top-result-tag">AC0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4552">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          HILTON WORLDWIDE  (HILTON WORLDWIDE )
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">HILTON WORLDWIDE  (HILTON WORLDWIDE )</div></div></div>
+                        </span><span class="x-top-result-tag">AE0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4551">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          Argentina: Ministry of Tourism (Argentina Instituto Nacional de Promocion Turística)
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">Argentina: Ministry of Tourism (Argentina Instituto Nacional de Promocion Turística)</div></div></div>
+                        </span><span class="x-top-result-tag">AF0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4550">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          Landmark C&amp;D Co (Tulip Hotels)
+
+                        </span><span class="x-top-result-tag">AQ0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4549">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          英国文化教育协会 (英国文化教育协会)
+
+                          </span><span class="x-top-result-tag">AD0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4548">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          VML IM2.0 (康师傅天猫旗舰店开业)
+
+                          </span><span class="x-top-result-tag">AD0123</span></a>
+                        </li>
+
+
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="x-top-menu" >
+                <ul class="nav navbar-nav">
+
+
+
+                  <li class=""><a href="#">Symphony</a>
+                  </li>
+
+
+
+                  <li class="selected" style="display: block;">
+                    <a href="#">iAudience</a>
+                    <ul class="dropdown-top-menu" aria-labelledby="dropdownMenu1" style="">
+                      <span class="nav-arrow"></span>
+                      <li><a href="http://iaudience.optimix.asia/zh-cn/presale_tools/select_view">受众策划</a></li>
+                      <li><a href="http://iaudience.optimix.asia/zh-cn/brands/new">品牌追踪</a></li>
+
+                      <li>
+                        <a href="http://iaudience.optimix.asia/zh-cn/clients/1129/audiences">目标人群</a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+
+                  <li class="">
+                    <a href="javascript:void(0);" >iActivate</a>
+                    <ul class="dropdown-top-menu" aria-labelledby="dropdownMenu1">
+                      <span class="nav-arrow"></span>
+                      <li>
+                        <a href="/zh-cn/agencies/new_index">Account Management</a>
+
+                        <ul class="sub-top-menu ">
+                          <li><a href="/zh-cn/agencies/new_index">代理商</a></li>
+                          <li><a href="/zh-cn/agencies/1/financial_manage">Advertisers</a></li>
+                        </ul>
+                        <span class="caret-right"></span>
+                                        </li>
+                      <li>
+                        <a href="/zh-cn/forecastings">Planning</a>
+                        <ul class="sub-top-menu ">
+                          <li><a href="/zh-cn/forecastings">库存预测工具</a></li>
+                          <li><a href="http://xmostg.optimix.asia/zh-cn/placements/b_index?client_id=1129">广告位管理</a></li>
+                          <li><a href="http://xmostg.optimix.asia/zh-cn/presale_tools/select_view">受众策划</a></li>
+                        </ul>
+                        <span class="caret-right"></span>
+                      </li>
+                      <li>
+                        <a href="http://xmostg.optimix.asia/zh-cn/campaigns/cross_marketplace_dashboard?client_id=1129&amp;dashboard_type=all">展示广告</a>
+                        <ul class="sub-top-menu ">
+                          <li><a href="http://xmostg.optimix.asia/zh-cn/campaigns/cross_marketplace_dashboard?client_id=1129&amp;dashboard_type=all">展示广告</a></li>
+                          <li></li>
+                          <li><a href="javascript:void(0);" class="nav_standard_report">报表</a></li>
+                        </ul>
+                        <span class="caret-right"></span>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class=""><a href="#">iExperience</a>
+                  </li>
+
+                  <li class=""><a href="#">iNsights</a>
+                  </li>
+                  <li class=""><a href="#">iApps</a>
+                  </li>
+
+                  <li class=""><a href="#">Settings</a>
+                  </li>
+
+
+                </ul>
+
+              </div>
+
+              <!-- Single button -->
+
+              <div class="x-user-main  navbar-right">
+                <div class="x-user-con" style="width: 135px;background:none">
+                    <!-- <img class="x-user " src="https://git.bznx.net/assets/logo-white-ed4a8c29c69c582954818a833b737e7a.png"> -->
+                    <span class="x-user-dis"><i class="fa fa-user" style="color:#666;" aria-hidden="true"></i>&nbsp;jacob.sun@i-click.com</span>
+                    <i class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></i>
+                </div>
+
+                <ul class="x-user-list">
+                  <span class="nav-arrow"></span>
+
+
+                      <li>
+                        <a href="http://xmostg.optimix.asia/en/users/information" class="x-user-config">
+                          <i class="fa fa-user-o icon_setting"></i>Account Information
+                        </a>
+                      </li>
+
+                  <li>
+                    <a href="http://xmostg.optimix.asia/en/users/changepassword" class="x-user-config">
+                      <span class="fa fa-lock icon_setting"></span>Change Password
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/en/admin/logout?back_url=http%253A%252F%252Fxmostg.optimix.asia%252Fen%252Fclients%252F1316%252Ffrequency_cap_groups" class="x-user-config">
+                      <span class="fa fa-sign-out icon_setting"></span>Sign Out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+
+
+              <div class="navbar-form navbar-right" >
+                <a href="javascript:void(0);" ><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;FAQs</a>
+               </div>
+
+
+            </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+<div class="x-main">
+  <div class="x-sidebar" id="x-sidebar">
+    <ul class="x-menu">
+			<li id="li001" class="selected">
+				<a href="#">
+				 <i class="fa fa-book fa-bandcamp" aria-hidden="true"></i>
+				<span class="x-m8">Planning</span>
+         <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+				</a>
+				<ul class="sub-menu" style="display: block;">
+					<li class="">
+						<a href="#"><span class="x-m8">Media Planner</span></a>
+					</li>
+					<li class="">
+						<a href="#"><span class="x-m8">Ad Placements</span></a>
+					</li>
+					<li class="active">
+						<a href="#"><span class="x-m8">Audience Planner</span></a>
+
+					</li>
+
+				</ul>
+			</li>
+
+			<li id="li003" class="">
+				<a href="#">
+				 <i class="fa fa-book fa-briefcase" aria-hidden="true"></i>
+					<span class="x-m8">Cross Marketplace Analysis</span>
+				</a>
+			</li>
+			<li id="li004" class="">
+				<a href="#">
+				 <i class="fa fa-book fa-database" aria-hidden="true"></i>
+				<span class="x-m8">Finance</span>
+				</a>
+			</li>
+      <li id="li004" class="">
+				<a href="#">
+				 <i class="fa fa-book fa-lightbulb-o" aria-hidden="true"></i>
+				<span class="x-m8">Tools</span>
+				</a>
+			</li>
+
+		</ul>
+    <ul class="x-menu-lang-select">
+      <li>
+        <a href="#">
+        <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
+           <span class="x-m8">简体中文</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+        <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
+           <span class="x-m8">简体中文</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="x-menu-lang">
+
+      <li>
+        <a href="javascript:;">
+        <i class="fa fa-cog fa-globe" aria-hidden="true"></i>
+           <span class="x-m8">langauage English</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="x-body" id="x-body">
+		<div class="page_title">
+		  <div id="breadcrumb" class="row">
+		    <!-- Top left headings and links -->
+		   <div class="client-row">
+
+	   		 </div>
+
+
+		  </div>
+		  <div class="row"><div class="client-row"><h1>Agencies</h1></div></div>
+ 		</div>
+		  <!-- Page title -->
+
+      <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
+        <li class="events_li active">
+          <a data-toggle="tab" href="#tab-events_li" style="display:block; padding-left: 10px;padding-right: 10px;margin: 0px 2px 0px 2px;" class="events_a">Generate &amp; Schedule</a>
+        </li>
+        <li class="infos_li">
+          <a data-toggle="tab" href="#tab-infos_li" style="display:block; padding-left: 10px;padding-right: 10px;margin: 0px 2px 0px 2px;" class="infos_a">Download</a>
+        </li>
+      </ul>
+
+
+		<!-- table -->
+    <div class="tab-content">
+  <div id="events" class="tab-pane fade in active">
+    <script src="/javascripts/jquery.sticky.js?9141" type="text/javascript"></script>
+<script src="/javascripts/ZeroClipboard.js" type="text/javascript"></script>
+<script src="/javascripts/underscore-min.js" type="text/javascript"></script>
+<script src="/javascripts/xmo-calendar.js" type="text/javascript"></script>
+<script src="/javascripts/reportLayer.js" type="text/javascript"></script>
+<script src="/javascripts/Sortable.js" type="text/javascript"></script>
+
+<link href="/css/reportLayer.css?9310" media="screen" rel="stylesheet" type="text/css">
+<link href="/stylesheets/css/xmo-calendar.css?9310" media="all" rel="stylesheet" type="text/css">
+<script src="/javascripts/reportLayerParams.js?9310" type="text/javascript"></script>
+<script src="/javascripts/jquery.validate.min.js?9310" type="text/javascript"></script>
+
+<div id="Message" class="message sticker"></div>
+<div class="big_section">
+  <form id="campaign_form" class="form-horizontal" method="post">
+    <input id="client_id" name="client_id" type="hidden" value="1316">
+    <input id="plan_types" name="plan_types" type="hidden" value="">
+
+    <input id="schedule_report_id" name="schedule_report_id" type="hidden" value="">
+    <input id="adgroup_list" name="adgroup_list" type="hidden" value="">
+
+    <div class="error sticker hide"></div>
+
+    <!-- 后来修改report type 方式-->
+    <div class="control-group t_margin_10">
+      <label class="control-label">
+        <label for="report_shortcut">Report Template</label>
+      </label>
+      <div class="controls">
+        <div class="row">
+
+              <div class="span" style="margin-left: 9px;">
+                <label style="font-size: 12px;padding-left: 13px;"><input type="radio" class="shortcut" style="margin-top: -2px;" name="report_shortcut" value="Overall" checked="">Summary Report</label>
+              </div>
+
+              <div class="span" style="margin-left: 9px;">
+                <label style="font-size: 12px;padding-left: 13px;"><input type="radio" class="shortcut" style="margin-top: -2px;" name="report_shortcut" value="Trend">Trend Report</label>
+              </div>
+
+              <div class="span" style="margin-left: 9px;">
+                <label style="font-size: 12px;padding-left: 13px;"><input type="radio" class="shortcut" style="margin-top: -2px;" name="report_shortcut" value="Creative">Creative Report</label>
+              </div>
+
+              <div class="span" style="margin-left: 9px;">
+                <label style="font-size: 12px;padding-left: 13px;"><input type="radio" class="shortcut" style="margin-top: -2px;" name="report_shortcut" value="Geo">Geo Report</label>
+              </div>
+
+              <div class="span" style="margin-left: 9px;">
+                <label style="font-size: 12px;padding-left: 13px;"><input type="radio" class="shortcut" style="margin-top: -2px;" name="report_shortcut" value="Audience">Audience Report</label>
+              </div>
+
+              <div class="span" style="margin-left: 9px;">
+                <label style="font-size: 12px;padding-left: 13px;"><input type="radio" class="shortcut" style="margin-top: -2px;" name="report_shortcut" value="Media">Media Report</label>
+              </div>
+
+              <div class="span" style="margin-left: 9px;">
+                <label style="font-size: 12px;padding-left: 13px;"><input type="radio" class="shortcut" style="margin-top: -2px;" name="report_shortcut" value="Frequencies">Frequency Cap Report</label>
+              </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!--order -->
+    <div class="control-group" id="order_div">
+      <label class="control-label">
+        <label for="campaign_order">Order</label>
+      </label>
+
+      <div class="controls">
+        <div class="row ">
+          <div class="item_two_column">
+            <div class="span">
+              <select class="chosen-container span5 order_field chzn-done" data-placeholder="Please Select" id="order_code" include_blank="true" multiple="multiple" name="order_code[]" style="display: none;"><option value="all" selected="selected">All</option>
+<option value="B1T1103292184">B1T1103292184</option>
+<option value="B1D4318907966">B1D4318907966</option>
+<option value="B172873953014">B172873953014</option>
+<option value="B9N0809817500">B9N0809817500</option></select><div id="order_code_chzn" class="chzn-container chzn-container-multi" style="width: 380px;"><ul class="chzn-choices"><li class="search-choice" id="order_code_chzn_c_0"><span>All</span><a href="javascript:void(0)" class="search-choice-close" rel="0"></a></li><li class="search-field"><input type="text" value="Please Select" class="" autocomplete="off" style="width: 25px;"></li></ul><div class="chzn-drop" style="left: -9000px; width: 382px; top: 29px;"><ul class="chzn-results"><li id="order_code_chzn_o_0" class="result-selected" style="">All</li><li id="order_code_chzn_o_1" class="active-result" style="">B1T1103292184</li><li id="order_code_chzn_o_2" class="active-result" style="">B1D4318907966</li><li id="order_code_chzn_o_3" class="active-result" style="">B172873953014</li><li id="order_code_chzn_o_4" class="active-result" style="">B9N0809817500</li></ul></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--campaign -->
+    <div class="control-group" id="campaign_div">
+      <label class="control-label">
+        <label for="campaigns_name" style="text-transform: none;">Campaign(s)</label>
+      </label>
+
+      <div class="controls">
+        <div class="row ">
+          <div class="item_two_column">
+            <div class="span">
+              <select name="all_campaigns[]" id="all_campaigns" multiple="" class="chosen-container select chosen span7 all_campaigns chzn-done" data-placeholder="Please Select" style="display: none;">
+
+                    <option data-party="false" data-id="14690" data_v="AD EXCHANGE DoubleClick" value="14690">test by jay</option>
+
+                    <option data-party="false" data-id="14690" data_v="AD EXCHANGE CHINA" value="14690">test by jay</option>
+
+                    <option data-party="false" data-id="14698" data_v="EXTERNAL MEDIA" value="14698">new_client_from_new_nav_外采媒体_20151208_175826</option>
+
+                    <option data-party="false" data-id="14704" data_v="PREMIUM NETWORK" value="14704">Air New Zealand Singapore_优质媒体_20150806_1706fds</option>
+
+                    <option data-party="false" data-id="14705" data_v="PREMIUM NETWORK" value="14705">Jay Test Campaign</option>
+
+                    <option data-party="false" data-id="14741" data_v="OTV" value="14741">111111</option>
+
+                    <option data-party="false" data-id="14836" data_v="AD EXCHANGE CHINA" value="14836">11111</option>
+
+                    <option data-party="false" data-id="14837" data_v="" value="14837">738912</option>
+
+                    <option data-party="false" data-id="14838" data_v="OTV" value="14838">Jay Test Video Campaign</option>
+
+                    <option data-party="false" data-id="14841" data_v="OTV" value="14841">Jay Test Campaign2</option>
+
+                    <option data-party="false" data-id="14846" data_v="AD EXCHANGE CHINA" value="14846">test_dsp_campaign_of_status_01</option>
+
+                    <option data-party="false" data-id="14847" data_v="" value="14847">848182</option>
+
+                    <option data-party="false" data-id="15021" data_v="" value="15021">943403</option>
+
+                    <option data-party="false" data-id="15032" data_v="AD EXCHANGE CHINA" value="15032">PMP 3.0 Test Campaign_DA_Adx_China</option>
+
+                    <option data-party="false" data-id="15034" data_v="AD EXCHANGE CHINA" value="15034">new_client_from_new_nav_Ad Exchange_20151217_124036</option>
+
+                    <option data-party="false" data-id="15034" data_v="AD EXCHANGE DoubleClick" value="15034">new_client_from_new_nav_Ad Exchange_20151217_124036</option>
+
+                    <option data-party="false" data-id="15035" data_v="" value="15035">704678</option>
+
+                    <option data-party="false" data-id="15037" data_v="OTV" value="15037">otv_campain_create_12/17</option>
+
+                    <option data-party="false" data-id="15040" data_v="OTV" value="15040">Jay Test Campaign Video</option>
+
+                    <option data-party="false" data-id="15041" data_v="" value="15041">167472</option>
+
+                    <option data-party="false" data-id="15054" data_v="" value="15054">708843</option>
+
+                    <option data-party="false" data-id="15055" data_v="" value="15055">653507</option>
+
+                    <option data-party="false" data-id="15058" data_v="AD EXCHANGE DoubleClick" value="15058">PMP 3.0 Test Adx_overseas</option>
+
+                    <option data-party="false" data-id="15062" data_v="PREMIUM NETWORK" value="15062">PMP 3.0 Test Campaign</option>
+
+                    <option data-party="false" data-id="15064" data_v="PREMIUM NETWORK" value="15064">PMP 3.0 Test Campaign_Da</option>
+
+                    <option data-party="false" data-id="15065" data_v="PREMIUM NETWORK" value="15065">Test campaign 优质媒体-新华-DA</option>
+
+                    <option data-party="true" data-id="15066" data_v="OTV" value="15066">PMP 3.0 Test OTV DA</option>
+
+                    <option data-party="false" data-id="15085" data_v="" value="15085">178603</option>
+
+                    <option data-party="false" data-id="15111" data_v="OTV" value="15111">test 1</option>
+
+                    <option data-party="false" data-id="15144" data_v="OTV" value="15144">test_video_12/211</option>
+
+                    <option data-party="false" data-id="15156" data_v="AD EXCHANGE DoubleClick" value="15156">new_client_from_new_nav_Ad Exchange_20151221_134011</option>
+
+                    <option data-party="false" data-id="16231" data_v="PREMIUM NETWORK" value="16231">优质媒体测试_selina</option>
+
+                    <option data-party="false" data-id="16234" data_v="OTV" value="16234">前贴片测试_selina</option>
+
+                    <option data-party="false" data-id="16238" data_v="AD EXCHANGE CHINA" value="16238">new_client_from_new_nav_Ad Exchange_20151223_113409</option>
+
+                    <option data-party="false" data-id="16283" data_v="GDN" value="16283">new_client_from_new_nav_广告网络_20151225_165247</option>
+
+                    <option data-party="true" data-id="16432" data_v="EXTERNAL MEDIA" value="16432">new_client_from_new_nav_Direct Media Buy_20151231_151302</option>
+
+                    <option data-party="false" data-id="16434" data_v="OTV" value="16434">danny_test_00001</option>
+
+                    <option data-party="false" data-id="16441" data_v="PREMIUM NETWORK" value="16441">danny_test_pre_media_0001</option>
+
+                    <option data-party="false" data-id="16443" data_v="MOTV MEDIA" value="16443">new_client_from_new_nav_MoTV_20151231_154149</option>
+
+                    <option data-party="false" data-id="16446" data_v="OTV" value="16446">qqqq</option>
+
+                    <option data-party="false" data-id="16619" data_v="DIRECT PUBLISHER" value="16619">new_client_from_new_nav_媒体采购_20160108_500340</option>
+
+                    <option data-party="false" data-id="16794" data_v="AD EXCHANGE DoubleClick" value="16794">new_client_from_new_nav_Ad Exchange_20160114_112216</option>
+
+                    <option data-party="false" data-id="16794" data_v="AD EXCHANGE CHINA" value="16794">new_client_from_new_nav_Ad Exchange_20160114_112216</option>
+
+                    <option data-party="false" data-id="17210" data_v="OTV" value="17210">xmo_test_am</option>
+
+                    <option data-party="false" data-id="17238" data_v="AD EXCHANGE CHINA" value="17238">new_client_from_new_nav_Ad Exchange_20160224_111931</option>
+
+                    <option data-party="false" data-id="17437" data_v="OTV" value="17437">test hahah</option>
+
+                    <option data-party="false" data-id="17451" data_v="PREMIUM NETWORK" value="17451">jenny_test</option>
+
+                    <option data-party="false" data-id="17452" data_v="PREMIUM NETWORK" value="17452">test3.8</option>
+
+                    <option data-party="false" data-id="17511" data_v="PREMIUM NETWORK" value="17511">Test campaign 优质媒体-新华-DA_copy</option>
+
+                    <option data-party="false" data-id="17513" data_v="" value="17513">new_client_from_new_nav_Ad Exchange_20151217_124036_copy</option>
+
+                    <option data-party="false" data-id="17515" data_v="" value="17515">copy_copy_copy</option>
+
+                    <option data-party="false" data-id="17516" data_v="" value="17516">copy_test_1</option>
+
+                    <option data-party="false" data-id="17539" data_v="" value="17539">15034copy</option>
+
+                    <option data-party="false" data-id="17547" data_v="" value="17547">new_client_from_new_nav_Ad Exchange_20160114_112216_copy</option>
+
+                    <option data-party="false" data-id="17548" data_v="AD EXCHANGE CHINA" value="17548">new_client_from_new_nav_Ad Exchange_20160224_111931_copy</option>
+
+                    <option data-party="false" data-id="17550" data_v="OTV" value="17550">danny_test_00001_copy</option>
+
+                    <option data-party="false" data-id="17551" data_v="OTV" value="17551">danny_test_01_copy</option>
+
+                    <option data-party="false" data-id="17556" data_v="GDN" value="17556">new_client_from_new_nav_Ad Network_20160310_300527</option>
+
+                    <option data-party="false" data-id="17557" data_v="GDN" value="17557">new_client_from_new_nav_Ad Network_20160310_714127</option>
+
+                    <option data-party="true" data-id="17559" data_v="EXTERNAL MEDIA" value="17559">new_client_from_new_nav_Direct Media Buy_20151231_151302_copy</option>
+
+                    <option data-party="true" data-id="17561" data_v="EXTERNAL MEDIA" value="17561">new_client_from_new_nav_Direct Media Buy_20151231_1513021457600788_copy</option>
+
+                    <option data-party="false" data-id="17562" data_v="GDN" value="17562">new_client_from_new_nav_Ad Network_20160310_3005271457602157_copy</option>
+
+                    <option data-party="false" data-id="17570" data_v="AD EXCHANGE CHINA" value="17570">new_client_from_new_nav_Ad Exchange_20160311_103847</option>
+
+                    <option data-party="false" data-id="17580" data_v="AD EXCHANGE DoubleClick" value="17580">PMP 3.0 Test Adx_overseas1457681049057_copy</option>
+
+                    <option data-party="false" data-id="17581" data_v="MOTV MEDIA" value="17581">new_client_from_new_nav_MoTV_20151231_1541491457681239401_copy</option>
+
+                    <option data-party="false" data-id="17616" data_v="OTV" value="17616">tttt</option>
+
+                    <option data-party="false" data-id="17649" data_v="AD EXCHANGE CHINA" value="17649">new_client_from_new_nav_广告交易平台_20160312_103612</option>
+
+                    <option data-party="false" data-id="17653" data_v="AD EXCHANGE CHINA" value="17653">new_client_from_new_nav_Ad Exchange_20160314_072436</option>
+
+                    <option data-party="false" data-id="17654" data_v="OTV" value="17654">111</option>
+
+                    <option data-party="false" data-id="17676" data_v="OTV" value="17676">Jay Test Campaign21458007898791_copy</option>
+
+                    <option data-party="false" data-id="17696" data_v="OTV" value="17696">xmo_test_am1458028605149_copy</option>
+
+                    <option data-party="false" data-id="17697" data_v="OTV" value="17697">前贴片测试_selina1458028663975_copy</option>
+
+                    <option data-party="false" data-id="17699" data_v="OTV" value="17699">前贴片测试_selina1458029096492_copy</option>
+
+                    <option data-party="false" data-id="17700" data_v="PREMIUM NETWORK" value="17700">优质媒体测试_selina1458029222991_copy</option>
+
+                    <option data-party="false" data-id="17701" data_v="AD EXCHANGE DoubleClick" value="17701">new_client_from_new_nav_Ad Exchange_20160114_1122161458029283841_copy</option>
+
+                    <option data-party="false" data-id="17702" data_v="AD EXCHANGE DoubleClick" value="17702">new_client_from_new_nav_Ad Exchange_20160114_1122161458029340848_copy</option>
+
+                    <option data-party="false" data-id="17702" data_v="AD EXCHANGE CHINA" value="17702">new_client_from_new_nav_Ad Exchange_20160114_1122161458029340848_copy</option>
+
+                    <option data-party="false" data-id="17703" data_v="AD EXCHANGE DoubleClick" value="17703">PMP 3.0 Test Adx_overseas1458029759747_copy</option>
+
+                    <option data-party="false" data-id="17871" data_v="AD EXCHANGE DoubleClick" value="17871">new_client_from_new_nav_广告交易平台_20160328_115700</option>
+
+                    <option data-party="false" data-id="17874" data_v="AD EXCHANGE DoubleClick" value="17874">new_client_from_new_nav_广告交易平台_20160328_135429</option>
+
+                    <option data-party="false" data-id="17930" data_v="DIRECT PUBLISHER" value="17930">new_client_from_new_nav_Direct Publisher_20160330_227143</option>
+
+                    <option data-party="false" data-id="17964" data_v="PREMIUM NETWORK" value="17964">2222xxxxx</option>
+
+                    <option data-party="false" data-id="17966" data_v="PREMIUM NETWORK" value="17966">2222xxxxxdfdfdfdfdfdfdfdf</option>
+
+                    <option data-party="false" data-id="17968" data_v="PREMIUM NETWORK" value="17968">uuuxucuvucvucvucvucvcv</option>
+
+                    <option data-party="false" data-id="17974" data_v="PREMIUM NETWORK" value="17974">uuuxucuvucvucvucvucvcv972248</option>
+
+                    <option data-party="false" data-id="17976" data_v="PREMIUM NETWORK" value="17976">uuuxucuvucvucvucvucvcvxx</option>
+
+                    <option data-party="false" data-id="18047" data_v="GDN" value="18047">new_client_from_new_nav_Ad Network_20160406_524550xx</option>
+
+                    <option data-party="false" data-id="18048" data_v="GDN" value="18048">new_client_from_new_nav_Ad Network_20160406_805302</option>
+
+                    <option data-party="false" data-id="18096" data_v="OTV" value="18096">backfill up</option>
+
+                    <option data-party="false" data-id="18455" data_v="OTV" value="18455">backfill up_copy</option>
+
+                    <option data-party="false" data-id="18497" data_v="OTV" value="18497">test edit status</option>
+
+                    <option data-party="false" data-id="18498" data_v="PREMIUM NETWORK" value="18498">premium test edit status</option>
+
+                    <option data-party="false" data-id="18611" data_v="AD EXCHANGE CHINA" value="18611">PMP 3.0 Test Campaign_DA_Adx_China_copy</option>
+
+                    <option data-party="false" data-id="18612" data_v="AD EXCHANGE CHINA" value="18612">PMP 3.0 Test Campaign_DA_Adx_China_copy_jay</option>
+
+                    <option data-party="false" data-id="18613" data_v="AD EXCHANGE CHINA" value="18613">PMP 3.0 Test Campaign_DA_Adx_China_jay_test</option>
+
+                    <option data-party="true" data-id="18614" data_v="OTV" value="18614">PMP 3.0 Test OTV DA_jay_copy</option>
+
+                    <option data-party="false" data-id="18637" data_v="AD EXCHANGE DoubleClick" value="18637">PMP 3.0 Test Adx_overseas_copy2</option>
+
+                    <option data-party="false" data-id="18638" data_v="AD EXCHANGE DoubleClick" value="18638">PMP 3.0 Test Adx_overseas_copy2_copy</option>
+
+                    <option data-party="false" data-id="18639" data_v="AD EXCHANGE DoubleClick" value="18639">PMP 3.0 Test Adx_overseas_copy</option>
+
+                    <option data-party="false" data-id="18641" data_v="AD EXCHANGE DoubleClick" value="18641">PMP 3.0 Test Adx_overseas_copy3</option>
+
+                    <option data-party="false" data-id="18642" data_v="AD EXCHANGE DoubleClick" value="18642">PMP 3.0 Test Adx_overseas_copy4</option>
+
+                    <option data-party="false" data-id="18643" data_v="AD EXCHANGE DoubleClick" value="18643">PMP 3.0 Test Adx_overseas_copy5</option>
+
+                    <option data-party="false" data-id="18644" data_v="AD EXCHANGE DoubleClick" value="18644">PMP 3.0 Test Adx_overseas_copy_jayxixi</option>
+
+                    <option data-party="false" data-id="18650" data_v="AD EXCHANGE DoubleClick" value="18650">PMP 3.0 Test Adx_overseas_copy6</option>
+
+                    <option data-party="false" data-id="18652" data_v="AD EXCHANGE DoubleClick" value="18652">PMP 3.0 Test Adx_overseas_copy7</option>
+
+                    <option data-party="true" data-id="18654" data_v="OTV" value="18654">PMP 3.0 Test OTV DA_By_Jay</option>
+
+                    <option data-party="true" data-id="18655" data_v="OTV" value="18655">PMP 3.0 Test OTV DA_copy11</option>
+
+                    <option data-party="true" data-id="18656" data_v="OTV" value="18656">PMP 3.0 Test OTV DA_copy12</option>
+
+                    <option data-party="true" data-id="18657" data_v="OTV" value="18657">PMP 3.0 Test OTV DA_copy1313</option>
+
+                    <option data-party="true" data-id="18658" data_v="OTV" value="18658">PMP 3.0 Test OTV DA_copy14</option>
+
+                    <option data-party="true" data-id="18663" data_v="OTV" value="18663">PMP 3.0 Test OTV DA_copy1515</option>
+
+                    <option data-party="false" data-id="18668" data_v="MOSOCIAL MEDIA" value="18668">new_client_from_new_nav_MoSocial_20160505_144707</option>
+
+                    <option data-party="false" data-id="18704" data_v="GDN" value="18704">new_client_from_new_nav_Ad Network_20160506_266752</option>
+
+                    <option data-party="false" data-id="18705" data_v="GDN" value="18705">new_client_from_new_nav_Ad Network_20160506_594547</option>
+
+                    <option data-party="false" data-id="18708" data_v="GDN" value="18708">new_client_from_new_nav_广告网络_20160506_496230</option>
+
+                    <option data-party="false" data-id="18709" data_v="GDN" value="18709">new_client_from_new_nav_Ad Network_20160506_211414</option>
+
+                    <option data-party="false" data-id="18711" data_v="GDN" value="18711">new_client_from_new_nav_广告网络_20160506_418647</option>
+
+                    <option data-party="false" data-id="18716" data_v="AD EXCHANGE DoubleClick" value="18716">PMP 3.0 Test Adx_overseas_copy18</option>
+
+                    <option data-party="false" data-id="18727" data_v="AD EXCHANGE CHINA" value="18727">new_client_from_new_nav_Ad Exchange_20160509_144338</option>
+
+                    <option data-party="false" data-id="18733" data_v="AD EXCHANGE CHINA" value="18733">new_client_from_new_nav_Ad Exchange_20160509_144338_copy</option>
+
+                    <option data-party="false" data-id="18808" data_v="AD EXCHANGE CHINA" value="18808">new_client_from_new_nav_Ad Exchange_20160427_101736_copy_ppp</option>
+
+                    <option data-party="false" data-id="18816" data_v="AD EXCHANGE CHINA" value="18816">riki test Ad Exchange_20160512_180815</option>
+
+                    <option data-party="false" data-id="18817" data_v="AD EXCHANGE CHINA" value="18817">new_client_from_new_nav_Ad Exchange_20160512_181317</option>
+
+                    <option data-party="false" data-id="18822" data_v="MOTV MEDIA" value="18822">new_client_from_new_nav_MoTV_20160512_183227</option>
+
+                    <option data-party="false" data-id="18823" data_v="MOTV MEDIA" value="18823">jerry_new_client_from_new_nav_MoTV_20160512_183953</option>
+
+                    <option data-party="false" data-id="18826" data_v="PREMIUM NETWORK" value="18826">riki test Premium Ad Network</option>
+
+                    <option data-party="false" data-id="18833" data_v="PREMIUM NETWORK" value="18833">jerry_test</option>
+
+                    <option data-party="false" data-id="18835" data_v="OTV" value="18835">jerry_20</option>
+
+                    <option data-party="false" data-id="18836" data_v="EXTERNAL MEDIA" value="18836">new_client_from_new_nav_外采媒体_20160513_100336</option>
+
+                    <option data-party="false" data-id="18844" data_v="GDN" value="18844">new_client_from_new_nav_Ad Network_20160513_790836</option>
+
+                    <option data-party="false" data-id="18850" data_v="GDN" value="18850">new_client_from_new_nav_Ad Network_20160513_564812</option>
+
+                    <option data-party="false" data-id="18860" data_v="OTV" value="18860">jerry_t</option>
+
+                    <option data-party="false" data-id="18862" data_v="OTV" value="18862">TEST FLOW 1</option>
+
+                    <option data-party="false" data-id="18864" data_v="AD EXCHANGE CHINA" value="18864">new_client_from_new_nav_Ad Exchange_20160513_141015</option>
+
+                    <option data-party="false" data-id="18871" data_v="AD EXCHANGE CHINA" value="18871">new_client_from_new_nav_Ad Exchange_20160513_160555</option>
+
+                    <option data-party="true" data-id="18873" data_v="OTV" value="18873">jerry_13_16</option>
+
+                    <option data-party="false" data-id="18878" data_v="PREMIUM NETWORK" value="18878">riki test 1</option>
+
+                    <option data-party="false" data-id="18888" data_v="AD EXCHANGE CHINA" value="18888">new_client_from_new_nav_广告交易平台_20160513_183638</option>
+
+                    <option data-party="false" data-id="18889" data_v="PREMIUM NETWORK" value="18889">test first row</option>
+
+                    <option data-party="false" data-id="18890" data_v="AD EXCHANGE CHINA" value="18890">new_client_from_new_nav_Ad Exchange_20160513_184153</option>
+
+                    <option data-party="false" data-id="18892" data_v="AD EXCHANGE CHINA" value="18892">new_client_from_new_nav_广告交易平台_20160513_185932</option>
+
+                    <option data-party="false" data-id="18901" data_v="MOTV MEDIA" value="18901">motv campaign</option>
+
+                    <option data-party="false" data-id="18933" data_v="PREMIUM NETWORK" value="18933">h5_bug</option>
+
+                    <option data-party="false" data-id="19048" data_v="AD EXCHANGE CHINA" value="19048">suting_test_dsp_budget_tips</option>
+
+                    <option data-party="false" data-id="19172" data_v="AD EXCHANGE DoubleClick" value="19172">new_client_from_new_nav_Ad Exchange_20160527_193726</option>
+
+                    <option data-party="false" data-id="19265" data_v="OTV" value="19265">test</option>
+
+                    <option data-party="false" data-id="19481" data_v="AD EXCHANGE CHINA" value="19481">jay test</option>
+
+                    <option data-party="false" data-id="19652" data_v="AD EXCHANGE CHINA" value="19652">new_client_from_new_nav_Ad Exchange_20160621_221114</option>
+
+                    <option data-party="false" data-id="19680" data_v="OTV" value="19680">test third 1</option>
+
+                    <option data-party="false" data-id="19730" data_v="OTV" value="19730">a_suting_test_otv</option>
+
+                    <option data-party="true" data-id="19731" data_v="PREMIUM NETWORK" value="19731">a_suting_test_pre_adwork</option>
+
+                    <option data-party="true" data-id="19732" data_v="AD EXCHANGE CHINA" value="19732">suting_test_dsp</option>
+
+                    <option data-party="true" data-id="19734" data_v="EXTERNAL MEDIA" value="19734">suting_test_外采媒体_20160628_143643</option>
+
+                    <option data-party="false" data-id="19936" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="19936">new_client_from_new_nav_Adx_MobileApps_805513</option>
+
+                    <option data-party="false" data-id="19937" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="19937">new_client_from_new_nav_Adx_MobileApps_502142</option>
+
+                    <option data-party="false" data-id="19938" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="19938">new_client_from_new_nav_Adx_MobileApps_417231</option>
+
+                    <option data-party="false" data-id="19940" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="19940">new_client_from_new_nav_Adx_MobileApps_319844</option>
+
+                    <option data-party="false" data-id="19942" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="19942">new_client_from_new_nav_Adx_MobileApps_164879</option>
+
+                    <option data-party="false" data-id="19943" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="19943">new_client_from_new_nav_Adx_MobileApps_642629</option>
+
+                    <option data-party="false" data-id="20092" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="20092">new_client_from_new_nav_Adx_MobileApps_287742</option>
+
+                    <option data-party="false" data-id="20108" data_v="AD EXCHANGE MOBILE_ADEXCHANGE" value="20108">new_client_from_new_nav_Adx_MobileApps_126241</option>
+
+                    <option data-party="false" data-id="20449" data_v="MOTV MEDIA" value="20449">motv-10cpm测试</option>
+
+                    <option data-party="false" data-id="20798" data_v="MOTV MEDIA" value="20798">new_client_from_new_nav_MoTV_20160906_260959</option>
+
+                    <option data-party="false" data-id="21055" data_v="MOTV MEDIA" value="21055">new_client_from_new_nav_MoTV_20160921_344379</option>
+
+                    <option data-party="false" data-id="21473" data_v="AD EXCHANGE CHINA" value="21473">new_client_from_new_nav_广告交易平台(网站)_20161026_103007</option>
+
+                    <option data-party="false" data-id="21507" data_v="GDN" value="21507">new_client_from_new_nav_广告网络_20160506_418647_copy</option>
+
+                    <option data-party="false" data-id="21509" data_v="GDN" value="21509">new_client_from_new_nav_广告网络_20160506_418647_copy2</option>
+
+                    <option data-party="false" data-id="21510" data_v="GDN" value="21510">new_client_from_new_nav_广告网络_20160506_418647_copy3</option>
+
+                    <option data-party="false" data-id="21511" data_v="GDN" value="21511">new_client_from_new_nav_广告网络_20160506_418647_copy4</option>
+
+              </select><div id="all_campaigns_chzn" class="chzn-container chzn-container-multi" style="width: 382px;"><ul class="chzn-choices" style="max-height:120px;overflow:auto"><li class="search-field"><input type="text" value="Please Select" class="default" autocomplete="off" style="width: 102px;"></li></ul><div class="chzn-drop" style="left: -9000px; width: 382px; top: 29px;"><ul class="chzn-results"><li id="all_campaigns_chzn_o_0" class="active-result" style="">test by jay</li><li id="all_campaigns_chzn_o_1" class="active-result" style="">test by jay</li><li id="all_campaigns_chzn_o_2" class="active-result" style="">new_client_from_new_nav_外采媒体_20151208_175826</li><li id="all_campaigns_chzn_o_3" class="active-result" style="">Air New Zealand Singapore_优质媒体_20150806_1706fds</li><li id="all_campaigns_chzn_o_4" class="active-result" style="">Jay Test Campaign</li><li id="all_campaigns_chzn_o_5" class="active-result" style="">111111</li><li id="all_campaigns_chzn_o_6" class="active-result" style="">11111</li><li id="all_campaigns_chzn_o_7" class="active-result" style="">738912</li><li id="all_campaigns_chzn_o_8" class="active-result" style="">Jay Test Video Campaign</li><li id="all_campaigns_chzn_o_9" class="active-result" style="">Jay Test Campaign2</li><li id="all_campaigns_chzn_o_10" class="active-result" style="">test_dsp_campaign_of_status_01</li><li id="all_campaigns_chzn_o_11" class="active-result" style="">848182</li><li id="all_campaigns_chzn_o_12" class="active-result" style="">943403</li><li id="all_campaigns_chzn_o_13" class="active-result" style="">PMP 3.0 Test Campaign_DA_Adx_China</li><li id="all_campaigns_chzn_o_14" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20151217_124036</li><li id="all_campaigns_chzn_o_15" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20151217_124036</li><li id="all_campaigns_chzn_o_16" class="active-result" style="">704678</li><li id="all_campaigns_chzn_o_17" class="active-result" style="">otv_campain_create_12/17</li><li id="all_campaigns_chzn_o_18" class="active-result" style="">Jay Test Campaign Video</li><li id="all_campaigns_chzn_o_19" class="active-result" style="">167472</li><li id="all_campaigns_chzn_o_20" class="active-result" style="">708843</li><li id="all_campaigns_chzn_o_21" class="active-result" style="">653507</li><li id="all_campaigns_chzn_o_22" class="active-result" style="">PMP 3.0 Test Adx_overseas</li><li id="all_campaigns_chzn_o_23" class="active-result" style="">PMP 3.0 Test Campaign</li><li id="all_campaigns_chzn_o_24" class="active-result" style="">PMP 3.0 Test Campaign_Da</li><li id="all_campaigns_chzn_o_25" class="active-result" style="">Test campaign 优质媒体-新华-DA</li><li id="all_campaigns_chzn_o_26" class="active-result" style="">PMP 3.0 Test OTV DA</li><li id="all_campaigns_chzn_o_27" class="active-result" style="">178603</li><li id="all_campaigns_chzn_o_28" class="active-result" style="">test 1</li><li id="all_campaigns_chzn_o_29" class="active-result" style="">test_video_12/211</li><li id="all_campaigns_chzn_o_30" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20151221_134011</li><li id="all_campaigns_chzn_o_31" class="active-result" style="">优质媒体测试_selina</li><li id="all_campaigns_chzn_o_32" class="active-result" style="">前贴片测试_selina</li><li id="all_campaigns_chzn_o_33" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20151223_113409</li><li id="all_campaigns_chzn_o_34" class="active-result" style="">new_client_from_new_nav_广告网络_20151225_165247</li><li id="all_campaigns_chzn_o_35" class="active-result" style="">new_client_from_new_nav_Direct Media Buy_20151231_151302</li><li id="all_campaigns_chzn_o_36" class="active-result" style="">danny_test_00001</li><li id="all_campaigns_chzn_o_37" class="active-result" style="">danny_test_pre_media_0001</li><li id="all_campaigns_chzn_o_38" class="active-result" style="">new_client_from_new_nav_MoTV_20151231_154149</li><li id="all_campaigns_chzn_o_39" class="active-result" style="">qqqq</li><li id="all_campaigns_chzn_o_40" class="active-result" style="">new_client_from_new_nav_媒体采购_20160108_500340</li><li id="all_campaigns_chzn_o_41" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160114_112216</li><li id="all_campaigns_chzn_o_42" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160114_112216</li><li id="all_campaigns_chzn_o_43" class="active-result" style="">xmo_test_am</li><li id="all_campaigns_chzn_o_44" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160224_111931</li><li id="all_campaigns_chzn_o_45" class="active-result" style="">test hahah</li><li id="all_campaigns_chzn_o_46" class="active-result" style="">jenny_test</li><li id="all_campaigns_chzn_o_47" class="active-result" style="">test3.8</li><li id="all_campaigns_chzn_o_48" class="active-result" style="">Test campaign 优质媒体-新华-DA_copy</li><li id="all_campaigns_chzn_o_49" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20151217_124036_copy</li><li id="all_campaigns_chzn_o_50" class="active-result" style="">copy_copy_copy</li><li id="all_campaigns_chzn_o_51" class="active-result" style="">copy_test_1</li><li id="all_campaigns_chzn_o_52" class="active-result" style="">15034copy</li><li id="all_campaigns_chzn_o_53" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160114_112216_copy</li><li id="all_campaigns_chzn_o_54" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160224_111931_copy</li><li id="all_campaigns_chzn_o_55" class="active-result" style="">danny_test_00001_copy</li><li id="all_campaigns_chzn_o_56" class="active-result" style="">danny_test_01_copy</li><li id="all_campaigns_chzn_o_57" class="active-result" style="">new_client_from_new_nav_Ad Network_20160310_300527</li><li id="all_campaigns_chzn_o_58" class="active-result" style="">new_client_from_new_nav_Ad Network_20160310_714127</li><li id="all_campaigns_chzn_o_59" class="active-result" style="">new_client_from_new_nav_Direct Media Buy_20151231_151302_copy</li><li id="all_campaigns_chzn_o_60" class="active-result" style="">new_client_from_new_nav_Direct Media Buy_20151231_1513021457600788_copy</li><li id="all_campaigns_chzn_o_61" class="active-result" style="">new_client_from_new_nav_Ad Network_20160310_3005271457602157_copy</li><li id="all_campaigns_chzn_o_62" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160311_103847</li><li id="all_campaigns_chzn_o_63" class="active-result" style="">PMP 3.0 Test Adx_overseas1457681049057_copy</li><li id="all_campaigns_chzn_o_64" class="active-result" style="">new_client_from_new_nav_MoTV_20151231_1541491457681239401_copy</li><li id="all_campaigns_chzn_o_65" class="active-result" style="">tttt</li><li id="all_campaigns_chzn_o_66" class="active-result" style="">new_client_from_new_nav_广告交易平台_20160312_103612</li><li id="all_campaigns_chzn_o_67" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160314_072436</li><li id="all_campaigns_chzn_o_68" class="active-result" style="">111</li><li id="all_campaigns_chzn_o_69" class="active-result" style="">Jay Test Campaign21458007898791_copy</li><li id="all_campaigns_chzn_o_70" class="active-result" style="">xmo_test_am1458028605149_copy</li><li id="all_campaigns_chzn_o_71" class="active-result" style="">前贴片测试_selina1458028663975_copy</li><li id="all_campaigns_chzn_o_72" class="active-result" style="">前贴片测试_selina1458029096492_copy</li><li id="all_campaigns_chzn_o_73" class="active-result" style="">优质媒体测试_selina1458029222991_copy</li><li id="all_campaigns_chzn_o_74" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160114_1122161458029283841_copy</li><li id="all_campaigns_chzn_o_75" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160114_1122161458029340848_copy</li><li id="all_campaigns_chzn_o_76" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160114_1122161458029340848_copy</li><li id="all_campaigns_chzn_o_77" class="active-result" style="">PMP 3.0 Test Adx_overseas1458029759747_copy</li><li id="all_campaigns_chzn_o_78" class="active-result" style="">new_client_from_new_nav_广告交易平台_20160328_115700</li><li id="all_campaigns_chzn_o_79" class="active-result" style="">new_client_from_new_nav_广告交易平台_20160328_135429</li><li id="all_campaigns_chzn_o_80" class="active-result" style="">new_client_from_new_nav_Direct Publisher_20160330_227143</li><li id="all_campaigns_chzn_o_81" class="active-result" style="">2222xxxxx</li><li id="all_campaigns_chzn_o_82" class="active-result" style="">2222xxxxxdfdfdfdfdfdfdfdf</li><li id="all_campaigns_chzn_o_83" class="active-result" style="">uuuxucuvucvucvucvucvcv</li><li id="all_campaigns_chzn_o_84" class="active-result" style="">uuuxucuvucvucvucvucvcv972248</li><li id="all_campaigns_chzn_o_85" class="active-result" style="">uuuxucuvucvucvucvucvcvxx</li><li id="all_campaigns_chzn_o_86" class="active-result" style="">new_client_from_new_nav_Ad Network_20160406_524550xx</li><li id="all_campaigns_chzn_o_87" class="active-result" style="">new_client_from_new_nav_Ad Network_20160406_805302</li><li id="all_campaigns_chzn_o_88" class="active-result" style="">backfill up</li><li id="all_campaigns_chzn_o_89" class="active-result" style="">backfill up_copy</li><li id="all_campaigns_chzn_o_90" class="active-result" style="">test edit status</li><li id="all_campaigns_chzn_o_91" class="active-result" style="">premium test edit status</li><li id="all_campaigns_chzn_o_92" class="active-result" style="">PMP 3.0 Test Campaign_DA_Adx_China_copy</li><li id="all_campaigns_chzn_o_93" class="active-result" style="">PMP 3.0 Test Campaign_DA_Adx_China_copy_jay</li><li id="all_campaigns_chzn_o_94" class="active-result" style="">PMP 3.0 Test Campaign_DA_Adx_China_jay_test</li><li id="all_campaigns_chzn_o_95" class="active-result" style="">PMP 3.0 Test OTV DA_jay_copy</li><li id="all_campaigns_chzn_o_96" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy2</li><li id="all_campaigns_chzn_o_97" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy2_copy</li><li id="all_campaigns_chzn_o_98" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy</li><li id="all_campaigns_chzn_o_99" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy3</li><li id="all_campaigns_chzn_o_100" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy4</li><li id="all_campaigns_chzn_o_101" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy5</li><li id="all_campaigns_chzn_o_102" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy_jayxixi</li><li id="all_campaigns_chzn_o_103" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy6</li><li id="all_campaigns_chzn_o_104" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy7</li><li id="all_campaigns_chzn_o_105" class="active-result" style="">PMP 3.0 Test OTV DA_By_Jay</li><li id="all_campaigns_chzn_o_106" class="active-result" style="">PMP 3.0 Test OTV DA_copy11</li><li id="all_campaigns_chzn_o_107" class="active-result" style="">PMP 3.0 Test OTV DA_copy12</li><li id="all_campaigns_chzn_o_108" class="active-result" style="">PMP 3.0 Test OTV DA_copy1313</li><li id="all_campaigns_chzn_o_109" class="active-result" style="">PMP 3.0 Test OTV DA_copy14</li><li id="all_campaigns_chzn_o_110" class="active-result" style="">PMP 3.0 Test OTV DA_copy1515</li><li id="all_campaigns_chzn_o_111" class="active-result" style="">new_client_from_new_nav_MoSocial_20160505_144707</li><li id="all_campaigns_chzn_o_112" class="active-result" style="">new_client_from_new_nav_Ad Network_20160506_266752</li><li id="all_campaigns_chzn_o_113" class="active-result" style="">new_client_from_new_nav_Ad Network_20160506_594547</li><li id="all_campaigns_chzn_o_114" class="active-result" style="">new_client_from_new_nav_广告网络_20160506_496230</li><li id="all_campaigns_chzn_o_115" class="active-result" style="">new_client_from_new_nav_Ad Network_20160506_211414</li><li id="all_campaigns_chzn_o_116" class="active-result" style="">new_client_from_new_nav_广告网络_20160506_418647</li><li id="all_campaigns_chzn_o_117" class="active-result" style="">PMP 3.0 Test Adx_overseas_copy18</li><li id="all_campaigns_chzn_o_118" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160509_144338</li><li id="all_campaigns_chzn_o_119" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160509_144338_copy</li><li id="all_campaigns_chzn_o_120" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160427_101736_copy_ppp</li><li id="all_campaigns_chzn_o_121" class="active-result" style="">riki test Ad Exchange_20160512_180815</li><li id="all_campaigns_chzn_o_122" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160512_181317</li><li id="all_campaigns_chzn_o_123" class="active-result" style="">new_client_from_new_nav_MoTV_20160512_183227</li><li id="all_campaigns_chzn_o_124" class="active-result" style="">jerry_new_client_from_new_nav_MoTV_20160512_183953</li><li id="all_campaigns_chzn_o_125" class="active-result" style="">riki test Premium Ad Network</li><li id="all_campaigns_chzn_o_126" class="active-result" style="">jerry_test</li><li id="all_campaigns_chzn_o_127" class="active-result" style="">jerry_20</li><li id="all_campaigns_chzn_o_128" class="active-result" style="">new_client_from_new_nav_外采媒体_20160513_100336</li><li id="all_campaigns_chzn_o_129" class="active-result" style="">new_client_from_new_nav_Ad Network_20160513_790836</li><li id="all_campaigns_chzn_o_130" class="active-result" style="">new_client_from_new_nav_Ad Network_20160513_564812</li><li id="all_campaigns_chzn_o_131" class="active-result" style="">jerry_t</li><li id="all_campaigns_chzn_o_132" class="active-result" style="">TEST FLOW 1</li><li id="all_campaigns_chzn_o_133" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160513_141015</li><li id="all_campaigns_chzn_o_134" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160513_160555</li><li id="all_campaigns_chzn_o_135" class="active-result" style="">jerry_13_16</li><li id="all_campaigns_chzn_o_136" class="active-result" style="">riki test 1</li><li id="all_campaigns_chzn_o_137" class="active-result" style="">new_client_from_new_nav_广告交易平台_20160513_183638</li><li id="all_campaigns_chzn_o_138" class="active-result" style="">test first row</li><li id="all_campaigns_chzn_o_139" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160513_184153</li><li id="all_campaigns_chzn_o_140" class="active-result" style="">new_client_from_new_nav_广告交易平台_20160513_185932</li><li id="all_campaigns_chzn_o_141" class="active-result" style="">motv campaign</li><li id="all_campaigns_chzn_o_142" class="active-result" style="">h5_bug</li><li id="all_campaigns_chzn_o_143" class="active-result" style="">suting_test_dsp_budget_tips</li><li id="all_campaigns_chzn_o_144" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160527_193726</li><li id="all_campaigns_chzn_o_145" class="active-result" style="">test</li><li id="all_campaigns_chzn_o_146" class="active-result" style="">jay test</li><li id="all_campaigns_chzn_o_147" class="active-result" style="">new_client_from_new_nav_Ad Exchange_20160621_221114</li><li id="all_campaigns_chzn_o_148" class="active-result" style="">test third 1</li><li id="all_campaigns_chzn_o_149" class="active-result" style="">a_suting_test_otv</li><li id="all_campaigns_chzn_o_150" class="active-result" style="">a_suting_test_pre_adwork</li><li id="all_campaigns_chzn_o_151" class="active-result" style="">suting_test_dsp</li><li id="all_campaigns_chzn_o_152" class="active-result" style="">suting_test_外采媒体_20160628_143643</li><li id="all_campaigns_chzn_o_153" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_805513</li><li id="all_campaigns_chzn_o_154" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_502142</li><li id="all_campaigns_chzn_o_155" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_417231</li><li id="all_campaigns_chzn_o_156" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_319844</li><li id="all_campaigns_chzn_o_157" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_164879</li><li id="all_campaigns_chzn_o_158" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_642629</li><li id="all_campaigns_chzn_o_159" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_287742</li><li id="all_campaigns_chzn_o_160" class="active-result" style="">new_client_from_new_nav_Adx_MobileApps_126241</li><li id="all_campaigns_chzn_o_161" class="active-result" style="">motv-10cpm测试</li><li id="all_campaigns_chzn_o_162" class="active-result" style="">new_client_from_new_nav_MoTV_20160906_260959</li><li id="all_campaigns_chzn_o_163" class="active-result" style="">new_client_from_new_nav_MoTV_20160921_344379</li><li id="all_campaigns_chzn_o_164" class="active-result" style="">new_client_from_new_nav_广告交易平台(网站)_20161026_103007</li><li id="all_campaigns_chzn_o_165" class="active-result" style="">new_client_from_new_nav_广告网络_20160506_418647_copy</li><li id="all_campaigns_chzn_o_166" class="active-result" style="">new_client_from_new_nav_广告网络_20160506_418647_copy2</li><li id="all_campaigns_chzn_o_167" class="active-result" style="">new_client_from_new_nav_广告网络_20160506_418647_copy3</li><li id="all_campaigns_chzn_o_168" class="active-result" style="">new_client_from_new_nav_广告网络_20160506_418647_copy4</li></ul></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Period -->
+    <div class="control-group">
+      <label class="control-label">
+        <label for="campaigns_name">Period</label>
+      </label>
+
+      <div class="controls">
+        <div class="row">
+          <div class="span">
+            <div class="input-append">
+              <input class="span2 required xmoCalendarInputSchedule" readonly="" name="period1" id="period1" type="text" value="2016-11-23~2016-12-23">
+              <span class="add-on"><i class="icon-calendar icon_trigger r_margin_0"></i></span>
+            </div>
+          </div>
+          <script type="text/javascript">
+              new xmoCalendar({
+                  inputId: '#period1',
+                  lang: 'EN',
+                  exclude: false,
+                  menu: ['today', 'last_7_days', 'last_30_days', 'this_week', 'last_week', 'this_month', 'last_month', 'last_3_month', 'range']
+              })
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!-- advanced settings -->
+    <h2 class="l_padding_20 t_padding_10 b_padding_10 no-border" style="text-decoration: underline;" data-toggle="collapse" data-target="#advanced_setting">
+      <strong>Report Settings</strong><i class="icon-arrow-right"></i>
+    </h2>
+    <div class="b_padding_0 t_padding_5">
+      <div class="in collapse" id="advanced_setting" style="height: auto;">
+
+
+
+
+
+  </form>
+</div>
+<div class="" style="margin-top: 20px;">
+
+  <div id="report_nav" class="hide">
+    <div class="row b_margin_0 t_margin_20">
+      <div class="pull-right span">
+        <ul class="nav inline">
+          <li class="dropdown open">
+            <a data-toggle="dropdown" href="#" class="tab_choice dropdown-toggle"><i class="icon-download"></i>DOWNLOAD
+              <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <div class="white_pointer pointer_wide en"></div>
+              <li><a href="#" onclick="download_file(this)">XLSX</a></li>
+              <li><a href="#" onclick="download_file(this)">XLS</a></li>
+              <li><a href="#" onclick="download_file(this)">CSV</a></li>
+              <li>
+                <a href="#" data-clipboard-text="Copy Me!" id="copy-description">Copy to Clipboard</a>
+              </li>
+              <input type="hidden" id="description" value="ok">
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="integration_table">
+
+    </div>
+  </div>
+</div>
+<div id="ajax-tabular"></div>
+<style type="text/css">
+    .new_table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    #tableWrapper {
+        width: 100%;
+        overflow-x: auto;
+        position: relative;
+        margin-top: 10px;
+    }
+
+    .table_section_report {
+        border: 0;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .table_section_report thead th {
+        padding: 10px 0 10px 6px;
+    }
+
+    .report_error{
+      color: white;
+      margin: 1em 0;
+      padding: 30px 20px 30px 20px;
+      min-width: 1186px;
+      border: 5px white solid;
+      font-size: 20px;
+      line-height: 25px;
+      word-wrap: break-word;
+      z-index: 990;
+      position: relative;
+      background: url('../../images/shared/components/error-graphic.png') no-repeat right top;
+      background-color: #E04D4D;
+    }
+
+</style>
+
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript">
+    var IntegrationReport = {
+        init: function () {
+            this.campaign_return_data = [];
+            this.order_id = '';
+            this.campaign_ids = [];
+            this.order_campaign_ids = [];
+            this.adgroup_channels = [];
+            this.campaign_plan_types = '';
+            this.third_party = [];
+            this.changeinit_value = "{'key':'is_not_have_3rd_party','val':true}";
+            this.campaign_period = 2016-12-23
+            if(true){
+              this.from_dashboard_events();
+            }
+            if((false) && ($("[type=radio][name='report_shortcut']:checked").val() == "Frequencies")){
+                $("[type=radio][name='adgroup[channel]'][value=]").prop('checked',true);
+            }
+            if (false){
+                this.from_dashboard_campaign();
+                this.filter_campaign_column();
+                this.changinit();
+                this.filter_report_template();
+                this.filter_campaign_date();
+            }
+            this.init_event_bind();
+            this.init_auto_column();
+            this.set_event_column();
+            this.filter_campaign_column();
+            this.changinit();
+
+            if (selectedIds.length){
+                multi.reset();
+                multi.selectIds=selectedIds;
+                multi.setSelected();
+            }
+
+        },
+        init_event_bind: function () {
+            var have_all_events = true;
+            var none_of_events = true;
+            var have_all_order = true;
+            var none_of_order = true;
+            $("#event_id").chosen().change(function () {
+                var contain_all = false;
+                var no_events = false;
+                var i = 0;
+                $("#event_id option:selected").each(function (i, l) {
+                    if ($(l).val() == "all") {
+                        contain_all = true;
+                    }
+                    if ($(l).val() == "0") {
+                        no_events = true;
+                    }
+                });
+
+                if (!have_all_events && contain_all) {
+                    $("#event_id option:selected").each(function (i, l) {
+                        if ($(l).val() != "all") {
+                            $(l).removeAttr('selected');
+                        }
+                    });
+                    have_all_events = true;
+                    $('#event_id').trigger("liszt:updated");
+                } else if (!none_of_events && no_events) {
+                    $("#event_id option:selected").each(function (i, l) {
+                        if ($(l).val() != "0") {
+                            $(l).removeAttr('selected');
+                        }
+                    });
+                    none_of_events = true;
+                    $('#event_id').trigger("liszt:updated");
+                } else if (none_of_events && no_events && $("#event_id option:selected").length > 1) {
+                    $("#event_id option[value= 0]").removeAttr('selected');
+                    none_of_events = false;
+                    $('#event_id').trigger("liszt:updated");
+
+                } else if (have_all_events && contain_all && $("#event_id option:selected").length > 1) {
+                    $("#event_id option[value=all]").removeAttr('selected');
+                    have_all_events = false;
+                    $('#event_id').trigger("liszt:updated");
+                }
+
+                if ($.inArray("0", $(this).val()) > -1 || $(this).val() == null) {
+                    var autoType ="event";
+                    multi.clearColumns(autoType);
+                }else{
+                    var autoId ="event";
+                    var autoType ="event";
+                    multi.setAutoColumn(autoType,autoId);
+                }
+            });
+            IntegrationReport.selectable_with_all("#all_adgroup","all");
+            $('#all_adgroup').chosen().change(function(){
+              IntegrationReport.target_audience_label();
+            });
+
+            $('#order_code').chosen().change(function () {
+                var contain_all = false;
+                var no_events = false;
+                var i = 0;
+                IntegrationReport.order_campaign_ids = $.map($("#all_campaigns option:selected"), function (option) {
+                            return $(option).val();
+                });
+                $("#order_code option:selected").each(function (i, l) {
+                    if ($(l).val() == "all") {
+                        contain_all = true;
+                    }
+                    if ($(l).val() == "0") {
+                        no_events = true;
+                    }
+                });
+
+                if (!have_all_order && contain_all) {
+                    $("#order_code option:selected").each(function (i, l) {
+                        if ($(l).val() != "all") {
+                            $(l).removeAttr('selected');
+                        }
+                    });
+                    have_all_order = true;
+                    $('#order_code').trigger("liszt:updated");
+                } else if (!none_of_order && no_events) {
+                    $("#order_code option:selected").each(function (i, l) {
+                        if ($(l).val() != "0") {
+                            $(l).removeAttr('selected');
+                        }
+                    });
+                    none_of_order = true;
+                    $('#order_code').trigger("liszt:updated");
+                } else if (none_of_order && no_events && $("#order_code option:selected").length > 1) {
+                    $("#order_code option[value= 0]").removeAttr('selected');
+                    none_of_order = false;
+                    $('#order_code').trigger("liszt:updated");
+
+                } else if (have_all_order && contain_all && $("#order_code option:selected").length > 1) {
+                    $("#order_code option[value=all]").removeAttr('selected');
+                    have_all_order = false;
+                    $('#order_code').trigger("liszt:updated");
+                }
+                IntegrationReport.filter_campaigns();
+            });
+
+            $('#all_campaigns').chosen().change(function () {
+                IntegrationReport.filter_campaign_column();
+                IntegrationReport.filter_report_template();
+                IntegrationReport.changinit();
+                IntegrationReport.filter_campaign_date();
+            });
+
+            $("[type=radio][name='report_shortcut']").change(IntegrationReport.init_auto_column);
+            $("[type=radio][name='adgroup[channel]']").change(function(){
+                IntegrationReport.filter_adgroup_channel();
+            });
+        },
+        init_auto_column: function () {
+            var shortcut = $("[type=radio][name='report_shortcut']:checked").val();
+            var autoType = "shortcut";
+            multi.setAutoColumn(autoType, shortcut);
+            IntegrationReport.display_adgroup();
+        },
+        set_event_column: function(){
+            var autoId = $("#event_id").val();
+            var autoType ="event";
+            if($.inArray("0", $('#event_id').val()) > -1 || $('#event_id').val() == null){
+                multi.clearColumns(autoType);
+            }else{
+                multi.setAutoColumn(autoType,autoId);
+            }
+
+        },
+        display_adgroup: function(){
+            if ($("[type=radio][name='report_shortcut']:checked").val() == 'Frequencies'){
+                IntegrationReport.filter_adgroup_channel();
+                $('#frequency_div').show();
+                $('#campaign_div').hide();
+                $('#order_div').hide();
+                $('#event_div').hide();
+            }else{
+                $('#frequency_div').hide();
+                $('#campaign_div').show();
+                $('#order_div').show();
+                $('#event_div').show();
+
+            }
+        },
+        target_audience_label: function(){
+            var adgroup_age = _.uniq(_.compact($.map($("#all_adgroup option:selected"),function(option){
+                return $(option).attr('data-age')
+            })).join(',').split(","));
+            var adgroup_gender =  _.uniq(_.compact($.map($("#all_adgroup option:selected"),function(option){
+                        return $(option).attr('data-gender')
+                    })).join(',').split(","));
+            var adgroup_name =  _.uniq(_.compact($.map($("#all_adgroup option:selected"),function(option){
+                return $(option).text();
+            })).join(',').split(","));
+            if ($("#all_adgroup").val() != null){
+                var adgroup_list = $("#all_adgroup").val().join(",") + "&|&" + adgroup_age.join(",") + "&|&" + adgroup_gender.join(",") + "&|&" + adgroup_name.join(",")
+                $("#adgroup_list").val(adgroup_list);
+                //console.log("====22222222===",$("#adgroup_list").val())
+                //console.log(",,,,,,,age,",adgroup_age,"======gender",adgroup_gender)
+                if (($.inArray("all", adgroup_age) > -1)){
+                    $('#age_text').html("All Ages");
+                }else{
+                    $('#age_text').html(adgroup_age.join(','));
+                };
+                if (($.inArray("all", adgroup_gender) > -1)){
+                    $('#gender_text').html("All Genders");
+                }else{
+                    $('#gender_text').html(adgroup_gender.join(','));
+                };
+            }else{
+                $("#adgroup_list").val('');
+                $('#age_text').html('');
+                $('#gender_text').html('');
+            }
+            },
+        selectable_with_all: function(ele_id, all_val){
+            var option_all_selected = true;
+            $(ele_id).change(function(){
+                var is_all = false;
+                $(ele_id + " option:selected").each(function(i , l){
+                    if($(l).val() == all_val) is_all = true;
+                });
+
+                if($(ele_id + " option:selected").length == 1){
+                    $(ele_id).trigger("liszt:updated");
+                    option_all_selected = is_all;
+                    return false;
+                }
+
+                if(option_all_selected && is_all){
+                    $(ele_id +" option[value=" + all_val + "]").removeAttr('selected');
+                    option_all_selected = false;
+                }else if(!option_all_selected && is_all){
+                    $(ele_id + " option:selected").each(function(i, l) {
+                        if ($(l).val() != all_val) { $(l).removeAttr('selected'); }
+                    });
+                    option_all_selected = true;
+                }
+                $(ele_id).trigger("liszt:updated");
+                $(ele_id).valid();
+            });
+        },
+        filter_campaign_column: function(){
+            var campaigns = $.map($("#all_campaigns option:selected"), function (option) {
+                return $(option).attr('data_v')
+            })
+            IntegrationReport.third_party = $.map($("#all_campaigns option:selected"), function (option) {
+                return $(option).attr('data-party');
+            })
+            $('#plan_types').val(campaigns);
+            multi.setCampaign(campaigns);
+        },
+        filter_report_template: function(){
+            var report_shortcut_type = $("[type=radio][name='report_shortcut']:checked").val();
+            //false 是显示，true是隐藏
+            var campaigns_type = _.uniq($.map($("#all_campaigns option:selected"), function (option) {
+                return $(option).attr('data_v')
+            })).join(',');
+            var otv_condition = ['OTV','PREMIUM NETWORK','DIRECT PUBLISHER','EXTERNAL MEDIA','MOTV MEDIA','MOSOCIAL MEDIA','MOFEED MEDIA']
+            var have_otv_type = _.every(campaigns_type.split(','), function (i) {
+                return otv_condition.indexOf(i) > -1
+            });
+            var have_gdn_type = _.some(campaigns_type.split(','), function (i) {
+                return ["GDN"].indexOf(i) > -1
+            });
+            //console.log("===========campaign_type",campaigns_type);
+            if (campaigns_type == 'AD EXCHANGE CHINA' || have_otv_type){
+                $("[type=radio][name='report_shortcut'][value=Geo]").attr('disabled',false);
+                $("[type=radio][name='report_shortcut'][value=Media]").attr('disabled',false);
+                $("[type=radio][name='report_shortcut'][value=Audience]").attr('disabled',false);
+            }else if(have_gdn_type){
+                $("[type=radio][name='report_shortcut'][value=Geo]").attr('disabled',true);
+                $("[type=radio][name='report_shortcut'][value=Media]").attr('disabled',true);
+                $("[type=radio][name='report_shortcut'][value=Audience]").attr('disabled',true);
+                $("[type=radio][name='report_shortcut'][value=Frequencies]").attr('disabled',true);
+                $("[type=radio][name='report_shortcut'][value=Overall]").prop('checked',true);
+            }else{
+                $("[type=radio][name='report_shortcut'][value=Audience]").attr('disabled',true);
+                $("[type=radio][name='report_shortcut'][value=Overall]").prop('checked',true);
+            }
+            IntegrationReport.init_auto_column();
+        },
+        changinit: function(){
+           // console.log("333333333",IntegrationReport.third_party);
+           // console.log("555555555",_.uniq(IntegrationReport.third_party));
+           // console.log(IntegrationReport.third_party.length)
+            if (($.inArray("false", _.uniq(IntegrationReport.third_party)) > -1) || IntegrationReport.third_party.length ==0){
+                //console.log("============include false should disabled")
+                IntegrationReport.changeinit_value = "{'key':'is_not_have_3rd_party','val':true}";
+            }else{
+                //console.log("============not include false should display")
+                IntegrationReport.changeinit_value = "{'key':'is_not_have_3rd_party','val':false}";
+            }
+            multi.changeInit( eval('(' + IntegrationReport.changeinit_value + ')'));
+        },
+        filter_campaigns: function () {
+            IntegrationReport.order_id = $.map($("#order_code option:selected"), function (option) {
+                return $(option).val()
+            });
+            $.ajax({
+                url: "/en/report/get_order_campaigns",
+                data: {order_code: IntegrationReport.order_id, client_id: 1316},
+                type: 'get',
+                success: function (data) {
+                    IntegrationReport.campaign_return_data = data;
+                    IntegrationReport.campaign_ids = _.map(data, function (item) { return item["campaign_id"];});
+//                    var plan_types = $.map($("#all_campaigns option:selected"), function (option) {
+//                        return $(option).attr('data_v')
+//                    })
+//                    $("#plan_types").val(plan_types.join(","));
+                    IntegrationReport.campaign_plan_types = _.uniq(_.map(data, function (item) { return item["plan_type"];}));
+                    IntegrationReport.third_party = _.uniq(_.map(data, function (item) { return item["is_3rd_party"];})).join(',').split(',');
+                    IntegrationReport.clear_campaigns_options();
+                    IntegrationReport.render_campaigns_option();
+                    if ($("#order_code option:selected").length > 0 && $("#order_code option:selected").val() != "all"){
+                        IntegrationReport.auto_select_campaigns();
+                        //IntegrationReport.changinit();
+                    }else{
+                        //console.log("===========order_campaign_ids",IntegrationReport.order_campaign_ids)
+                        $('#all_campaigns').val(IntegrationReport.order_campaign_ids);
+                    }
+                    IntegrationReport.changinit();
+                    $('#all_campaigns').trigger("liszt:updated");
+                    //console.log("=============plan_type",IntegrationReport.campaign_plan_types)
+                    multi.setCampaign(IntegrationReport.campaign_plan_types);
+                    $('#plan_types').val(IntegrationReport.campaign_plan_types);
+                    IntegrationReport.filter_report_template();
+                    IntegrationReport.filter_campaign_date();
+
+                },
+                error: function (data) {
+                    console.log("sorry,wrong!")
+                }
+            });
+        },
+        filter_campaign_date: function(){
+            $.ajax({
+                url: "/en/report/get_campaign_period",
+                data: {campaign_ids: $('#all_campaigns').val()},
+                type: 'get',
+                success: function(data){
+                    //console.log('=======data',data);
+                    IntegrationReport.campaign_period = data.period;
+                    $('#period1').val(IntegrationReport.campaign_period);
+//                    $(".xmoCalendarDataRange dd").parent().find(".current").removeClass("current");
+//                    $(".xmoCalendarDataRange dd:last").addClass("current");
+//                    $("#schedule_period").val("range");
+                },
+                error: function(data){
+                    console.log("sorry,period wrong!")
+                }
+            });
+        },
+        filter_adgroup_channel: function(){
+            var adgroup_channel = $("[type=radio][name='adgroup[channel]']:checked").val()
+            $.ajax({
+                url: "/en/report/get_adgroup_channel",
+                data: {adgroup_channel: adgroup_channel, client_id: 1316},
+                type: 'get',
+                success: function(data){
+                    IntegrationReport.adgroup_channels = data
+                    $("#all_adgroup option").remove().trigger("liszt:updated");
+                    if (IntegrationReport.adgroup_channels.length == 0){
+                        $("#all_adgroup").append('<option data-age="all" data-gender="all" value="all" selected="selected" >' + "All Ad Groups" + '</option>')
+                    }else{
+                        $("#all_adgroup").append('<option data-age="all" data-gender="all" value="all" selected="selected" >' + "All Ad Groups" + '</option>')
+                        _.each(IntegrationReport.adgroup_channels, function(item){
+                            $("#all_adgroup").append('<option data-age="' + item["age_group"] + '" data-gender="' + item["genders"] + '" value="' + (adgroup_channel == 'otv' ? item["adgroup_id"] : item["searchengine_id"]) + '" >' + item["adgroup_name"] + '</option>')
+                        });
+                    }
+                    var origin_adgroup_value = $('#all_adgroup').val();
+                    if((false) && ("" == adgroup_channel)){
+                       $('#all_adgroup').val([])
+                    }
+
+                    $('#all_adgroup').trigger("liszt:updated");
+                    IntegrationReport.target_audience_label();
+                    var adgroup_list = "all&|&all&|&all&|&all"
+                    $("#adgroup_list").val(adgroup_list);
+                },
+                error: function(data){
+                    console.log("sorry, something wrong about adgroup channel")
+                }
+            });
+        },
+        clear_campaigns_options: function () {
+            $("#all_campaigns option").remove();
+        },
+        render_campaigns_option: function () {
+            _.each(IntegrationReport.campaign_return_data, function (item) {
+                //console.log(item)
+                $("#all_campaigns").append('<option value="' + item["campaign_id"] + '" data-party="' + item["is_3rd_party"] + '" data-id="' + item["campaign_id"] + '" data_v="' + item["plan_type"] + '" >' + item["campaignname"] + '</option>')
+            })
+        },
+        auto_select_campaigns: function () {
+            $('#all_campaigns').val(IntegrationReport.campaign_ids);
+        },
+        from_dashboard_campaign: function(){
+            //console.log("========from_dashboard_campaign",);
+            $('#all_campaigns').val();
+            $('#all_campaigns').trigger("liszt:updated");
+        },
+        from_dashboard_events: function(){
+          $('#event_id').val(0);
+          $('#event_id').trigger("liszt:updated");
+        },
+        generate_report: function () {
+            $('#report_nav').show();
+            $("#advanced_setting").collapse("hide")
+            $('h2[data-target="#advanced_setting"]').removeClass('no-border');
+            $('h2[data-target="#advanced_setting"] .icon-arrow-right').removeClass('icon-arrow-down');
+
+            var image_path = "/images/shared/components/pre-loading_EN.gif";
+
+            var alert_image_path = "/images/shared/components/icon_error.png"
+            var alert_date_image_path = "/images/shared/components/icon_overtime.png"
+            var date_period1 = $('#period1').val().split("~");
+            var date_range1 = (Date.parse(date_period1[1]) - Date.parse(date_period1[0])) / (3600 * 24 * 1000);
+            if (date_range1 < 93 || date_range1.toString() == NaN.toString()) {
+                $('#ajax-tabular').html("<div style='text-align: center;color:#5F214B'><img src='" + image_path + "' /></br>We are still processing the report data, please wait patiently.</br>You can also directly download or schedule the report in the above settings.</div>");
+
+            }
+            var formData = $('#campaign_form').serialize();
+
+            var select_no_none_and_all_event_num = $.map($('#event_id option[value != 0][value != "all"]:selected'), function (option) {
+                return $(option).val()
+            }).length
+            var select_all_event = $.map($('#event_id option[value = "all"]:selected'), function (option) {
+                return $(option).val()
+            }).length
+            var no_all_and_none_event_num = $.map($('#event_id option[value != 0][value != "all"]'), function (option) {
+                return $(option).val()
+            }).length
+            if (date_range1 > 93) {
+                $('#generate-report').attr('disabled', false);
+                $('#integration_table').html('');
+                $('#ajax-tabular').html("<div style='text-align: center;color:#5F214B'><img src='" + alert_date_image_path + "' /></br>The report is too large to be loaded on the web page directly.</br>Please schedule or download the report directly via the above links.</div>");
+            } else {
+                var option = {
+                    type: 'post',
+                    dataType: 'html',
+                    data: formData,
+                    url: "/en/report/query_integration_report?client_id=1316",
+                    success: function (data) {
+                        //console.log("============data",data)
+                        if (data == "failure"){
+                            $('#ajax-tabular').html("<div style='text-align: center;color:#5F214B'><img src='" + alert_date_image_path + "' /></br>The report is too large to be loaded on the web page directly.</br>Please schedule or download the report directly via the above links.</div>");
+                            $('#generate-report').removeAttr('disabled');
+                            return;
+                        } else {
+                            $('#ajax-tabular').html('');
+                            $('#integration_table').html(data);
+                            client.setData("text/plain", _.map($("#new_table tr"), function(tr){var t=$(tr).text().replace(/(\r\n)|(\n)/g," ").replace(/\x20+/g," ");return t}).join("\n\r"));
+                            //$("#tableInner").css("width",$("#new_table").css("width"));
+                        }
+                    },
+                    error: function (data) {
+                        $('#ajax-tabular').html(data);
+                        $('#generate-report').removeAttr('disabled');
+                        $(".sticker").sticky({topSpacing: 0});
+                        $(".sticker").sticky('update');
+                    },
+
+                    complete: function (shortcut_display) {
+                        $('.shortcut').attr('disabled', false);
+                }
+                }
+                $('#integration_table').html('');
+                $('.shortcut').attr('disabled', 'disabled');
+                $.ajax(option);
+            }
+
+            return false;
+        }
+
+    }
+    $(document).ready(function () {
+        IntegrationReport.init();
+        $('#all_campaigns_chzn').css('width', '382px');
+        $('#event_id_chzn').css('width', '382px');
+        $('#all_adgroup_chzn').css('width', '382px');
+        $('.chzn-drop').css('width', '382px');
+        $('#metrics_id_chzn').css('width', '382px');
+        $("#advanced_setting").collapse("show");
+        $(".dropdown-toggle").dropdown('toggle');
+        $('#currency').chosen();
+        $("#all_campaigns_chzn .chzn-choices").attr('style','max-height:120px;overflow:auto');
+        $('[name="schedule_report[is_selected_report]"]').change();
+        error = $(".report_error")
+        if(error.length > 0){
+          setTimeout("error.fadeOut(1000);", 10000);
+        }
+    });
+
+    $("a#copy-description").click(function () {
+        // alert('click')
+        // return false;
+    })
+
+    window.client = new ZeroClipboard(document.getElementById("copy-description"));
+    client.on("ready", function (readyEvent) {
+        client.on("aftercopy", function (event) {
+            alert("Copied table to clipboard success!");
+        });
+    });
+
+    function download_file(obj) {
+        var file_type = $(obj).text();
+        $.ajax({
+            type: 'post',
+            data: [$('#campaign_form').serialize(),"file_type=" + file_type].join('&'),
+            url:  "/en/report/generate_integration_report_file?client_id=1316",
+            success: function (data) {
+                //console.log("===========data",data)
+                $('#tableWrapper').show();
+                $('#ajax-tabular').html("");
+                $('#generate-report').attr('disabled', false);
+                $('#Message').empty();
+                $('#Message').html(eval(data).msg);
+                $(".sticker").sticky({topSpacing: 0});
+                $(".sticker").sticky('update');
+                //$('#Message').addClass('notice');
+
+            },
+            error: function (data) {
+                $('#ajax-tabular').html(data);
+                $('#generate-report').removeAttr('disabled');
+                $('#Message').empty();
+                $('#Message').html(eval(data).msg);
+                $(".sticker").sticky({topSpacing: 0});
+                $(".sticker").sticky('update');
+                //$('#Message').addClass('notice');
+            }
+        });
+        return false;
+    }
+
+    $(document).on('change','[name="schedule_report[is_selected_report]"]',function(){
+      if($(this).attr("checked")){
+        $("#generate_report_button").hide();
+        $("#schedule_report_content").show();
+      }else{
+        $("#generate_report_button").show();
+        $("#schedule_report_content").hide();
+        $("div.error").addClass("hide");
+        $("div.error").html("");
+        $("div.error").removeAttr("style");
+        $(".have_error").map(function(){$(this).removeClass("have_error");});
+      }
+      $('[name="schedule_report[send_email_to]"]').change();
+    });
+
+    $(document).on('change','[name="schedule_report[send_email_to]"]',function(){
+      if($(this).attr("checked")){
+        $("#email_notication").show();
+      }else{
+        $("#email_notication").hide();
+      }
+    });
+
+
+    function common_validate(val){
+      if($('[name="schedule_report[is_selected_report]"]:checked').attr("checked")){
+        if(val.length == 0){
+          return false;
+        }
+        return true;
+      }else{
+        return true;
+      }
+    }
+
+    $(function () {
+        // advance setting
+        $('#advanced_setting').on('show',function(){
+            $('h2[data-target="#advanced_setting"]').addClass('no-border');
+            $('h2[data-target="#advanced_setting"] .icon-arrow-right').addClass('icon-arrow-down');
+        }).on('hide',function(){
+            $('h2[data-target="#advanced_setting"]').removeClass('no-border');
+            $('h2[data-target="#advanced_setting"] .icon-arrow-right').removeClass('icon-arrow-down');
+        })
+        if($('#advanced_setting').hasClass('in')){
+            $('h2[data-target="#advanced_setting"]').addClass('no-border');
+            $('h2[data-target="#advanced_setting"] .arrow-right').addClass('icon-arrow-down');
+        }
+
+        $('#currency_chzn').click(function(){
+            var select_currency = $(this).find('a').hasClass('chzn-single-with-drop');
+            if (select_currency){
+                $('#advanced_setting').attr("style","overflow:visible;");
+            }else{
+                $('#advanced_setting').removeAttr("style","overflow:visible;");
+            }
+        });
+    })
+
+    $(window).scroll(function(){
+        $("#Message").css("left",200- $(window).scrollLeft()+"px");
+    })
+</script>
+
+
+
+
+
+  </div>
+  <div id="infos" class="tab-pane fade">
+    <script src="/javascripts/jquery.dataTables.min.js?9310" type="text/javascript"></script>
+
+<script src="/javascripts/datatable_sorting_plugin.js?9310" type="text/javascript"></script>
+<div class="row">
+  <div class="pull-right">
+    <a id="refresh_page" href="#" class="link"><i class="icon-refresh"></i>Refresh</a>
+  </div>
+</div>
+
+
+
+
+  </div>
+</div>
+
+</div>
+    </div>
+    <div class="clearboth"></div>
+</div>
+  <!-- footer -->
+  <div class="clearfooter"></div>
+  <div class="myfooter">
+    <label class="x-footer">
+      Copyright © 2012 - 2017 iClick Technology,iClick Beijing,ICP 14026918. All Rights Reserved.
+    </label>
+  </div>
+</div>
+    <!--container end-->
+
+
+    </body>
+    <script type="text/javascript">
+
+
+    	$(function(){
+
+
+		});
+
+
+    </script>
+</html>

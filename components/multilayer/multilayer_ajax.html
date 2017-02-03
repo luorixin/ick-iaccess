@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="./css/multilayer.css" />
+	<script type="text/javascript" src="./jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="./js/multilayer.js"></script>
+</head>
+<body>
+	<form action="" id="treeForm" submit="return false;" methode="post">
+		<input name="result" id="audiences_interest" type="text"/>
+		<div class="" id="multilayer" style="width:500px;height:500px">
+		</div>
+		
+		<div class="" id="multilayer_foreign" style="width:500px;height:500px">
+		</div>
+		
+		
+		
+		
+	</form>
+	<!-- 
+		[{"name":"测试1","name_en":"test","audience_id":"22b1ss","children":[{"name":"中文","audience_id":"66a1"},
+										{"name":"节假日","audience_id":"22b12","children":[
+												{"name":"圣诞节","audience_id":"66a11"},
+												{"name":"中国节","audience_id":"22b21","children":[					{"name":"春节","audience_id":"66a111"},					{"name":"国庆节","audience_id":"22b1","children":[				{"name":"中秋节","audience_id":"66a1111"},				
+														{"name":"建军节","audience_id":"66a1112"}
+														]
+													}
+												]
+											},
+												{"name":"偏避的","audience_id":"66a13"},
+												{"name":"没听过的","audience_id":"66a14"}
+											]
+										},
+										{"name":"汽车","audience_id":"66a3"}
+										]
+					},
+					{"name":"测试2","audience_id":"22c1","children":[{"name":"保险","audience_id":"66b1"},
+											{"name":"大洋保险","audience_id":"2221","children":[
+																	{"name":"人参保险","audience_id":"66b111"},
+																	{"name":"汽车保险","audience_id":"66b112"}
+																   ]
+											},
+										]
+					},
+					{"name":"测试3","audience_id":"22d1","children":[
+								{"name":"投资","audience_id":"66c1"},
+								{"name":"理财","audience_id":"66c2"}
+								]
+					},
+					{"name":"测试4","audience_id":"22bss1"}
+		   ]
+	-->
+	<script type="text/javascript">
+	$(function(){
+		 $.ajax({
+            type: 'get',
+            url:  "data.json",
+            success: function(data) {
+            	var t1 = new Date().getTime();
+	              var multi = new multilayer({
+		                container : $("#multilayer"),
+		                // lang : 'EN',
+		                lang : "CN",
+		                values : data.interests,
+		                selected:data.interests_results,
+		                result:$("#audiences_interest")
+		                
+		              });
+	              var t2=new Date().getTime();
+		          alert(t2-t1);
+		           var multi_foreign = new multilayer({
+		                container : $("#multilayer_foreign"),
+		                // lang : 'EN',
+		                lang : "EN",
+		                values : data.foreign_interests,
+		                selected:data.foreign_results,
+		                result:$("#foreign_audiences_interest")
+		                
+		              });
+		          var t3=new Date().getTime();
+		          console.log(t3-t2);
+	        }   
+      });
+	})
+       
+	</script>
+	
+</body>
+</html>
