@@ -738,6 +738,24 @@ body {-webkit-font-smoothing: subpixel-antialiased !important; }
   z-index: 1039;
   margin-left: -5px;
 }
+.bell-tip{
+	font-size: 12px;
+  background: #e42824;
+  color: #fff!important;
+  border-radius: 12px !important;
+  padding: 5px;
+  font-weight: bold;
+  margin-left: -9px;
+  position: absolute;
+  display: inline-block;
+  line-height: 12px;
+  min-width: 12px;
+  height: 12px;
+  text-align: center;
+  font-style: normal;
+  top: 9px;
+  right:15px;
+}
 .x-body{
   float: right;
   width: 100%;
@@ -805,7 +823,7 @@ body {-webkit-font-smoothing: subpixel-antialiased !important; }
 .x-menu li span { color: #999; cursor: pointer;display: block;margin: 0px 5px 5px 25px;line-height: 20px;}
 
 .sub-menu {display: none;}
-.sub-menu li{border-left: 5px solid #dfdfdf;border-right: 5px solid #dfdfdf;}
+/*.sub-menu li{border-left: 5px solid #dfdfdf;border-right: 5px solid #dfdfdf;}*/
 .sub-menu li:hover{border-left: 5px solid #d9d9d9;border-right: 5px solid #d9d9d9;}
 .sub-menu li.active span{font-weight: bold;color: #666;}
 .sub-menu li span{margin: 0 0 0 5px;}

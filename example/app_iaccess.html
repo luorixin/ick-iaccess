@@ -182,13 +182,16 @@
 
 
 
-                    <li class="selected" style="display: block;">
+                    <li class="" style="display: block;">
                       <a href="#">iAudience</a>
                     </li>
 
 
-                    <li class="">
-                      <a href="javascript:void(0);" >iActivate</a>
+                    <li class="selected">
+                      <a href="javascript:void(0);" >iAccess</a>
+                    </li>
+
+                    <li class=""><a href="#">iActivate</a>
                     </li>
 
                     <li class=""><a href="#">iExperience</a>
@@ -198,10 +201,6 @@
                     </li>
                     <li class=""><a href="#">iApps</a>
                     </li>
-
-                    <li class=""><a href="#">Settings</a>
-                    </li>
-
 
                   </ul>
 
@@ -255,20 +254,20 @@
         <div class="x-main">
           <div class="x-sidebar" id="x-sidebar">
             <ul class="x-menu">
-        			<li id="li001" class="selected">
+        			<li  class="">
         				<a href="#">
         				 <i class="fa fa-book fa-bandcamp" aria-hidden="true"></i>
         				<span class="x-m8">Planning</span>
-                 <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+                 <i class="fa fa-caret-right fa-fw" aria-hidden="true"></i>
         				</a>
-        				<ul class="sub-menu" style="display: block;">
+        				<ul class="sub-menu" style="">
         					<li class="">
         						<a href="#"><span class="x-m8">Media Planner</span></a>
         					</li>
         					<li class="">
         						<a href="#"><span class="x-m8">Ad Placements</span></a>
         					</li>
-        					<li class="active">
+        					<li class="">
         						<a href="#"><span class="x-m8">Audience Planner</span></a>
 
         					</li>
@@ -276,19 +275,25 @@
         				</ul>
         			</li>
 
-        			<li id="li003" class="">
+        			<li  class="">
         				<a href="#">
         				 <i class="fa fa-book fa-briefcase" aria-hidden="true"></i>
         					<span class="x-m8">Campaings</span>
         				</a>
         			</li>
-        			<li id="li004" class="">
+        			<li  class="">
         				<a href="#">
         				 <i class="fa fa-book fa-database" aria-hidden="true"></i>
         				<span class="x-m8">Finance</span>
         				</a>
         			</li>
-              <li id="li004" class="">
+              <li  class="selected">
+                <a href="#">
+                 <i class="fa fa-book fa-gg-circle" aria-hidden="true"></i>
+                <span class="x-m8">Related Apps</span>
+                </a>
+              </li>
+              <li class="">
         				<a href="#">
         				 <i class="fa fa-book fa-lightbulb-o" aria-hidden="true"></i>
         				<span class="x-m8">Tools</span>
@@ -297,12 +302,6 @@
 
         		</ul>
             <ul class="x-menu-lang-select">
-              <li>
-                <a href="#">
-                <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
-                   <span class="x-m8">简体中文</span>
-                </a>
-              </li>
               <li>
                 <a href="#">
                 <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
@@ -341,7 +340,7 @@
                       <div class="feature-item" id="123">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -358,17 +357,23 @@
                                 </span>
                               </div>
                               <div class="feature-container-opt">
-                                <div class="btn-group">
+                                <div class="btn-group" style="display:inline-block;">
                                   <input type="hidden" value=""/>
                                   <button type="button" class="btn btn-danger btn-xs">Get</button>
                                   <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                   </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="#">$128 / mth</a></li>
-                                    <li><a href="#">$359 / 3 mth</a></li>
-                                    <li><a href="#">$1200 / yr</a></li>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -378,7 +383,7 @@
                       <div class="feature-item" id="321">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -396,17 +401,7 @@
                               </div>
                               <div class="feature-container-opt">
                                 <div class="btn-group">
-                                  <input type="hidden" value=""/>
-                                  <button type="button" class="btn btn-danger btn-xs">Get</button>
-                                  <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                  </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="javascript:;">$128 / mth</a></li>
-                                    <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                    <li><a href="javascript:;">$1200 / yr</a></li>
-                                  </ul>
+                                  <button type="button" class="btn btn-activate btn-xs">Activated</button>
                                 </div>
                               </div>
                           </div>
@@ -415,7 +410,7 @@
                       <div class="feature-item" id="2122">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -432,17 +427,23 @@
                                 </span>
                               </div>
                               <div class="feature-container-opt">
-                                <div class="btn-group">
+                                <div class="btn-group" style="display:inline-block;">
                                   <input type="hidden" value=""/>
                                   <button type="button" class="btn btn-danger btn-xs">Get</button>
                                   <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                   </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="javascript:;">$128 / mth</a></li>
-                                    <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                    <li><a href="javascript:;">$1200 / yr</a></li>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -452,7 +453,7 @@
                       <div class="feature-item" id="2222">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -469,17 +470,23 @@
                                 </span>
                               </div>
                               <div class="feature-container-opt">
-                                <div class="btn-group">
+                                <div class="btn-group" style="display:inline-block;">
                                   <input type="hidden" value=""/>
                                   <button type="button" class="btn btn-danger btn-xs">Get</button>
                                   <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                   </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="javascript:;">$128 / mth</a></li>
-                                    <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                    <li><a href="javascript:;">$1200 / yr</a></li>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -489,7 +496,7 @@
                       <div class="feature-item">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -506,17 +513,23 @@
                                 </span>
                               </div>
                               <div class="feature-container-opt">
-                                <div class="btn-group">
+                                <div class="btn-group" style="display:inline-block;">
                                   <input type="hidden" value=""/>
                                   <button type="button" class="btn btn-danger btn-xs">Get</button>
                                   <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                   </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="javascript:;">$128 / mth</a></li>
-                                    <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                    <li><a href="javascript:;">$1200 / yr</a></li>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -533,7 +546,7 @@
                       <div class="feature-item">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -560,7 +573,7 @@
                       <div class="feature-item">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -577,44 +590,23 @@
                                 </span>
                               </div>
                               <div class="feature-container-opt">
-                                <div class="btn-group">
-                                  <button type="button" class="btn btn-activate btn-xs">Activated</button>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="feature-item">
-                        <div class="feature-item-inner">
-                          <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
-                          </div>
-                          <div class="feature-container">
-                              <div class="feature-container-title">
-                                <p>3rd Party DMP</p>
-                                <p>iAudience App</p>
-                              </div>
-                              <div class="feature-container-star">
-                                <span class="rating">
-                                  <span class="star"></span>
-                                  <span class="star"></span>
-                                  <span class="star hover"></span>
-                                  <span class="star"></span>
-                                  <span class="star"></span>
-                                </span>
-                              </div>
-                              <div class="feature-container-opt">
-                                <div class="btn-group">
+                                <div class="btn-group" style="display:inline-block;">
                                   <input type="hidden" value=""/>
                                   <button type="button" class="btn btn-danger btn-xs">Get</button>
                                   <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                   </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="javascript:;">$128 / mth</a></li>
-                                    <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                    <li><a href="javascript:;">$1200 / yr</a></li>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -624,7 +616,7 @@
                       <div class="feature-item">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -641,17 +633,23 @@
                                 </span>
                               </div>
                               <div class="feature-container-opt">
-                                <div class="btn-group">
+                                <div class="btn-group" style="display:inline-block;">
                                   <input type="hidden" value=""/>
                                   <button type="button" class="btn btn-danger btn-xs">Get</button>
                                   <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                   </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="javascript:;">$128 / mth</a></li>
-                                    <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                    <li><a href="javascript:;">$1200 / yr</a></li>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -661,7 +659,7 @@
                       <div class="feature-item">
                         <div class="feature-item-inner">
                           <div class="feature-pic">
-                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="100" width="100"></a>
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
                           </div>
                           <div class="feature-container">
                               <div class="feature-container-title">
@@ -678,17 +676,66 @@
                                 </span>
                               </div>
                               <div class="feature-container-opt">
-                                <div class="btn-group">
+                                <div class="btn-group" style="display:inline-block;">
                                   <input type="hidden" value=""/>
                                   <button type="button" class="btn btn-danger btn-xs">Get</button>
                                   <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                   </button>
-                                  <ul class="dropdown-menu feature-dropdown" role="menu">
-                                    <li><a href="javascript:;">$128 / mth</a></li>
-                                    <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                    <li><a href="javascript:;">$1200 / yr</a></li>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="feature-item">
+                        <div class="feature-item-inner">
+                          <div class="feature-pic">
+                            <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                          </div>
+                          <div class="feature-container">
+                              <div class="feature-container-title">
+                                <p>3rd Party DMP</p>
+                                <p>iAudience App</p>
+                              </div>
+                              <div class="feature-container-star">
+                                <span class="rating">
+                                  <span class="star"></span>
+                                  <span class="star"></span>
+                                  <span class="star hover"></span>
+                                  <span class="star"></span>
+                                  <span class="star"></span>
+                                </span>
+                              </div>
+                              <div class="feature-container-opt">
+                                <div class="btn-group" style="display:inline-block;">
+                                  <input type="hidden" value=""/>
+                                  <button type="button" class="btn btn-danger btn-xs">Get</button>
+                                  <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                  </button>
+                                  <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
+                                    <li class="noclick"><a href="javascript:;">New User</a>
+                                      <ul class="sub-drop-menu">
+                                        <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                        <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
+                                      </ul>
+                                      <span class="caret-right"></span>
+                                    </li>
+                                    <li class="noclick toAccountSet" ><a href="javascript:;">Already have account</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -753,12 +800,15 @@
                 <li class="">
                   <a data-toggle="tab" href="#tab-settings2">Settings2</a>
                 </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-login">Settings</a>
+                </li>
               </ul>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade in active" id="tab-intruduction">
                   <div class="feature-main">
                 		<div class="feature-content" >
-                      <div class="feature-inner" style="margin: 0 0 0 260px;width:600px;">
+                      <div class="feature-inner" style="margin: 0 0 0 260px;width:650px;">
                         <div class="feature-detail">
                             <div class="feature-item-detail">
                               <div class="feature-item-inner">
@@ -782,14 +832,70 @@
                             <div class="clearboth"></div>
                         </div>
                         <!--                    图片预览                        -->
+                        <div class="feature-apps-show">
+                          <div class="feature-apps-pic">
+                            <img src="../images/test.png" alt="图片" height="100%" width="100%"/>
+                          </div>
+                          <div class="feature-apps-pic">
+                            <img src="../images/test2.png" alt="图片" height="100%" width="100%"/>
+                          </div>
+                          <div class="feature-apps-pic">
+                            <img src="../images/test.png" alt="图片" height="100%" width="100%"/>
+                          </div>
+                          <div class="feature-apps-bought">
+                            <div class="feature-apps-bought-title">
+                              Customer also bought
+                            </div>
+                            <div class="feature-apps-bought-list">
+                              <ul>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="100" width="100"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="100" width="100"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="100" width="100"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="100" width="100"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="100" width="100"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <!--
                         <div class="feature-preview">
-                            <div class="feature-preview-pic" style="width:600px;">
+                            <div class="feature-preview-pic" style="width:650px;">
                               <img src="../images/test.png" alt="图片" height="100%" width="100%"/>
                             </div>
                             <div class="feature-preview-thumb">
                               <div class="feature-preview-thumb-list">
                                 <ul>
-                                  <li class="active"><!-- 那个active就放在哪，以此保证箭头居中。。--><span class="feature-arrow"></span><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
+                                  <li class="active"><!- 那个active就放在哪，以此保证箭头居中。。-><span class="feature-arrow"></span><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
                                   <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
                                   <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
                                   <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
@@ -812,10 +918,11 @@
                               </div>
                             </div>
                         </div>
+                      -->
                         <!--                    图片预览  End                 -->
                       </div>
                     </div>
-                    <div class="feature-info" style="position:absolute;margin:20px 0 0 0;width:220px;">
+                    <div class="feature-info" style="position:fixed;margin:20px 0 0 0;width:220px;">
                       <div class="feature-pic" style="margin-bottom:30px;">
                         <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="200" width="200"></a>
                         <div class="feature-container-opt">
@@ -824,7 +931,7 @@
                           </label>
                           <div class="btn-group" style="display:inline-block;">
                             <input type="hidden" value=""/>
-                            <button type="button" class="btn btn-danger btn-xs">$129 / mth</button>
+                            <button type="button" class="btn btn-danger btn-xs">Get</button>
                             <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
                               <span class="caret"></span>
                               <span class="sr-only">Toggle Dropdown</span>
@@ -832,13 +939,13 @@
                             <ul class="dropdown-menu feature-dropdown" role="menu" style="border-top: 1px solid #dfdfdf!important;left: 100%!important;top:0!important;">
                               <li class="noclick"><a href="javascript:;">New User</a>
                                 <ul class="sub-drop-menu">
-                                  <li data-value="$128 / mth"><a href="javascript:;">$128 / mth</a></li>
-                                  <li data-value="$359 / 3mth"><a href="javascript:;">$359 / 3 mth</a></li>
-                                  <li data-value="$1200 / yr"><a href="javascript:;">$1200 / yr</a></li>
+                                  <li class="noclick toSignRequest" data-value="128"><a href="javascript:;">$128 / mth</a></li>
+                                  <li  class="noclick toSignRequest" data-value="359"><a href="javascript:;">$359 / 3 mth</a></li>
+                                  <li  class="noclick toSignRequest" data-value="1200"><a href="javascript:;">$1200 / yr</a></li>
                                 </ul>
                                 <span class="caret-right"></span>
                               </li>
-                              <li data-value="$33 / mth"><a href="javascript:;">Already have account</a></li>
+                              <li class="noclick toAccountSet"><a href="javascript:;">Already have account</a></li>
                             </ul>
                           </div>
                         </div>
@@ -990,7 +1097,7 @@
                   </div>
                   <div class="modal-footer slide-bottom">
                     <button type="button" class="btn btn-success" onclick="{{fn}}">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                   </div>
           			</div>
 
@@ -1050,8 +1157,46 @@
                     </form>
                   </div>
                   <div class="modal-footer slide-bottom">
-                    <button type="button" class="btn btn-success" onclick="{{fn}}">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" onclick="{{fn}}">Request</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+          			</div>
+
+                <div class="tab-pane fade" id="tab-login">
+                  <div class="page_title">
+                	  <div class="row">
+                      <div class="client-row">
+                        <h1 style="color:#333;">
+                          Login
+                    	  </h1>
+                        <p style="margin:4px 0;">Please login by filling in your email & password.</p>
+                      </div>
+                    </div>
+                	</div>
+          				<div class="edit-container">
+                    <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">
+                      <div class="control-group">
+              					<label class="control-label">Email</label>
+              					<div class="controls">
+              						<div class="clearfix">
+              							<input type="text" name="email" value="shirley.au@i-click.com"/>
+              						</div>
+              					</div>
+              				</div>
+                      <div class="control-group">
+              					<label class="control-label">Password</label>
+              					<div class="controls">
+              						<div class="clearfix">
+              							<input type="password" name="password" value="iCLick"/>
+              						</div>
+              					</div>
+              				</div>
+
+                    </form>
+                  </div>
+                  <div class="modal-footer slide-bottom">
+                    <button type="button" class="btn btn-success" onclick="{{fn}}">Login</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                   </div>
           			</div>
 
@@ -1062,6 +1207,45 @@
       </div>
     </div>
 
+     <!-- login sign modal-->
+     <div class="modal fade sign-in-box" style="display:none;">
+       <div class="modal-dialog modal-sm">
+         <div class="modal-content">
+           <div class="modal-body">
+             <p class="modal-title">Sign-in Required</p>
+             <p style="margin-bottom:5px;">Please sign in to confirm the app purchase.</p>
+             <div class="edit-container x-login-warp">
+               <form class="form-horizontal" id="loginForm" action="{{action}}"  method="post">
+                 <input name="cost" value="" type="hidden">
+                 <div class="form-group">
+                   <div class="input-group">
+    									<span class="input-group-addon">
+    										<span class="fa fa-envelope"></span>
+    									</span>
+    									<input type="text" name="email" class="input-password form-control" placeholder="Email">
+    								</div>
+                 </div>
+                 <div class="form-group">
+                   <div class="input-group">
+    									<span class="input-group-addon">
+    										<span class="fa fa-lock"></span>
+    									</span>
+    									<input type="password" name="email" class="input-password form-control" placeholder="password">
+    								</div>
+                 </div>
+                 <div style="margin:10px 0 0px 0;">
+    						 	Account Balance: $15,000.00
+    						 </div>
+               </form>
+             </div>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-success" data-dismiss="modal" onclick="toRegister()">Buy</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+           </div>
+         </div>
+       </div>
+     </div>
     </body>
     <script type="text/javascript">
 
@@ -1081,7 +1265,7 @@
               value=data_value;
               text = data_value;
             }
-            console.log(text);
+            // console.log(text);
             $(this).parents(".feature-dropdown").parent().find(".btn-danger").removeClass("btn-danger").addClass("btn-primary");
             $(this).parents(".feature-dropdown").parent().find("input").first().attr("value",value);
             $(this).parents(".feature-dropdown").parent().find("input").first().attr("title",text);
@@ -1089,6 +1273,19 @@
             $(".dropdown-toggle",$(this).parents(".feature-dropdown").parent()).prev().html(text);
             $(this).parents(".feature-dropdown").parent().removeClass("open");
         });
+        $(document).on("click",".toAccountSet",function(){
+          var isIn = $(".slide-box").hasClass("in");
+          if(!isIn){
+            $(".slide-box").modal("show");
+          }
+          setTimeout(function(){$("[href='#tab-login']").click();},300);//account login,此部分根据页面参数设置进行对应修改
+        })
+        $(document).on("click",".toSignRequest",function(){
+          $(".sign-in-box").modal("show");
+        })
+        $('.sign-in-box').on('hidden.bs.modal', function () {
+          $("body").addClass("modal-open");
+        })
         //搜索功能
         $(document).on("keyup",".feature-sidebar-search .input-search",function(){
           var this_val= $.trim($(this).val());
@@ -1168,6 +1365,15 @@
          $("#min").val(duringArr[0]);
          $("#max").val(duringArr[1]);
         //  $("#form").submit();
+       }
+       function toRegister(thi){
+         var isIn = $(".slide-box").hasClass("in");
+         if(!isIn){
+           $(".slide-box").modal("show");
+         }
+         setTimeout(function(){
+           $("[href='#tab-settings2']").click();
+         },300);//account login,此部分根据页面参数设置进行对应修改
        }
     </script>
 </html>

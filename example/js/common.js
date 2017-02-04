@@ -233,7 +233,31 @@ $(function(){
           $(".x-top-search").css({"position":"absolute","top":0,"left":0});
         }
     }
+    //左侧栏根据滚动高度变更position
+    changeSidebarPos(top);
   });
+  $(window).resize(function() {
+    var scrollTop = $(window).scrollTop();
+    var scrollLeft = $(window).scrollLeft();
+    var top = 62-scrollTop;
+    if(top<0) top=0;
+    //左侧栏根据滚动高度变更position
+    changeSidebarPos(top);
+  });
+  function changeSidebarPos(top){
+    if($(window).width()>1280){
+      top = 62;
+    }
+    if(top==0){
+      $(".x-sidebar").css("cssText","position:fixed!important;top:"+top+"!important");
+      $(".x-menu-lang-select").css("cssText","position:fixed!important;width:185px!important");
+      $(".x-menu-lang").css("cssText","position:fixed!important;width:185px!important");
+    }else{
+      $(".x-sidebar").css("cssText","");
+      $(".x-menu-lang-select").css("cssText","");
+      $(".x-menu-lang").css("cssText","");
+    }
+  }
   //左侧栏相应js
   $(".x-menu>li>a").on("click",function(){
         if($(this).parent().find("ul")){
@@ -283,4 +307,6 @@ $(function(){
     //    resizeFooter();
     //  });
     //  setTimeout(resizeFooter,300);
+
+
 });

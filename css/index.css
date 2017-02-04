@@ -378,7 +378,7 @@ th.align_right, td.align_right, .align_right {
 }
 .feature-main .feature-inner{
   position: relative;
-  margin: 0 288px 0 0;
+  margin: 0 250px 0 0;
 }
 .feature-main .feature-content .feature-detail{
   margin-bottom: 10px;
@@ -401,13 +401,13 @@ th.align_right, td.align_right, .align_right {
   line-height: 20px;
 }
 .feature-main .feature-content .feature-item{
-  width: 33.33333%;
+  width: 270px;
   float: left;
   position: relative;
   padding: 0 5px;
   margin: 5px 0;
   box-sizing: border-box;
-  height: 120px;
+  height: 110px;
 }
 .feature-main .feature-content .feature-item .feature-item-inner{
   border: 1px solid #dfdfdf;
@@ -422,7 +422,7 @@ th.align_right, td.align_right, .align_right {
 .feature-main .feature-content .feature-item .feature-item-inner .feature-pic{
   float: left;
   padding: 10px;
-  height: 100px;
+  height: 90px;
 }
 .feature-main .feature-content .feature-item .feature-item-inner .feature-container{
   padding: 10px;
@@ -437,7 +437,7 @@ th.align_right, td.align_right, .align_right {
   color: #999;
 }
 .feature-main  .feature-item .feature-container .feature-container-star{
-  margin: 20px 0 0 0;
+  margin: 10px 0 0 0;
 }
 .feature-main .feature-content .feature-item-detail .feature-item-inner{
   height: 100%;
@@ -520,14 +520,14 @@ th.align_right, td.align_right, .align_right {
 .feature-main .feature-sidebar{
   float: left;
   position: relative;
-  margin: 55px 0 0 -250px;
-  width: 250px;
+  margin: 55px 0 0 -230px;
+  width: 230px;
 }
 .feature-main .feature-info{
   float: left;
   position: relative;
-  margin: 20px 0 0 -250px;
-  width: 250px;
+  margin: 20px 0 0 -230px;
+  width: 230px;
 }
 .feature-main .feature-sidebar .feature-sidebar-search{
   position: relative;
@@ -571,7 +571,7 @@ th.align_right, td.align_right, .align_right {
 .feature-main .feature-content .feature-preview .feature-preview-pic{
   box-sizing: border-box;
   height: 400px;
-  width: 700px;
+  width: 650px;
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
@@ -676,6 +676,78 @@ th.align_right, td.align_right, .align_right {
   /*border:1px solid rgba(0,0,0,.15);*/
 }
 
+.feature-main .feature-content .feature-apps-show{
+  min-height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+.feature-main .feature-content .feature-apps-show .feature-apps-pic{
+  box-sizing: border-box;
+  height: 400px;
+  width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border: 1px solid #dfdfdf;
+  margin-bottom: 10px;
+}
+.feature-main .feature-content .feature-apps-show .feature-apps-pic img,.feature-main .feature-content .feature-apps-show .feature-apps-bought-list ul li img{
+  height: 100%;
+  width: 100%;
+}
+.feature-main .feature-content .feature-apps-bought{
+  background: #f2f2f2;
+  padding: 20px;
+  margin: 0 -20px;
+}
+.feature-main .feature-content .feature-apps-bought{
+  height: 200px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-list{
+  display: inline-block;
+  white-space: nowrap;
+  /*overflow: hidden;*/
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-list ul{
+  list-style: none;
+  position: relative;
+  float: left;
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-list ul li{
+  display: inline-block;
+  height: 120px;
+  width: 110px;
+  padding: 10px 5px;
+  margin-right: 40px;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-list ul li:hover{
+  background: #ccc;
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-title{
+  font-size: 14px;
+  text-align: left;
+  color: #999;
+  margin-bottom: 10px;
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-app{
+  margin-top: 10px;
+  text-align: left;
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-app p{
+  font-size: 12px;
+  color: #999;
+}
+.feature-main .feature-content .feature-apps-bought .feature-apps-bought-app p:first-child{
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
 /********************************** rating ******************************************/
 .rating {
   unicode-bidi: bidi-override;
@@ -719,7 +791,7 @@ th.align_right, td.align_right, .align_right {
   max-height: 100%;
   height: 100%;
   z-index: 1041;
-  width: 960px!important;
+  width: 1010px!important;
   box-sizing: border-box;
 }
 .slide-close{
@@ -729,7 +801,7 @@ th.align_right, td.align_right, .align_right {
   height: 60px;
   width: 60px;
   top: 0;
-  right: 900px;
+  right: 950px;
   cursor: pointer;
 }
 .slide-close .fa-close{
@@ -747,7 +819,7 @@ th.align_right, td.align_right, .align_right {
   bottom: 0;
   top: 0;
   z-index: 1041;
-  width: 900px;
+  width: 950px;
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -755,10 +827,10 @@ th.align_right, td.align_right, .align_right {
   -webkit-transition: -webkit-transform .3s ease-out;
   -o-transition: -o-transform .3s ease-out;
   transition: transform .3s ease-out;
-  -webkit-transform: translate(900px,0);
-  -ms-transform: translate(900px,0);
-  -o-transform: translate(900px,0);
-  transform: translate(900px,0)
+  -webkit-transform: translate(950px,0);
+  -ms-transform: translate(950px,0);
+  -o-transform: translate(950px,0);
+  transform: translate(950px,0)
 }
 .modal.in .slide-content,.modal.in .slide-close {
   -webkit-transform: translate(0,0);
@@ -824,6 +896,31 @@ th.align_right, td.align_right, .align_right {
 }
 .slide-content .page_title{
   margin: 20px 0 0 0;
+}
+.sign-in-box{
+  width:400px!important;
+  margin: -250px 0 0 -160px!important;
+  z-index: 1051;
+}
+.sign-in-box .modal-body{
+  padding-bottom: 0;
+}
+.sign-in-box .modal-title{
+  margin-bottom:10px;
+  font-size:14px;
+}
+.sign-in-box .modal-footer{
+  background: #fff!important;
+  border-top: none!important;
+  padding-top: 0!important;
+}
+.sign-in-box .modal-footer .btn{
+  float: left;
+  margin-left: 0;
+  margin-right: 5px;
+}
+.modal-backdrop~.modal-backdrop{
+  z-index: 1050;
 }
 /****************************************** page title ***************************************/
 .nav {
