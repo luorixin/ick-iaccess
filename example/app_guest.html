@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="../css/google-font.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="../css/bootstrap_iaccess.css">
+   <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="../css/head.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/calendar.css">
+
+
+	<script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="./js/common.js"></script>
+	 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="./js/scrollImg.js"></script>
+   <script type="text/javascript" src="./js/calendar.js"></script>
+   <script type="text/javascript" src="./js/hogan-2.0.0.min.js"></script>
+   <script type="text/javascript" src="./js/iax-tool.js"></script>
+   <script type="text/javascript" src="./js/iax-template.js"></script>
+
+</head>
+    <body  data-target="#x-sidebar" id="scroll-spy" data-offset="-340">
+    	<div class="container">
+    	<!--头部-->
+      <div class="myheading">
+        <nav class="navbar navbar-inverse">
+          <div class="x-navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="http://xmostg.optimix.asia/" class="navbar-brand" data-toggle="offcanvas">
+                <img src="http://xmostg.optimix.asia/images/logo/xmo.optimix.asia.png" alt="" style="" width="120" height="50">
+              </a>
+            </div>
+
+            <div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1">
+              <!-- Single button -->
+
+
+
+              <div class="x-top-menu" >
+                <ul class="nav navbar-nav">
+                  <li class="selected"><a href="#">iApps</a>
+                  </li>
+
+                </ul>
+
+              </div>
+
+
+
+              <div class="navbar-form navbar-right" >
+                <a href="javascript:void(0);" >&nbsp;Sign in</a>
+               </div>
+
+
+            </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="x-main">
+  <div class="x-sidebar" id="x-sidebar">
+    <ul class="x-menu nav">
+      <li  class="selected">
+        <a href="#link-Featured">
+         <i class="fa fa-star" aria-hidden="true"></i>
+          <span class="x-m8">Featured</span>
+        </a>
+      </li>
+			<li id="li001" class="">
+				<a href="#link-iAudience">
+				 <i class="fa fa-bandcamp" aria-hidden="true"></i>
+				<span class="x-m8">Categories</span>
+         <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+				</a>
+				<ul class="sub-menu nav" style="display: block;">
+					<li>
+						<a href="#link-iAudience"><span class="x-m8">iAudience Apps</span></a>
+					</li>
+					<li>
+						<a href="#link-iAccess"><span class="x-m8">iAccess Apps</span></a>
+					</li>
+					<li>
+						<a href="#link-iActivate"><span class="x-m8">iActivate Apps</span></a>
+					</li>
+          <li>
+						<a href="#link-iExperience"><span class="x-m8">iExperience Apps</span></a>
+					</li>
+          <li>
+						<a href="#link-iNsights"><span class="x-m8">iNsights Apps</span></a>
+					</li>
+				</ul>
+			</li>
+
+
+			<li class="">
+				<a href="./myApps.html">
+				 <i class="fa fa-gg-circle" aria-hidden="true"></i>
+				<span class="x-m8">My apps</span>
+        <i class="bell-tip" aria-hidden="true">2</i>
+				</a>
+			</li>
+
+
+		</ul>
+    <ul class="x-menu-lang-select">
+      <li>
+        <a href="#">
+        <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
+           <span class="x-m8">简体中文</span>
+        </a>
+      </li>
+
+    </ul>
+    <ul class="x-menu-lang">
+
+      <li>
+        <a href="javascript:;">
+        <i class="fa fa-cog fa-globe" aria-hidden="true"></i>
+           <span class="x-m8">langauage English</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="x-body" id="x-body">
+<!--                    图片轮播相关                    -->
+    <div class="scroll-container">
+      <div class="scroll-imglist">
+        <ul>
+          <li><a href="javascript:;" target="_blank"><img src="http://imgs.woliwu.com/enterprise/xinfuli/images/ad_1_1483608383212.jpg@347h_1200w_1e" alt="图片1"/></a></li>
+          <li><a href="javascript:;" target="_blank"><img src="http://imgs.woliwu.com/enterprise/xinfuli/images/ad_2_1484191440136.jpg@347h_1200w_1e" alt="图片2"/></a></li>
+          <li><a href="javascript:;" target="_blank"><img src="http://imgs.woliwu.com/enterprise/demo/images/ad_2_1481683768865.jpg@347h_1200w_1e" alt="图片3"/></a></li>
+          <li><a href="javascript:;" target="_blank"><img src="http://imgs.woliwu.com/enterprise/xinfuli/images/ad_2_1482128987306.jpg@347h_1200w_1e" alt="图片4"/></a></li>
+        </ul>
+
+        <div class="scroll-btnlist">
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <i id="toLeft" class="fa fa-angle-left link scroll-btn-prev" aria-hidden="true"></i>
+      <i id="toRight" class="fa fa-angle-right link scroll-btn-next" aria-hidden="true"></i>
+    </div>
+<!--                   feature 相关                    -->
+    <div class="feature-main">
+  		<div class="feature-content" >
+        <div class="feature-inner">
+          <div class="feature-detail">
+              <label class="feature-title" id="link-Featured">
+                Featured
+              </label>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party DMPs</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party ppp</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party nnn</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party xxx</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party test</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearboth"></div>
+          </div>
+
+          <div class="feature-detail">
+              <label class="feature-title" id="link-iAudience">
+                iAudience Apps
+              </label>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party zer</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party DMP</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party DMP</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party DMP</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearboth"></div>
+
+          </div>
+
+          <div class="feature-detail">
+              <label class="feature-title" id="link-iAccess">
+                iAccess Apps
+              </label>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party zer</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party DMP</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party DMP</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party DMP</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearboth"></div>
+
+          </div>
+
+          <div class="feature-detail">
+              <label class="feature-title" id="link-iActivate">
+                iActivate Apps
+              </label>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party zer</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearboth"></div>
+
+          </div>
+          <!--                     iExperience example begin                     --->
+          <div class="feature-detail">
+              <label class="feature-title" id="link-iExperience">
+                iExperience Apps
+              </label>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party zer</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party zer</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="clearboth"></div>
+
+          </div>
+          <!--                     iExperience example end                     --->
+          <!--                     iNsights example begin                     --->
+          <div class="feature-detail">
+              <label class="feature-title" id="link-iNsights">
+                iNsights Apps
+              </label>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party zer</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party Parth</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-item-inner">
+                  <div class="feature-pic">
+                    <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="90" width="90"></a>
+                  </div>
+                  <div class="feature-container">
+                      <div class="feature-container-title">
+                        <p>3rd Party zer</p>
+                        <p>iAudience App</p>
+                      </div>
+                      <div class="feature-container-star">
+                        <span class="rating">
+                          <span class="star"></span>
+                          <span class="star"></span>
+                          <span class="star hover"></span>
+                          <span class="star"></span>
+                          <span class="star"></span>
+                        </span>
+                      </div>
+                      <div class="feature-container-opt">
+                        <div class="btn-group" style="display:inline-block;">
+                          <input type="hidden" value=""/>
+                          <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                            Get&nbsp;&nbsp;
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearboth"></div>
+
+          </div>
+          <!--                     iNsights example end                     --->
+
+          <div class="clearboth"></div>
+        </div>
+      </div>
+      <div class="feature-sidebar">
+        <div class="feature-sidebar-search">
+          <i class="fa fa-search"></i>
+          <input class="input-search" placeholder="Search" id="input-search" autofocus="" >
+        </div>
+        <div class="feature-sidebar-result">
+          <label>All Appss</label>
+          <hr>
+          <ul>
+            <li><a href="javascript:;">3rd Party DMP</a></li>
+            <li><a href="javascript:;">3rd Party Data</a></li>
+            <li><a href="javascript:;">3rd Party Tracking</a></li>
+            <li><a href="javascript:;">Brand Safety</a></li>
+            <li><a href="javascript:;">Invalid Traffic</a></li>
+            <li><a href="javascript:;">3rd Party Tracking</a></li>
+            <li><a href="javascript:;">App Download Tracking</a></li>
+            <li><a href="javascript:;">3rd Party Ad Serving</a></li>
+            <li><a href="javascript:;">3rd Party DMP</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--                   feature 相关 End                   -->
+  </div>
+    <div class="clearboth"></div>
+</div>
+  <!-- footer -->
+  <div class="clearfooter"></div>
+  <div class="myfooter">
+    <label class="x-footer">
+      Copyright © 2012 - 2017 iClick Technology,iClick Beijing,ICP 14026918. All Rights Reserved.
+    </label>
+  </div>
+</div>
+    <!--container end-->
+    <div class="modal fade slide-box" style="display:none;">
+      <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>
+      <div class="slide-content">
+          <div class="modal-content">
+            <div class="modal-body">
+              <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
+                <li >
+                  <a data-toggle="tab" href="#tab-intruduction">Introduction</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-settings">Settings</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-settings2">Settings2</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-login">Settings</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade" id="tab-intruduction">
+                  <div class="feature-main">
+                    <div class="feature-content" >
+                      <div class="feature-inner" style="margin: 0 0 0 260px;width:650px;">
+                        <div class="feature-detail">
+                            <div class="feature-item-detail">
+                              <div class="feature-item-inner">
+
+                                <div class="feature-container">
+                                    <div class="feature-container-title">
+                                      <p style="color:#999;">Description</p>
+                                      <hr>
+                                      <p>The acronym PCALEC has a life path number 22.The path number tewnty-two is an master number with various vibrations. The most astounding and most capable figure that is extremely uncommon.</p>
+                                      <br>
+                                      <p>Invidividuals with this number can defeat any deterrent.Your abilities are extremely adaptable and solid.</p>
+                                    </div>
+                                    <div class="feature-container-update" style="margin-top:30px;position:static;">
+                                      <p>New Updates</p>
+                                      <p>1.0 Bug fixed</p>
+                                      <a>...Read More</a>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="clearboth"></div>
+                        </div>
+                        <!--                    图片预览                        -->
+                        <div class="feature-apps-show">
+                          <div class="feature-apps-pic">
+                            <img src="../images/test.png" alt="图片" height="100%" width="100%"/>
+                          </div>
+                          <div class="feature-apps-pic">
+                            <img src="../images/test2.png" alt="图片" height="100%" width="100%"/>
+                          </div>
+                          <div class="feature-apps-pic">
+                            <img src="../images/test.png" alt="图片" height="100%" width="100%"/>
+                          </div>
+                          <div class="feature-apps-bought">
+                            <div class="feature-apps-bought-title">
+                              Customer also bought
+                            </div>
+                            <div class="feature-apps-bought-list">
+                              <ul>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="90" width="90"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="90" width="90"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="90" width="90"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="90" width="90"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                                <li>
+                                  <a href="javascript:;"><img src="../images/icon_conversions.png" style="background:#dfdfdf" alt="图片" height="90" width="90"/></a>
+                                  <div class="feature-apps-bought-app">
+                                    <p>3rd Party DMP</p>
+                                    <p>iAudience Apps</p>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!--                    图片预览  End                 -->
+                      </div>
+                    </div>
+                    <div class="feature-info" style="position:fixed;margin:20px 0 0 0;width:220px;">
+                      <div class="feature-pic" style="margin-bottom:30px;">
+                        <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="200" width="200"></a>
+                        <div class="feature-container-opt">
+                          <label class="feature-opt-title">
+                            Brand Safety
+                          </label>
+                          <div class="btn-group" style="display:inline-block;">
+                            <input type="hidden" value=""/>
+                            <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown dropdown-guest">
+                              Get&nbsp;&nbsp;
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+
+                          </div>
+                        </div>
+                      </div>
+                      <label class="feature-info-title" style="color:#999;">
+                        Information
+                      </label>
+                      <hr>
+                      <div class="feature-info-result">
+                        <ul>
+                          <li><span>Category: </span><span>iAudience</span></li>
+                          <li><span>Rating: </span>
+                            <span class="rating">
+                              <span class="star"></span>
+                              <span class="star"></span>
+                              <span class="star hover"></span>
+                              <span class="star"></span>
+                              <span class="star"></span>
+                            </span>
+                          </li>
+                          <li><span>Update: </span><span>21 November 2016</span></li>
+                          <li><span>Version: </span><span>1.1</span></li>
+                          <li><span style="float:left;">Price: </span>
+                            <div style="float:left;margin-left:2px;">
+                              <p> HK$128.00 / mth</p>
+                              <p> HK$1200.00 / yr</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="tab-settings">
+                  <div class="page_title">
+                    <div class="row"><div class="client-row">
+                      <h1 style="color:#333;">
+                      Create a Tracking
+                    </h1></div></div>
+                  </div>
+                  <div class="edit-container">
+                    <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">
+                      <div class="control-group">
+                        <label class="control-label">Agency Name</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="name" value="iCLick" disabled/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Advertiser Name</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="name" value="iCLick" disabled/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Brand Name</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="name" value="iCLick" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Industry</label>
+                        <div class="controls">
+                          <div class="dropdown modifylabel">
+                            <input name="industry" type="hidden" value="Finance"  />
+                            <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              Finance
+                              <span class="caret arrow-down"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                              <li data-value="Finance"><a href="javascript:;">Finance</a></li>
+                              <li data-value="Finance2"><a href="javascript:;">Finance2</a></li>
+                              <li data-value="Finance3"><a href="javascript:;">Finance3</a></li>
+                            </ul>
+                          </div>
+                          <div class="clearfix infolabel hide" id="statusLabel">
+                            Finance
+                          </div>
+                          <div class="error-message hide">
+                            <span class="glyphicon glyphicon-alert"></span>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr style="margin:20px -20px;"/>
+                      <div class="control-group">
+                        <label class="control-label">Tracking Name</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="name" value="iCLick" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Campaign ID</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <label class="form-radio radio-inline" style="width:200px;"><input type="radio" value="0" name="isEnable" checked="checked">
+                            No</label>
+                            <label class="form-radio radio-inline" style="width:200px;"><input type="radio" value="1" name="isEnable" >
+                            Yes</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Schedule</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <div class="date-range" style="width:383px;">
+                              <i class="fa fa-calendar"></i>
+                              <input type="text" id="daterange" placeholder="please select a period" value="" style="width:344px;" class="form-control date-range-input xmoCalendarInputSchedule">
+                              <input type="hidden" id="min" name="begin" value="">
+                              <input type="hidden" id="max" name="end" value="">
+                              <span class="caret arrow-calendar"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Device</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <label class="form-radio radio-inline" style="width:200px;"><input type="radio" value="0" name="device" checked="checked">
+                            Unspecified</label>
+                            <label class="form-radio radio-inline" style="width:200px;"><input type="radio" value="1" name="device" >
+                            Customize</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Remarks</label>
+                        <div class="controls">
+                          <textarea class="input-xlarge span4" name="remark" style="width: 360px !important;min-height:100px;" rows="5" cols="20" ></textarea>
+                          <div class="error-message hide">
+                            <span class="glyphicon glyphicon-alert"></span>
+                            <div class="clearfix">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                  <div class="modal-footer slide-bottom">
+                    <button type="button" class="btn btn-success" onclick="{{fn}}">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab-settings2">
+                  <div class="page_title">
+                    <div class="row">
+                      <div class="client-row">
+                        <h1 style="color:#333;">
+                          Request App Login
+                        </h1>
+                        <p style="margin:4px 0;">Our sales manager will contact you soon.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="edit-container">
+                    <form class="form-horizontal" id="request_app" action="{{action}}" ref="adjust" method="post">
+                      <div class="control-group">
+                        <label class="control-label">Email</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="email" value="iCLick"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="name" value="iCLick"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Contact Number</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="number" value="123456" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Remarks</label>
+                        <div class="controls">
+                          <textarea class="input-xlarge span4" name="remark" style="width: 360px !important;min-height:100px;" rows="5" cols="20" ></textarea>
+                          <div class="error-message hide">
+                            <span class="glyphicon glyphicon-alert"></span>
+                            <div class="clearfix">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="form-checkbox checkbox-inline" style="width:100%;"><input type="checkbox" value="0" name="servie" >
+                        By submitting this form, you accept our <a href="javascript:;" style="text-decoration:underline;">Terms of Service</a></label>
+                      </div>
+
+                    </form>
+                  </div>
+                  <div class="modal-footer slide-bottom">
+                    <button type="button" class="btn btn-success" onclick="requestUser(this)">Request</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="tab-login">
+                  <div class="page_title">
+                    <div class="row">
+                      <div class="client-row">
+                        <h1 style="color:#333;">
+                          Login
+                        </h1>
+                        <p style="margin:4px 0;">Please login by filling in your email & password.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="edit-container">
+                    <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">
+                      <div class="control-group">
+                        <label class="control-label">Email</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="email" value="shirley.au@i-click.com"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Password</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="password" name="password" value="iCLick"/>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                  <div class="modal-footer slide-bottom">
+                    <button type="button" class="btn btn-success" onclick="{{fn}}">Login</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </div>
+
+
+
+    </body>
+    <script type="text/javascript">
+
+
+    	$(function(){
+        $(document).on("click","[data-toggle='dropdown dropdown-guest']",function(){
+          IAX_TOOL.loginForm({
+            'title':'Contact Agency Manager',
+            'subTitle':'Send a request to angecy manager for app purchase.',
+            'fn':'toSend()',
+            'save':'Send',
+            'cancel':'Later'
+          });
+        })
+        $('.sign-in-box').on('hidden.bs.modal', function () {
+          $("body").addClass("modal-open");
+        })
+        function doActived(self){
+          var isSelected = $(self).parent().hasClass("selected");
+          $('#x-sidebar').find(".selected").removeClass("selected");
+          $('#x-sidebar').find(".actived").removeClass("actived");
+          $(self).parent().addClass("actived");
+          if($(self).parent().parent().hasClass("sub-menu")){
+            $(self).parent().parent().parent().addClass("selected");
+          }else{
+            $(self).parent().addClass("selected");
+          }
+        }
+        //根据#获取高亮nav
+        var url = window.location.href;
+        if(url.split("#").length>1){
+          var navId = url.split("#").pop();
+          var $navLi = $("[href='#"+navId+"']:last");
+          doActived($navLi);
+        }
+        //滚动监听
+        $('#x-sidebar').scrollspy();
+
+        $(".x-menu>li>a").unbind("click");
+        $(".sub-menu>li>a").unbind("click");
+        var offset = $(".myheading").height()+5;
+
+        $('.x-menu li a').click(function(event) {
+          if($(window).width()>1280){
+            event.preventDefault();
+            $($(this).attr('href'))[0] && $($(this).attr('href'))[0].scrollIntoView();
+            scrollBy(0, -offset);
+          }
+          //新增，不滚动监听所需内容
+          doActived(this);
+        });
+        /*
+        $('#x-sidebar').on('activate.bs.scrollspy', function () {
+           var currentItem = $('#x-sidebar').find("li.active:last");
+           $('#x-sidebar').find(".selected").removeClass("selected");
+           if(currentItem.parent().hasClass("sub-menu")){
+             currentItem.parent().parent().addClass("selected");
+             if(currentItem.parent().is(":hidden")){
+               currentItem.parent().parent().parent().find("ul").slideUp();
+               currentItem.parent().parent().parent().find(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
+               currentItem.parent().parent().find("a:first").find(".fa-caret-right").removeClass("fa-caret-right").addClass("fa-caret-down");
+               currentItem.parent().slideToggle();
+             }
+           }else{
+             if(!currentItem.hasClass("selected")){
+               currentItem.addClass("selected");
+             }
+             currentItem.parent().find(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
+             currentItem.find("a:first").find(".fa-caret-right").removeClass("fa-caret-right").addClass("fa-caret-down");
+             currentItem.parent().find("ul").slideUp();
+             currentItem.find("ul").slideToggle();
+           }
+        })
+        */
+
+
+        //搜索功能
+        $(document).on("keyup",".feature-sidebar-search .input-search",function(e){
+          var event = e || window.event;
+          var this_val= $.trim($(this).val());
+          if(e.keyCode!=13 && this_val!="") return;
+          $("#feature-noresult").remove();
+          if(this_val!=""){
+            var reg = new RegExp(this_val,"gi");
+            var searchResult=$(".feature-sidebar-result").find("li").find("a").map(function(){
+              return {"obj":$(this).parent(),"text":$(this).text()};
+            }).get();
+            $(".feature-sidebar-result").find("li").hide();
+            var nores = 0;
+            for (var i = 0; i < searchResult.length; i++) {
+              if(reg.test(searchResult[i]["text"])){
+                searchResult[i]["obj"].show();
+                nores = 1;
+              }
+              reg.lastIndex=0;
+            };
+            if (nores == 0) {
+              $(".feature-sidebar-result").find("ul").append("<li id='feature-noresult'>No results.</li>")
+            }
+
+            //左边筛选
+            /*
+            var searchRighResult=$(".feature-inner").find(".feature-item").find(".feature-container-title").find("p").map(function(){
+              return {"obj":$(this).closest(".feature-item"),"text":$(this).text()};
+            }).get();
+            $(".feature-inner").find(".feature-detail").hide();
+            $(".feature-inner").find(".feature-item").hide();
+            for (var j = 0; j < searchRighResult.length; j++) {
+              if(reg.test(searchRighResult[j]["text"])){
+                searchRighResult[j]["obj"].show();
+                searchRighResult[j]["obj"].closest(".feature-detail").show();
+              }
+              reg.lastIndex=0;
+            };
+            */
+          }else{
+            $(".feature-sidebar-result").find("li").show();
+            //左边筛选
+            /*
+            $(".feature-inner").find(".feature-item").show();
+            $(".feature-inner").find(".feature-detail").show();
+            */
+          }
+        })
+        $(document).on("click",".feature-item :not(.btn) :not(.dropdown-menu a)",function(event){
+          var event = event || window.event;
+          if($(this)[0].tagName!="LI" && $(this)[0].tagName!="UL" && $(this)[0].tagName!="BUTTON"){
+            //ajax 根据id获取json数据
+            $(".slide-box").modal("show");
+            setTimeout(function(){$("[href='#tab-intruduction']").click();},300);
+          }
+          event.stopPropagation();
+        })
+        $(document).on("click",".update-app",function(){
+          var $parent = $(this).parent();
+          $parent.html("Updating...");
+
+          //ajax请求后台
+          setTimeout(function(){
+            $parent.html('<button type="button" class="btn btn-activate btn-xs">Activated</button>');
+          },2000);
+        })
+        $("#request_app [name='servie']").parent().on("click",function(){
+          var isChecked = $(this).find("input").prop("checked");
+          $(this).parent().parent().parent().next().find(".btn-success").attr("disabled",!isChecked);
+        })
+        //图片轮播
+        new scrollImg({
+          ulist : $('.scroll-imglist>ul'),
+          blist : $('.scroll-btnlist>ul'),
+          link : $('.link'),
+          hoverbtn : $('.scroll-imglist>ul li, .scroll-btnlist>ul li'),
+          autoInterval : 3000
+
+        })
+        initCalendar("daterange");
+			});
+
+      function initCalendar(id) {
+         new xmoCalendar({
+           inputId : '#' + id,
+           wrapContainer: $('#'+id).parents(".control-group"),
+           maskContainer: $('#'+id).parents(".edit-container"),
+           relativeTop:"100%",
+           relativeLeft:210,
+           lang : "zh", //"zh" "en"
+           initTime : '2013-10-28',
+           menu : [ "last_7_days", "last_30_days", "this_week", "this_month",
+               "this_yeah", "last_week", "last_month", "last_3_month" ],
+           submitCallback : function() {
+             search_column(id);
+           },
+         })
+       }
+       function search_column(id) {
+         var during = $("#" + id).val();
+         var duringArr = during.split(" ~ ");
+         $("#min").val(duringArr[0]);
+         $("#max").val(duringArr[1]);
+        //  $("#form").submit();
+       }
+       function requestUser(thi){
+         //ajax请求
+        // $(thi).attr("disabled",true);
+         setTimeout(function(){
+           $(thi).next().click();
+          // $(thi).attr("disabled",false);
+           IAX_TOOL.notification("Request Login successfully.Our sales will contact you soon.","success",5000);
+         }, 1000)
+       }
+       function toSend(thi){
+          $(".sign-in-box").modal("hide");
+
+         setTimeout(function(){
+           IAX_TOOL.notification("The Request sended successfully","success",3000);
+         },300);//account login,此部分根据页面参数设置进行对应修改
+       }
+    </script>
+</html>
