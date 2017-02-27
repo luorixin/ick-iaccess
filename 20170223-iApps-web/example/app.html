@@ -1555,8 +1555,8 @@
       <div class="slide-content">
           <div class="modal-content">
             <div class="modal-body">
-              <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
-                <li >
+              <ul class="nav nav-tabs sub-nav-tabs" id="myTabs">
+                <li class="">
                   <a data-toggle="tab" href="#tab-intruduction">Introduction</a>
                 </li>
                 <li class="">
@@ -1570,7 +1570,7 @@
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade" id="tab-intruduction">
+                <div class="tab-pane fade in active" id="tab-intruduction">
                   <div class="feature-main">
                     <div class="feature-content" >
                       <div class="feature-inner" style="margin: 0 0 0 260px;width:650px;">
@@ -2006,6 +2006,10 @@
            }
         })
         */
+        $(document).on("click",".slide-box .sub-nav-tabs a",function(e) {
+          e.preventDefault();
+          $(this).tab('show');
+        })
         $(document).on("click",".feature-dropdown li:not(.divider)",function(){
             var $submenu = $(this).find(".sub-drop-menu");
             var hasChild = $submenu.length>0;
@@ -2019,7 +2023,7 @@
           if(!isIn){
             $(".slide-box").modal("show");
           }
-          setTimeout(function(){$("[href='#tab-login']").click();},300);//account login,此部分根据页面参数设置进行对应修改
+          setTimeout(function(){$("[href='#tab-login']").tab("show");},300);//account login,此部分根据页面参数设置进行对应修改
         })
         $(document).on("click",".toSignRequest",function(){
           var selectApp = $(this).parents(".feature-container").find(".feature-container-title").find("p:first").text();
@@ -2096,7 +2100,7 @@
           if($(this)[0].tagName!="LI" && $(this)[0].tagName!="UL" && $(this)[0].tagName!="BUTTON"){
             //ajax 根据id获取json数据
             $(".slide-box").modal("show");
-            setTimeout(function(){$("[href='#tab-intruduction']").click();},300);
+            setTimeout(function(){$("[href='#tab-intruduction']").tab("show");},300);
           }
           event.stopPropagation();
         })
@@ -2131,7 +2135,7 @@
           $(".slide-box").modal("show");
         }
         setTimeout(function(){
-          $("[href='#tab-settings2']").click();
+          $("[href='#tab-settings2']").tab("show");
         },300);//account login,此部分根据页面参数设置进行对应修改
       }
       function initCalendar(id) {

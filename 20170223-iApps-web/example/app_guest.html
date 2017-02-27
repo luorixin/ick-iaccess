@@ -1108,7 +1108,7 @@
           <div class="modal-content">
             <div class="modal-body">
               <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
-                <li >
+                <li class="active">
                   <a data-toggle="tab" href="#tab-intruduction">Introduction</a>
                 </li>
                 <li class="">
@@ -1122,7 +1122,7 @@
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade" id="tab-intruduction">
+                <div class="tab-pane fade in active" id="tab-intruduction">
                   <div class="feature-main">
                     <div class="feature-content" >
                       <div class="feature-inner" style="margin: 0 0 0 260px;width:650px;">
@@ -1560,7 +1560,10 @@
         })
         */
 
-
+        $(document).on("click",".slide-box .sub-nav-tabs a",function(e) {
+          e.preventDefault();
+          $(this).tab('show');
+        })
         //搜索功能
         $(document).on("keyup",".feature-sidebar-search .input-search",function(e){
           var event = e || window.event;

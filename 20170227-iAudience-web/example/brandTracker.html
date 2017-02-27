@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>客户管理</title>
+    <title>Audience Planner</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -14,11 +14,12 @@
    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
    <link rel="stylesheet" type="text/css" href="../css/head.css">
 	<link rel="stylesheet" type="text/css" href="../css/index.css">
-
+  <link rel="stylesheet" type="text/css" href="../css/chosen.css">
 
 	<script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="./js/common.js"></script>
 	 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="./js/chosen.jquery.min.js"></script>
 
 
 </head>
@@ -185,6 +186,9 @@
                     <a href="#">iAudience</a>
                   </li>
 
+                  <li class="">
+                    <a href="javascript:void(0);" >iAccess</a>
+                  </li>
 
                   <li class="">
                     <a href="javascript:void(0);" >iActivate</a>
@@ -197,11 +201,6 @@
                   </li>
                   <li class=""><a href="#">iApps</a>
                   </li>
-
-                  <li class=""><a href="#">Settings</a>
-                  </li>
-
-
                 </ul>
 
               </div>
@@ -254,46 +253,37 @@
       <div class="x-main">
         <div class="x-sidebar" id="x-sidebar">
           <ul class="x-menu">
-      			<li id="li001" class="selected">
-      				<a href="#">
-      				 <i class="fa fa-book fa-bandcamp" aria-hidden="true"></i>
-      				<span class="x-m8">Planning</span>
-               <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
-      				</a>
-      				<ul class="sub-menu" style="display: block;">
-      					<li class="">
-      						<a href="#"><span class="x-m8">Media Planner</span></a>
-      					</li>
-      					<li class="">
-      						<a href="#"><span class="x-m8">Ad Placements</span></a>
-      					</li>
-      					<li class="active">
-      						<a href="#"><span class="x-m8">Audience Planner</span></a>
-
-      					</li>
-
-      				</ul>
-      			</li>
-
-      			<li id="li003" class="">
-      				<a href="#">
-      				 <i class="fa fa-book fa-briefcase" aria-hidden="true"></i>
-      					<span class="x-m8">Campaings</span>
+      			<li class="">
+      				<a href="./iaudience.html">
+      				 <i class="fa fa-users" aria-hidden="true"></i>
+      				<span class="x-m8">Audience Planner</span>
       				</a>
       			</li>
-      			<li id="li004" class="">
-      				<a href="#">
-      				 <i class="fa fa-book fa-database" aria-hidden="true"></i>
-      				<span class="x-m8">Finance</span>
+
+      			<li class="selected">
+      				<a href="./brandTracker.html">
+      				 <i class="fa fa-bandcamp" aria-hidden="true"></i>
+      					<span class="x-m8">Brand Tracker</span>
       				</a>
       			</li>
-            <li id="li004" class="">
+      			<li class="">
+      				<a href="./audiences.html">
+      				 <i class="fa fa-male" aria-hidden="true"></i>
+      				<span class="x-m8">Audience</span>
+      				</a>
+      			</li>
+            <li class="">
       				<a href="#">
-      				 <i class="fa fa-book fa-lightbulb-o" aria-hidden="true"></i>
+      				 <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
       				<span class="x-m8">Tools</span>
       				</a>
       			</li>
-
+            <li class="">
+      				<a href="#">
+      				 <i class="fa fa-gg-circle" aria-hidden="true"></i>
+      				<span class="x-m8">Apps</span>
+      				</a>
+      			</li>
       		</ul>
           <ul class="x-menu-lang-select">
             <li>
@@ -320,108 +310,101 @@
           </ul>
         </div>
         <div class="x-body" id="x-body">
+          <div class="page_title">
+      		  <div id="breadcrumb" class="row">
+      		    <!-- Top left headings and links -->
+      		   <div class="client-row">
 
+      	   		 </div>
+
+
+      		  </div>
+      		  <div class="row"><div class="client-row"><h1>Audience Planner</h1></div></div>
+       		</div>
+      		  <!-- Page title -->
       <!--                   feature 相关                    -->
           <div class="feature-main">
         		<div class="feature-content" >
               <div class="feature-inner">
                 <div class="feature-detail">
-                    <div class="feature-item-detail">
-                      <div class="feature-item-inner">
-                        <div class="feature-pic">
-                          <a href="javascript:;"><img style="background:#ddd;" src="../images/icon_conversions.png" height="200" width="200"></a>
-                          <div class="feature-container-opt">
-                            <div class="btn-group">
-                              <input type="hidden" value=""/>
-                              <button type="button" class="btn btn-danger btn-xs">$129 / mth</button>
-                              <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                              </button>
-                              <ul class="dropdown-menu feature-dropdown" role="menu">
-                                <li class="active"><a href="javascript:;">$128 / mth</a></li>
-                                <li><a href="javascript:;">$359 / 3 mth</a></li>
-                                <li><a href="javascript:;">$1200 / yr</a></li>
-                              </ul>
+                    <div class="feature-plan-search">
+                      <div class="feature-plan-search-title">
+                        <i class="fa fa-caret-right"></i>
+                        <label>Define your target audience by comparison of brands</label>
+                      </div>
+                      <div class="feature-plan-search-content brand hide">
+                        <div class="feature-plan-search-keywords">
+                          <b>Enter a client brand name and (Up to 20) other brands for comparison</b>
+                          <label class="error-msg">You must enter a client brand and at least 1 other brand</label>
+                          <input type="hidden" id="result" />
+                          <form class="form-horizontal">
+                            <div class="control-group">
+                              <label class="control-label">Client brand</label>
+                              <div class="controls">
+                                <div class="clearfix">
+                                  <input type="text" value="" placeholder="iClick,爱点击,愛點擊" name="brand">
+                                </div>
+                                <div class="warn-message hide">
+                                  <span class="nav-arrow"></span>
+                                  <div class="clearfix">
+                                    To extend search results,you can enter different brand alias separated by commas per line. e.g. "iClick,爱点击,愛點擊"
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
+
+                            <div class="control-group">
+                              <label class="control-label">Other brands</label>
+                              <div class="controls">
+                                <div class="clearfix">
+                                  <input type="text" value="" placeholder="iClick,爱点击,愛點擊" name="otherBrand">
+                                </div>
+                                <div class="plus-area">
+                                  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                  <a>Add one more event</a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <label class="control-label">Location</label>
+                              <div class="controls">
+                                <div class="clearfix">
+                                  <input type="text" value="Mainland China" disabled name="location">
+                                </div>
+                                <div class="warn-message hide">
+                                  <span class="nav-arrow"></span>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </form>
                         </div>
-                        <div class="feature-container">
-                            <div class="feature-container-title">
-                              <p>3rd Party DMP</p>
-                              <p>The acronym PCALEC has a life path number 22.The path number tewnty-two is an master number with various vibrations. The most astounding and most capable figure that is extremely uncommon.</p>
-                              <br>
-                              <p>Invidividuals with this number can defeat any deterrent.Your abilities are extremely adaptable and solid.</p>
-                            </div>
-                            <div class="feature-container-update">
-                              <p>New Updates</p>
-                              <p>1.0 Bug fixed</p>
-                              <a>...Read More</a>
-                            </div>
+
+                        <div class="feature-plan-search-submit">
+                          <button type="button" class="btn btn-success" disabled onclick="location='./brandTracker_planner.html'">Get analytics</button>
+                          <button type="button" class="btn btn-cancel"  onclick="">Reset</button>
                         </div>
                       </div>
                     </div>
+
                     <div class="clearboth"></div>
                 </div>
-                <!--                    图片预览                        -->
-                <div class="feature-preview">
-                    <div class="feature-preview-pic">
-                      <img src="../images/test.png" alt="图片" height="100%" width="100%"/>
-                    </div>
-                    <div class="feature-preview-thumb">
-                      <div class="feature-preview-thumb-list">
-                        <ul>
-                          <li class="active"><!-- 那个active就放在哪，以此保证箭头居中。。--><span class="feature-arrow"></span><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test2.png" alt="图片" height="100%" width="100%"/></li>
-                          <li><img src="../images/test.png" alt="图片" height="100%" width="100%"/></li>
-                        </ul>
-                      </div>
-                    </div>
-                </div>
-                <!--                    图片预览  End                 -->
+
               </div>
             </div>
-            <div class="feature-info">
-              <label class="feature-info-title">
-                Information
-              </label>
-              <hr>
-              <div class="feature-info-result">
+            <div class="feature-sidebar" style="margin-top:0;">
+              <div class="feature-sidebar-result">
+                <label>My saved brand trackers</label>
+                <hr>
                 <ul>
-                  <li><span>Category: </span><span>iAudience</span></li>
-                  <li><span>Rating: </span>
-                    <span class="rating">
-                      <span class="star"></span>
-                      <span class="star"></span>
-                      <span class="star hover"></span>
-                      <span class="star"></span>
-                      <span class="star"></span>
-                    </span>
-                  </li>
-                  <li><span>Update: </span><span>21 November 2016</span></li>
-                  <li><span>Version: </span><span>1.1</span></li>
-                  <li><span style="float:left;">Price: </span>
-                    <div style="float:left;margin-left:2px;">
-                      <p> HK$128.00 / mth</p>
-                      <p> HK$1200.00 / yr</p>
-                    </div>
-                  </li>
+                  <li><a href="javascript:;">Plan_20171010</a></li>
+                  <li><a href="javascript:;">Plan_20171012</a></li>
+                  <li><a href="javascript:;">Plan_20171013</a></li>
+                  <li><a href="javascript:;">Plan_20171015</a></li>
+                  <li><a href="javascript:;">Plan_20171016</a></li>
+                  <li><a href="javascript:;">Plan_20171012</a></li>
                 </ul>
               </div>
             </div>
@@ -447,39 +430,62 @@
 
 
   	$(function(){
-      $(document).on("click",".feature-dropdown li:not(.divider)",function(){
-          $(".dropdown-toggle",$(this).parent().parent()).prev().html($(this).children().text());
-          $(this).parent().find(".active").removeClass("active");
-          $(this).addClass("active");
-          var value= $(this).attr("value");
-          if(typeof(value)!="object"){
-          }else{
-            value=value.context.value;
+
+      $(document).on("click",".feature-main .feature-plan-search-title",function(){
+        $(this).parent().parent().find(".feature-plan-search-content").slideUp();
+        var $fa = $(this).find(".fa");
+        var isUp = $fa.hasClass("fa-caret-right");
+        $(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
+        $(".toggle-down").removeClass("toggle-down");
+
+        if(isUp){
+          $fa.removeClass("fa-caret-right").addClass("fa-caret-down");
+          $(this).parent().addClass("toggle-down");
+          $(this).next().slideDown();
+        }else{
+          $fa.removeClass("fa-caret-down").addClass("fa-caret-right");
+          $(this).parent().removeClass("toggle-down");
+          $(this).next().slideUp();
+        }
+
+      })
+
+      $(".control-group").on("focus",".controls input",function() {
+        if($(this).parent().next().hasClass("warn-message")){
+          $(this).parent().next().removeClass("hide");
+        }
+      })
+      $(".control-group").on("blur",".controls input",function() {
+        if($(this).parent().next().hasClass("warn-message")){
+          $(this).parent().next().addClass("hide");
+        }
+      })
+      $(".brand .control-group").on("keyup",".controls input",function(){
+        disableVerify($(this).parents("form"));
+      })
+      function disableVerify($form) {
+        var isEmpty = false;
+        $form.find("input:visible").each(function() {
+          if ($(this).val()=="") {
+            isEmpty = true;
           }
-          var data_value=$(this).attr("data-value");
-          if(typeof(data_value)!="undefined"){
-            value=data_value;
-          }
-          // $(this).parent().parent().find(".btn-danger").removeClass("btn-danger").addClass("btn-primary");
-          $(this).parent().parent().find("input").first().attr("value",value);
-          $(this).parent().parent().find("input").first().attr("title",($(this).children().text()));
-          $(this).parent().parent().find("input").first().change();
-          $(this).parent().parent().removeClass("open");
-      });
-      $(document).on("hover",".feature-main .feature-preview-thumb-list li:not(.active)",function(){
-        $(this).parent().find(".active").removeClass("active");
-        $(this).addClass("active");
-        var src = $(this).find("img").attr("src");
-        // var index = $(this).index()-1;
-        // var scrolldiff = 0;
-        // if($(".feature-preview-thumb").scrollLeft()>0 && $(this).parent().width()>100*$(this).parent().find("li").length){
-        //   scrolldiff = $(this).parent().width()-100*$(this).parent().find("li").length;
-        // }
-        // console.log(scrolldiff);
-        // $(".feature-arrow").css("left",50+100*index+scrolldiff+"px");
-        $(this).parent().find(".feature-arrow").remove();
-        $(this).append('<span class="feature-arrow"></span>');
-        $(this).closest(".feature-preview").find(".feature-preview-pic").find("img").attr("src",src);
+        })
+        $form.parents(".feature-plan-search").find(".btn-success").attr("disabled",isEmpty);
+      }
+      $(document).on("click",".plus-area .fa-plus-circle,.plus-area a",function() {
+        var length = $(this).parent().parent().find("input").length,max=5;
+        var cloneHtml = '<div class="clearfix"><input type="text" value="" placeholder="iClick,爱点击,愛點擊" name="otherBrand"><i class="fa fa-remove input-remove"></i></div>';
+        $(this).parent().before(cloneHtml);
+        if (length == max-1) {
+          $(this).parent().hide();
+        }
+        $(".brand .btn-success").attr("disabled",true);
+      })
+      $(document).on("click",".input-remove",function(){
+        var $form = $(this).parents("form");
+        $(this).parent().parent().find(".plus-area").show();
+        $(this).parent().remove();
+        disableVerify($form);
       })
 		});
 
