@@ -1,0 +1,139 @@
+#multi_layer_presale {border: 1px solid transparent; display:-webkit-box;display:-moz-box;width:560px;}
+#multi_layer_presale ul{margin: 0px;padding: 0px;}
+#multi_layer_presale .tree {padding: 3px 12px 10px 5px;height:300px;overflow-y:scroll;overflow-x:auto;}
+#multi_layer_presale .tree ul{display:none;}
+#multi_layer_presale li {
+	list-style: none;
+	font-size: 12px;
+	min-height: 22px;
+	line-height: 22px;
+	color: #333;
+	margin: 3px 0px;
+	position: relative;
+}
+#multi_layer_presale .tree li span{
+	background: #fff;
+	border: 1px solid #ccc;
+	height: 28px;
+	line-height: 28px;
+	width: 190px;
+	padding: 0 20px;
+	display: block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+#multi_layer_presale .tree li span:hover {
+
+	background-color: #ededed;
+	cursor: pointer;
+}
+#multi_layer_presale .tree li:hover .delete{
+	display: block;
+}
+#multi_layer_presale .tree li .delete{
+	display: block;
+	position:absolute;
+	right:0px;
+	top:2px;
+	cursor:pointer;
+}
+#multi_layer_presale .tree li .delete .fa-remove{
+	right: 10px;
+	left: initial;
+	top: 5px;
+}
+#multi_layer_presale .tree li span.select{
+	background-color: #999;
+	color:white;
+}
+#multi_layer_presale .tree li span.selected{
+	color:#CEC0C0;
+}
+#multi_layer_presale .tree li span.select+i,#multi_layer_presale .tree li span.select~.reach{
+	color:#fff;
+}
+#multi_layer_presale .parent_layer{
+	width:250px;
+	background: #f2f2f2;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+	border:1px solid #ddd;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    font-size: 12px;
+    float: left\9;
+}
+#multi_layer_presale .child_layer{
+	width:250px;
+	background: #f2f2f2;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+	border: 1px solid #ddd;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-box-ordinal-group:2;
+    -moz-box-ordinal-group:2;
+    font-size: 12px;
+    float: right\9;
+}
+#multi_layer_presale .clearAll {float:right;margin:0 5px 0 0!important;}
+#multi_layer_presale .pannel{
+	clear: both;
+	height: 24px;
+	padding: 0px;
+	margin:0px;
+	line-height: 24px;
+}
+#multi_layer_presale .pannel>span{
+	margin:5px;
+}
+#multi_layer_presale .button_layer{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    -webkit-box-ordinal-group:2;
+    -moz-box-ordinal-group:2;
+    margin:40px 5px;
+    position: relative;
+}
+#multi_layer_presale .button_layer label{
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 110px;
+	text-align: center;
+	font-size: 12px;
+	border: 2px solid #dfdfdf;
+	left: 8px;
+	cursor: pointer;
+}
+#multi_layer_presale .button_layer label i{
+	font-size: 18px;
+	top: 5px;
+	left: 12px;
+	color: #333;
+	position: absolute;
+}
+#multi_layer_presale .button_layer a{
+	color: red;
+}
+
+#multi_layer_presale .tree li i.button.switch{
+	weight:18px;
+	height: 18px;
+}
+#multi_layer_presale .tree li i {position:absolute;left: 8px;font-size: 16px;top: 7px;color: #999;cursor: pointer;}
+
+#multi_layer_presale a {text-decoration:underline;}
+
+#multi_layer_presale .reach{
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	color: #CEC0C0;
+}
+#multi_layer_presale .child_layer .reach{
+	display: none;
+}

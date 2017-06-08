@@ -1,0 +1,82 @@
+/* fonts */
+
+div.jqcloud {
+  font-family:Open Sans, Noto Sans SC,Arial,sans-serif;
+  font-size: 10px;
+  line-height: normal;
+}
+
+div.jqcloud a {
+  font-size: inherit;
+  text-decoration: none;
+}
+
+div.jqcloud span.w10 { font-size: 25px; font-weight: bold;}
+div.jqcloud span.w9 { font-size: 24px; }
+div.jqcloud span.w8 { font-size: 20px; }
+div.jqcloud span.w7 { font-size: 18px; }
+div.jqcloud span.w6 { font-size: 17px; }
+div.jqcloud span.w5 { font-size: 16px; }
+div.jqcloud span.w4 { font-size: 15px; }
+div.jqcloud span.w3 { font-size: 14px; }
+div.jqcloud span.w2 { font-size: 13px; }
+div.jqcloud span.w1 { font-size: 12px; }
+
+/* colors */
+
+div.jqcloud { color: #09f; }
+div.jqcloud a { color: inherit; }
+/*div.jqcloud span:hover { color: red; font-size: 40px; font-weight: bold;}*/
+div.jqcloud span.w10 { color: #ef4136; }
+div.jqcloud span.w9 { color: #f97373; }
+div.jqcloud span.w8 { color: #EBA5A7; }
+div.jqcloud span.w7 { color: #EAB6B6; }
+div.jqcloud span.w6 { color: #EAB6B6; }
+div.jqcloud span.w5 { color: #EAB6B6; }
+div.jqcloud span.w4 { color: #999; }
+div.jqcloud span.w3 { color: #666; }
+div.jqcloud span.w2 { color: #666; }
+div.jqcloud span.w1 { color: #666; }
+
+/* layout */
+
+div.jqcloud {
+  overflow: hidden;
+  position: relative;
+}
+
+div.jqcloud span { padding: 0; white-space:nowrap;}
+
+/*add some style*/
+div.jqcloud.cloud_black span.w10 { color: #333; }
+div.jqcloud.cloud_black span.w9 { color: #333; }
+div.jqcloud.cloud_black span.w8 { color: #333; }
+div.jqcloud.cloud_black span.w7 { color: #666; }
+div.jqcloud.cloud_black span.w6 { color: #666; }
+div.jqcloud.cloud_black span.w5 { color: #666; }
+div.jqcloud.cloud_black span.w4 { color: #999; }
+div.jqcloud.cloud_black span.w3 { color: #999; }
+div.jqcloud.cloud_black span.w2 { color: #999; }
+div.jqcloud.cloud_black span.w1 { color: #999; }
+
+div.jqcloud.cloud_red span.w10 { color: #ef4136; }
+div.jqcloud.cloud_red span.w9 { color: #ef4136; }
+div.jqcloud.cloud_red span.w8 { color: #ef4136; }
+div.jqcloud.cloud_red span.w7 { color: #ff1a1a; }
+div.jqcloud.cloud_red span.w6 { color: #ff1a1a; }
+div.jqcloud.cloud_red span.w5 { color: #ff1a1a; }
+div.jqcloud.cloud_red span.w4 { color: #ff1a34; }
+div.jqcloud.cloud_red span.w3 { color: #ff1a34; }
+div.jqcloud.cloud_red span.w2 { color: #ff1a34; }
+div.jqcloud.cloud_red span.w1 { color: #ff1a34; }
+
+div.jqcloud.sm span.w10 { font-size: 200%; }
+div.jqcloud.sm  span.w9{ font-size: 160%; }
+div.jqcloud.sm  span.w8{ font-size: 150%; }
+div.jqcloud.sm  span.w7{ font-size: 140%; }
+div.jqcloud.sm  span.w6{ font-size: 130%; }
+div.jqcloud.sm  span.w5{ font-size: 120%; }
+div.jqcloud.sm  span.w4{ font-size: 110%; }
+div.jqcloud.sm  span.w3{ font-size: 100%; }
+div.jqcloud.sm  span.w2{ font-size: 90%; }
+div.jqcloud.sm  span.w1{ font-size: 80%; }

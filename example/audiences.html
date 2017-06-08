@@ -354,22 +354,22 @@
                     <tr>
                       <td>
                         <div class="total-sum-content">
-                          <strong>UNIQUE AUDIENCE</strong>
-                          <label class="amount"><strong>--</strong></label>
+                          <label class="sum-title">UNIQUE AUDIENCE</label>
+                          <label class="amount">--</label>
                           <!-- <p style="margin-top:5px;">
-                            <strong>TOTAL:8,347,564K</strong>
+                            TOTAL:8,347,564K
                           </p> -->
                         </div>
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>WEEKLY GROUP RATE</strong>
+                          <label class="sum-title">WEEKLY GROWTH RATE</label>
                           <label class="amount sum-eq">--</label>
                         </div>
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>MONTHLY GROUP RATE</strong>
+                          <label class="sum-title">MONTHLY GROWTH RATE</label>
                           <label class="amount sum-eq">--</label>
                         </div>
                       </td>
@@ -379,7 +379,7 @@
               </div>
               <!-- filter -->
               <div style="margin:10px 0;">
-        				<label>Select audiences labels to count total unique audience</label>
+        				<label>Select audience group(s) to count total unique audience</label>
               </div>
         				<div class="table_white">
         					<table id="tree_list" class="treetable table table-bordered table-condensed width_100" cellspacing="0" width="100%">
@@ -390,7 +390,7 @@
                               </th>
                               <!-- 要排序的字段的class加上sorting且th上加个属性alt=“json字段里面的key”-->
 
-        			                <th class="sorting" alt="name_en">Interest Labels</th>
+        			                <th class="sorting" alt="name_en">Audience Name</th>
         			                <th class="sorting" alt="audience_size">Target Audience</th>
         			                <th class="sorting" alt="weekly_growth_rate">Weekly Growth Rate</th>
         			                <th class="sorting" alt="monthly_growth_rate">Monthly Growth Rate</th>
@@ -409,7 +409,7 @@
               <div class="">
                 <ul class="nav nav-pills event_filter" style="float:left;margin: -5px 0 15px 0">
                   <li class="filter_icon active">
-                    <a class="pull-left add-button" href="javascript:;"  data-toggle="modal" data-target=".custom-audience-box"><i class="fa fa-plus"></i><span style="margin: 0 10px 0 20px">Customer Audience</span></a>
+                    <a class="pull-left add-button" href="javascript:;"  data-toggle="modal" data-target=".custom-audience-box"><i class="fa fa-plus"></i><span style="margin: 0 10px 0 20px">Custom Audience</span></a>
                   </li>
                 </ul>
                 <table class="table table-total-sum width_100" cellspacing="0" width="100%">
@@ -417,16 +417,16 @@
                     <tr>
                       <td>
                         <div class="total-sum-content">
-                          <strong>UNIQUE AUDIENCE</strong>
-                          <label class="amount"><strong>222,465K</strong></label>
+                          <label class="sum-title">UNIQUE AUDIENCE</label>
+                          <label class="amount">222,465K</label>
                           <!-- <p style="margin-top:5px;">
-                            <strong>TOTAL:8,347,564K</strong>
+                            TOTAL:8,347,564K
                           </p> -->
                         </div>
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>WEEKLY GROUP RATE</strong>
+                          <label class="sum-title">WEEKLY GROWTH RATE</label>
                           <label class="amount sum-down">
                             <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
                             2.00
@@ -436,7 +436,7 @@
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>MONTHLY GROUP RATE</strong>
+                          <label class="sum-title">MONTHLY GROWTH RATE</label>
                           <label class="amount sum-up">
                             <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i>
                             9.00
@@ -470,7 +470,12 @@
                       </tfoot>
         			        <tbody>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center">
+                            <div class="checkbox checkbox-primary">
+                              <input name="aids" id="check13269" value="132694" type="checkbox">
+                              <label for="check13269"></label>
+                            </div>
+                          </td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -482,7 +487,10 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="check132692" value="132694" type="checkbox">
+                            <label for="check132692"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -494,7 +502,10 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="test2" value="132694" type="checkbox">
+                            <label for="test2"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -522,22 +533,22 @@
                     <tr>
                       <td>
                         <div class="total-sum-content">
-                          <strong>UNIQUE AUDIENCE</strong>
-                          <label class="amount"><strong>--</strong></label>
+                          <label class="sum-title">UNIQUE AUDIENCE</label>
+                          <label class="amount">--</label>
                           <!-- <p style="margin-top:5px;">
-                            <strong>TOTAL:8,347,564K</strong>
+                            TOTAL:8,347,564K
                           </p> -->
                         </div>
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>WEEKLY GROUP RATE</strong>
+                          <label class="sum-title">WEEKLY GROWTH RATE</label>
                           <label class="amount">--</label>
                         </div>
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>MONTHLY GROUP RATE</strong>
+                          <label class="sum-title">MONTHLY GROWTH RATE</label>
                           <label class="amount">--</label>
                         </div>
                       </td>
@@ -571,7 +582,10 @@
                       </tfoot>
         			        <tbody>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="test3" value="132694" type="checkbox">
+                            <label for="test3"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -587,7 +601,10 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="test4" value="132694" type="checkbox">
+                            <label for="test4"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -603,7 +620,10 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="test5" value="132694" type="checkbox">
+                            <label for="test5"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -635,22 +655,22 @@
                     <tr>
                       <td>
                         <div class="total-sum-content">
-                          <strong>UNIQUE AUDIENCE</strong>
-                          <label class="amount"><strong>--</strong></label>
+                          <label class="sum-title">UNIQUE AUDIENCE</label>
+                          <label class="amount">--</label>
                           <!-- <p style="margin-top:5px;">
-                            <strong>TOTAL:8,347,564K</strong>
+                            TOTAL:8,347,564K
                           </p> -->
                         </div>
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>WEEKLY GROUP RATE</strong>
+                          <label class="sum-title">WEEKLY GROWTH RATE</label>
                           <label class="amount">--</label>
                         </div>
                       </td>
                       <td>
                         <div class="total-sum-content">
-                          <strong>MONTHLY GROUP RATE</strong>
+                          <label class="sum-title">MONTHLY GROWTH RATE</label>
                           <label class="amount">--</label>
                         </div>
                       </td>
@@ -684,7 +704,10 @@
                       </tfoot>
         			        <tbody>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="test6" value="132694" type="checkbox">
+                            <label for="test6"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -700,7 +723,10 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="test7" value="132694" type="checkbox">
+                            <label for="test7"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -716,7 +742,10 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="align_center"><input  name="checkbox" type="checkbox"  value="1" ></td>
+                          <td class="align_center"><div class="checkbox checkbox-primary">
+                            <input name="aids" id="test11" value="132694" type="checkbox">
+                            <label for="test11"></label>
+                          </div></td>
                           <td style="color:#4484cf">Christmas</td>
                           <td class="align_right">300,222K</td>
                           <td class="align_right green">0.38%</td>
@@ -759,7 +788,7 @@
             <div class="modal-body">
               <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
                 <li class="active">
-                  <a data-toggle="tab" href="#tab-create-custom">Create Custom Audience</a>
+                  <a data-toggle="tab" href="#tab-create-custom">Create a Custom Audience Group</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
@@ -768,11 +797,11 @@
                       <div class="feature-main">
                     		<div class="feature-content" >
                           <div class="feature-inner" style="margin:20px 20px 60px 0">
-                            <div class="feature-detail">
+                            <div class="feature-detail feature-plan">
                                 <div class="feature-plan-search">
                                   <div class="feature-plan-search-title">
                                     <i class="fa fa-caret-right"></i>
-                                    <label>Define your target audience by your own keywords and suggested keywords</label>
+                                    <label>Input your own keywords and suggested keywords</label>
                                   </div>
                                   <div class="feature-plan-search-content keywords hide">
                                     <div class="feature-plan-search-keywords">
@@ -782,44 +811,66 @@
                                       <div id="keywordsLayer" style="margin-top:5px;"></div>
                                     </div>
 
-                                    <div class="feature-plan-search-target">
+                                    <div class="feature-plan-search-target" style="border-bottom-color:transparent;">
                                       <b>Targeting</b>
                                       <div class="form-horizontal">
                                         <div class="control-group">
                                           <label class="control-label">Gender</label>
                                           <div class="controls">
                                             <div class="clearfix">
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="gender" checked="checked">
-                                              Unspecified</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="gender">
-                                              Male</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="2" name="gender">
-                                              Female</label>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="gender" id="gender0" value="0" checked="checked">
+                                                  <label for="gender0">Unspecified</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="gender" id="gender1" value="1" >
+                                                  <label for="gender1">Male</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="gender" id="gender2" value="2" >
+                                                  <label for="gender2">Female</label>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                         <div class="control-group">
-                                          <label class="control-label">Age</label>
+                                          <label class="control-label">Age Groups</label>
                                           <div class="controls">
                                             <div class="clearfix">
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="age" checked="checked">
-                                              Unspecified</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="age">
-                                              Customize</label>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="age" id="age0" value="0" checked="checked">
+                                                  <label for="age0">Unspecified</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="age" id="age1" value="1" >
+                                                  <label for="age1">Customize</label>
+                                              </div>
                                             </div>
                                             <div class="clearfix hide">
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="0" name="age-area">
-                                              <18 </label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                              18-23</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                              24-30</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                              31-40</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                              41-50</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                              50+</label>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age-area" id="age-area0" value="0" >
+                                                  <label for="age-area0"><18</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age-area" id="age-area1" value="1" >
+                                                  <label for="age-area1">18-23</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age-area" id="age-area2" value="2" >
+                                                  <label for="age-area2">24-30</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age-area" id="age-area3" value="3" >
+                                                  <label for="age-area3">31-40</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age-area" id="age-area4" value="4" >
+                                                  <label for="age-area4">41-50</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age-area" id="age-area5" value="5" >
+                                                  <label for="age-area5">50+</label>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
@@ -827,10 +878,14 @@
                                           <label class="control-label">Regions</label>
                                           <div class="controls">
                                             <div class="clearfix">
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="regions" checked="checked">
-                                              Unspecified</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="regions">
-                                              Customize</label>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="regions" id="regions0" value="0" checked="checked">
+                                                  <label for="regions0">Unspecified</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="regions" id="regions1" value="1" >
+                                                  <label for="regions1">Customize</label>
+                                              </div>
                                             </div>
                                             <div class="hide" style="position:relative;">
                                               <select class="select  required" multiple id="regions" name="chooseRegiosn" disname="chosen下拉" style="width: 380px">
@@ -849,7 +904,7 @@
                                 <div class="feature-plan-search">
                                   <div class="feature-plan-search-title">
                                     <i class="fa fa-caret-right"></i>
-                                    <label>Define your target audience by importing keywords from a search engine accounts</label>
+                                    <label>Import keywords from a search engine account</label>
                                   </div>
                                   <div class="feature-plan-search-content multi hide">
                                     <div class="feature-plan-search-keywords">
@@ -875,44 +930,66 @@
                                       </div>
                                     </div>
 
-                                    <div class="feature-plan-search-target">
+                                    <div class="feature-plan-search-target" style="border-bottom-color:transparent;">
                                       <b>Targeting</b>
                                       <div class="form-horizontal">
                                         <div class="control-group">
                                           <label class="control-label">Gender</label>
                                           <div class="controls">
                                             <div class="clearfix">
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="gender_interest" checked="checked">
-                                              Unspecified</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="gender_interest">
-                                              Male</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="2" name="gender_interest">
-                                              Female</label>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="gender_interest" id="gender_interest0" value="0" checked="checked">
+                                                  <label for="gender_interest0">Unspecified</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="gender_interest" id="gender_interest1" value="1" >
+                                                  <label for="gender_interest1">Male</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="gender_interest" id="gender_interest2" value="2" >
+                                                  <label for="gender_interest2">Female</label>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                         <div class="control-group">
-                                          <label class="control-label">Age</label>
+                                          <label class="control-label">Age Groups</label>
                                           <div class="controls">
                                             <div class="clearfix">
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="age_interest" checked="checked">
-                                              Unspecified</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="age_interest">
-                                              Customize</label>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="age_interest" id="age_interest0" value="0" checked="checked">
+                                                  <label for="age_interest0">Unspecified</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="age_interest" id="age_interest1" value="1" >
+                                                  <label for="age_interest1">Customize</label>
+                                              </div>
                                             </div>
                                             <div class="clearfix hide">
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="0" name="age_area_interest">
-                                              <18 </label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-_rea_interest">
-                                              18-23</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                              24-30</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                              31-40</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                              41-50</label>
-                                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                              50+</label>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age_area_interest" id="age_area_interest0" value="0" >
+                                                  <label for="age_area_interest0"><18</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age_area_interest" id="age_area_interest1" value="1" >
+                                                  <label for="age_area_interest1">18-23</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age_area_interest" id="age_area_interest2" value="2" >
+                                                  <label for="age_area_interest2">24-30</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age_area_interest" id="age_area_interest3" value="3" >
+                                                  <label for="age_area_interest3">31-40</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age_area_interest" id="age_area_interest4" value="4" >
+                                                  <label for="age_area_interest4">41-50</label>
+                                              </div>
+                                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                                  <input type="checkbox" name="age_area_interest" id="age_area_interest5" value="5" >
+                                                  <label for="age_area_interest5">50+</label>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
@@ -920,10 +997,14 @@
                                           <label class="control-label">Regions</label>
                                           <div class="controls">
                                             <div class="clearfix">
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="regions_interest" checked="checked">
-                                              Unspecified</label>
-                                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="regions_interest">
-                                              Customize</label>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="regions_interest" id="regions_interest0" value="0" checked="checked">
+                                                  <label for="regions_interest0">Unspecified</label>
+                                              </div>
+                                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                                  <input type="radio" name="regions_interest" id="regions_interest1" value="1" >
+                                                  <label for="regions_interest1">Customize</label>
+                                              </div>
                                             </div>
                                             <div class="hide" style="position:relative;">
                                               <select class="select  required" multiple id="regions_interest" name="chooseRegiosn" disname="chosen下拉" style="width: 380px">
@@ -977,7 +1058,7 @@
                     <div class="message-top-tip-container">
                       <div class="message-tip">
                         <div class="message-tip-contents">
-                          <div class="message-tip-msg">Please create a goal event for on-site audience. Then you can set a retargeting audience group.</div>
+                          <div class="message-tip-msg">Please create a goal event for an on-site audience. This is required before creating a retargeting audience group.</div>
                         </div>
                       </div>
                     </div>
@@ -985,7 +1066,7 @@
                   <div class="edit-container">
                       <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">
                         <div class="control-group">
-                          <label class="control-label">Event Name</label>
+                          <label class="control-label">Name</label>
                           <div class="controls">
                             <div class="clearfix">
                               <input type="text" name="name" value="iCLick" />
@@ -1013,15 +1094,14 @@
                           <label class="control-label">Product Type</label>
                           <div class="controls">
                             <div class="dropdown modifylabel">
-                              <input name="status" type="hidden" value="LIVE"  />
+                              <input name="status" type="hidden" value="ACTIVE"  />
                               <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                LIVE
+                                ACTIVE
                                 <span class="caret arrow-down"></span>
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li data-value="LIVE"><a href="javascript:;">Live</a></li>
-                                <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
-                                <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>
+                                <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>
                               </ul>
                             </div>
                           </div>
@@ -1030,15 +1110,14 @@
                           <label class="control-label">Site Type</label>
                           <div class="controls">
                             <div class="dropdown modifylabel">
-                              <input name="status" type="hidden" value="LIVE"  />
+                              <input name="status" type="hidden" value="ACTIVE"  />
                               <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                LIVE
+                                ACTIVE
                                 <span class="caret arrow-down"></span>
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li data-value="LIVE"><a href="javascript:;">Live</a></li>
-                                <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
-                                <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>
+                                <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>
                               </ul>
                             </div>
                           </div>
@@ -1048,10 +1127,14 @@
                           <label class="control-label">Tacking Type</label>
                           <div class="controls">
                             <div class="">
-                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="tacking" checked="checked">
-                              Insight tag</label>
-                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="tacking" >
-                              Universal tag</label>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="tacking" id="tacking0" value="0" checked="checked">
+                                  <label for="tacking0">Insight tag</label>
+                              </div>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="tacking" id="tacking1" value="1">
+                                  <label for="tacking1">Universal tag</label>
+                              </div>
                               <div class="" id="tacking_0" style="margin:10px 0">
                                 <div class="table_white">
                           					<table class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">
@@ -1068,7 +1151,7 @@
                                           <tr class="tack-plus">
                                             <td colspan="5">
                                               <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                              <label>Add one more event</label>
+                                              <label>Add an event</label>
                                             </td>
                                           </tr>
                                         </tfoot>
@@ -1121,26 +1204,25 @@
                                     </div>
                                 <div class="note-message">
                                   <div class="clearfix">
-                                    Note: Please notify your client to replace the default sample value inside the generated insight tag with their actual
-                                    parameter values for correct tracking.
+                                   Note: Please notify your client to replace the default values inside the generated insight tag with their actual 
+                                    parameter values in order for the tracking to work correctly.
                                   </div>
                                 </div>
                               </div>
                               <div class="hide" id="tacking_1" style="margin:10px 0">
                                 <div class="dropdown modifylabel">
-                                  <input name="status" type="hidden" value="LIVE"  />
+                                  <input name="goalevent[filter_type]" type="hidden" value="k"  />
                                   <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Specify keywords appeared in the URL
+                                    Specify keywords that appeare in the URL
                                     <span class="caret arrow-down"></span>
                                   </button>
                                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li data-value="LIVE"><a href="javascript:;">Specify keywords appeared in the URL</a></li>
-                                    <li data-value="STOPPED"><a href="javascript:;">Specify keywords appeared in the URL</a></li>
-                                    <li data-value="SUSPENDED"><a href="javascript:;">Specify keywords appeared in the URL</a></li>
+                                    <li data-value="k"><a href="javascript:;">Specify keywords appeared in the URL</a></li>
+                                    <li data-value="r"><a href="javascript:;">Regular expression</a></li>
                                   </ul>
                                 </div>
                                 <div style="margin:20px 0">
-                                  <textarea class="input-xlarge span4" name="tacking_keyword" placeholder="Enter keywords, One per line or separate by commas" style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
+                                  <textarea class="input-xlarge span4" name="goalevent[urls]" placeholder="Enter tags. You may enter one tag per line or separate tags by commas." style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
                                 </div>
                                 <div style="margin:20px 0">
                                   <button type="button" class="btn btn-success" onclick="testTacking()">Test</button>
@@ -1154,21 +1236,24 @@
                           <label class="control-label">Remove Duplicates</label>
                           <div class="controls">
                             <div class="">
-                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="duplicate" checked="checked">
-                              Disable</label>
-                              <label class="form-radio radio-inline"><input type="radio" value="1" name="duplicate" >
-                              Enable(Only "Text/key" parameter can be user for de-duplication)</label>
+                             <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="duplicate" id="duplicate0" value="0" checked="checked">
+                                  <label for="duplicate0">Disable</label>
+                              </div>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="duplicate" id="duplicate1" value="1" >
+                                  <label for="duplicate1">Enable (Only the "Text/Key" parameter can be used for de-duplication)</label>
+                              </div>
                               <div class="hide" id="duplicate_1" style="margin:10px 0">
                                 <div class="dropdown modifylabel">
-                                  <input name="status" type="hidden" value="LIVE"  />
+                                  <input name="goalevent[deduplication_type]" type="hidden" value="-1"  />
                                   <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    1-per-vistor convertion
+                                    1-per-visitor conversion
                                     <span class="caret arrow-down"></span>
                                   </button>
                                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li data-value="LIVE"><a href="javascript:;">1-per-vistor convertion</a></li>
-                                    <li data-value="STOPPED"><a href="javascript:;">2-per-vistor convertion</a></li>
-                                    <li data-value="SUSPENDED"><a href="javascript:;">3-per-vistor convertion</a></li>
+                                    <li data-value="-1"><a href="javascript:;">1-per-visitor conversion</a></li>
+                                    <li data-value="-2"><a href="javascript:;">Browser session</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -1180,10 +1265,14 @@
                           <label class="control-label">Cookie Mapping Tags</label>
                           <div class="controls">
                             <div class="clearfix">
-                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="cookieMap" checked="checked">
-                              Disable</label>
-                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="cookieMap" >
-                              Enable</label>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="cookieMap" id="cookieMap0" value="0" checked="checked">
+                                  <label for="cookieMap0">Disable</label>
+                              </div>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="cookieMap" id="cookieMap1" value="1" >
+                                  <label for="cookieMap1">Enable</label>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1192,18 +1281,33 @@
                           <label class="control-label">Tags</label>
                           <div class="controls">
                             <div class="clearfix">
-                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="tags" checked="checked">
-                              Disable</label>
-                              <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="tags" >
-                              Customize</label>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="tags" id="tags0" value="0" checked="checked">
+                                  <label for="tags0">Disable</label>
+                              </div>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="tags" id="tags1" value="1" >
+                                  <label for="tags1">Customize</label>
+                              </div>
+                              <div class="clearfix hide" id="tags_1">
+                                <textarea class="input-xlarge span4" name="goalevent[tags]" placeholder="Enter tags. You may enter one tag per line or separate tags by commas" style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
+                              </div>
                             </div>
                           </div>
                         </div>
                         <hr style="margin: 0px -20px;">
+                        <div class="control-group">
+                          <label class="control-label">Third-Party Scripts</label>
+                          <div class="controls">
+                            <div class="clearfix">
+                                <textarea class="input-xlarge span4" name="goalevent[javascripts]" placeholder="Enter Script" style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
+                            </div>
+                          </div>
+                        </div>
                       </form>
                     </div>
                     <div class="modal-footer slide-bottom">
-                      <button type="button" class="btn btn-success" onclick="nextRetarget(this)">Next</button>
+                      <button type="button" class="btn btn-success" onclick="nextRetarget(this)">Save and Continue</button>
                       <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -1222,7 +1326,7 @@
             <div class="modal-body">
               <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
                 <li class="active">
-                  <a data-toggle="tab" href="#tab-create-search">Create Retargeting Audience</a>
+                  <a data-toggle="tab" href="#tab-create-search">Create a Retargeting Audience Group</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
@@ -1233,7 +1337,7 @@
                     <div class="message-top-tip-container">
                       <div class="message-tip">
                         <div class="message-tip-contents">
-                          <div class="message-tip-msg">Goal event saved successfully.Now you can create a retargeting audience group.</div>
+                          <div class="message-tip-msg">Goal event saved successfully. You can now create a retargeting audience group.</div>
                         </div>
                       </div>
                     </div>
@@ -1249,7 +1353,7 @@
               					</div>
               				</div>
                       <div class="control-group">
-                        <label class="control-label">Define By Events</label>
+                        <label class="control-label">Events</label>
                         <div class="controls">
                           <div class="">
                             <div class="table_white">
@@ -1267,7 +1371,7 @@
                                   <tr class="tack-plus">
                                     <td colspan="5">
                                       <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                      <label>Add one more event</label>
+                                      <label>Add an event</label>
                                     </td>
                                   </tr>
                                 </tfoot>
@@ -1306,14 +1410,14 @@
                                     <td class="">
                                       <div class="rangeBox">
                                         <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:80px" name="frequencyMin">
+                                        <input type="text" style="width:80px" title="1" value="1" name="frequencyMin">
                                         <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                       </div>
                                     </td>
                                     <td class="">
                                       <div class="rangeBox">
                                         <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:80px" name="frequencyMax">
+                                        <input type="text" style="width:80px" title="9999" value="9999" name="frequencyMax">
                                         <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                       </div>
                                     </td>
@@ -1352,14 +1456,14 @@
                                     <td class="">
                                       <div class="rangeBox">
                                         <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:80px" name="frequencyMin">
+                                        <input type="text" style="width:80px" title="1" value="1" name="frequencyMin">
                                         <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                       </div>
                                     </td>
                                     <td class="">
                                       <div class="rangeBox">
                                         <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:80px" name="frequencyMax">
+                                        <input type="text" style="width:80px" title="9999" value="9999" name="frequencyMax">
                                         <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                       </div>
                                     </td>
@@ -1372,7 +1476,7 @@
                           </div>
                         </div>
                       <div class="control-group">
-                        <label style="width:100%;">Total Audience: - | Last Updated: -</label>
+                        <label style="width:100%;">Total Audience Reach: - | Last Updated: -</label>
                       </div>
                     </form>
                   </div>
@@ -1398,7 +1502,7 @@
             <div class="modal-body">
               <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
                 <li class="active">
-                  <a data-toggle="tab" href="#tab-create-search">Create Search Retargeting Audience</a>
+                  <a data-toggle="tab" href="#tab-create-search">Create a Search Retargeting Audience Group</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
@@ -1419,19 +1523,29 @@
                         <label class="control-label">Define audience</label>
                         <div class="controls">
                           <div class="clearfix">
-                            <label class="form-radio radio-inline" style="width:200px;"><input type="radio" value="0" name="audience" checked="checked">
-                            by search terms</label>
-                            <label class="form-radio radio-inline" style="width:200px;"><input type="radio" value="1" name="audience" >
-                            by converting search terms</label>
+                            <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                <input type="radio" name="audience" id="audience0" value="0" checked="checked">
+                                <label for="audience0">by search terms</label>
+                            </div>
+                            <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                <input type="radio" name="audience" id="audience1" value="1" >
+                                <label for="audience1">by converting search terms</label>
+                            </div>
                             <div class="clearfix hide" id="audience_1">
-                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="0" name="convertSearch">
-                              Paid search</label>
-                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="convertSearch">
-                              Organic search</label>
-                              <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="2" name="convertSearch">
-                              Manual input</label>
+                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                  <input type="checkbox" name="convertSearch" id="convertSearch0" value="0" >
+                                  <label for="convertSearch0">Paid search</label>
+                              </div>
+                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                  <input type="checkbox" name="convertSearch" id="convertSearch1" value="1" >
+                                  <label for="convertSearch1">Organic search</label>
+                              </div>
+                              <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                  <input type="checkbox" name="convertSearch" id="convertSearch2" value="2" >
+                                  <label for="convertSearch2">Manual input</label>
+                              </div>
                               <div class="clearfix hide" id="convertSearch_2">
-                                <textarea class="input-xlarge span4" name="manual" placeholder="Enter keywords, separate by commas" style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
+                                <textarea class="input-xlarge span4" name="manual" placeholder="Enter keywords separated by commas" style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
                                 <p>Keywords:<span>0</span>/100</p>
                               </div>
                             </div>
@@ -1469,7 +1583,7 @@
           setTimeout(function(){
             $("#client_list tbody tr:first").css("background","#fff");
           },3000);
-          IAX_TOOL.notification("Custom audience saved successfully","success",300000);
+          IAX_TOOL.notification("Custom audience group saved successfully.","success",300000);
         }
       }
 
@@ -1491,11 +1605,11 @@
               $("[data-tt-parent-id='"+j_obj.attr('data-tt-id')+"']").each(each_handler);
             }
           }
-          $("[data-tt-parent-id='"+$(this).parent().parent().attr('data-tt-id')+"']").each(each_handler);
+          $("[data-tt-parent-id='"+$(this).parent().parent().parent().attr('data-tt-id')+"']").each(each_handler);
         }
-        if (typeof($(this).parent().parent().attr("data-tt-parent-id"))!="undefined") {
+        if (typeof($(this).parent().parent().parent().attr("data-tt-parent-id"))!="undefined") {
           var selected = $(this).is(":checked");
-          parent_checked($(this).parent().parent());
+          parent_checked($(this).parent().parent().parent());
           function parent_checked(tr_obj){
             var current_checked = true;
             $("[data-tt-parent-id='"+tr_obj.attr('data-tt-parent-id')+"']").each(function(){
@@ -1605,6 +1719,14 @@
                 $("#audience_1").hide();
               }
             })
+            $("[name='tags']").on("change",function(){
+              var checkedVal = $("[name='tags']:checked").val();
+              if(checkedVal==1){
+                $("#tags_1").show();
+              }else{
+                $("#tags_1").hide();
+              }
+            })
             $("[name='convertSearch']").on("change",function(){
               var isChecked = $("[name='convertSearch']").get(2).checked;
               if(isChecked){
@@ -1665,22 +1787,22 @@
               var maxValue = parseFloat($maxInput.attr("title"));
               var thisValue = parseFloat($thisInput.attr("title"));
               if(!IAX_TOOL.isNumber(minValue)){
-                minValue=0 ;
+                minValue=1 ;
                 $minInput.val(minValue);
                 $minInput.attr("title",minValue);
               }
               if(!IAX_TOOL.isNumber(maxValue)){
-                maxValue=0 ;
+                maxValue=1 ;
                 $maxInput.val(maxValue);
                 $maxInput.attr("title",maxValue);
               }
-              IAX_TOOL.isNumber(thisValue) || (thisValue=0);
+              IAX_TOOL.isNumber(thisValue) || (thisValue=1);
               isMin ? (thisValue -= 1) : (thisValue += 1);
 
               if (isMin) {
-                hasNext && (minValue = 0);
+                hasNext && (minValue = 1);
               }else{
-                hasNext || (maxValue = 99999);
+                hasNext || (maxValue = 9999);
               }
               if (thisValue >= minValue && thisValue <= maxValue) {
                 var formatVal = IAX_TOOL.formatNum(thisValue+"",0);
@@ -1697,28 +1819,28 @@
               var maxValue = parseFloat($maxInput.attr("title"));
               var value = parseFloat($(this).val().replace(/,/g,""));
               if(!IAX_TOOL.isNumber(minValue)){
-                minValue=0 ;
+                minValue=1;
                 $minInput.val(minValue);
                 $minInput.attr("title",minValue);
               }
               if(!IAX_TOOL.isNumber(maxValue)){
-                maxValue=0 ;
+                maxValue=1 ;
                 $maxInput.val(maxValue);
                 $maxInput.attr("title",maxValue);
               }
               if(!IAX_TOOL.isNumber(value)){
-                value=0 ;
+                value=1 ;
               }
               var fomatTitle = IAX_TOOL.formatNum($(this).attr("title"),0);
               if (hasNext) {
-                if( value < 0 || value > maxValue){
+                if( value < 1 || value > maxValue){
                   $(this).val(fomatTitle);
                 }else{
                   $(this).attr("title",value);
                   $(this).val(IAX_TOOL.formatNum(value+"",0));
                 }
               }else{
-                if (value < minValue || value > 99999) {
+                if (value < minValue || value > 9999) {
                   $(this).val(fomatTitle);
                 }else{
                   $(this).attr("title",value);
@@ -1731,8 +1853,8 @@
               $(this).parent().parent().find(".feature-plan-search-content").slideUp();
               var $fa = $(this).find(".fa");
               var isUp = $fa.hasClass("fa-caret-right");
-              $(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
-              $(".toggle-down").removeClass("toggle-down");
+              $(this).parent().parent().find(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
+              $(this).parent().parent().find(".toggle-down").removeClass("toggle-down");
 
               if(isUp){
                 $fa.removeClass("fa-caret-right").addClass("fa-caret-down");

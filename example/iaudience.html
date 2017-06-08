@@ -331,15 +331,15 @@
           <div class="feature-main">
         		<div class="feature-content" >
               <div class="feature-inner">
-                <div class="feature-detail">
+                <div class="feature-detail feature-plan">
                     <div class="feature-plan-search">
                       <div class="feature-plan-search-title">
                         <i class="fa fa-caret-right"></i>
-                        <label>Define your target audience by your own keywords and suggested keywords</label>
+                        <label>Define your target audience using your own keywords and suggested keywords</label>
                       </div>
                       <div class="feature-plan-search-content keywords hide">
                         <div class="feature-plan-search-keywords">
-                          <b>Enter keywords and get suggested keywords(Up to 20)</b>
+                          <b>Enter keywords and get suggested keywords (Up to 20)</b>
                           <label class="error-msg">You must enter at least 1 keyword</label>
                           <input type="hidden" id="result" />
                           <div id="keywordsLayer" style="margin-top:5px;"></div>
@@ -347,42 +347,64 @@
 
                         <div class="feature-plan-search-target">
                           <b>Targeting</b>
-                          <div class="form-horizontal">
+                          <form class="form-horizontal" id="keywords-form">
                             <div class="control-group">
                               <label class="control-label">Gender</label>
                               <div class="controls">
                                 <div class="clearfix">
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="gender" checked="checked">
-                                  Unspecified</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="gender">
-                                  Male</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="2" name="gender">
-                                  Female</label>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="gender" id="gender0" value="0" checked="checked">
+                                      <label for="gender0">Unspecified</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="gender" id="gender1" value="1" >
+                                      <label for="gender1">Male</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="gender" id="gender2" value="2" >
+                                      <label for="gender2">Female</label>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                             <div class="control-group">
-                              <label class="control-label">Age</label>
+                              <label class="control-label">Age Groups</label>
                               <div class="controls">
                                 <div class="clearfix">
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="age" checked="checked">
-                                  Unspecified</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="age">
-                                  Customize</label>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="age" id="age0" value="0" checked="checked">
+                                      <label for="age0">Unspecified</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="age" id="age1" value="1" >
+                                      <label for="age1">Customize</label>
+                                  </div>
                                 </div>
                                 <div class="clearfix hide">
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="0" name="age-area">
-                                  <18 </label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                  18-23</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                  24-30</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                  31-40</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                  41-50</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-area">
-                                  50+</label>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age-area" id="age-area0" value="0" >
+                                      <label for="age-area0"><18</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age-area" id="age-area1" value="1" >
+                                      <label for="age-area1">18-23</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age-area" id="age-area2" value="2" >
+                                      <label for="age-area2">24-30</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age-area" id="age-area3" value="3" >
+                                      <label for="age-area3">31-40</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age-area" id="age-area4" value="4" >
+                                      <label for="age-area4">41-50</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age-area" id="age-area5" value="5" >
+                                      <label for="age-area5">50+</label>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -390,10 +412,14 @@
                               <label class="control-label">Regions</label>
                               <div class="controls">
                                 <div class="clearfix">
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="regions" checked="checked">
-                                  Unspecified</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="regions">
-                                  Customize</label>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="regions" id="regions0" value="0" checked="checked">
+                                      <label for="regions0">Unspecified</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="regions" id="regions1" value="1" >
+                                      <label for="regions1">Customize</label>
+                                  </div>
                                 </div>
                                 <div class="hide" style="position:relative;">
                                   <select class="select  required" multiple id="regions" name="chooseRegiosn" disname="chosen下拉" style="width: 380px">
@@ -406,21 +432,21 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </form>
                         <div class="feature-plan-search-submit">
                           <button type="button" class="btn btn-success" disabled onclick="location='./iaudienc_planner.html'">Find my audience</button>
-                          <button type="button" class="btn btn-cancel"  onclick="">Reset</button>
+                          <button type="button" class="btn btn-cancel"  onclick="resetForm('keywords-form','keywords_layer')">Reset</button>
                         </div>
                       </div>
                     </div>
                     <div class="feature-plan-search">
                       <div class="feature-plan-search-title">
                         <i class="fa fa-caret-right"></i>
-                        <label>Define your target audience interest labels</label>
+                        <label>Define your target audience using interest categories</label>
                       </div>
                       <div class="feature-plan-search-content multi hide">
                         <div class="feature-plan-search-keywords">
-                          <b>Select(up to 5) interest labels to get volume data</b>
+                          <b>Select (up to 5) interest labels to get volume data</b>
                           <label class="error-msg">You must select at least 1 interest label</label>
                           <input type="hidden" id="multiResult" />
                           <div id="multilayer" style="margin-top:5px;"></div>
@@ -428,17 +454,23 @@
 
                         <div class="feature-plan-search-target">
                           <b>Targeting</b>
-                          <div class="form-horizontal">
+                          <form class="form-horizontal" id="multi-form">
                             <div class="control-group">
                               <label class="control-label">Gender</label>
                               <div class="controls">
                                 <div class="clearfix">
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="gender_interest" checked="checked">
-                                  Unspecified</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="gender_interest">
-                                  Male</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="2" name="gender_interest">
-                                  Female</label>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="gender_interest" id="gender_interest0" value="0" checked="checked">
+                                      <label for="gender_interest0">Unspecified</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="gender_interest" id="gender_interest1" value="1" >
+                                      <label for="gender_interest1">Male</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="gender_interest" id="gender_interest2" value="2" >
+                                      <label for="gender_interest2">Female</label>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -446,24 +478,40 @@
                               <label class="control-label">Age</label>
                               <div class="controls">
                                 <div class="clearfix">
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="age_interest" checked="checked">
-                                  Unspecified</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="age_interest">
-                                  Customize</label>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="age_interest" id="age_interest0" value="0" checked="checked">
+                                      <label for="age_interest0">Unspecified</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="age_interest" id="age_interest1" value="1" >
+                                      <label for="age_interest1">Customize</label>
+                                  </div>
                                 </div>
                                 <div class="clearfix hide">
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="0" name="age_area_interest">
-                                  <18 </label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age-_rea_interest">
-                                  18-23</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                  24-30</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                  31-40</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                  41-50</label>
-                                  <label class="form-checkbox checkbox-inline" ><input type="checkbox" value="1" name="age_area_interest">
-                                  50+</label>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age_area_interest" id="age_area_interest0" value="0" >
+                                      <label for="age_area_interest0"><18</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age_area_interest" id="age_area_interest1" value="1" >
+                                      <label for="age_area_interest1">18-23</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age_area_interest" id="age_area_interest2" value="2" >
+                                      <label for="age_area_interest2">24-30</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age_area_interest" id="age_area_interest3" value="3" >
+                                      <label for="age_area_interest3">31-40</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age_area_interest" id="age_area_interest4" value="4" >
+                                      <label for="age_area_interest4">41-50</label>
+                                  </div>
+                                  <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                      <input type="checkbox" name="age_area_interest" id="age_area_interest5" value="5" >
+                                      <label for="age_area_interest5">50+</label>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -471,10 +519,14 @@
                               <label class="control-label">Regions</label>
                               <div class="controls">
                                 <div class="clearfix">
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="0" name="regions_interest" checked="checked">
-                                  Unspecified</label>
-                                  <label class="form-radio radio-inline" style="width:100px;"><input type="radio" value="1" name="regions_interest">
-                                  Customize</label>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="regions_interest" id="regions_interest0" value="0" checked="checked">
+                                      <label for="regions_interest0">Unspecified</label>
+                                  </div>
+                                  <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                      <input type="radio" name="regions_interest" id="regions_interest1" value="1" >
+                                      <label for="regions_interest1">Customize</label>
+                                  </div>
                                 </div>
                                 <div class="hide" style="position:relative;">
                                   <select class="select  required" multiple id="regions_interest" name="chooseRegiosn" disname="chosen下拉" style="width: 380px">
@@ -487,10 +539,10 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </form>
                         <div class="feature-plan-search-submit">
                           <button type="button" class="btn btn-success" disabled onclick="location='./iaudienc_planner.html'">Find my audience</button>
-                          <button type="button" class="btn btn-cancel"  onclick="">Reset</button>
+                          <button type="button" class="btn btn-cancel"  onclick="resetForm('multi-form','multi_layer_presale')">Reset</button>
                         </div>
                       </div>
                     </div>
@@ -540,8 +592,8 @@
         $(this).parent().parent().find(".feature-plan-search-content").slideUp();
         var $fa = $(this).find(".fa");
         var isUp = $fa.hasClass("fa-caret-right");
-        $(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
-        $(".toggle-down").removeClass("toggle-down");
+        $(this).parent().parent().find(".fa-caret-down").removeClass("fa-caret-down").addClass("fa-caret-right");
+        $(this).parent().parent().find(".toggle-down").removeClass("toggle-down");
 
         if(isUp){
           $fa.removeClass("fa-caret-right").addClass("fa-caret-down");
@@ -590,8 +642,10 @@
       })
       $("#regions_interest").chosen();
 		});
+tt()
+function tt(){
     //keywordsLayer loading
-    var keywordsLayer = new keywordsLayer({
+    var keywordsLayer1 = new keywordsLayer({
       container : $("#keywordsLayer"),
       // lang : 'EN',
       lang : "EN", //"CN" "EN"
@@ -632,6 +686,7 @@
         $(".feature-plan-search-submit .btn-success").attr("disabled",true);
       }
     }
+}
     var multi = new multilayer_presale({
 		  container : $("#multilayer"),
 		  // lang : 'EN',
@@ -666,5 +721,17 @@
         $(".multi .btn-success").attr("disabled",true);
       }
 		}
+    function resetForm(formId,componentId) {
+      $("#"+formId).find(".hide").hide();
+      $("#"+formId).find(".chzn-done").each(function(){
+        $(this).val("");
+        $(this).trigger("liszt:updated");
+        $(this).chosen();
+      })
+      document.getElementById(formId).reset();
+      if($("#"+componentId).length>0){
+        $("#"+componentId+" .clearAll").trigger("click");
+      }
+    }
   </script>
 </html>

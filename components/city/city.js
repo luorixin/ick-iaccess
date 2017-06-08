@@ -402,7 +402,8 @@
             for (var i = 0; i < d.items.length; i++) {
                 match = d.items[i].split("|");
                 self.citys.push(d.items[i]);
-                str += '<li><label title="'+match[0]+'"><input class="townshipControl" alt="'+match[0]+'" title="'+match[0]+'" value="'+match[2]+'" type="checkbox"/> ' + match[0] + '<input class="pinyin" value="'+match[1]+'" type="hidden"/></label></li>';
+                var isDisplay = (match[1] == "QITA" ? "none" : "block");
+                str += '<li style="display:'+isDisplay+'"><label title="'+match[0]+'"><input class="townshipControl" alt="'+match[0]+'" title="'+match[0]+'" value="'+match[2]+'" type="checkbox"/> ' + match[0] + '<input class="pinyin" value="'+match[1]+'" type="hidden"/></label></li>';
             }
             if (d.items.length>0) {
                 str +='</ul></div>';
@@ -720,16 +721,17 @@
             }
         },
         convertChina:function(d,type,thi){
-            var result=[],levels=[],area = ["huabei", "huadong", "huanan", "huazhong","dongbei","xibei","xinan","gangaotai"],
+            var result=[],levels=[],area = ["North", "East", "South", "Central","Northeast","Northwest","Southwest","HK, MO & TW"],
                 level=["1","2","3","4"],allcitys=[],objLevel,
                 obj={},objprovince={},city=[],i,j,k,l,m,n,temp=[],objResult,name,
-                areaFY={"huabei":"North","huadong":"East","huanan":"South","huazhong":"Central","dongbei":"Northeast","xibei":"Northwest","xinan":"Southwest","gangaotai":"HK, MO & TW"};
+                areaFY={"North":"North","East":"East","South":"South","Central":"Central","Northeast":"Northeast","Northwest":"Northwest","Southwest":"Southwest","HK, MO & TW":"HK, MO & TW"};
             type=type==="en"?"":"_cn";
             for ( i = d.length - 1; i >= 0; i--) {
                 obj={};
                 objprovince={};
                 objprovince.items=[];
                 obj.name=d[i]["area"+type]+"|"+d[i]["area"]+"|"+"-1";
+                obj.proviceName = d[i]["area"];
                 objprovince.name=d[i]["provice_name"+type]+"|"+d[i]["provice_name"]+"|"+d[i]["provice_id"];
                 if(d[i].cities.length>0){
                     for (j = d[i].cities.length - 1; j >= 0; j--) {
@@ -742,11 +744,15 @@
                 // if("Beijing Tianjin Shanghai".indexOf(d[i]["provice_name"])>-1 ){
                 //     allcitys.push(d[i]["provice_name"+type]+"|1|"+d[i]["provice_id"]);
                 // }
-                if("Beijing Shanghai".indexOf(d[i]["provice_name"])>-1 ){
-                    allcitys.push(d[i]["provice_name"+type]+"|1|"+d[i]["provice_id"]);
+                var zhixiashiId = d[i]["zhixiashi_id"] ? d[i]["zhixiashi_id"] : d[i]["provice_id"];
+               
+                if("beijing shanghai".indexOf(d[i]["provice_name"].toLowerCase())>-1 ){
+                    allcitys.push(d[i]["provice_name"+type]+"|1|"+zhixiashiId);
+                    objprovince.name = d[i]["provice_name"+type]+"|"+d[i]["provice_name"]+"|"+zhixiashiId;
                 }
-                if("Tianjin".indexOf(d[i]["provice_name"])>-1 ){
-                    allcitys.push(d[i]["provice_name"+type]+"|2|"+d[i]["provice_id"]);
+                if("tianjin".indexOf(d[i]["provice_name"].toLowerCase())>-1 ){
+                    allcitys.push(d[i]["provice_name"+type]+"|2|"+zhixiashiId);
+                    objprovince.name = d[i]["provice_name"+type]+"|"+d[i]["provice_name"]+"|"+zhixiashiId;
                 }
                 obj.provice=objprovince; 
                 temp.push(obj);
@@ -756,8 +762,7 @@
                 objResult={};
                 objResult.items=[];
                 for (k = temp.length - 1; k >= 0; k--) {
-
-                    if(temp[k].name.toLowerCase().indexOf(area[l])>-1){
+                    if(temp[k].proviceName.toLowerCase()==area[l].toLowerCase()){
                         name=temp[k].name;
                         objResult.items.push(temp[k].provice);
                     }
@@ -792,7 +797,7 @@
                     levels.push(objLevel);
                 };
             };
-         //   console.log(levels);
+           // console.log(result);
             thi.cityData= result;
             thi.levelCity=levels;
         },

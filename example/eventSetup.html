@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event setup</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="../css/google-font.css">
+  <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="../css/bootstrap_iaccess.css">
+   <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="../css/head.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+
+
+
+
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/fnPagingInfo.js"></script>
+	<script type="text/javascript" src="js/extjs.js"></script>
+  <script type="text/javascript" src="./js/hogan-2.0.0.min.js"></script>
+  <script type="text/javascript" src="./js/iax-tool.js"></script>
+  <script type="text/javascript" src="./js/iax-template.js"></script>
+
+</head>
+    <body>
+    	<div class="container">
+    	<!--头部-->
+      <div class="myheading">
+        <nav class="navbar navbar-inverse">
+          <div class="x-navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="http://xmostg.optimix.asia/" class="navbar-brand" data-toggle="offcanvas">
+                <img src="http://xmostg.optimix.asia/images/logo/xmo.optimix.asia.png" alt="" style="" width="120" height="50">
+              </a>
+            </div>
+
+            <div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1">
+              <!-- Single button -->
+              <div class="x-user-main x-search">
+                <div class="x-user-con x-filter">
+                    <span class="x-top-search-title">
+                      <label  data-toggle="tooltip" data-placement="bottom" title="Advertiser·iClick interative">Advertiser · iClick interative</label>
+
+                      <label class="x-top-search-main" data-toggle="tooltip" data-placement="top" title="Advertiser·iClick interative">
+                        <span>Bank of China</span>
+                        <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">new_client_from_new_nav (hahaxixi)</div></div></div>
+                      </label>
+
+                    </span>
+                    <i class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></i>
+                </div>
+                <div class="x-user-list x-top-search-list">
+                  <span class="nav-arrow"></span>
+                  <div class="x-top-content">
+                    <div class="x-top-search">
+                      <div class="x-top-search-search icon-search">
+                        <i class="fa fa-search"></i>
+                        <input class="input-search" placeholder="Search Clients" id="input-search" autofocus="" style="padding-left: 20px;">
+                      </div>
+                    </div>
+
+                    <div class="x-top-recent">
+                      <label style="font-size:12px;">Recent</label>
+                      <ul>
+
+                        <li><a href="#" class="client_link" id="1316">
+                          <span data-toggle="tooltip" data-placement="top">
+
+                          new_client_from_new_nav (hahaxixi)
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">new_client_from_new_nav (hahaxixi)</div></div></div>
+                          </span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4163">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          jerry_test_12 (test)
+
+                          </span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="42">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          Benchmark Test
+
+                          </span></a>
+                        </li>
+
+                      </ul>
+                      <hr>
+                    </div>
+
+                    <div class="x-top-result">
+                      <label style="font-size:12px;">All Clients</label>
+                      <ul>
+
+                        <li>
+                          <a href="javascript:;" id="4554">
+                            <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            <span  data-toggle="tooltip" data-placement="top" title="Adobe System (HK) Limited (Adobe System (HK) Limited)">
+                            Adobe System (HK) Limited (Adobe System (HK) Limited)
+                            </span>
+                            <span class="x-top-result-tag">AB0123</span>
+                          </a>
+                          <ul class="x-top-tree-child">
+
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0123</span></a></li>
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0124</span></a></li>
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0125</span></a></li>
+      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0126</span></a></li>
+
+      									</ul>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4553">
+                          <span data-toggle="tooltip" data-placement="top" title="123">
+
+                          Jumeirah Group  (Jumeirah Group )
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">Jumeirah Group  (Jumeirah Group )</div></div></div>
+                        </span><span class="x-top-result-tag">AC0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4552">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          HILTON WORLDWIDE  (HILTON WORLDWIDE )
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">HILTON WORLDWIDE  (HILTON WORLDWIDE )</div></div></div>
+                        </span><span class="x-top-result-tag">AE0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4551">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          Argentina: Ministry of Tourism (Argentina Instituto Nacional de Promocion Turística)
+                          <div class="popover xmo-popover fade in"><div class="arrow"></div><div class="popover-inner xmo-popover-inner"><div class="popover-content">Argentina: Ministry of Tourism (Argentina Instituto Nacional de Promocion Turística)</div></div></div>
+                        </span><span class="x-top-result-tag">AF0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4550">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          Landmark C&amp;D Co (Tulip Hotels)
+
+                        </span><span class="x-top-result-tag">AQ0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4549">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          英国文化教育协会 (英国文化教育协会)
+
+                          </span><span class="x-top-result-tag">AD0123</span></a>
+                        </li>
+
+                        <li><a href="#" class="client_link" id="4548">
+                          <span data-toggle="tooltip" data-placement="top" >
+
+                          VML IM2.0 (康师傅天猫旗舰店开业)
+
+                          </span><span class="x-top-result-tag">AD0123</span></a>
+                        </li>
+
+
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="x-top-menu" >
+                <ul class="nav navbar-nav">
+
+
+
+                  <li class="selected"><a href="#">iAccess</a>
+                  </li>
+
+
+
+                  <li class="" style="display: block;">
+                    <a href="#">iAudience</a>
+                  </li>
+
+
+                </ul>
+
+              </div>
+
+              <!-- Single button -->
+
+              <div class="x-user-main  navbar-right">
+                <div class="x-user-con" style="width: 135px;background:none">
+                    <!-- <img class="x-user " src="https://git.bznx.net/assets/logo-white-ed4a8c29c69c582954818a833b737e7a.png"> -->
+                    <span class="x-user-dis"><i class="fa fa-user" style="color:#666;" aria-hidden="true"></i>&nbsp;jacob.sun@i-click.com</span>
+                    <i class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></i>
+                </div>
+
+                <ul class="x-user-list">
+                  <span class="nav-arrow"></span>
+
+
+                      <li>
+                        <a href="http://xmostg.optimix.asia/en/users/information" class="x-user-config">
+                          <i class="fa fa-user-o icon_setting"></i>Account Information
+                        </a>
+                      </li>
+
+                  <li>
+                    <a href="http://xmostg.optimix.asia/en/users/changepassword" class="x-user-config">
+                      <span class="fa fa-lock icon_setting"></span>Change Password
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/en/admin/logout?back_url=http%253A%252F%252Fxmostg.optimix.asia%252Fen%252Fclients%252F1316%252Ffrequency_cap_groups" class="x-user-config">
+                      <span class="fa fa-sign-out icon_setting"></span>Sign Out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+             </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+<div class="x-main">
+  <div class="x-sidebar" id="x-sidebar">
+    <ul class="x-menu">
+      <li id="" class="">
+        <a href="./campaigns.html">
+         <i class="fa fa-briefcase" aria-hidden="true"></i>
+        <span class="x-m8">Campaigns</span>
+        </a>
+      </li>
+
+      <li id="li001" class="selected">
+        <a href="./eventSetup.html">
+         <i class="fa fa-eye" aria-hidden="true"></i>
+        <span class="x-m8">Events</span>
+         <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+        </a>
+        <ul class="sub-menu" style="display: block;">
+          <li class="active">
+            <a href="./eventSetup.html"><span class="x-m8">Event Setup</span></a>
+          </li>
+          <li class="">
+            <a href="./eventLog.html"><span class="x-m8">Event Log</span></a>
+          </li>
+        </ul>
+      </li>
+      <li id="li001" class="">
+        <a href="./interestAudience.html">
+         <i class="fa fa-users" aria-hidden="true"></i>
+        <span class="x-m8">Audience</span>
+         <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+        </a>
+        <ul class="sub-menu" style="display: block;">
+          <li class="">
+            <a href="./interestAudience.html"><span class="x-m8">Interest Audience</span></a>
+          </li>
+          <li class="">
+            <a href="./outsiteAudience.html"><span class="x-m8">Onsite Audience</span></a>
+
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="x-menu-lang-select">
+      <li>
+        <a href="#">
+        <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
+           <span class="x-m8">简体中文</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+        <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
+           <span class="x-m8">简体中文</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="x-menu-lang">
+
+      <li>
+        <a href="javascript:;">
+        <i class="fa fa-cog fa-globe" aria-hidden="true"></i>
+           <span class="x-m8">langauage English</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="x-body" id="x-body">
+		<div class="page_title">
+		  <div id="breadcrumb" class="row">
+		    <!-- Top left headings and links -->
+		   <div class="client-row">
+
+	   		 </div>
+
+
+		  </div>
+		  <div class="row"><div class="client-row"><h1>Event Setup</h1></div></div>
+ 		</div>
+		  <!-- Page title -->
+
+
+		  <!-- filter -->
+      <div>
+        <div>
+          <ul class="nav nav-pills event_filter" style="float:left;">
+            <li class="filter_icon active">
+              <a class="pull-left add-button"  href="javascript:;" data-toggle="modal" data-target=".retargeting-audience-box"><i class="fa fa-plus"></i><span
+                style="margin: 0 10px 0 5px;">Event</span></a>
+            </li>
+          </ul>
+          <div class="button-right">
+            <div class="dropdown btn-iclick dropdown-stop">
+              <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i>
+              <button class="btn dropdown-toggle" type="button" onclick="">
+                All Insight Tags&nbsp;
+              </button>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </div>
+        <!-- table -->
+				<div class="table_white" style="float:left;width:100%">
+					<table id="client_list" class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+			                <th>Event ID</th>
+			                <th>Event Name</th>
+			                <th>URL</th>
+			                <th>Status</th>
+			                <th>Last Event</th>
+                      <th>Action</th>
+			            </tr>
+			        </thead>
+
+			        <tbody>
+			            <tr>
+			                <td>0011628</td>
+			                <td>BookingUpdateZH</td>
+			                <td>
+                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
+                       </td>
+                       <td class="red_mark">Live</td>
+                       <td >2017-05-24 14:43:41</td>
+                       <td class="align_center">
+                        <a href="javascript:;" class="fa-icon-box">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="javascript:;" class="fa-icon-box" onclick="getHistory(122)">
+                          <i class="fa fa-history"></i>
+                        </a>
+                        <a href="javascript:;" class="fa-icon-box" onclick="download(122,'Estee Lauder - Makeup')">
+                          <i class="fa fa-download"></i>
+                        </a>
+                      </td>
+			            </tr>
+                  <tr>
+                      <td>0011623</td>
+                      <td>TourismNew</td>
+                      <td>
+                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
+                       </td>
+                       <td class="red_mark">Paused</td>
+                       <td >2017-05-24 14:43:41</td>
+                       <td class="align_center">
+                        <a href="javascript:;" class="fa-icon-box">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="javascript:;" class="fa-icon-box" onclick="getHistory(122)">
+                          <i class="fa fa-history"></i>
+                        </a>
+                        <a href="javascript:;" class="fa-icon-box" onclick="download(122,'Estee Lauder - Makeup')">
+                          <i class="fa fa-download"></i>
+                        </a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>0011622</td>
+                      <td>Enquiry_EN_M</td>
+                      <td>
+                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
+                       </td>
+                       <td class="red_mark">Live</td>
+                       <td >2017-05-24 14:43:41</td>
+                       <td class="align_center">
+                        <a href="javascript:;" class="fa-icon-box">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="javascript:;" class="fa-icon-box" onclick="getHistory(122)">
+                          <i class="fa fa-history"></i>
+                        </a>
+                        <a href="javascript:;" class="fa-icon-box" onclick="download(122,'Estee Lauder - Makeup')">
+                          <i class="fa fa-download"></i>
+                        </a>
+                      </td>
+                  </tr>
+
+				        </tbody>
+				    </table>
+				</div>
+      </div>
+    </div>
+    <div class="clearboth"></div>
+  </div>
+  <!-- footer -->
+  <div class="clearfooter"></div>
+  <div class="myfooter">
+    <label class="x-footer">
+      Copyright © 2012 - 2017 OptAim Technology,Optaim Beijing,ICP 14026918. All Rights Reserved.
+    </label>
+  </div>
+</div>
+    <!--container end-->
+
+    <!-- modal content start -->
+    <!-- retargeting-audience-box -->
+    <div class="modal fade slide-box retargeting-audience-box" style="display:none;">
+      <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>
+      <div class="slide-content">
+          <div class="modal-content">
+            <div class="modal-body">
+              <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
+                <li class="active">
+                  <a data-toggle="tab" href="#tab-create-event">Create an Event</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade in active" id="tab-create-event">
+                  <div onclick="$(this).remove()" class="message-top-tip">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <div class="message-top-tip-container">
+                      <div class="message-tip">
+                        <div class="message-tip-contents">
+                          <div class="message-tip-msg">Please create a goal event for an on-site audience. This is required before creating a retargeting audience group.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="edit-container">
+                      <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">
+                        <div class="control-group">
+                          <label class="control-label">Event Name</label>
+                          <div class="controls">
+                            <div class="clearfix">
+                              <input type="text" name="name" value="iCLick" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label">Status</label>
+                          <div class="controls">
+                            <div class="dropdown modifylabel">
+                              <input name="status" type="hidden" value="LIVE"  />
+                              <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                LIVE
+                                <span class="caret arrow-down"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li data-value="LIVE"><a href="javascript:;">Live</a></li>
+                                <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
+                                <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label">Product Type</label>
+                          <div class="controls">
+                            <div class="dropdown modifylabel">
+                              <input name="status" type="hidden" value="ACTIVE"  />
+                              <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                ACTIVE
+                                <span class="caret arrow-down"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>
+                                <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label">Site Type</label>
+                          <div class="controls">
+                            <div class="dropdown modifylabel">
+                              <input name="status" type="hidden" value="ACTIVE"  />
+                              <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                ACTIVE
+                                <span class="caret arrow-down"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>
+                                <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <hr style="margin: 0px -20px;">
+                        <div class="control-group">
+                          <label class="control-label">Tacking Type</label>
+                          <div class="controls">
+                            <div class="">
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="tacking" id="tacking0" value="0" checked="checked">
+                                  <label for="tacking0">Insight tag</label>
+                              </div>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="tacking" id="tacking1" value="1">
+                                  <label for="tacking1">Universal tag</label>
+                              </div>
+                              <div class="" id="tacking_0" style="margin:10px 0">
+                                <div class="table_white">
+                                    <table class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Parameter</th>
+                                                <th>Event Name</th>
+                                                <th>Type</th>
+                                                <th>Sample</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                          <tr class="tack-plus">
+                                            <td colspan="5">
+                                              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                              <label>Add one more event</label>
+                                            </td>
+                                          </tr>
+                                        </tfoot>
+                                        <tbody>
+                                          <!-- for clone -->
+                                          <tr style="background-color:#fff;display:none">
+                                            <td class="align_right"></td>
+                                            <td class="align_center"><input style="width:150px;" name="ename" placeholder="Fill in a tag name" type="text"/></td>
+                                            <td class="align_center">
+                                              <div class="dropdown modifylabel" style="width:120px;" >
+                                                <input name="etype" type="hidden" value=""  />
+                                                <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                  Select
+                                                  <span class="caret arrow-down"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                                  <li data-value="counter"><a href="javascript:;">COUNTER</a></li>
+                                                  <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
+                                                  <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                                </ul>
+                                              </div>
+                                            </td>
+                                            <td class="">-</td>
+                                            <td class="align_center"></td>
+                                          </tr>
+
+                                          <tr style="background-color:#fff;">
+                                            <td class="align_right"><span>#1</span></td>
+                                            <td class="align_center"><input style="width:150px;" name="ename" value="Counter" disabled type="text"/></td>
+                                            <td class="align_center">
+                                              <div class="dropdown modifylabel" style="width:120px;" >
+                                                <input name="etype" type="hidden" value="counter"  />
+                                                <button class="btn  dropdown-toggle" style="width:120px;" disabled type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                  COUNTER
+                                                  <span class="caret arrow-down"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                                  <li data-value="counter"><a href="javascript:;">COUNTER</a></li>
+                                                  <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
+                                                  <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                                </ul>
+                                              </div>
+                                            </td>
+                                            <td class="">1</td>
+                                            <td class="align_center">Used for couting the no. of this event,Rules:Integer;Greater or...</td>
+                                          </tr>
+
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                <div class="note-message">
+                                  <div class="clearfix">
+                                   Note: Please notify your client to replace the default values inside the generated insight tag with their actual 
+                                    parameter values in order for the tracking to work correctly.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="hide" id="tacking_1" style="margin:10px 0">
+                                <div class="dropdown modifylabel">
+                                  <input name="goalevent[filter_type]" type="hidden" value="k"  />
+                                  <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Specify keywords that appeare in the URL
+                                    <span class="caret arrow-down"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li data-value="k"><a href="javascript:;">Specify keywords appeared in the URL</a></li>
+                                    <li data-value="r"><a href="javascript:;">Regular expression</a></li>
+                                  </ul>
+                                </div>
+                                <div style="margin:20px 0">
+                                  <textarea class="input-xlarge span4" name="goalevent[urls]" placeholder="Enter tags. You may enter one tag per line or separate tags by commas." style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
+                                </div>
+                                <div style="margin:20px 0">
+                                  <button type="button" class="btn btn-success" onclick="testTacking()">Test</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr style="margin: 0px -20px;">
+                        <div class="control-group">
+                          <label class="control-label">Remove Duplicates</label>
+                          <div class="controls">
+                            <div class="">
+                             <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="duplicate" id="duplicate0" value="0" checked="checked">
+                                  <label for="duplicate0">Disable</label>
+                              </div>
+                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                  <input type="radio" name="duplicate" id="duplicate1" value="1" >
+                                  <label for="duplicate1">Enable (Only the "Text/Key" parameter can be used for de-duplication)</label>
+                              </div>
+                              <div class="hide" id="duplicate_1" style="margin:10px 0">
+                                <div class="dropdown modifylabel">
+                                  <input name="goalevent[deduplication_type]" type="hidden" value="-1"  />
+                                  <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    1-per-visitor conversion
+                                    <span class="caret arrow-down"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li data-value="-1"><a href="javascript:;">1-per-visitor conversion</a></li>
+                                    <li data-value="-2"><a href="javascript:;">Browser session</a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                      </form>
+                    </div>
+                    <div class="modal-footer slide-bottom">
+                      <button type="button" class="btn btn-success" onclick="nextRetarget(this)">Save</button>
+                      <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!--modal-body-end-->
+        </div>
+      </div>
+    </div>
+
+    <!-- modal content end -->
+
+</body>
+    <script type="text/javascript">
+
+      var oTable;
+    	$(function(){
+			 oTable=$('#client_list').dataTable({
+					"oLanguage": {
+						"sProcessing":   "处理中...",
+						"sLengthMenu":   "显示 _MENU_ 项结果",
+						"sZeroRecords":  "没有匹配结果",
+						"sInfo":         "（共 _TOTAL_ 项）",
+						"sInfoEmpty":    "（共 0 项）",
+						"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+						"sInfoPostFix":  "",
+						"sSearch":       "寻找:",
+						"sUrl":          "",
+						"oPaginate": {
+							"sFirst":    "&nbsp;",
+							"sPrevious": "&nbsp;",
+							"sNext":     "&nbsp;",
+							"sLast":     "&nbsp;"
+						}
+					},
+					  "sDom": "<'x'>t<'table_bottom'<'table_length'l><'table_pagin'p><'table_info'i>>",
+					  "sPaginationType": "extStyle",
+					  "bPaginate": true,
+					  "iDisplayLength": 15,
+            "aLengthMenu": [15, 25, 50, 100],
+					  "bLengthChange": true,
+					  "bAutoWidth": false,
+					  "aaSorting": [],
+            "columnDefs" : [ {
+                   orderable : false,//禁用排序
+                   targets : [ 0, 0 ]
+                 //指定的列
+                 } ]
+				});
+			 $("[name='tacking']").on("change",function(){
+          var checkedVal = $("[name='tacking']:checked").val();
+          $("#tacking_"+checkedVal).show();
+          if(checkedVal==1){
+            $("#tacking_0").hide();
+          }else{
+            $("#tacking_1").hide();
+          }
+        })
+       $("[name='duplicate']").on("change",function(){
+          var checkedVal = $("[name='duplicate']:checked").val();
+          if(checkedVal==1){
+            $("#duplicate_1").show();
+          }else{
+            $("#duplicate_1").hide();
+          }
+        })
+       //tack-plus
+        $(document).on('click','.tack-plus',function() {
+          var $table = $(this).parent().parent();
+          var id = "#"+$table.find("tbody tr").length;
+          var cloneHtml = $table.find("tbody tr:first").clone();
+          cloneHtml.find("td:first").html('<i class="fa fa-minus-circle" aria-hidden="true" style="margin-left:8px;float:left;font-size:14px;cursor:pointer;color:#ef4136;"></i><span>'+id+'</span>');
+          $table.find("tbody").append('<tr style="background-color:#fff;">'+cloneHtml.html()+'</tr>');
+        })
+        $(document).on('click','.fa-minus-circle',function() {
+          var $tr = $(this).parent().parent();
+          var $tbody = $tr.parent();
+          $tr.remove();
+
+          resetParamId($tbody);
+        })
+        function resetParamId($tbody){
+          $tbody.find("tr").each(function(index) {
+            $(this).find("td:first").find("span").text("#"+index);
+          })
+        }
+		});
+		function getHistory(id){
+      //根据id获取对于历史信息
+      var paramJson = {
+        'title' : 'History',
+        'tableData' : {},
+        'callbackFun' : callbackFun,
+      };
+      paramJson.tableData = {
+        "tId" : "history_table_"+id,
+        "tHead" : [{'name':'Last Modified Date'},{'name':'Last Modified By'}],
+        "tBody" : [ {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
+                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
+                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
+                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
+                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
+                  ]
+      }
+      IAX_TOOL.getAudienceHistory(paramJson);
+    }
+    function callbackFun(form,paramJson){
+      var id = paramJson.tableData.tId;
+      $('#'+id).dataTable({
+          "oLanguage": {
+            "sProcessing":   "处理中...",
+            "sLengthMenu":   "显示 _MENU_ 项结果",
+            "sZeroRecords":  "没有匹配结果",
+            "sInfo":         "（共 _TOTAL_ 项）",
+            "sInfoEmpty":    "（共 0 项）",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix":  "",
+            "sSearch":       "寻找:",
+            "sUrl":          "",
+            "oPaginate": {
+              "sFirst":    "&nbsp;",
+              "sPrevious": "&nbsp;",
+              "sNext":     "&nbsp;",
+              "sLast":     "&nbsp;"
+            }
+          },
+            "sDom": "<'x'>t<'table_bottom'<'table_length'l><'table_pagin'p><'table_info'i>>",
+            "sPaginationType": "extStyle",
+            "bPaginate": true,
+            "iDisplayLength": 5,
+            "aLengthMenu": [5, 15, 25, 50],
+            "bLengthChange": true,
+            "bAutoWidth": false,
+            "aaSorting": [],
+            "columnDefs" : [ {
+                   orderable : false,//禁用排序
+                   targets : [ 0, 0 ]
+                 //指定的列
+                 } ]
+        });
+    }
+    function nextRetarget(thi){
+      $(thi).attr("disabled",true);
+      setTimeout(function(){
+        $(thi).next().click();
+        $(thi).attr("disabled",false);
+      },1000)
+    }
+   </script>
+</html>

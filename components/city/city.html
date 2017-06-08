@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="./city.css" />
 	<script type="text/javascript" src="./jquery-1.7.min.js"></script>
 	<script type="text/javascript" src="./city.js"></script>
+	<script type="text/javascript" src="./convertJson.js"></script>
 	<style type="text/css">
 		html,body{height: 100%}
 		.floater {
@@ -33,16 +34,18 @@
 	<script type="text/javascript">
 	var city = {};
     var loc = "zh-cn" == "en" ? "en" : "ch";
-    loc="en";
+    loc="ch";
      $.ajax({
             type: 'get',
-            url:  "city.json",
+            url:  "city_new.json",
             success: function(data) {
+            	  var convertData = convertCityJson(data);
+            	  // console.log(JSON.stringify(convertData) );
 	              city=new bshare.Ncity({
 	              container:$("#city"),
 	              lang:loc,//英文是en中文是ch
-	              china:data.china,
-	              foreign:data.foreign
+	              china:convertData.china,
+	              foreign:convertData.foreign
 	            });
 	           // city.setSelected(data.result);
 	        }   
