@@ -205,7 +205,7 @@
                 <ul class="nav navbar-nav">
                    
                   <li class="">
-                    <a href="javascript:void(0);" >iAccess</a>
+                    <a href="./eventSetup.html" >iAccess</a>
                   </li>
 
                   <li class="selected">
@@ -366,7 +366,7 @@
                           <!--Trend map-->
                           <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:600px;padding: 0 7.5px 0 0;">
                             <div class="plan-result-text">
-                              <div class="result-text-header clearfix">
+                              <div class="result-text-header">
                                 <label id="date_header">Trend of Market Audience & Market Share
                                   <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
                                 </label>
@@ -787,12 +787,12 @@
 
                     <div class="" id="for_export_img" style="float:left;width:100%;">
                       <div class="plan-reports" id="report_content" style="margin-top:5px;">
-                        <div class="plan-reports-result clearfix">
+                        <div class="plan-reports-result">
                           <div class="plan-reports-result-inner">
                             <!--Total-->
                             <div class="plan-result-graph" id="select_line_map" style="width:100%;height:280px;padding:0;">
                               <div class="plan-result-text">
-                                <div class="result-text-header clearfix">
+                                <div class="result-text-header">
                                   <label id="date_header">Trend of My Top 5 Products
                                     <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
                                   </label>
@@ -820,6 +820,7 @@
                               </div>
                             </div>
                           </div>
+                          <div class="clearboth"></div>
                         </div>
                        </div>
                        <!-- 过滤选项 -->
@@ -1485,6 +1486,9 @@
        new xmoCalendar({
          inputId : '#' + id,
          lang : "zh", //"zh" "en"
+         wrapContainer: $('#'+id).parents(".result-text-header"),
+         relativeTop:"60",
+         relativeRight:20,
          initTime : '2013-10-28',
          menu : [ "last_7_days", "last_30_days", "this_week", "this_month",
              "this_yeah", "last_week", "last_month", "last_3_month" ],

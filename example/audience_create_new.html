@@ -1422,14 +1422,21 @@
         $(document).on("click",".dropdown-stop",function(){
           $(this).parent().hasClass("open") ? $(this).parent().removeClass("open") : $(this).parent().addClass("open") ;
         })
-        $(".tree-stop").hover(function(){
+        // $(".tree-stop").hover(function(){
+        //   $("body").unbind("mousedown");
+        // },function(){
+        //   $("body").bind("mousedown",function(){
+        //     $(".tree-stop").removeClass("open");
+        //   })
+        // })
+        $(document).on("hover",".tree-stop",function(){
           $("body").unbind("mousedown");
-        },function(){
+        })
+        $(document).on("hoverover",".tree-stop",function(){
           $("body").bind("mousedown",function(){
             $(".tree-stop").removeClass("open");
           })
         })
-        
         $(document).on("click",".dropdown-tree-category .tree li>a",function(e){
           e = e||window.event;
           var target = e.target||e.srcElement;

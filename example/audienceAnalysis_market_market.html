@@ -209,7 +209,7 @@
                 <ul class="nav navbar-nav">
                    
                   <li class="">
-                    <a href="javascript:void(0);" >iAccess</a>
+                    <a href="./eventSetup.html" >iAccess</a>
                   </li>
 
                   <li class="selected">
@@ -1141,6 +1141,9 @@
        new xmoCalendar({
          inputId : '#' + id,
          lang : "zh", //"zh" "en"
+         wrapContainer: $('#'+id).parents(".result-text-header"),
+         relativeTop:"60",
+         relativeRight:20,
          initTime : '2013-10-28',
          menu : [ "last_7_days", "last_30_days", "this_week", "this_month",
              "this_yeah", "last_week", "last_month", "last_3_month" ],

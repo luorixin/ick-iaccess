@@ -118,7 +118,7 @@ var IAX_TEMPLATE = {
 ' 	</div>'+
 '</div>',
 	'confirmBox' : 
-	'<div id="del-confirm" class="modal fade del-confirm-box" tabindex="-1" role="dialog">'+
+	'<div id="del-confirm" class="modal fade del-confirm-box" tabindex="-1" style="z-index: 1051;" role="dialog">'+
 		'<div class="modal-dialog modal-sm" role="document">'+
 		    '<div class="modal-content">'+
 		        '<div class="modal-body">'+
@@ -146,7 +146,7 @@ var IAX_TEMPLATE = {
 			'            </form>'+
 			'        </div>'+
 		            '<div class="del-confirm-btn">'+
-          				'<button type="button" class="btn btn-cancel" data-dismiss="modal">{{cancel}}</button>'+
+          				'{{#cancel}}<button type="button" class="btn btn-cancel" data-dismiss="modal">{{cancel}}</button>{{/cancel}}'+
 		            	'<button type="button" class="btn btn-success" onclick="{{fn}}" data-dismiss="modal">{{save}}</button>'+
 		            '</div>'+
 		        '</div>'+

@@ -189,7 +189,7 @@
 
 
                   <li class="" style="display: block;">
-                    <a href="#">iAudience</a>
+                    <a href="./audiencePlans.html">iAudience</a>
                   </li>
 
 
@@ -743,22 +743,7 @@
 		});
 		function getHistory(id){
       //根据id获取对于历史信息
-      var paramJson = {
-        'title' : 'History',
-        'tableData' : {},
-        'callbackFun' : callbackFun,
-      };
-      paramJson.tableData = {
-        "tId" : "history_table_"+id,
-        "tHead" : [{'name':'Last Modified Date'},{'name':'Last Modified By'}],
-        "tBody" : [ {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [{'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                  ]
-      }
-      IAX_TOOL.getAudienceHistory(paramJson);
+      window.location="./eventLog.html?id="+id;
     }
     function callbackFun(form,paramJson){
       var id = paramJson.tableData.tId;

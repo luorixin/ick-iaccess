@@ -194,7 +194,7 @@
 
 
                   <li class="" style="display: block;">
-                    <a href="#">iAudience</a>
+                    <a href="./audiencePlans.html">iAudience</a>
                   </li>
 
 
@@ -317,7 +317,7 @@
       <div class="">
         <ul class="nav nav-pills event_filter" style="float:left;">
           <li class="filter_icon active">
-            <a class="pull-left add-button" href="javascript:;" data-toggle="modal" data-target=".retargeting-audience-box"><i class="fa fa-plus"></i><span style="margin: 0 10px 0 5px">Onsite Audience</span></a>
+            <a class="pull-left add-button" id="createAudience" href="javascript:;" data-toggle="modal" ><i class="fa fa-plus"></i><span style="margin: 0 10px 0 5px">Onsite Audience</span></a>
           </li>
         </ul>
         <table class="table table-total-sum width_100" cellspacing="0" width="100%">
@@ -464,7 +464,7 @@
             <div class="modal-body">
               <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
                 <li class="active">
-                  <a data-toggle="tab" href="#tab-create-event">Create an Event</a>
+                  <a data-toggle="tab" id="#tab-create-event">Create an Event</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
@@ -523,7 +523,7 @@
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label">Site Type</label>
+                          <label class="control-label">Nature</label>
                           <div class="controls">
                             <div class="dropdown modifylabel">
                               <input name="status" type="hidden" value="ACTIVE"  />
@@ -640,7 +640,7 @@
                                 <div style="margin:20px 0">
                                   <textarea class="input-xlarge span4" name="goalevent[urls]" placeholder="Enter tags. You may enter one tag per line or separate tags by commas." style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
                                 </div>
-                                <div style="margin:20px 0">
+                                <div style="margin:20px 0;display:none">
                                   <button type="button" class="btn btn-success" onclick="testTacking()">Test</button>
                                 </div>
                               </div>
@@ -680,7 +680,7 @@
                       </form>
                     </div>
                     <div class="modal-footer slide-bottom">
-                      <button type="button" class="btn btn-success" onclick="nextRetarget(this)">Save</button>
+                      <button type="button" class="btn btn-success" onclick="nextRetarget(this)">Save and Continue</button>
                       <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -691,12 +691,202 @@
       </div>
     </div>
 
+     <!--retargeting-audience-create-box -->
+    <div class="modal fade slide-box retargeting-audience-create-box" style="display:none;">
+      <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>
+      <div class="slide-content">
+          <div class="modal-content">
+            <div class="modal-body">
+              <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
+                <li class="active">
+                  <a data-toggle="tab" href="#tab-create-search">Create a Retargeting Audience Group</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade in active" id="tab-create-search">
+                  <div onclick="$(this).remove()" class="message-top-tip">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <div class="message-top-tip-container">
+                      <div class="message-tip">
+                        <div class="message-tip-contents">
+                          <div class="message-tip-msg">Goal event saved successfully. You can now create a retargeting audience group.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="edit-container">
+                    <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">
+                      <div class="control-group">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                          <div class="clearfix">
+                            <input type="text" name="name" value="iCLick" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Divided By Events</label>
+                        <div class="controls">
+                          <div class="">
+                            <div class="table_white">
+                              <table class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Logic</th>
+                                        <th>Parameter</th>
+                                        <th>Event</th>
+                                        <th>Receny</th>
+                                        <th>Frequency(Min.)</th>
+                                        <th>Frequency(Max.)</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                  <tr class="tack-plus" data-type="andOr">
+                                    <td colspan="6">
+                                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                      <label>Add one more event</label>
+                                    </td>
+                                  </tr>
+                                </tfoot>
+                                <tbody>
+                                  <!-- for clone -->
+                                  <tr style="background-color:#fff;display:none">
+                                    <td class="align_left"></td>
+                                    <td class="align_right"></td>
+                                    <td class="align_center">
+                                      <div class="dropdown modifylabel" style="width:120px;" >
+                                        <input name="edivided" type="hidden" value=""  />
+                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          Homepage
+                                          <span class="caret arrow-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                          <li data-value="counter"><a href="javascript:;">Homepage</a></li>
+                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
+                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                    <td class="align_center">
+                                      <div class="dropdown modifylabel" style="width:120px;" >
+                                        <input name="erency" type="hidden" value=""  />
+                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          Last month
+                                          <span class="caret arrow-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                          <li data-value="counter"><a href="javascript:;">Last month</a></li>
+                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
+                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                    <td class="">
+                                      <div class="rangeBox">
+                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">
+                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      </div>
+                                    </td>
+                                    <td class="">
+                                      <div class="rangeBox">
+                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">
+                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      </div>
+                                    </td>
+                                  </tr>
+
+                                  <tr style="background-color:#fff;">
+                                    <td class="align_left"><span style="margin-left:12px;">-</span></td>
+                                    <td class="align_right">#1</td>
+                                    <td class="align_center">
+                                      <div class="dropdown modifylabel" style="width:120px;" >
+                                        <input name="edivided" type="hidden" value=""  />
+                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          Homepage
+                                          <span class="caret arrow-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                          <li data-value="counter"><a href="javascript:;">Homepage</a></li>
+                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
+                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                    <td class="align_center">
+                                      <div class="dropdown modifylabel" style="width:120px;" >
+                                        <input name="erency" type="hidden" value=""  />
+                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          Last month
+                                          <span class="caret arrow-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                          <li data-value="counter"><a href="javascript:;">Last month</a></li>
+                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
+                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                    <td class="">
+                                      <div class="rangeBox">
+                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">
+                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      </div>
+                                    </td>
+                                    <td class="">
+                                      <div class="rangeBox">
+                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                        <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">
+                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      </div>
+                                    </td>
+                                  </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      <div class="control-group">
+                        <label style="width:100%;">Total Audience: - | Last Updated: -</label>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer slide-bottom">
+                    <button type="button" class="btn btn-success" onclick="{{fn}}">Save</button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <!--modal-body-end-->
+        </div>
+      </div>
+    </div>
     <!-- modal content end -->
 
 </body>
     <script type="text/javascript">
 
       $(function(){
+        $(document).on("click","#createAudience",function(){
+          $(".retargeting-audience-box").modal("show");
+          //no events 提示框
+          setTimeout(function(){
+             var paramJson = {
+              'title' : 'There is no events under this advertiser. Please create a goal event before onsite audience.',
+              'save' : "OK",
+            }
+            IAX_TOOL.confirmBox(paramJson);
+          },300);
+        })
+
         $("[name='tacking']").on("change",function(){
           var checkedVal = $("[name='tacking']:checked").val();
           $("#tacking_"+checkedVal).show();
@@ -717,30 +907,125 @@
        //tack-plus
         $(document).on('click','.tack-plus',function() {
           var $table = $(this).parent().parent();
+          var type = $(this).attr("data-type");
           var id = "#"+$table.find("tbody tr").length;
+          var logicHtml = '<i class="fa fa-minus-circle" aria-hidden="true" style="margin-left:8px;float:left;font-size:14px;cursor:pointer;color:#ef4136;"></i><span>'+id+'</span>';
+          if (type == "andOr") {
+            logicHtml = '<i class="fa fa-minus-circle" aria-hidden="true" style="margin-left:8px;margin-top:7px;float:left;font-size:14px;cursor:pointer;color:#ef4136;"></i>'+
+                        '<div class="dropdown modifylabel" style="width:52px;float:right;">'+
+                        '  <input name="edivided" type="hidden" value="">'+
+                        '  <button class="btn  dropdown-toggle" style="width:52px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+                        '    or'+
+                        '    <span class="caret arrow-down"></span>'+
+                        '  </button>'+
+                        '  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:50px;min-width: 50px;text-align:left;">'+
+                        '    <li data-value="or"><a href="javascript:;">or</a></li>'+
+                        '    <li data-value="and"><a href="javascript:;">and</a></li>'+
+                        '  </ul>'+
+                        '</div>';
+          }
           var cloneHtml = $table.find("tbody tr:first").clone();
-          cloneHtml.find("td:first").html('<i class="fa fa-minus-circle" aria-hidden="true" style="margin-left:8px;float:left;font-size:14px;cursor:pointer;color:#ef4136;"></i><span>'+id+'</span>');
+          cloneHtml.find("td:first").html(logicHtml);
+          if (type=="andOr") {
+            cloneHtml.find("td").eq(1).html('<span>'+id+'</span>');
+          };
           $table.find("tbody").append('<tr style="background-color:#fff;">'+cloneHtml.html()+'</tr>');
         })
         $(document).on('click','.fa-minus-circle',function() {
           var $tr = $(this).parent().parent();
           var $tbody = $tr.parent();
           $tr.remove();
-
-          resetParamId($tbody);
+          var i=0;
+          if ($(this).parent().find(".dropdown").length>0) {
+            i=1;
+          };
+          resetParamId($tbody,i);
         })
-        function resetParamId($tbody){
+        function resetParamId($tbody,i){
+          if (i) i==0;
           $tbody.find("tr").each(function(index) {
-            $(this).find("td:first").find("span").text("#"+index);
+            $(this).find("td").eq(i).find("span").text("#"+index);
           })
         }
+        //range box
+        $(document).on("click",".rangeBox .btn",function(){
+          var isMin = $(this).hasClass("minus");
+          var $minInput = $(this).parents("tr").find(".rangeBox:first").find('input');
+          var $maxInput = $(this).parents("tr").find(".rangeBox:last").find('input');
+          var $thisInput = $(this).parent().find("input");
+          var hasNext = ($(this).parent().parent().next().length>0) && ($(this).parent().parent().next().find(".rangeBox").length>0);
+          var minValue = parseFloat($minInput.attr("title"));
+          var maxValue = parseFloat($maxInput.attr("title"));
+          var thisValue = parseFloat($thisInput.attr("title"));
+          if(!IAX_TOOL.isNumber(minValue)){
+            minValue=1 ;
+            $minInput.val(minValue);
+            $minInput.attr("title",minValue);
+          }
+          if(!IAX_TOOL.isNumber(maxValue)){
+            maxValue=1 ;
+            $maxInput.val(maxValue);
+            $maxInput.attr("title",maxValue);
+          }
+          IAX_TOOL.isNumber(thisValue) || (thisValue=1);
+          isMin ? (thisValue -= 1) : (thisValue += 1);
 
+          if (isMin) {
+            hasNext && (minValue = 1);
+          }else{
+            hasNext || (maxValue = 9999);
+          }
+          if (thisValue >= minValue && thisValue <= maxValue) {
+            var formatVal = IAX_TOOL.formatNum(thisValue+"",0);
+            $(this).parent().find("input").val(formatVal);
+            $(this).parent().find("input").attr("title",thisValue);
+          }
+          return false;
+        })
+        $(document).on("keyup",".rangeBox input",function(){
+          var $minInput = $(this).parents("tr").find(".rangeBox:first").find('input');
+          var $maxInput = $(this).parents("tr").find(".rangeBox:last").find('input');
+          var hasNext = ($(this).parent().parent().next().length>0) && ($(this).parent().parent().next().find(".rangeBox").length>0);
+          var minValue = parseFloat($minInput.attr("title"));
+          var maxValue = parseFloat($maxInput.attr("title"));
+          var value = parseFloat($(this).val().replace(/,/g,""));
+          if(!IAX_TOOL.isNumber(minValue)){
+            minValue=1;
+            $minInput.val(minValue);
+            $minInput.attr("title",minValue);
+          }
+          if(!IAX_TOOL.isNumber(maxValue)){
+            maxValue=1 ;
+            $maxInput.val(maxValue);
+            $maxInput.attr("title",maxValue);
+          }
+          if(!IAX_TOOL.isNumber(value)){
+            value=1 ;
+          }
+          var fomatTitle = IAX_TOOL.formatNum($(this).attr("title"),0);
+          if (hasNext) {
+            if( value < 1 || value > maxValue){
+              $(this).val(fomatTitle);
+            }else{
+              $(this).attr("title",value);
+              $(this).val(IAX_TOOL.formatNum(value+"",0));
+            }
+          }else{
+            if (value < minValue || value > 9999) {
+              $(this).val(fomatTitle);
+            }else{
+              $(this).attr("title",value);
+              $(this).val(IAX_TOOL.formatNum(value+"",0));
+            }
+          }
+        });
       })
       function nextRetarget(thi){
         $(thi).attr("disabled",true);
         setTimeout(function(){
           $(thi).next().click();
           $(thi).attr("disabled",false);
+          $(".retargeting-audience-create-box").modal("show");
         },1000)
       }
    </script>

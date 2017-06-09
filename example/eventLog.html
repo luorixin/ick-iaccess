@@ -25,6 +25,7 @@
 	<script type="text/javascript" src="js/fnPagingInfo.js"></script>
 	<script type="text/javascript" src="js/extjs.js"></script>
 	<script type="text/javascript" src="js/calendar.js"></script>
+	<script type="text/javascript" src="js/timeRangeSchedule.js"></script>
   <script type="text/javascript" src="./js/hogan-2.0.0.min.js"></script>
   <script type="text/javascript" src="./js/iax-tool.js"></script>
   <script type="text/javascript" src="./js/iax-template.js"></script>
@@ -190,7 +191,7 @@
 
 
                   <li class="" style="display: block;">
-                    <a href="#">iAudience</a>
+                    <a href="./audiencePlans.html">iAudience</a>
                   </li>
 
 
@@ -336,12 +337,14 @@
 			<li class="filter_icon active">
 	            <div class="date-range" style="margin-top:10px;">
 	              <div class="date-range-ico"><i class="fa fa-clock-o"></i></div> 
-	              <input type="text" id="daterange"
+	              <input type="text" id="timerange"
 	                placeholder="please select a period" value=""
-	                class="form-control date-range-input xmoCalendarInputSchedule">
-	                 <input type="hidden" id="min" name="begin" value="" />
-	              <input type="hidden" id="max" name="end" value="" />
+	                class="form-control date-range-input"
+	                style="margin-bottom:-1px;">
+	                 <input type="hidden"  name="timeBegin" value="" />
+	              	<input type="hidden" name="timeEnd" value="" />
 	               <span class="caret arrow-calendar"></span>
+	               
 	            </div>
 			</li>
           <li class="filter_icon active" style="margin-top:10px;">
@@ -448,7 +451,7 @@
 </body>
     <script type="text/javascript">
 
-      var oTable;
+    var oTable;
     $(function(){
 	 oTable=$('#client_list').dataTable({
 			"oLanguage": {
@@ -483,18 +486,27 @@
              } ]
 		});
 		initCalendar("daterange");
+
+		//timeRangeSchedule
+		initTimeRangeSchedule("timerange");
 	});	
 	function initCalendar(id) {
        new xmoCalendar({
          inputId : '#' + id,
-         lang : "zh", //"zh" "en"
+         lang : "en", //"zh" "en"
          initTime : '2017-05-28',
          type : "OnlySelectDate",
          submitCallback : function() {
          },
        })
      }
+     function initTimeRangeSchedule(id){
+     	new timeRangeSchedule({
+     		input : $("#"+id),
+     		lang:"en"
 
+     	})
+     }
     
    </script>
 </html>

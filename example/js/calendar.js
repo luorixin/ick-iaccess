@@ -46,6 +46,7 @@ function xmoCalendar(options){
   _this.$maskContainer = options['maskContainer'] || $('body');
   _this.relativeTop = options['relativeTop'] || -1;
   _this.relativeLeft = options['relativeLeft'] || -1;
+  _this.relativeRight = options['relativeRight'] || -1;
   // 初始化数据
   _this.init();
 }
@@ -561,12 +562,16 @@ xmoCalendar.prototype.showCalendar = function(month, year){
   var $input = $(_this.inputId);
   var top = $input.offset().top +$input.outerHeight();
   var left = $input.offset().left;
+  var right = 0;
   if(_this.type == 'CompositeFastSelect'){
     left += 68
   }
   left += _this.offsetLeft;
   if (_this.relativeLeft!=-1) {
     left = _this.relativeLeft;
+  }
+  if (_this.relativeRight!=-1) {
+    right = _this.relativeRight;
   }
   if (_this.relativeTop!=-1) {
     top = _this.relativeTop;
@@ -578,7 +583,12 @@ xmoCalendar.prototype.showCalendar = function(month, year){
   });
   _this.$maskContainer.append(mask);
   top = top -mask.offset().top;
-  _this.wrapperBox.show().css({top : top,left:left,"z-index":100001});
+  
+  if (_this.relativeRight!=-1) {
+    _this.wrapperBox.show().css({top : top,right:right,"z-index":100001});
+  }else{
+    _this.wrapperBox.show().css({top : top,left:left,"z-index":100001});
+  }
   _this.initDate();
   _this.focusCheck();
 }

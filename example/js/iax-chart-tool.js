@@ -1021,7 +1021,7 @@ var IAX_CHART_TOOL = {
               {
                   name:'PRODUCT',
                   type:'pie',
-                  radius: ['50%', '70%'],
+                  radius: ['45%', '70%'],
                   avoidLabelOverlap: false,
                   selectedOffset:5,
                   label: {
