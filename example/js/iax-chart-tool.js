@@ -2,6 +2,8 @@ var IAX_CHART_TOOL = {
   colorMap : ['#f2e1e1', '#ecd3d3', '#eab7b7', '#eca5a7', '#fa7373', '#ef4136'],
   brandData: [],
   sets: [],
+  currentBubble:"",
+  bubbleData:"",
   init : function(){
     this.bindEvent();
   },
@@ -10,9 +12,7 @@ var IAX_CHART_TOOL = {
     var time = 250;
     var hideDelay = 500;
     var hideDelayTimer = null;
-    $(document).on('mouseover', '.graph-tiptool',function(){
-        if (hideDelayTimer) clearTimeout(hideDelayTimer);
-    });
+    var _this = this;
     $(document).on('mouseover', '.graph-tiptool',function(){
         if (hideDelayTimer) clearTimeout(hideDelayTimer);
         var position = $(this).attr('data-position') || 'rightbottom';
@@ -75,6 +75,30 @@ var IAX_CHART_TOOL = {
           }, hideDelay);
           return false;
     });
+    $(document).on("click","[name='bubble-brand']",function(){
+      var unselectArr = $("[name='bubble-brand']").filter(function(){
+                          return !$(this).is(":checked") && $(this).val()!="all";
+                        }).map(function(){
+                          return $(this).val();
+                        }).get();
+      var newBubbleData = $.extend(true,[],_this.bubbleData);
+      //去除泡泡
+      for (var i = 0; i < unselectArr.length; i++) {
+        var unselectId = unselectArr[i];
+        for (var j = 0; j < _this.bubbleData.length; j++) {
+          var sets = _this.bubbleData[j].sets;
+          if ($.inArray(parseInt(unselectId),sets)>-1) {
+            newBubbleData[j].remove = true;
+          };
+        };
+      };
+      newBubbleData = newBubbleData.filter(function(data){
+        return !data.remove;
+      })
+      $(this).parents(".bubble-container").find(".bubble-map svg").click();
+      $(this).parents(".bubble-container").find(".bubble-map").empty();
+      _this.initBubble($(this).parents(".bubble-container").attr("id"),newBubbleData);
+    })
   },
   initData: function(data){
     if (!data) return;
@@ -83,6 +107,7 @@ var IAX_CHART_TOOL = {
   initBubbleGraph:function(id,data){
     if (!data || !data.bubble || data.bubble.length==0) return;
     if (!document.getElementById(id)) return;
+    var _this = this;
     //判断是否引进了venn插件
     if (typeof venn == "object") {
       var keywords = [];
@@ -92,15 +117,22 @@ var IAX_CHART_TOOL = {
           keywords.push(bubble.label);
         };
       };
-      this.initBubbleInfo(id,keywords);
-      this.initBubble(id,data.bubble);
-      this.bindEvent();
+      _this.initBubbleInfo(id,keywords);
+      _this.initBubble(id,data.bubble);
+      _this.bindEvent();
+      _this.initMarketGraphByBubble(data.result[0]);
+      _this.currentBubble = data.result[0].id;
+      _this.brandData = data.result;
+      _this.bubbleData = data.bubble;
     };
   },
   initBubbleInfo:function(id,keywords){
     if (!keywords || keywords.length==0) return;
     if (!document.getElementById(id)) return;
-    var liHtml = "";
+    var liHtml =  '<li><div class="checkbox checkbox-primary checkbox-switch">'+
+                  '    <input type="checkbox" name="bubble-brand" disabled id="bubble-brandall" value="all" checked="checked">'+
+                  '    <label for="bubble-brandall">All market</label>'+
+                  '</div></li>';
     for (var i = 0; i < keywords.length; i++) {
       liHtml += '<li><div class="checkbox checkbox-primary checkbox-switch">'+
                 '    <input type="checkbox" name="bubble-brand" id="bubble-brand'+i+'" value="'+i+'" checked="checked">'+
@@ -108,6 +140,7 @@ var IAX_CHART_TOOL = {
                 '</div></li>';
     };
     $("#"+id).find(".bubble-info").find("ul").html(liHtml);
+    $("#"+id).find(".bubble-info-selected span").text("All market");
   },
   initBubble:function(id,sets){
     if (!sets || sets.length==0) return;
@@ -120,14 +153,13 @@ var IAX_CHART_TOOL = {
     var div = d3.select("#"+id).select(".bubble-map");
     div.datum(sets).call(chart);
 
-    var tooltip = d3.select("body").append("div")
-        .attr("class", "venntooltip");
+    var tooltip = $(".venntooltip").length>0 ? d3.select(".venntooltip") : d3.select("body").append("div").attr("class", "venntooltip");
 
     div.selectAll("path")
         .style("stroke-opacity", 1)
-        .style("stroke", "#fff")
+        .style("stroke", "none")
         .style("stroke-width", 1)
-        .style("stroke-dasharray",[5,5])
+        // .style("stroke-dasharray",[5,5])
     d3.selectAll(".venn-circle path:not(.path_select)")
         .style("fill-opacity",  .5);
     d3.selectAll(".venn-intersection path:not(.path_select)")
@@ -184,7 +216,7 @@ var IAX_CHART_TOOL = {
           d3.selectAll("path")
               .style("stroke-opacity", 1)
               .style("stroke-width", 1)
-              .style("stroke-dasharray",[5,5]); 
+              // .style("stroke-dasharray",[5,5]); 
           d3.selectAll(".venn-circle path")
               .style("fill-opacity",  .5);
           d3.selectAll(".venn-intersection path")
@@ -208,7 +240,7 @@ var IAX_CHART_TOOL = {
               .classed("path_select",false)
               .style("stroke-opacity", 0)
               .style("stroke-width", 1)
-              .style("stroke-dasharray",[5,5]);
+              // .style("stroke-dasharray",[5,5]);
 
           selection.select("path")
               .attr("class","path_select")
@@ -218,12 +250,41 @@ var IAX_CHART_TOOL = {
               .style("stroke-dasharray",[0,0]); 
           venn.sortAreas(div, d);
           _this.showCampare(id,d);
+          $("#"+id).find(".bubble-map").removeClass("bubble-select");
           // _this.initResultData();
       });
+      $("#"+id).on("click",".bubble-map",function(e){
+          e = e || window.event;
+          e.stopPropagation();
+          if (e.target.nodeName!="svg") {return};
+          d3.selectAll(".path_select")
+              .classed("path_select",false)
+              .transition().duration(400)
+              // .style("fill-opacity", 0.5)
+              .style("stroke-opacity", 0)
+              .style("stroke-width", 1)
+          $(this).addClass("bubble-select");
+          var subTitle = "All Market";
+          var audience = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[0];
+          var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
+          var selectLabel = $("#"+id).find(".bubble-info").find("#bubble-brandall").next().text();
+          var audienceTitle = 'Audience Scale <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>';
+          var marketTitle = 'Market Share <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>';
+          $(audience).find(".result-text-header label").html(audienceTitle);
+          $(market).find(".result-text-header label").html(marketTitle);
+          $(market).find(".result-graph-word-content>label").text(subTitle);
+          $("#"+id).find(".bubble-info-selected span").text(selectLabel);
+          if (_this.currentBubble != _this.brandData[0].id) {
+            _this.initMarketGraphByBubble(_this.brandData[0]);
+            _this.currentBubble = _this.brandData[0].id;
+          };
+      })
   },
   showCampare: function(id,d){
     var _this = this;
     var label = d.label ? d.label:"";
+    var bubbleid = d.sets.join("-");
+    var bubbleData = "";
     var subTitle = label + " overlaps All Market";
     var audience = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[0];
     var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
@@ -250,7 +311,24 @@ var IAX_CHART_TOOL = {
     $(market).find(".result-text-header label").html(marketTitle);
     $(market).find(".result-graph-word-content>label").text(subTitle);
     $("#"+id).find(".bubble-info-selected span").text(label);
+    for (var i = 0; i < _this.brandData.length; i++) {
+      if(_this.brandData[i].id == bubbleid){
+        bubbleData = _this.brandData[i];
+      }
+    };
+    _this.initMarketGraphByBubble(bubbleData);
+    _this.currentBubble = bubbleid;
     $('[data-toggle="tooltip"]').tooltip();
+  },
+  initMarketGraphByBubble:function(json){
+    if (!json) return;
+    this.initTotalAudience("select_audience","audience_total","market-map",json.data);
+    this.initGender("gender-map",json.data);
+    this.initAgeGroup("select_age",json.data);
+    this.initRegions("region-map",json.data);
+    this.initInterests("interest-map",json.data);
+    this.initTop5Graph("select_top_brand",json.data.top5brand);
+    this.initTop5Graph("select_top_products",json.data.top5products);
   },
   initTop5Graph:function(id,data){
     if(!data) return;
@@ -521,6 +599,59 @@ var IAX_CHART_TOOL = {
       series.push(seriesJson);
       yAxisIndex++;
     };
+    //生成topBrands列表
+    var topBrandsData = [];
+    for (var k = 0; k < date.length; k++) {
+      var json = {};
+      json.date = date[k];
+      json.value = null;
+      topBrandsData.push(json);
+    };
+    var itemHtmls = this.markeArticle(data.mixTrend.topBrands[0].articles);
+    $("#"+id).next().append(itemHtmls);
+    // series.push({
+    //     name : 'test',
+    //     type : 'line',
+    //     stack : 'symbol:',
+    //     yAxisIndex:0,
+    //     symbol : 'rect',
+    //     symbolSize : "14",
+    //     showAllSymbol:true,
+    //     symbolOffset:[0,'-50%'],
+    //     hoverAnimation:false,
+    //     lineStyle : {
+    //       normal : {
+    //         opacity:0,
+    //         color:"#ef4136",
+    //       }
+    //     },
+    //     itemStyle:{
+    //       normal:{
+    //         color:"#333",
+    //         label:{
+    //           show:true,
+    //           position:"inside",
+    //           offset:[0,2],
+    //           formatter:function(params){
+    //             return params.data.index;
+    //           },
+    //           textStyle:{
+    //             fontSize:12,
+    //             color:"#fff",
+    //           }
+    //         }
+    //       },
+    //       emphasis:{
+    //         color:"#ef4136"
+    //       }
+    //     },
+    //     areaStyle : {
+    //       normal : {
+    //         opacity:0
+    //       }
+    //     },
+    //     data : topBrandsData,
+    //   })
     var option = {
         title : {
           text: title,
@@ -540,13 +671,23 @@ var IAX_CHART_TOOL = {
               color : "#333",
               fontFamily : "Open Sans"
             },
+            axisPointer:{
+              lineStyle:{
+                type:"dotted",
+              }
+            },
             extraCssText:'text-align:left;',
             formatter: function(params) {
                 var result = "<p style='color:#999;font-size:10px'>"+params[0].name+"</p>";
                 params.forEach(function (item) {
-                    result += '<p><span style="display:inline-block;margin-right:5px;border-radius:10px!important;width:9px;height:9px;background-color:' + item.color + '"></span>'+item.seriesName+':'+item.value+'</p>';
+                    if (item.seriesName!="test") {
+                      result += '<p><span style="display:inline-block;margin-right:5px;border-radius:10px!important;width:9px;height:9px;background-color:' + item.color + '"></span>'+item.seriesName+':'+item.value+'</p>';
+                    };
                 });
                 result += "</p>"
+                 //高亮列表部分关联的item
+                // $("#"+id).next().find(".hoverItem").removeClass("hoverItem");
+                // $("#"+id).next().find("[data-date='"+params[0].name+"']").addClass("hoverItem");
                 return result;
             }
         },
@@ -593,6 +734,64 @@ var IAX_CHART_TOOL = {
         series : series,
       }; 
       myChart.setOption(option);
+      //绑定列表和图表的联动事件。。。
+      var  _this = this;
+      myChart.on('click', function (params) {
+          if (typeof params.seriesIndex == 'undefined') {      
+           return;      
+          }
+          var date = params.name;
+          var articles = "";
+          for (var i = 0; i < data.mixTrend.topBrands.length; i++) {
+            var json = data.mixTrend.topBrands[i];
+            if (json.date==date) {
+              articles = json.articles;
+            };
+          };
+          var aritclesHtml = _this.markeArticle(articles);
+          $("#"+id).next().html(aritclesHtml);
+      });
+      // $("#"+id).next().find(".pic-title-item").on("hover",function(){
+      //   var date = $(this).attr("data-date");
+      //   myChart.dispatchAction({type: 'showTip', seriesIndex: '1', name: date});
+      // })
+  },
+  markeArticle : function(data){
+    if (!data) {return ""};
+    var _itemhtml="";
+    for(var j=0;j<data.length;j++){
+      var item = data[j];
+      var convertDate = item.date.split(" ")[0].replace(/\//g,"-");
+      _itemhtml += '<div class="pic-title-item" data-date="'+convertDate+'">'+
+                      '  <div class="pic-title-item-inner">'+
+                      '    <span class="pic-title-item-index">'+item.index+'</span>'+
+                      '    <div class="pic-title-item-pic">'+
+                      '      <a href="javascript:;">'+
+                      '        <img style="background:#ddd;" src="../images/icon_conversions.png" height="55" width="55">'+
+                      '      </a>'+
+                      '    </div>'+
+                      '    <div class="pic-title-item-container">'+
+                      '      <div class="pic-title-item-container-title">'+
+                      '        <p>'+item.title+'</p>'+
+                      '      </div>'+
+                      '      <div class="pic-title-item-container-info">'+
+                      '        <span>'+item.content+' '+item.date+'</span>'+
+                      '      </div>'+
+                      '    </div>'+
+                      '  </div>'+
+                      '</div>';
+      //根据date信息，将ABCDEFG显示在图表中。。。
+     
+      //   var json = {}
+      //   for (var k = 0; k < topBrandsData.length; k++) {
+      //     json = topBrandsData[k];
+      //     if(json.date==convertDate){
+      //       json.value = 0;
+      //       json.index = item.index;
+      //     }
+      //   };
+    }
+    return _itemhtml;
   },
   initAudienceFunnel: function(id, data){
     if(!data) return;
@@ -1109,6 +1308,16 @@ var IAX_CHART_TOOL = {
     if (!document.getElementById(id)) return;
     var myChart = echarts.init(document.getElementById(id));
     var rangeColor = ['#f2e1e1', '#ecd3d3', '#eab7b7', '#eca5a7', '#fa7373', '#ef4136'];
+    var min = 0,max = 0;
+    for (var i = 0; i < data.regions.length; i++) {
+      var value = parseInt(data.regions[i].value);
+      if (min==0 || min>value) {
+        min = value;
+      };
+      if (max<value) {
+        max = value;
+      };
+    };
     var option = {
           tooltip: {
             backgroundColor:"#f2f2f2",
@@ -1122,8 +1331,8 @@ var IAX_CHART_TOOL = {
             }
           },
           visualMap: {
-              min: 0,
-              max: 1500,
+              min: min,
+              max: max,
               type: 'piecewise',
               left: 'left',
               top: 'bottom',
@@ -1165,8 +1374,8 @@ var IAX_CHART_TOOL = {
                   }
               },
               nameMap:{
-                  // '北京' : '北京',
-                  // '天津' : '天津'
+                  // '北京' : 'beijing',
+                  // '天津' : 'tianjin'
               }
           },
           series : [
@@ -1220,7 +1429,9 @@ var IAX_CHART_TOOL = {
                   '</div>'+
                 '</span>'+
               '</div>';
-      $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
+        if(i < 10){
+          $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
+        }
       }
   },
   initInterests: function(id,data){
@@ -1233,24 +1444,26 @@ var IAX_CHART_TOOL = {
       $("#"+id).parent().parent().find(".result-graph-word-content").empty();
     };
     for(var i in data.interest){
-      var indicatorJson = {};
-      indicatorJson.text = data.interest[i].name;
-      indicatorJson.max = 100;
-      indicator.push(indicatorJson);
-      var topPointJson = {};
-      topPointJson.name= data.interest[i].name;
-      topPointJson.value = data.interest[i].value+"%";
-      topPointArr.push(topPointJson);
-      dataArr.push(data.interest[i].value);
+      if (i!="xxx_test") {
+        var indicatorJson = {};
+        indicatorJson.text = data.interest[i].name;
+        indicatorJson.max = 100;
+        indicator.push(indicatorJson);
+        var topPointJson = {};
+        topPointJson.name= data.interest[i].name;
+        topPointJson.value = data.interest[i].value+"%";
+        topPointArr.push(topPointJson);
+        dataArr.push(data.interest[i].value);
 
-      datas.push(data.interest[i].value);
-      categories.push(data.interest[i].name);
+        datas.push(data.interest[i].value);
+        categories.push(data.interest[i].name);
+      }
       //初始化副标题
         if($("#"+id).parent().parent().find(".result-graph-word-content").length>0){
           var _li = "";
           for (var j = 0; j < data.interest[i].sub.length; j++) {
-                _li += '<li>'+(j+1)+'.'+data.interest[i].sub[j]+'</li>';
-              };
+            _li += '<li>'+(j+1)+'.'+data.interest[i].sub[j]+'</li>';
+          };
           var _html = '<div class="result-graph-word-interest">'+
                             '<div class="result-graph-word-interest-inner">'+
                               '<label>'+data.interest[i].name+'</label>'+
@@ -1259,22 +1472,22 @@ var IAX_CHART_TOOL = {
                               '</ul>'+
                             '</div>'+
                           '</div>';
-               $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
-        }else{
-          var _li = "";
-          for (var j = 0; j < data.interest[i].sub.length; j++) {
-                _li += '<li title="'+data.interest[i].sub[j]+'">'+data.interest[i].sub[j]+'</li>';
-               };
-            var _html = '<ul>'+_li+'</ul>';
-            liCon[data.interest[i].name] = _html;
+          $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
         }
+        var _li = "";
+        for (var j = 0; j < data.interest[i].sub.length; j++) {
+          _li += '<li title="'+data.interest[i].sub[j]+'">'+data.interest[i].sub[j]+'</li>';
+         };
+        var _html = '<ul>'+_li+'</ul>';
+        liCon[data.interest[i].name] = _html;
     }
     if($("#"+id).parent().parent().find(".result-graph-word-content").length>0){
-      this.createSpiderByEchart(id,indicator,topPointArr,dataArr);
+      // this.createSpiderByEchart(id,indicator,topPointArr,dataArr);
+      this.createSpiderByHighChart(id,datas,categories,liCon);
     }else{
       this.createSpiderByHighChart(id,datas,categories,liCon);
     }
-    
+    this.bindEvent();
       
   },
   createSpiderByEchart: function(id,indicator,topPointArr,dataArr){
@@ -1633,28 +1846,41 @@ var IAX_CHART_TOOL = {
                   var yData = this.chart.series[0].yData;
                   var xData = this.axis.categories;
                   var yValue;
-                  var revert = false;
-                  var middle = false;
-                  var revert_2 = false;
+                  var revert = false;//第1个
+                  var middle = false;//中间部分
+                  var revert_5 = false;//第5个
+                  var revert_2 = false;//第三个
+                  var revert_3 = false;//第四个
                   for (var i = 0; i < xData.length; i++) {
                     if(this.value==xData[i]){
                       yValue = yData[i];
-                      if (i==3) {revert=true};
-                      if (i==1 || i==4) {middle=true};
-                      if (i==2) {revert_2=true};
+                      if (xData.length==5) {
+                        if (i==3) {revert=true};
+                        if (i==1) {revert_5=true};
+                        if (i==4) {middle=true};
+                        if (i==2) {revert_2=true};
+                      }else if(xData.length==6){
+                        if (i==5 || i==4) {revert_5 = true}
+                        if (i==2 || i==1) {middle=true};
+                        if (i==3) {revert_3=true};
+                      }
+                      
                       break;
                     }
                   };
                   var ul_li =  liCon[this.value];
                   if (revert) {
-                    
-                    return '<div style="width:200px;margin-left:-55px;text-align:center;white-space: nowrap;display:inline-block;*display:inline;"><div class="graph-tiptool" data-position="top" style="margin-top:6px;margin-bottom: 7px;margin-right: -1px"><span class="graph-tip">...</span><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div></div><span style="color:#ef4136;font-size:18px;">'+yValue+'%</span><br><span style="font-size:14px;">'+this.value+'</span></div>'
+                    return '<div style="width:200px;margin-left:-55px;text-align:center;white-space: nowrap;display:inline-block;*display:inline;"><div class="graph-tiptool" data-position="top" style="margin-top:6px;margin-bottom: 7px;margin-right: -1px"><span class="graph-tip"><i class="fa-ellipsis-h fa"></i></span><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div></div><span style="color:#ef4136;font-size:18px;">'+yValue+'%</span><br><span style="font-size:14px;">'+this.value+'</span></div>'
                   }else if (revert_2){
-                    return '<div style="min-width:100px;text-align:center;white-space: nowrap;display:inline-block;*display:inline;"><div class="graph-tiptool" data-position="top" ><div style="padding-bottom: 7px;padding-right: 20px"><span class="graph-tip">...</span></div><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div><span style="color:#ef4136;font-size:18px;margin-left:-20px;">'+yValue+'%</span><br><span style="font-size:14px;margin-left:-20px;">'+this.value+'</span></div>'
+                    return '<div style="min-width:100px;text-align:center;white-space: nowrap;display:inline-block;*display:inline;"><div class="graph-tiptool" data-position="top" ><div style="padding-bottom: 7px;padding-right: 20px"><span class="graph-tip"><i class="fa-ellipsis-h fa"></i></span></div><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div><span style="color:#ef4136;font-size:18px;margin-left:-20px;">'+yValue+'%</span><br><span style="font-size:14px;margin-left:-20px;">'+this.value+'</span></div>'
+                  }else if (revert_3){
+                    return '<div style="min-width:100px;text-align:center;white-space: nowrap;display:inline-block;*display:inline;margin-top:30px;"><div class="graph-tiptool" data-position="top" ><div style="padding-bottom: 7px;padding-right: 20px"><span class="graph-tip"><i class="fa-ellipsis-h fa"></i></span></div><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div><span style="color:#ef4136;font-size:18px;margin-left:-20px;">'+yValue+'%</span><br><span style="font-size:14px;margin-left:-20px;">'+this.value+'</span></div>'
+                  }else if (revert_5) {
+                    return '<div style="min-width:100px;text-align:center;margin-top:-30px;margin-left:-40px;display:inline-block;*display:inline;"><span style="font-size:14px;">'+this.value+'</span><br><span style="color:#ef4136;font-size:18px;">'+yValue+'%</span><br/><div class="graph-tiptool" data-position="top" style="margin-top:5px"><span class="graph-tip"><i class="fa-ellipsis-h fa"></i></span><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div></div></div>'
                   }else if (middle) {
-                    return '<div style="min-width:100px;text-align:center;margin-top:-30px;display:inline-block;*display:inline;"><span style="font-size:14px;">'+this.value+'</span><br><span style="color:#ef4136;font-size:18px;">'+yValue+'%</span><br/><div class="graph-tiptool" data-position="top" style="margin-top:5px"><span class="graph-tip">...</span><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div></div></div>'
+                    return '<div style="min-width:100px;text-align:center;margin-top:-30px;display:inline-block;*display:inline;"><span style="font-size:14px;">'+this.value+'</span><br><span style="color:#ef4136;font-size:18px;">'+yValue+'%</span><br/><div class="graph-tiptool" data-position="top" style="margin-top:5px"><span class="graph-tip"><i class="fa-ellipsis-h fa"></i></span><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div></div></div>'
                   }else{
-                    return '<div data-id="chart_0" style="width:586px;margin-left:-251px;text-align:center;margin-bottom:40px;white-space: nowrap;display:inline-block;*display:inline;"><span style="font-size:14px;margin-left: 10px">'+this.value+'</span><br><span style="color:#ef4136;font-size:18px;margin-left: 10px;">'+yValue+'%</span><br/><div class="graph-tiptool" data-position="top" style="margin-top:6px;margin-left: 10px;"><span class="graph-tip">...</span><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div></div></div>'
+                    return '<div data-id="chart_0" style="width:586px;margin-left:-251px;text-align:center;margin-bottom:40px;white-space: nowrap;display:inline-block;*display:inline;"><span style="font-size:14px;margin-left: 10px">'+this.value+'</span><br><span style="color:#ef4136;font-size:18px;margin-left: 10px;">'+yValue+'%</span><br/><div class="graph-tiptool" data-position="top" style="margin-top:6px;margin-left: 10px;"><span class="graph-tip"><i class="fa-ellipsis-h fa"></i></span><div class="graph-tip-content"><label>'+this.value+'</label>'+ul_li+'</div></div></div>'
                   }
 
                 }
