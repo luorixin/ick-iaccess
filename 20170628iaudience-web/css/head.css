@@ -113,6 +113,30 @@ body {-webkit-font-smoothing: subpixel-antialiased !important; }
 .myheading .navbar-nav>li.selected>a { border-bottom: 4px solid #e8272a; color: #e8272a;}
 .myheading .navbar-nav>li.selected>a:hover { border-bottom: 4px solid #e8272a;  color: #e8272a;}
 
+.headlogo{
+  width: 120px;
+  height: 50px;
+}
+.headlogo.audience_logo{
+  background: url(../images/iaudience_logo.jpg) no-repeat center transparent;
+  background-size: cover;
+}
+.headlogo.iaccess_logo{
+  background: url(../images/iaccess_logo.jpg) no-repeat center transparent;
+  background-size: cover;
+}
+.headlogo.iactivate_logo{
+  background: url(../images/iactivate_logo.jpg) no-repeat center transparent;
+  background-size: cover;
+}
+.headlogo.insights_logo{
+  background: url(../images/insights_logo.jpg) no-repeat center transparent;
+  background-size: cover;
+}
+.headlogo.iexperience_logo{
+  background: url(../images/iexperience_logo.jpg) no-repeat center transparent;
+  background-size: cover;
+}
 
 .nav-arrow,.nav-arrow:after {
   position: absolute;

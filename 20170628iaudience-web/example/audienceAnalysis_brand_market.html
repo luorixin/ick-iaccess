@@ -46,6 +46,8 @@
   <script type="text/javascript" src="./js/canvg.js"></script>
 
     <script type="text/javascript" src="./js/hogan-2.0.0.min.js"></script>
+     <script type="text/javascript" src="./js/highcharts.js"></script>
+    <script type="text/javascript" src="./js/highcharts-more.js"></script>
     <script type="text/javascript" src="./js/iax-tool.js"></script>
     <script type="text/javascript" src="./js/iax-template.js"></script>
     <script type="text/javascript" src="./js/iax-chart-tool.js"></script>
@@ -211,6 +213,9 @@
                   <li class="selected">
                     <a href="javascript:void(0);" >iAudience</a>
                   </li>
+                   <li class="">
+                    <a href="./insights.html" >iNsights</a>
+                  </li>
 
                 </ul>
 
@@ -287,6 +292,27 @@
                 </li>
               </ul>
             </li>
+
+            <li id="" class="">
+              <a href="./eventSetup.html">
+               <i class="fa fa-eye" aria-hidden="true"></i>
+                <span class="x-m8">Event Management</span>
+               <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+              </a>
+              <ul class="sub-menu" style="">
+                <li class="">
+                  <a href="./eventSetup.html"><span class="x-m8">Event Setup</span></a>
+                </li>
+                <li class="">
+                  <a href="./eventLog.html"><span class="x-m8">Event Log</span></a>
+
+                </li>
+                <li class="">
+                  <a href="./outsiteAudience.html"><span class="x-m8">Onsite Audience</span></a>
+
+                </li>
+              </ul>
+            </li>
             
           </ul>
           <ul class="x-menu-lang-select">
@@ -350,7 +376,7 @@
           <div class="button-right" style="margin:-40px 0 10px 0;">
             <div class="dropdown btn-iclick dropdown-stop">
               <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i>
-              <button class="btn dropdown-toggle" type="button" onclick="">
+              <button class="btn dropdown-toggle" type="button" id="export-pdf">
                 Export&nbsp;
               </button>
             </div>
@@ -359,254 +385,245 @@
       		<!-- table -->
       		<div class="tab-content" id="myTabContent">
       			<div class="tab-pane fade in active" id="tab-share">
-                <div class="" id="for_export_img" style="float:left;width:100%;">
-                    <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
-                      <div class="plan-reports-result clearfix">
-                        <div class="plan-reports-result-inner" style="width:65%">
-                          <!--Trend map-->
-                          <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:600px;padding: 0 7.5px 0 0;">
-                            <div class="plan-result-text">
-                              <div class="result-text-header">
-                                <label id="date_header">Trend of Market Audience & Market Share
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
-                                </label>
-                                <div class="report-dropdown" style="top:30px;right:20px;">
-                                  <div class="date-range">
-                                    <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
-                                    <input type="text" id="daterange"
-                                      style="width:155px;"
-                                      placeholder="please select a period" value=""
-                                      class="form-control date-range-input xmoCalendarInputSchedule">
-                                       <input type="hidden" id="min" name="begin" value="" />
-                                      <input type="hidden" id="max" name="end" value="" />
-                                     <span class="caret arrow-calendar"></span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr">
-                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-                                    <div id="mix_chart" class="line-chart-map" style="width:100%;height:200px;">
-                                    </div>
-                                    <!-- 图片文字列表 begin-->
-                                      <div class="pic-title-list">
-                                        
-                                      </div>
-                                      <!-- 图片文字列表 end-->
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="plan-reports-result-inner" style="width:35%">
-                          <!--total-->
-                          <div class="plan-result-graph graph-top" style="width:100%;padding:0 0px 0 7.5px" id="select_audience_share">
-                            <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
-                              <div class="result-text-header clearfix">
-                                <label id="date_header">Audience Scale
+                <div class="" id="for_export_share">
+                  <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                    <div class="plan-reports-result clearfix">
+                      <div class="plan-reports-result-inner" style="width:65%">
+                        <!--Trend map-->
+                        <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:600px;padding: 0 7.5px 0 0;">
+                          <div class="plan-result-text">
+                            <div class="result-text-header">
+                              <label id="date_header">Trend of Market Audience & Market Share
                                 <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
-                                </label>
-                              </div>
-                              <div class="result-text-info clearfix x-mt10">
-                                <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:20px;">
-                                  <label class="titleRed" id="audience_total_share" style="">0</label>
+                              </label>
+                              <div class="report-dropdown" style="top:30px;right:20px;">
+                                <div class="date-range">
+                                  <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
+                                  <input type="text" id="daterange"
+                                    style="width:155px;"
+                                    placeholder="please select a period" value=""
+                                    class="form-control date-range-input xmoCalendarInputSchedule">
+                                     <input type="hidden" id="min" name="begin" value="" />
+                                    <input type="hidden" id="max" name="end" value="" />
+                                   <span class="caret arrow-calendar"></span>
                                 </div>
                               </div>
                             </div>
-                            
-                            <!--Market share-->
-                            <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
-                              <div class="result-text-header">
-                                <label id="date_header">Market Share
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
-                                </label>
+                            <div class="result-graph-info x-mt10">
+                              <div class="result-graph-word word-impr">
+                                <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                  <div id="mix_chart" class="line-chart-map" style="width:100%;height:200px;">
+                                  </div>
+                                  <!-- 图片文字列表 begin-->
+                                    <div class="pic-title-list">
+                                      
+                                    </div>
+                                    <!-- 图片文字列表 end-->
+                                </div>
                               </div>
-                              <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr">
-                                    <div class="result-graph-word-content" style="padding-top:0;">
-                                      <div id="market-map_share" class="market-map" style="width:180px;height:160px;">
-                                      </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="plan-reports-result-inner" style="width:35%">
+                        <!--total-->
+                        <div class="plan-result-graph graph-top" style="width:100%;padding:0 0px 0 7.5px" id="select_audience_share">
+                          <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
+                            <div class="result-text-header clearfix">
+                              <label id="date_header">Audience Scale
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              </label>
+                            </div>
+                            <div class="result-text-info clearfix x-mt10">
+                              <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:20px;">
+                                <label class="titleRed" id="audience_total_share" style="">0</label>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <!--Market share-->
+                          <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
+                            <div class="result-text-header">
+                              <label id="date_header">Market Share
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              </label>
+                            </div>
+                            <div class="result-graph-info x-mt10">
+                              <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word-content" style="padding-top:0;width:180px;">
+                                    <div id="market-map_share" class="market-map" style="width:180px;height:160px;">
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end-->
+
+                        <!--cloud tag-->
+                        <div class="plan-result-graph graph-top" style="width:100%;height:367px;" id="select_keywords_share">
+                          <div class="plan-result-text">
+                            <div class="result-text-header clearfix">
+                              <label>Keywords
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              </label>
+                            </div>
+                            <div class="result-graph-info x-mt10">
+                              <div class="result-graph-word word-impr">
+                                <div class="result-graph-word-content">
+                                    <div id="cloud_tag_share" class="cloud-tag" style="width:340px;margin:0 -20px;height:300px;">
                                     </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <!--end-->
-
-                          <!--cloud tag-->
-                          <div class="plan-result-graph graph-top" style="width:100%;height:367px;" id="select_keywords_share">
-                            <div class="plan-result-text">
-                              <div class="result-text-header clearfix">
-                                <label>Keywords
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
-                                </label>
-                              </div>
-                              <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr">
-                                  <div class="result-graph-word-content">
-                                      <div id="cloud_tag_share" class="cloud-tag" style="width:340px;margin:0 -20px;height:300px;">
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!--end-->
-
                         </div>
+                        <!--end-->
+
                       </div>
                     </div>
                   </div>
+                </div>
             </div>
 
       			<div class="tab-pane fade" id="tab-brand">
-              <div class="" id="for_export_all_img">
-                <div class="row hide" id="exportjpg" style="padding: 20px 30px 20px 0px;">
-                  <div class="client-row">
-                    <h1 style=" font-size: 30px;">Audience Analysis</h1>
-                  </div>
-                  <div style="float:right">
-                    <img src="http://xmostg.optimix.asia/images/logo/xmo.optimix.asia.png" alt="" style="width:118px">
-                  </div>
-                </div>
-
-                <div class="" id="for_export_img" style="float:left;width:100%;">
-                  <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
-                    <div class="plan-reports-result clearfix">
-                      <div class="plan-reports-result-inner">
-                        <!--line-map-->
-                        <div class="plan-result-graph" id="select_line_map" style="width:50%;height:280px;padding:0 7.5px 0 0;">
-                          <div class="plan-result-text">
-                            <div class="result-text-header clearfix">
-                              <label id="date_header">Audience Funnel
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
-                              </label>
-                            </div>
-                            <div class="result-graph-info x-mt10">
-                              <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-                                  <div id="audience-funnel" class="line-chart-map" style="width:100%;height:230px;">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+              <div class="" id="for_export_brand">
+                <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                  <div class="plan-reports-result clearfix">
+                    <div class="plan-reports-result-inner">
+                      <!--line-map-->
+                      <div class="plan-result-graph" id="select_line_map" style="width:50%;height:280px;padding:0 7.5px 0 0;">
+                        <div class="plan-result-text">
+                          <div class="result-text-header clearfix">
+                            <label id="date_header">Audience Funnel
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                            </label>
                           </div>
-                        </div>
-                        <!--product-share-->
-                        <div class="plan-result-graph" id="select_product_share" style="width:50%;height:280px;padding:0 0px 0 7.5px;">
-                          <div class="plan-result-text">
-                            <div class="result-text-header clearfix">
-                              <label id="date_header">My Product Share
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
-                              </label>
-                            </div>
-                            <div class="result-graph-info x-mt10">
-                              <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-                                  <div id="product-map" class="device-map" style="width:100%;height:220px;">
-                                  </div>
+                          <div class="result-graph-info x-mt10">
+                            <div class="result-graph-word word-impr">
+                              <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                <div id="audience-funnel" class="line-chart-map" style="width:100%;height:230px;">
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    
-                      <div class="plan-reports-result-inner" style="width:25%;">
-                        <!--性别-->
-                        <div class="plan-result-graph" id="select_gender" style="width:100%">
-                          <div class="plan-result-text">
-                            <div class="result-text-header clearfix">
-                              <label>Gender</label>
-                            </div>
-                            <div class="result-graph-info x-mt10">
-                              <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-content" style="padding-top:0;">
-                                  <div id="gender-map" class="gender-map" style="width:230px;height:170px;">
-                                  </div>
-                                  <div class="gender-map-info gender-male">
-                                    <span class="gender-map-ico"></span>
-                                    <p>0%</p>
-                                    <span>Male</span>
-                                  </div>
-                                  <div class="gender-map-info gender-female">
-                                    <span class="gender-map-ico"></span>
-                                    <p>0%</p>
-                                    <span>Female</span>
-                                  </div>
+                      <!--product-share-->
+                      <div class="plan-result-graph" id="select_product_share" style="width:50%;height:280px;padding:0 0px 0 7.5px;">
+                        <div class="plan-result-text">
+                          <div class="result-text-header clearfix">
+                            <label id="date_header">My Product Share
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                            </label>
+                          </div>
+                          <div class="result-graph-info x-mt10">
+                            <div class="result-graph-word word-impr">
+                              <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                <div id="product-map" class="device-map" style="width:100%;height:220px;">
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <!--年龄-->
-                        <div class="plan-result-graph" id="select_age" style="padding: 0 7.5px 0 0;width: 100%;">
-                          <div class="plan-result-text">
-                              <div class="result-text-header clearfix">
-                                <label>AGE GROUPS</label>
-                              </div>
-                              <div class="result-graph-info clearfix x-mt10">
-                                <div class="result-graph-word word-impr">
-                                  <div class="result-graph-word-content">
-                                   
-
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                        <!--end-->
                       </div>
-                      <!--inner end -->
-                      <div class="plan-reports-result-inner" style="width:75%;">
-                        <!--地域-->
-                        <div class="plan-result-graph graph-region" style="width:100%;padding-left:7.5px;" id="select_province">
-                          <div class="plan-result-text">
-                            <div class="result-text-header clearfix">
-                              <label>REGIONS</label>
-                            </div>
-                            <div class="result-graph-info x-mt10">
-                              <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-map">
-                                  <div class="region-map" id="region-map" style="width:500px;"></div>
-                                  <label style="position:absolute;left:25px;bottom:40px;">Distribution index</label>
-                                </div>
-                                <div class="result-graph-word-content">
-
-                                 
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!--end-->
-                      </div>
-                      <!--inner end-->
-                      <div class="plan-reports-result-inner">
-                        <!--interests-->
-                        <div class="plan-result-graph graph-interest" style="width:100%;padding:0;" id="select_interests">
-                          <div class="plan-result-text">
-                            <div class="result-text-header clearfix">
-                              <label>INTEREST CATEGORIES</label>
-                            </div>
-                            <div class="result-graph-info x-mt10">
-                              <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-map">
-                                  <div class="interest-map" id="interest-map"></div>
-                                </div>
-                                <div class="result-graph-word-content">
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- end -->
-                      </div>
-
                     </div>
+                    <div class="plan-reports-message">
+                      <span>Selected Audience Group: </span><span>4 weeks - All Audience</span>
+                    </div>
+                    <div class="plan-reports-result-inner" style="width:25%;">
+                      <!--性别-->
+                      <div class="plan-result-graph" id="select_gender" style="width:100%">
+                        <div class="plan-result-text">
+                          <div class="result-text-header clearfix">
+                            <label>Gender</label>
+                          </div>
+                          <div class="result-graph-info x-mt10">
+                            <div class="result-graph-word word-impr">
+                              <div class="result-graph-word-content" style="padding-top:0;">
+                                <div id="gender-map" class="gender-map" style="width:230px;height:170px;">
+                                </div>
+                                <div class="gender-map-info gender-male">
+                                  <span class="gender-map-ico"></span>
+                                  <p>0%</p>
+                                  <span>Male</span>
+                                </div>
+                                <div class="gender-map-info gender-female">
+                                  <span class="gender-map-ico"></span>
+                                  <p>0%</p>
+                                  <span>Female</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--年龄-->
+                      <div class="plan-result-graph" id="select_age" style="padding: 0 7.5px 0 0;width: 100%;">
+                        <div class="plan-result-text">
+                            <div class="result-text-header clearfix">
+                              <label>AGE GROUPS</label>
+                            </div>
+                            <div class="result-graph-info clearfix x-mt10">
+                              <div class="result-graph-word word-impr">
+                                <div class="result-graph-word-content">
+                                 
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      
+                      <!--end-->
+                    </div>
+                    <!--inner end -->
+                    <div class="plan-reports-result-inner" style="width:75%;">
+                      <!--地域-->
+                      <div class="plan-result-graph graph-region" style="width:100%;padding-left:7.5px;" id="select_province">
+                        <div class="plan-result-text">
+                          <div class="result-text-header clearfix">
+                            <label>REGIONS</label>
+                          </div>
+                          <div class="result-graph-info x-mt10">
+                            <div class="result-graph-word word-impr" style="width:785px;margin:0 auto;">
+                              <div class="result-graph-word-map">
+                                <div class="region-map" id="region-map" style="width:500px;"></div>
+                                <label style="position:absolute;left:25px;bottom:40px;">Distribution index</label>
+                              </div>
+                              <div class="result-graph-word-content">
+
+                               
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--end-->
+                    </div>
+                    <!--inner end-->
+                    <div class="plan-reports-result-inner">
+                      <!--interests-->
+                      <div class="plan-result-graph graph-interest" style="width:100%;padding:0;" id="select_interests">
+                        <div class="plan-result-text">
+                          <div class="result-text-header clearfix">
+                            <label>INTEREST CATEGORIES</label>
+                          </div>
+                          <div class="result-graph-info x-mt10">
+                            <div class="result-graph-word word-impr" style="width:1058px;margin:0 auto;">
+                              <div class="result-graph-word-map">
+                                <div class="interest-map" id="interest-map"></div>
+                              </div>
+                              <div class="result-graph-word-content">
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end -->
+                    </div>
+
                   </div>
                 </div>
 
@@ -614,17 +631,8 @@
         			
       			</div>
             <div class="tab-pane fade" id="tab-product">
-                <div class="" id="for_export_all_img">
-                    <div class="row hide" id="exportjpg" style="padding: 20px 30px 20px 0px;">
-                      <div class="client-row">
-                        <h1 style=" font-size: 30px;">Audience Analysis</h1>
-                      </div>
-                      <div style="float:right">
-                        <img src="http://xmostg.optimix.asia/images/logo/xmo.optimix.asia.png" alt="" style="width:118px">
-                      </div>
-                    </div>
+                <div class="" id="for_export_product">
 
-                    <div class="" id="for_export_img" style="float:left;width:100%;">
                       <div class="plan-reports" id="report_content" style="margin-top:5px;">
                         <div class="plan-reports-result">
                           <div class="plan-reports-result-inner">
@@ -724,7 +732,7 @@
                                 <div class="result-graph-info x-mt10">
                                   <div class="result-graph-word word-impr">
                                       <div class="result-graph-word-content" style="padding-top:0;">
-                                        <label style="margin-top:-10px;">Estee Lauder overlaps All Market</label>
+                                        <label style="margin-top:-10px;">Stay-in-Place Makeup overlaps My Brand</label>
                                         <div id="market-brand-map" class="market-map" style="width:230px;height:160px;">
                                         </div>
                                       </div>
@@ -734,10 +742,10 @@
                             </div>
                             
                             <!--年龄-->
-                            <div class="plan-result-graph" id="select_age_brand" style="padding: 0 7.5px;width: 50%;">
+                            <div class="plan-result-graph" id="select_age_brand" style="padding: 0 15px 0 0;width: 50%;">
                               <div class="plan-result-text">
                                 <div class="result-text-header clearfix">
-                                  <label>AGE GROUPS</label>
+                                  <label>Age Groups</label>
                                 </div>
                                 <div class="result-graph-info clearfix x-mt10">
                                   <div class="result-graph-word word-impr">
@@ -782,10 +790,10 @@
                             <div class="plan-result-graph graph-region" style="width:100%;padding-left:7.5px;" id="select_province">
                               <div class="plan-result-text">
                                 <div class="result-text-header clearfix">
-                                  <label>REGIONS</label>
+                                  <label>Regions</label>
                                 </div>
                                 <div class="result-graph-info x-mt10">
-                                  <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word word-impr" style="width:520px;margin:0 auto;">
                                     <div class="result-graph-word-map">
                                       <div class="region-map" id="region-brand-map"></div>
                                       <label style="position:absolute;left:25px;bottom:40px;">Distribution index</label>
@@ -806,10 +814,10 @@
                             <div class="plan-result-graph graph-interest" style="width:100%;padding:0;" id="select_interests">
                               <div class="plan-result-text">
                                 <div class="result-text-header clearfix">
-                                  <label>INTEREST CATEGORIES</label>
+                                  <label>Interest Categories</label>
                                 </div>
                                 <div class="result-graph-info x-mt10">
-                                  <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word word-impr" style="width:1058px;margin:0 auto;">
                                     <div class="result-graph-word-map">
                                       <div class="interest-map" id="interest-brand-map"></div>
                                     </div>
@@ -825,7 +833,6 @@
 
                         </div>
                       </div>
-                    </div>
 
                   </div>
              
@@ -847,7 +854,22 @@
       </div>
     <!--container end-->
    
-
+    <!-- 为生成导出做的准备 -->
+    <!-- img导出 -->
+    <div class="hide" style="position:absolute;z-index:0;opacity:0">
+      <div id="for_export_all_img_export" style="padding:20px;">
+      </div>
+    </div>
+    <!-- Title 标题信息-->
+    <div class="hide" style="position:absolute;z-index:0;opacity:0">
+      <div class="clearfix h30"></div>
+      <div id="title_pdf"></div>
+    </div>
+    <!-- report报表信息-->
+    <div class="hide" style="position:absolute;z-index:0;opacity:0;">
+      <div class="clearfix h30"></div>
+      <div id="reports_pdf"></div>
+    </div>
   </body>
   <script type="text/javascript">
 
@@ -856,25 +878,6 @@
       
       var data = {"result": [{
             "data": {
-                "age_group": {
-                    "18-24": 30,
-                    "25-34": 15,
-                    "35-44": 25,
-                    "45-54": 20,
-                    "55-64": 10,
-                    "65+": 3
-                },
-                "audience": "3.3M",
-                "allMarket": "2,567K",
-                "device": {
-                    "Mobile": 852,
-                    "PC": 1246,
-                    "Tablet": 179
-                },
-                "gender": {
-                    "female": 22,
-                    "male": 38
-                },
                 "product_share": {
                     "Stay-in-Place Makeup": 23500,
                     "Prefectionist": 12246,
@@ -884,88 +887,327 @@
                 "audienceFunnel":{
                   "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
                   "result":{
+                    "total":[
+                      {"date":"4 Weeks","name":"All Audience","graphData":{
+                        "age_group": {
+                            "18-24": 20,
+                            "25-34": 55,
+                            "35-44": 65,
+                            "45-54": 30,
+                            "55-64": 10,
+                            "65+": 3
+                        },
+                        "gender": {
+                            "female": 50,
+                            "male": 50
+                        },
+                        
+                        "interest": {
+                            "Arts & Entertainment": {
+                                "name": "Arts & Entertainment",
+                                "value": 21,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Cooking & Recipes": {
+                                "name": "Cooking & Recipes",
+                                "value": 19,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Female Fashion": {
+                                "name": "Female Fashion",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Food & Drink": {
+                                "name": "Food & Drink",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Restaurants": {
+                                "name": "Restaurants",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "_others":{
+                                "name": "Other Related Interests",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                            }
+                        },
+                        "regions":[
+                              {"name": "北京", "value": "123"},
+                              {"name": "天津", "value": "61"},
+                              {"name": "上海", "value": "123"},
+                              {"name": "重庆", "value": "62"},
+                              {"name": "河北", "value": "1223"},
+                              {"name": "河南", "value": "123"},
+                              {"name": "云南", "value": "123"},
+                              {"name": "辽宁", "value": "33"},
+                              {"name": "其他", "value": "55"}
+                          ]
+
+                      }},
+                    ],
                    "bar":[
-                      {"date":"Week 1","name":"Potential","value":"31"},
-                      {"date":"Week 2","name":"Potential","value":"131"},
-                      {"date":"Week 3","name":"Potential","value":"101"},
-                      {"date":"Week 4","name":"Potential","value":"11"},
-                      {"date":"Week 1","name":"Brand","value":"51"},
-                      {"date":"Week 2","name":"Brand","value":"161"},
-                      {"date":"Week 3","name":"Brand","value":"151"},
-                      {"date":"Week 4","name":"Brand","value":"41"},
-                      {"date":"Week 1","name":"Onsite","value":"81"},
-                      {"date":"Week 2","name":"Onsite","value":"181"},
-                      {"date":"Week 3","name":"Onsite","value":"191"},
-                      {"date":"Week 4","name":"Onsite","value":"51"},
-                      {"date":"Week 1","name":"Owned","value":"31"},
-                      {"date":"Week 2","name":"Owned","value":"31"},
-                      {"date":"Week 3","name":"Owned","value":"91"},
-                      {"date":"Week 4","name":"Owned","value":"21"},
+                      {"date":"Week 1","name":"Potential","value":"31","graphData":{
+                        "age_group": {
+                            "18-24": 30,
+                            "25-34": 15,
+                            "35-44": 25,
+                            "45-54": 20,
+                            "55-64": 10,
+                            "65+": 3
+                        },
+                        "gender": {
+                            "female": 66,
+                            "male": 22
+                        },
+                        
+                        "interest": {
+                            "Arts & Entertainment": {
+                                "name": "Arts & Entertainment",
+                                "value": 21,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Cooking & Recipes": {
+                                "name": "Cooking & Recipes",
+                                "value": 19,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Female Fashion": {
+                                "name": "Female Fashion",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Food & Drink": {
+                                "name": "Food & Drink",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Restaurants": {
+                                "name": "Restaurants",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "_others":{
+                                "name": "Other Related Interests",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                            }
+                        },
+                        "regions":[
+                              {"name": "北京", "value": "123"},
+                              {"name": "天津", "value": "61"},
+                              {"name": "上海", "value": "123"},
+                              {"name": "重庆", "value": "62"},
+                              {"name": "河北", "value": "1223"},
+                              {"name": "河南", "value": "123"},
+                              {"name": "云南", "value": "123"},
+                              {"name": "辽宁", "value": "33"},
+                              {"name": "其他", "value": "55"}
+                          ]
+
+                      }},
+                      {"date":"Week 2","name":"Potential","value":"131","graphData":{
+                        "age_group": {
+                            "18-24": 30,
+                            "25-34": 15,
+                            "35-44": 25,
+                            "45-54": 20,
+                            "55-64": 10,
+                            "65+": 3
+                        },
+                        "gender": {
+                            "female": 33,
+                            "male": 55
+                        },
+                        
+                        "interest": {
+                            "Arts & Entertainment": {
+                                "name": "Arts & Entertainment",
+                                "value": 21,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Cooking & Recipes": {
+                                "name": "Cooking & Recipes",
+                                "value": 19,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Female Fashion": {
+                                "name": "Female Fashion",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Food & Drink": {
+                                "name": "Food & Drink",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Restaurants": {
+                                "name": "Restaurants",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "_others":{
+                                "name": "Other Related Interests",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                            }
+                        },
+                        "regions":[
+                              {"name": "北京", "value": "123"},
+                              {"name": "天津", "value": "61"},
+                              {"name": "上海", "value": "123"},
+                              {"name": "重庆", "value": "62"},
+                              {"name": "河北", "value": "1223"},
+                              {"name": "河南", "value": "123"},
+                              {"name": "云南", "value": "123"},
+                              {"name": "辽宁", "value": "33"},
+                              {"name": "其他", "value": "55"}
+                          ]
+                        
+                      }},
+                      {"date":"Week 3","name":"Potential","value":"101","graphData":{
+                        "age_group": {
+                            "18-24": 11,
+                            "25-34": 22,
+                            "35-44": 25,
+                            "45-54": 20,
+                            "55-64": 55,
+                            "65+": 3
+                        },
+                        "gender": {
+                            "female": 22,
+                            "male": 38
+                        },
+                        
+                        "interest": {
+                            "Arts & Entertainment": {
+                                "name": "Arts & Entertainment",
+                                "value": 21,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Cooking & Recipes": {
+                                "name": "Cooking & Recipes",
+                                "value": 19,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Female Fashion": {
+                                "name": "Female Fashion",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Food & Drink": {
+                                "name": "Food & Drink",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Restaurants": {
+                                "name": "Restaurants",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "_others":{
+                                "name": "Other Related Interests",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                            }
+                        },
+                        "regions":[
+                              {"name": "北京", "value": "123"},
+                              {"name": "天津", "value": "61"},
+                              {"name": "上海", "value": "123"},
+                              {"name": "重庆", "value": "62"},
+                              {"name": "河北", "value": "1223"},
+                              {"name": "河南", "value": "123"},
+                              {"name": "云南", "value": "123"},
+                              {"name": "辽宁", "value": "33"},
+                              {"name": "其他", "value": "55"}
+                          ]
+                        
+                      }},
+                      {"date":"Week 4","name":"Potential","value":"11","graphData":{
+                        "age_group": {
+                            "18-24": 55,
+                            "25-34": 22,
+                            "35-44": 44,
+                            "45-54": 20,
+                            "55-64": 10,
+                            "65+": 3
+                        },
+                        "gender": {
+                            "female": 22,
+                            "male": 38
+                        },
+                        
+                        "interest": {
+                            "Arts & Entertainment": {
+                                "name": "Arts & Entertainment",
+                                "value": 21,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Cooking & Recipes": {
+                                "name": "Cooking & Recipes",
+                                "value": 19,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Female Fashion": {
+                                "name": "Female Fashion",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Food & Drink": {
+                                "name": "Food & Drink",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "Restaurants": {
+                                "name": "Restaurants",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer"]
+                            },
+                            "_others":{
+                                "name": "Other Related Interests",
+                                "value": 20,
+                                "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                            }
+                        },
+                        "regions":[
+                              {"name": "北京", "value": "123"},
+                              {"name": "天津", "value": "61"},
+                              {"name": "上海", "value": "123"},
+                              {"name": "重庆", "value": "62"},
+                              {"name": "河北", "value": "1223"},
+                              {"name": "河南", "value": "123"},
+                              {"name": "云南", "value": "123"},
+                              {"name": "辽宁", "value": "33"},
+                              {"name": "其他", "value": "55"}
+                          ]
+                        
+                      }},
+                       //graphdata 同上，太长了所以省略
+                      {"date":"Week 1","name":"Brand","value":"51","graphData":{}},
+                      {"date":"Week 2","name":"Brand","value":"161","graphData":{}},
+                      {"date":"Week 3","name":"Brand","value":"151","graphData":{}},
+                      {"date":"Week 4","name":"Brand","value":"41","graphData":{}},
+                      {"date":"Week 1","name":"Onsite","value":"81","graphData":{}},
+                      {"date":"Week 2","name":"Onsite","value":"181","graphData":{}},
+                      {"date":"Week 3","name":"Onsite","value":"191","graphData":{}},
+                      {"date":"Week 4","name":"Onsite","value":"51","graphData":{}},
+                      {"date":"Week 1","name":"Owned","value":"31","graphData":{}},
+                      {"date":"Week 2","name":"Owned","value":"31","graphData":{}},
+                      {"date":"Week 3","name":"Owned","value":"91","graphData":{}},
+                      {"date":"Week 4","name":"Owned","value":"21","graphData":{}},
                     ],
                     "line":[
-                      {"date":"Week 1","name":"Brand Share","value":"33"},
-                      {"date":"Week 2","name":"Brand Share","value":"22"},
-                      {"date":"Week 3","name":"Brand Share","value":"31"},
-                      {"date":"Week 4","name":"Brand Share","value":"66"},
+                      {"date":"Week 1","name":"Brand Share","value":"33","graphData":{}},
+                      {"date":"Week 2","name":"Brand Share","value":"22","graphData":{}},
+                      {"date":"Week 3","name":"Brand Share","value":"31","graphData":{}},
+                      {"date":"Week 4","name":"Brand Share","value":"66","graphData":{}},
                     ],
                   }
                 },
-                "top5brand":{
-                  "Estee Lauder":852,
-                  "Lancome":789,
-                  "Shiseido":507,
-                  "Bobbi Brown":456,
-                  "SKII":278,
-                },
-                "top5products":{
-                  "Makeup":852,
-                  "Skincare":789,
-                  "Foundation":507,
-                  "Concealer":456,
-                  "Body Wash":278,
-                },
-                "market_share":{
-                  "market":666,
-                  "market_show":333,
-                },
-                "interest": {
-                    "Arts & Entertainment": {
-                        "name": "Arts & Entertainment",
-                        "value": 21,
-                        "sub": ["Skin Care","Make-up / Customer"]
-                    },
-                    "Cooking & Recipes": {
-                        "name": "Cooking & Recipes",
-                        "value": 19,
-                        "sub": ["Skin Care","Make-up / Customer"]
-                    },
-                    "Female Fashion": {
-                        "name": "Female Fashion",
-                        "value": 20,
-                        "sub": ["Skin Care","Make-up / Customer"]
-                    },
-                    "Food & Drink": {
-                        "name": "Food & Drink",
-                        "value": 20,
-                        "sub": ["Skin Care","Make-up / Customer"]
-                    },
-                    "Restaurants": {
-                        "name": "Restaurants",
-                        "value": 20,
-                        "sub": ["Skin Care","Make-up / Customer"]
-                    }
-                },
-                "regions":[
-                      {"name": "北京", "value": "123"},
-                      {"name": "天津", "value": "61"},
-                      {"name": "上海", "value": "123"},
-                      {"name": "重庆", "value": "62"},
-                      {"name": "河北", "value": "1223"},
-                      {"name": "河南", "value": "123"},
-                      {"name": "云南", "value": "123"},
-                      {"name": "辽宁", "value": "33"},
-                      {"name": "其他", "value": "55"}
-                  ]
+                
             },
             "id": "1",
             "name": "brand"
@@ -1155,6 +1397,11 @@
                         "name": "Restaurants",
                         "value": 20,
                         "sub": ["Skin Care","Make-up / Customer"]
+                    },
+                    "_others":{
+                        "name": "Other Related Interests",
+                        "value": 20,
+                        "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
                     }
                 },
                 "regions":[
@@ -1199,7 +1446,7 @@
                     "Resilience Lift":10000,
                 },
                 "mixTrend":{
-                  "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                  "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
                   "result":{"Brand Audience":
                     [
                       {"date":"2017-05-20","name":"Brand Audience","value":"11"},
@@ -1261,36 +1508,36 @@
                     ]},
                     "topBrands":[
                       {"date":"2017-05-20","articles":[
-                        {"date":"2017/05/20 12:15","index":"A","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/20 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/20 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/20 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/20 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/20 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_conversions.png"},
+                        {"date":"2017/05/20 12:15","index":"A","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
                       {"date":"2017-06-01","articles":[
-                        {"date":"2017/06/01 12:15","index":"A","title":"AAAAAA AAAAA AAAA the Digital Age","content":"The Business of Fashion","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/06/01 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/06/01 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/06/01 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/06/01 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/06/01 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/06/01 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/06/01 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_conversions.png"},
+                        {"date":"2017/06/01 12:15","index":"A","title":"AAAAAA AAAAA AAAA the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
-                      {"date":"2017-05-24","articles":[
-                        {"date":"2017/05/24 12:15","index":"A","title":"BBBB BBBB in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/24 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/24 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/24 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/24 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/24 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/24 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_conversions.png"},
-                        {"date":"2017/05/24 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_conversions.png"},
+                      {"date":"2017-06-15","articles":[
+                        {"date":"2017/06/15 12:15","index":"A","title":"BBBB BBBB in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
                     ],
@@ -1326,27 +1573,37 @@
           }
         };
         if (tab=="brand") {
+          IAX_CHART_TOOL.initData(json.data);
           IAX_CHART_TOOL.initProductShare("product-map",json.data);
-          IAX_CHART_TOOL.initGender("gender-map",json.data);
-          IAX_CHART_TOOL.initAgeGroup("select_age",json.data);
-          IAX_CHART_TOOL.initRegions("region-map",json.data);
-          IAX_CHART_TOOL.initInterests("interest-map",json.data);
           IAX_CHART_TOOL.initAudienceFunnel("audience-funnel",json.data);
+          IAX_CHART_TOOL.resizeChart();
         }else if (tab=="product") {
+          IAX_CHART_TOOL.initData(json.data);
           IAX_CHART_TOOL.initTop5Trend("line_chart",json.data);
           IAX_CHART_TOOL.initTotalAudience("select_product","product_total","market-brand-map",json.data);
           IAX_CHART_TOOL.initGender("gender-brand-map",json.data);
           IAX_CHART_TOOL.initAgeGroup("select_age_brand",json.data);
           IAX_CHART_TOOL.initRegions("region-brand-map",json.data);
           IAX_CHART_TOOL.initInterests("interest-brand-map",json.data);
-          $("#daterange_product").parents(".result-text-header").find(".xmoCalendarWraper").remove();
+          $(".xmoCalendarWraper").remove();
           initCalendar("daterange_product");
+          IAX_CHART_TOOL.resizeChart();
+        }else if (tab == "share") {
+          IAX_CHART_TOOL.initData(json.data);
+          IAX_CHART_TOOL.initMixTrend("mix_chart",json.data);
+          IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
+          IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
+          $(".xmoCalendarWraper").remove();
+          initCalendar("daterange");
+          IAX_CHART_TOOL.resizeChart();
         };
       })
       
       //初始化
       $("#tab-share").find("div:first").hide();
       $("#tab-share").append('<div class="analysis-loading"><img class="analysis-gif" src="../images/loading.gif"></img></div>');
+      $("#myTab").hide();
+      $(".button-right").hide();
       var json = {};
       for (var i = 0; i < data.result.length; i++) {
         if("share" == data.result[i].name){
@@ -1357,11 +1614,18 @@
       setTimeout(function(){
         $(".analysis-loading").remove();
         $("#tab-share").find("div:first").show();
+        $("#myTab").show();
+        $(".button-right").show();
+        IAX_CHART_TOOL.initData(json.data);
         IAX_CHART_TOOL.initMixTrend("mix_chart",json.data);
         IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
         IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
         initCalendar("daterange");
+        IAX_CHART_TOOL.resizeChart();
       },2000)
+
+      //导出pdf
+      IAX_CHART_TOOL.exportForPdf("export-pdf","myTabContent");
     });
 
     function initCalendar(id) {
@@ -1372,8 +1636,9 @@
          relativeTop:"60",
          relativeRight:20,
          initTime : '2013-10-28',
+         maxRange:31,
          menu : [ "last_7_days", "last_30_days", "this_week", "this_month",
-             "this_yeah", "last_week", "last_month", "last_3_month" ],
+              "last_week", "last_month" ],
          submitCallback : function() {
            search_column(id);
          },

@@ -799,8 +799,9 @@ th.align_right, td.align_right, .align_right {
 }
 .graph-region .result-graph-word .result-graph-word-content{
   min-height: 180px;
-  float: left;
-  margin-left: -250px;
+  float: right;
+  margin-right: 20px;
+  /*margin-left: -250px;*/
   position: relative;
 }
 .graph-interest{
@@ -822,7 +823,7 @@ th.align_right, td.align_right, .align_right {
 }
 .graph-interest .result-graph-word .result-graph-word-map .interest-map{
   height:340px;
-  width:500px;
+  width:470px;
   margin-right:600px;
   /*padding-left:20px;*/
 }
@@ -858,7 +859,7 @@ th.align_right, td.align_right, .align_right {
 .result-graph-word-content{
   counter-reset:interest;
 }
-.result-graph-word-interest .result-graph-word-interest-inner:after{
+/*.result-graph-word-interest .result-graph-word-interest-inner:after{
   content: counter(interest) "";
   text-align: center;
   line-height: 160px;
@@ -873,6 +874,20 @@ th.align_right, td.align_right, .align_right {
   top: 0;
   left: 0;
   counter-increment:interest;
+}*/
+.result-graph-word-interest .result-graph-word-interest-inner .counter{
+  text-align: center;
+  line-height: 160px;
+  width: 100%;
+  color: #fff;
+  height: 160px;
+  clear: both;
+  font-size: 64px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 98;
+  top: 0;
+  left: 0;
 }
 .graph-interest .result-graph-word .result-graph-word-content .result-graph-word-interest .result-graph-word-interest-inner ul{
   position: relative;
@@ -963,6 +978,11 @@ th.align_right, td.align_right, .align_right {
 }
 .analysis-loading .analysis-gif{
 }
+.plan-reports-message{
+  float: left;
+  width: 100%;
+  margin: 10px 0;
+}
 /****************************************** venn ******************************************/
 .venntooltip {
   position: absolute;
@@ -1036,6 +1056,7 @@ th.align_right, td.align_right, .align_right {
   height: 380px;
   background: #e9e9e9;
   border-radius: 380px!important;
+  box-sizing:border-box;
 }
 .bubble-container .bubble-map.bubble-select{
   background: #dfdfdf;
@@ -1055,7 +1076,7 @@ th.align_right, td.align_right, .align_right {
 .xmo-bar_per .bg_ico_45-54{background: url("../images/icon_45-54.png") no-repeat center transparent;background-size: contain;}
 .xmo-bar_per .bg_ico_55-64{background: url("../images/icon_55-64.png") no-repeat center transparent;background-size: contain;}
 .xmo-bar_per .bg_ico_65{background: url("../images/icon_65+.png") no-repeat center transparent;background-size: contain;}
-.xmo-bar_per .bar_main .tooltip-content{
+.tooltip-content{
   position: absolute;
   top: 50%;
   left: 20px;
@@ -1064,18 +1085,21 @@ th.align_right, td.align_right, .align_right {
   z-index: 999;
   padding: 5px;
   text-align: left;
+  white-space: nowrap;
   display: none;
 }
 .tooltip-content.toolright{
   left: initial!important;
   right: 20px;
 }
-.xmo-bar_per .bar_main:hover .tooltip-content{
+.xmo-bar_per .bar_main:hover .tooltip-content,.xmo-line_per .line_main:hover .tooltip-content{
   display: block;
 }
 .tooltip-content p{
   font-weight: bold;
 }
+
+
 /*progress*/
 .xmo-line_per{font-size: 12px;width: 100%;margin-bottom:17px; }
 .xmo-line_per .name{float: left;margin-right: 5px;margin-top:-3px;width: 30%;text-align:left;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
@@ -1721,14 +1745,14 @@ th.align_right, td.align_right, .align_right {
 .pic-title-list .pic-title-item .pic-title-item-inner .pic-title-item-container .pic-title-item-container-info{
   text-align: left;
   color: #999;
-  position: absolute;
+  /*position: absolute;
   left: 105px;
-  bottom: 10px;
+  bottom: 10px;*/
 }
 .pic-title-item-container .pic-title-item-container-info span{
   font-size: 10px;
-  display: inline-block;
-  white-space: nowrap;
+  /*display: inline-block;
+  white-space: nowrap;*/
 }
 /************************************ plan container ************************************/
 .plan-container{
@@ -2376,11 +2400,32 @@ th.align_right, td.align_right, .align_right {
 .map-container{
   margin: 20px 0;
   position: relative;
+  border: 1px solid #dfdfdf;
   width: 100%;
   height: 500px;
 }
+.map-container .map-info{
+  float: left;
+  width: 30%;
+  height: 100%;
+  padding: 20px;
+  position: relative;
+  box-sizing:border-box;
+}
+.map-container .map-info .location-label{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.map-container .map-info input{
+  margin: 0;
+}
+.map-container .map-set{
+  position: absolute;
+  bottom: 20px;
+}
 .map-container #map_container{
-  width: 100%;
+  float: right;
+  width: 70%;
   height: 100%;
 }
 /********************************** rating ******************************************/
@@ -3273,8 +3318,10 @@ table.treetable tbody tr.collapsed .indenter a:before{
 
 /*progress*/
 .xmo-line_per{font-size: 10px;width: 100%;margin-bottom:20px; }
+.xmo-line_per:after{content: "";display: block;clear: both;}
 .xmo-line_per .name{float: left;margin-right: 5px;width: 75px;text-align:left;}
 .xmo-line_per .result{float: right;margin-left: 5px;}
+.xmo-line_per .line_main{position: relative;float: left;cursor: pointer;}
 .xmo-progress-line {
     overflow: hidden;
     height: 15px;
@@ -3316,6 +3363,7 @@ table.treetable tbody tr.collapsed .indenter a:before{
 .graph-top .xmo-progress-line{
   width: 160px;
 }
+
 /*interest*/
 .highcharts-axis-labels {
     z-index: 9999999;
@@ -3326,13 +3374,13 @@ table.treetable tbody tr.collapsed .indenter a:before{
   padding: 1px 7px;
   /*font-size: 14px;*/
   /*line-height: 1;*/
-  color: #333;
+  color: #999;
   text-align: center;
   border-radius: 8px!important;
   white-space: nowrap;
   background: #dfdfdf;
   cursor: pointer;
-  font-size: 5px;
+  font-size: 10px;
   line-height: 10px;
 
 }

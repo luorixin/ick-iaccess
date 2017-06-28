@@ -4,6 +4,7 @@ var IAX_CHART_TOOL = {
   sets: [],
   currentBubble:"",
   bubbleData:"",
+  charts:[],
   init : function(){
     this.bindEvent();
   },
@@ -82,6 +83,7 @@ var IAX_CHART_TOOL = {
                           return $(this).val();
                         }).get();
       var newBubbleData = $.extend(true,[],_this.bubbleData);
+      var vennSets = [];
       //去除泡泡
       for (var i = 0; i < unselectArr.length; i++) {
         var unselectId = unselectArr[i];
@@ -89,6 +91,7 @@ var IAX_CHART_TOOL = {
           var sets = _this.bubbleData[j].sets;
           if ($.inArray(parseInt(unselectId),sets)>-1) {
             newBubbleData[j].remove = true;
+            vennSets.push(sets.join("_"));
           };
         };
       };
@@ -96,13 +99,26 @@ var IAX_CHART_TOOL = {
         return !data.remove;
       })
       $(this).parents(".bubble-container").find(".bubble-map svg").click();
-      $(this).parents(".bubble-container").find(".bubble-map").empty();
-      _this.initBubble($(this).parents(".bubble-container").attr("id"),newBubbleData);
+      // $(this).parents(".bubble-container").find(".bubble-map").empty();
+      // _this.initBubble($(this).parents(".bubble-container").attr("id"),newBubbleData);
+      $("g").show();
+      for (var i = 0; i < vennSets.length; i++) {
+        $("[data-venn-sets='"+vennSets[i]+"']").hide();
+      };
     })
   },
+  resizeChart:function(data){
+    var _this = this;
+    window.onresize = function(){
+      for (var i = 0; i < _this.charts.length; i++) {
+        _this.charts[i].resize();
+      };
+    }
+  },
   initData: function(data){
+    var _this = this;
     if (!data) return;
-    
+    _this.charts=[];
   },
   initBubbleGraph:function(id,data){
     if (!data || !data.bubble || data.bubble.length==0) return;
@@ -121,6 +137,7 @@ var IAX_CHART_TOOL = {
       _this.initBubble(id,data.bubble);
       _this.bindEvent();
       _this.initMarketGraphByBubble(data.result[0]);
+      $("g").show();
       _this.currentBubble = data.result[0].id;
       _this.brandData = data.result;
       _this.bubbleData = data.bubble;
@@ -129,28 +146,35 @@ var IAX_CHART_TOOL = {
   initBubbleInfo:function(id,keywords){
     if (!keywords || keywords.length==0) return;
     if (!document.getElementById(id)) return;
-    var liHtml =  '<li><div class="checkbox checkbox-primary checkbox-switch">'+
+    var liHtml =  '<li style="display:none;"><div class="checkbox checkbox-primary checkbox-switch">'+
                   '    <input type="checkbox" name="bubble-brand" disabled id="bubble-brandall" value="all" checked="checked">'+
-                  '    <label for="bubble-brandall">All market</label>'+
+                  '    <label for="bubble-brandall">The market</label>'+
                   '</div></li>';
+    
     for (var i = 0; i < keywords.length; i++) {
-      liHtml += '<li><div class="checkbox checkbox-primary checkbox-switch">'+
+      var style = "";
+      if (i==0) {
+        style = "display:none";
+      }
+      liHtml += '<li style="'+style+'"><div class="checkbox checkbox-primary checkbox-switch">'+
                 '    <input type="checkbox" name="bubble-brand" id="bubble-brand'+i+'" value="'+i+'" checked="checked">'+
                 '    <label for="bubble-brand'+i+'">'+keywords[i]+'</label>'+
                 '</div></li>';
     };
     $("#"+id).find(".bubble-info").find("ul").html(liHtml);
-    $("#"+id).find(".bubble-info-selected span").text("All market");
+    $("#"+id).find(".bubble-info-selected span").text("The market");
   },
   initBubble:function(id,sets){
     if (!sets || sets.length==0) return;
     var _this = this;
     _this.sets = sets;
+    var width = 380*0.7;
+    var paddingtop = (380-width)/2;
     var chart = venn.VennDiagram()
-                 .width(380)
-                 .height(380);
+                 .width(width)
+                 .height(width);
 
-    var div = d3.select("#"+id).select(".bubble-map");
+    var div = d3.select("#"+id).select(".bubble-map").attr("style","padding-top:"+paddingtop+"px");
     div.datum(sets).call(chart);
 
     var tooltip = $(".venntooltip").length>0 ? d3.select(".venntooltip") : d3.select("body").append("div").attr("class", "venntooltip");
@@ -188,7 +212,7 @@ var IAX_CHART_TOOL = {
           };
           label = "<b>"+label+"</b><br>";
           var overlap = d.overlap? ("Overlapping: "+d.overlap+"<br>"):"";
-          var audiences = "Audience: "+d.size;
+          var audiences = "Audience: "+IAX_TOOL.formatNum(d.size+"",0);
           tooltip.html(label+audiences);
 
           // highlight the current path
@@ -253,6 +277,14 @@ var IAX_CHART_TOOL = {
           $("#"+id).find(".bubble-map").removeClass("bubble-select");
           // _this.initResultData();
       });
+      //将泡泡中文字居中
+      $(".venn-circle").each(function(){
+        var Marr = $(this).find("path").attr("d").split("\n")[1].split(" ");
+        $(this).find(".label").find("tspan").each(function(){
+          $(this).attr("x",Marr[1]);
+          $(this).attr("y",Marr[2]);
+        })
+      })
       $("#"+id).on("click",".bubble-map",function(e){
           e = e || window.event;
           e.stopPropagation();
@@ -264,7 +296,7 @@ var IAX_CHART_TOOL = {
               .style("stroke-opacity", 0)
               .style("stroke-width", 1)
           $(this).addClass("bubble-select");
-          var subTitle = "All Market";
+          var subTitle = "The Market";
           var audience = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[0];
           var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
           var selectLabel = $("#"+id).find(".bubble-info").find("#bubble-brandall").next().text();
@@ -285,7 +317,7 @@ var IAX_CHART_TOOL = {
     var label = d.label ? d.label:"";
     var bubbleid = d.sets.join("-");
     var bubbleData = "";
-    var subTitle = label + " overlaps All Market";
+    var subTitle = label + " overlaps The Market";
     var audience = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[0];
     var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
     var audienceTitle = 'Audience Scale <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>';
@@ -327,8 +359,6 @@ var IAX_CHART_TOOL = {
     this.initAgeGroup("select_age",json.data);
     this.initRegions("region-map",json.data);
     this.initInterests("interest-map",json.data);
-    this.initTop5Graph("select_top_brand",json.data.top5brand);
-    this.initTop5Graph("select_top_products",json.data.top5products);
   },
   initTop5Graph:function(id,data){
     if(!data) return;
@@ -345,6 +375,10 @@ var IAX_CHART_TOOL = {
                 '<span class="name">'+i+'</span>'+
                 '<span class="result">'+per.toFixed(0)+'%</span>'+
                 '<span class="line_main">'+
+                  '<div class="tooltip-content">'+
+                  '  <p>Brand: '+i+'</p>'+
+                  ' <span>Percent: '+per.toFixed(0)+'%</span>'+
+                  '</div>'+
                   '<div class="xmo-progress-line left">'+
                     '<i style="width: '+per.toFixed(0)+'%;" class="bar"></i>'+
                   '</div>'+
@@ -378,12 +412,6 @@ var IAX_CHART_TOOL = {
           symbolSize : "8",
           showAllSymbol:true,
           hoverAnimation:false,
-          lineStyle : {
-            normal : {
-              color:"#ef4136",
-            }
-          },
-          
           areaStyle : {
             normal : {
               opacity:0
@@ -431,7 +459,7 @@ var IAX_CHART_TOOL = {
                 var result = "<p style='color:#999;font-size:10px'>"+params[0].name+"</p>"+
                              "<p style='color:#333;font-weight:bold;'>Audience Scale</p>";
                 params.forEach(function (item) {
-                    result += '<p><span style="display:inline-block;margin-right:5px;border-radius:10px!important;width:9px;height:9px;background-color:' + item.color + '"></span>'+item.seriesName+':'+item.value+'</p>';
+                    result += '<p><span style="display:inline-block;margin-right:5px;border-radius:10px!important;width:9px;height:9px;background-color:' + item.color + '"></span>'+item.seriesName+': '+item.value+'</p>';
                 });
                 result += "</p>"
                 return result;
@@ -505,6 +533,7 @@ var IAX_CHART_TOOL = {
       }; 
         
       myChart.setOption(option);
+      this.charts.push(myChart);
   },
   initMixTrend: function(id,data){
     if(!data || !data.mixTrend) return;
@@ -607,8 +636,11 @@ var IAX_CHART_TOOL = {
       json.value = null;
       topBrandsData.push(json);
     };
-    var itemHtmls = this.markeArticle(data.mixTrend.topBrands[0].articles);
+    var itemtitle = '<div class="pic-title-title"><b>Top 8 Articles in '+data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].date+'</b></div>';
+    var itemHtmls = itemtitle + this.markeArticle(data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].articles);
     $("#"+id).next().append(itemHtmls);
+    $("#"+id).find(".fa").remove();
+    $("#"+id).append('<i class="fa fa-caret-up" style="position:absolute;color:#999;font-size:18px;transform: translateX(-50%);left:592px;top:128px;"></i>')
     // series.push({
     //     name : 'test',
     //     type : 'line',
@@ -681,7 +713,8 @@ var IAX_CHART_TOOL = {
                 var result = "<p style='color:#999;font-size:10px'>"+params[0].name+"</p>";
                 params.forEach(function (item) {
                     if (item.seriesName!="test") {
-                      result += '<p><span style="display:inline-block;margin-right:5px;border-radius:10px!important;width:9px;height:9px;background-color:' + item.color + '"></span>'+item.seriesName+':'+item.value+'</p>';
+                      var unit = item.seriesIndex=="1" ? "%" : "";
+                      result += '<p><span style="display:inline-block;margin-right:5px;border-radius:10px!important;width:9px;height:9px;background-color:' + item.color + '"></span>'+item.seriesName+': '+item.value+unit+'</p>';
                     };
                 });
                 result += "</p>"
@@ -720,6 +753,7 @@ var IAX_CHART_TOOL = {
            },
           axisLabel: {
             showMinLabel:false,
+            interval:date.length-2,
             textStyle: {
                 color: '#999',
                 fontSize:10,
@@ -748,9 +782,17 @@ var IAX_CHART_TOOL = {
               articles = json.articles;
             };
           };
-          var aritclesHtml = _this.markeArticle(articles);
+          var itemtitle = '<div class="pic-title-title"><b>Top 8 Articles in '+date+'</b></div>';
+          var aritclesHtml = itemtitle+_this.markeArticle(articles);
           $("#"+id).next().html(aritclesHtml);
+          //小三角显示在报表中
+          console.log(params);
+          var offsetX = params.event.offsetX;
+          var offsetY = params.event.offsetY;
+          $("#"+id).find(".fa").remove();
+          $("#"+id).append('<i class="fa fa-caret-up" style="position:absolute;color:#999;font-size:18px;transform: translateX(-50%);left:'+offsetX+'px;top:128px;"></i>')
       });
+      this.charts.push(myChart);
       // $("#"+id).next().find(".pic-title-item").on("hover",function(){
       //   var date = $(this).attr("data-date");
       //   myChart.dispatchAction({type: 'showTip', seriesIndex: '1', name: date});
@@ -767,7 +809,7 @@ var IAX_CHART_TOOL = {
                       '    <span class="pic-title-item-index">'+item.index+'</span>'+
                       '    <div class="pic-title-item-pic">'+
                       '      <a href="javascript:;">'+
-                      '        <img style="background:#ddd;" src="../images/icon_conversions.png" height="55" width="55">'+
+                      '        <img src="'+item.pic+'" height="55" width="55">'+
                       '      </a>'+
                       '    </div>'+
                       '    <div class="pic-title-item-container">'+
@@ -800,100 +842,116 @@ var IAX_CHART_TOOL = {
     var legends=[],date=[],series=[],seriesJson={},title,dateJson={},yAxis=[],yAxisIndex=0,nameJson={},splitNumber=5;
     title = data.audienceFunnel.dataPeriod;
     for (var i in data.audienceFunnel.result) {
-      var result = data.audienceFunnel.result[i];
-      var yAxisJson = {
-        type : 'value',
-        splitLine:{
-          show:true,
-          lineStyle:{
-            color:"#dfdfdf"
-          }
-        },
-        axisLine:{
-          show:false
-        },
-        axisTick:{
-          show:false
-        },
-        splitArea:{
-          show:false
-        },
-        axisLabel: {
-          showMinLabel:false,
-          textStyle: {
-              color: '#999',
-              fontSize:10,
-          }
-        },
-      }
-      
-      //遍历result获取date，seriesjson,和分段间隔数
-      var max=0,seriesCount={};
-      for (var j = 0; j < result.length; j++) {
-        if (!dateJson[result[j].date]) {
-          date.push(result[j].date);
-          dateJson[result[j].date] = result[j];
-        };
-        if (!nameJson[result[j].name]) {
-          seriesJson = {
-            name : result[j].name,
-            type : i,
-            stack : '总量:'+yAxisIndex,
-            yAxisIndex:yAxisIndex,
-            symbol : 'circle',
-            symbolSize : "8",
-            showAllSymbol:true,
-            hoverAnimation:false,
-            lineStyle : {
-              normal : {
-                color:"#ef4136",
-              }
-            },
-            areaStyle : {
-              normal : {
-                opacity:0
-              }
-            },
-            data : [{"value":result[j].value,"textStyle":{"color":"#999","fontSize":10}},],
-          }
-          if(i=="bar"){
-            seriesJson.barWidth=40;
-            legends.push({
-              icon:"circle",
-              name:result[j].name,
-            })
-          }
-          series.push(seriesJson);
-          seriesCount[result[j].name] = parseInt(result[j].value);
-          nameJson[result[j].name] = result[j];
-        }else{
-          for (var k = 0; k < series.length; k++) {
-            if(series[k].name==result[j].name){
-              series[k].data.push({
-                "value":result[j].value,
-                "textStyle":{"color":"#999","fontSize":10},
-              });
-              seriesCount[result[j].name] = parseInt(seriesCount[result[j].name]) + parseInt(result[j].value);
-              break;
+      if (i!="total") {;
+        var result = data.audienceFunnel.result[i];
+        var yAxisJson = {
+          type : 'value',
+          splitLine:{
+            show:true,
+            lineStyle:{
+              color:"#dfdfdf"
             }
+          },
+          axisLine:{
+            show:false
+          },
+          axisTick:{
+            show:false
+          },
+          splitArea:{
+            show:false
+          },
+          axisPointer:{
+            show:false,
+            type:"line",
+            lineStyle:{
+              show:false,
+            }
+          },
+          axisLabel: {
+            showMinLabel:false,
+            textStyle: {
+                color: '#999',
+                fontSize:10,
+            }
+          },
+        }
+        
+        //遍历result获取date，seriesjson,和分段间隔数
+        var max=0,seriesCount={};
+        for (var j = 0; j < result.length; j++) {
+          if (!dateJson[result[j].date]) {
+            date.push(result[j].date);
+            dateJson[result[j].date] = result[j];
+          };
+          if (!nameJson[result[j].name]) {
+            seriesJson = {
+              name : result[j].name,
+              type : i,
+              stack : '总量:'+yAxisIndex,
+              yAxisIndex:yAxisIndex,
+              symbol : 'circle',
+              symbolSize : "8",
+              showAllSymbol:true,
+              hoverAnimation:false,
+              lineStyle : {
+                normal : {
+                  color:"#FB8731",
+                }
+              },
+              axisPointer:{
+                show:false,
+                type:"line",
+                lineStyle:{
+                  show:false,
+                }
+              },
+              areaStyle : {
+                normal : {
+                  opacity:0
+                }
+              },
+              data : [{"value":result[j].value,"textStyle":{"color":"#999","fontSize":10},"color":"#FB8731"},],
+            }
+            if(i=="bar"){
+              seriesJson.barWidth=40;
+              legends.push({
+                icon:"circle",
+                name:result[j].name,
+              })
+            }
+            series.push(seriesJson);
+            seriesCount[result[j].name] = parseInt(result[j].value);
+            nameJson[result[j].name] = result[j];
+          }else{
+            for (var k = 0; k < series.length; k++) {
+              if(series[k].name==result[j].name){
+                series[k].data.push({
+                  "value":result[j].value,
+                  "textStyle":{"color":"#999","fontSize":10},
+                });
+                seriesCount[result[j].name] = parseInt(seriesCount[result[j].name]) + parseInt(result[j].value);
+                break;
+              }
+            };
+          }
+        };
+        //获取interval值
+        for(var z in seriesCount){
+          if (max < seriesCount[z]) {
+            max = seriesCount[z];
           };
         }
-      };
-      //获取interval值
-      for(var z in seriesCount){
-        if (max < seriesCount[z]) {
-          max = seriesCount[z];
+        yAxisJson.interval = Math.ceil(max/splitNumber);
+        yAxisJson.max = yAxisJson.interval*splitNumber;
+        if (yAxisIndex==1) {
+          yAxisJson.max=100;
+          yAxisJson.interval = parseInt(100/splitNumber);
+          yAxisJson.axisLabel.formatter='{value}%';
         };
+        yAxis.push(yAxisJson)
+        yAxisIndex++;
       }
-      yAxisJson.interval = Math.ceil(max/splitNumber);
-      yAxisJson.max = yAxisJson.interval*splitNumber;
-      if (yAxisIndex==1) {
-        yAxisJson.max=100;
-        yAxisJson.interval = parseInt(100/splitNumber);
-        yAxisJson.axisLabel.formatter='{value}%';
-      };
-      yAxis.push(yAxisJson)
-      yAxisIndex++;
     };
     var option = {
         title : {
@@ -904,25 +962,27 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:['#ef4136','#F97373','#EBA5A7','#ECD3D3','#ef4136'],
+        color:['#ef4136','#F97373','#EBA5A7','#ECD3D3','#FB8731'],
         tooltip : {
-            trigger : 'axis',
+            trigger : 'item',
             backgroundColor : "#f2f2f2",
             borderColor : "#dfdfdf",
+            axisPointer:{
+              show:false,
+              type:"line",
+              lineStyle:{
+                opacity:0,
+              }
+            },
             borderWidth : 1,
             textStyle : {
               color : "#333",
               fontFamily : "Open Sans"
             },
             extraCssText:'text-align:left;',
-            formatter: function(params) {
-                var result = "<p style='color:#999;font-size:10px'>"+params[0].name+"</p>";
-                params.forEach(function (item) {
-                    result += '<p><span style="display:inline-block;margin-right:5px;border-radius:10px!important;width:9px;height:9px;background-color:' + item.color + '"></span>'+item.seriesName+':'+item.value+'</p>';
-                });
-                result += "</p>"
-                return result;
-            }
+        },
+        axisPointer:{
+          show:false,
         },
         legend : {
           itemWidth:8,
@@ -956,6 +1016,13 @@ var IAX_CHART_TOOL = {
                 fontSize:10,
             }
           },
+          axisPointer:{
+            show:false,
+            type:"line",
+            lineStyle:{
+              show:false,
+            }
+          },
           min:"dataMin",
           max:"dataMax",  
           boundaryGap:true,
@@ -965,6 +1032,43 @@ var IAX_CHART_TOOL = {
         series : series,
       };
       myChart.setOption(option);
+      var _this = this;
+      myChart.on('click', function (params) {
+          if (typeof params.seriesIndex == 'undefined') {      
+           return;      
+          }
+          var type = params.seriesType;
+          var name = params.seriesName;
+          var date = params.name;
+          var json = data.audienceFunnel.result.total[0];
+          function isEmptyObject(e) {   
+          　　for (var name in e){
+          　　　　return false;//返回false，不为空对象
+          　　}　　
+          　　return true;//返回true，为空对象
+          }
+          for (var i in data.audienceFunnel.result) {
+            var result = data.audienceFunnel.result[i];
+            if (i==type) {
+              for (var j = 0; j < result.length; j++) {
+                if (result[j].date == date && result[j].name == name && !isEmptyObject(result[j].graphData)) {
+                  json = result[j]; 
+                };
+              };
+            };
+          }
+          _this.initFunnelGraph(json);
+          $(".plan-reports-message").find("span:last").text(date+" - "+name);
+      });
+      this.charts.push(myChart);
+      //初始化all week相关的grpah
+      this.initFunnelGraph(data.audienceFunnel.result.total[0]);
+  },
+  initFunnelGraph: function(json){
+    IAX_CHART_TOOL.initGender("gender-map",json.graphData);
+    IAX_CHART_TOOL.initAgeGroup("select_age",json.graphData);
+    IAX_CHART_TOOL.initRegions("region-map",json.graphData);
+    IAX_CHART_TOOL.initInterests("interest-map",json.graphData);
   },
   initTotalAudience: function(mainId,audId,marketId,data){
     if(!data) return;
@@ -980,6 +1084,7 @@ var IAX_CHART_TOOL = {
     if (!document.getElementById(id)) return;
     //判断是否引进了jQCloud插件
     if (typeof $().jQCloud == "function") {
+      $("#"+id).empty();
       $("#"+id).jQCloud(data.cloud_tag,{
         height:height
       });
@@ -1071,6 +1176,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      this.charts.push(myChart);
   },
   initGender: function(id,data){
     if (!document.getElementById(id)) return;
@@ -1133,6 +1239,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      this.charts.push(myChart);
   },
   initAgeGroup: function(id,data){
     if (!data) return;
@@ -1155,8 +1262,8 @@ var IAX_CHART_TOOL = {
                 '<span class="bar_main">'+
                   '<div class="bar_bg"></div>'+
                   '<div class="tooltip-content '+isRight+'">'+
-                  '  <p>Age:'+i+'</p>'+
-                  ' <span>Audience:'+data.age_group[i]+'</span>'+
+                  '  <p>Age: '+i+'</p>'+
+                  ' <span>Audience: '+data.age_group[i]+'</span>'+
                   '</div>'+
                   '<div class="bar_content">'+
                     '<i style="height: '+per.toFixed(0)+'px; background: #EF4136;"></i>'+
@@ -1174,7 +1281,7 @@ var IAX_CHART_TOOL = {
   initProductShare: function(id,data){
     if(!data) return;
     if (!document.getElementById(id)) return;
-    var legendData = [], seriesData = [],maxLen=60,length=0,itemGap=10;
+    var legendData = [], seriesData = [],maxLen=60,length=0,itemGap=10,width=parseInt($("#"+id).css("width"));
     for(var i in data.product_share){
       var legendJson = {};
       var seriesJson = {};
@@ -1186,7 +1293,7 @@ var IAX_CHART_TOOL = {
       seriesData.push(seriesJson);
       length+=this.getLength(i);
     }
-    if (length>maxLen) {
+    if (length>maxLen && width<500) {
       itemGap=5;
     };
     var myChart = echarts.init(document.getElementById(id));
@@ -1222,6 +1329,7 @@ var IAX_CHART_TOOL = {
                   type:'pie',
                   radius: ['45%', '70%'],
                   avoidLabelOverlap: false,
+                  hoverAnimation:false,
                   selectedOffset:5,
                   label: {
                       normal: {
@@ -1246,6 +1354,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      this.charts.push(myChart);
   },
   initDevice: function(id,data){
     if (!data) return;
@@ -1302,6 +1411,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      this.charts.push(myChart);
   },
   initRegions: function(id,data){
     if (!data) return;
@@ -1338,6 +1448,8 @@ var IAX_CHART_TOOL = {
               top: 'bottom',
               text: ['High','Low'],
               orient:'horizontal',
+              selectedMode:false,
+              hoverLink:true,
               splitNumber:6,
               inverse:true,
               itemGap:3,
@@ -1406,12 +1518,14 @@ var IAX_CHART_TOOL = {
                   name: '数量',
                   type: 'map',
                   geoIndex: 0,
+                  silent:true,
                   // tooltip: {show: false},
                   data:data.regions,
               }
           ]
       };
       myChart.setOption(option);
+      this.charts.push(myChart);
 
       var _total = 0;
       for (var i = 0; i < data.regions.length; i++) {
@@ -1424,6 +1538,10 @@ var IAX_CHART_TOOL = {
                '<span class="name">'+(i+1)+'.'+data.regions[i].name+'</span>'+
                 '<span class="result">'+per.toFixed(2)+'%</span>'+
                 '<span class="line_main">'+
+                  '<div class="tooltip-content">'+
+                  '  <p>Region: '+data.regions[i].name+'</p>'+
+                  ' <span>Percent: '+per.toFixed(0)+'%</span>'+
+                  '</div>'+
                   '<div class="xmo-progress-line left">'+
                     '<div style="width: '+per.toFixed(2)+'%;" class="bar"></div>'+
                   '</div>'+
@@ -1443,7 +1561,9 @@ var IAX_CHART_TOOL = {
     if ($("#"+id).parent().parent().find(".result-graph-word-content").length>0) {
       $("#"+id).parent().parent().find(".result-graph-word-content").empty();
     };
+    var counter = 0;
     for(var i in data.interest){
+      counter++;
       if (i!="xxx_test") {
         var indicatorJson = {};
         indicatorJson.text = data.interest[i].name;
@@ -1470,6 +1590,7 @@ var IAX_CHART_TOOL = {
                               '<ul>'+
                               _li+
                               '</ul>'+
+                              '<div class="counter">'+counter+'</div>'+
                             '</div>'+
                           '</div>';
           $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
@@ -1812,6 +1933,7 @@ var IAX_CHART_TOOL = {
         ]
       }
       myChart.setOption(option);
+      this.charts.push(myChart);
   },
   createSpiderByHighChart: function(id,datas,categories,liCon){
     if(datas.length != 0 && categories.length != 0){
@@ -1820,7 +1942,7 @@ var IAX_CHART_TOOL = {
                 polar: true,
                 type: 'area',
                 height:350,
-                width: 500,
+                width: 470,
                 reflow:true,
                 renderTo:id
             },
@@ -1948,6 +2070,188 @@ var IAX_CHART_TOOL = {
         
         });
     }
+  },
+  exportForPdf:function(clickId,containerId){
+    var _this = this;
+
+    // Event Bind
+    // 导出PDF
+    $('#'+clickId).click(function(e){
+      // For Pdf
+      //获取当前的tab
+      var cloneConId = $("#"+containerId).find(".tab-pane.active").find("div:first").attr("id");
+      e.preventDefault();
+      _this.init_for_pdf(cloneConId);
+      _this.resetData();
+      var idMap = _this.pdfData;
+      for(var i in idMap){
+        _this.pdfDataStep1(i);
+      }
+    });
+  },
+  pdfDataStep1: function(id){
+    var _this = this;
+    this.id2base64(id,function(data,id){
+      _this.pdfData[id] = data;
+      for(var i in _this.pdfData){
+        if(_this.pdfData[i] == '') return false;
+      }
+      // _this.pdfDataStep2();
+      _this.exportPdf(_this.pdfData);
+    });
+  },
+  pdfDataStep2: function(){
+    var _this = this;
+  },
+  id2base64: function(id,callback){
+    var par = $('#' + id).parent();
+    par.show();
+    if (id=="reports_pdf") {
+      $("#"+id).find(".plan-title").find(".button-right").hide();
+      $("#"+id).find(".plan-reports-result").css({"height":"100%","width":"100%","overflow-y":"hidden","padding-top":0});
+      $("#"+id).find(".date-range").hide();
+      //去除fixed
+      $("#"+id).find(".forFixed-con").removeClass("forFixed-con");
+      $("#"+id).find("canvas").each(function(){
+        var container = $(this).parent();
+        var cloneId =  $(this).parent().parent().attr("id");
+        var width = parseInt($(this).parent().parent().css("width"));
+        var _id = "canvas_"+new Date().getTime();
+        $(this).attr("id",_id);
+        var oldCanvas = document.querySelectorAll('#'+cloneId+' #'+_id)[0];
+        //create a new canvas
+        var newCanvas = document.createElement('canvas');
+        var context = newCanvas.getContext('2d');
+
+        //set dimensions
+        newCanvas.width = oldCanvas.width;
+        newCanvas.height = oldCanvas.height;
+
+        //apply the old canvas to the new one
+        context.drawImage(oldCanvas, 0, 0);
+        container.html(newCanvas);
+      })
+      //svg问题
+      if ($("#"+id).find(".bubble-map").length>0) {
+        $("#"+id).find(".bubble-map").css("cssText",$("#"+id).find(".bubble-map").attr("style")+";border-radius:180px!important");
+        $("#"+id).find(".bubble-map").append('<canvas id="result_canvas_21"></canvas>');
+        $("#"+id).append("<div id='test_canvas'></div>");
+        $("#"+id).find("#test_canvas").append( $("#"+id).find(".bubble-map").find("svg").clone());
+        var svgHtml = $("#"+id).find("#test_canvas").html();
+        $("#"+id).find("#test_canvas").remove();
+        $("#"+id).find(".bubble-map").find("svg").remove();
+        canvg(document.getElementById("result_canvas_21"),svgHtml);
+      }
+      if($("#"+id).find(".interest-map").length>0){
+        $("#"+id).find(".interest-map").children().append('<canvas id="result_canvas_31"></canvas>');
+        $("#"+id).append("<div id='test_canvas'></div>");
+        $("#"+id).find("#test_canvas").append( $("#"+id).find(".interest-map").find("svg").clone());
+        var svgHtml = $("#"+id).find("#test_canvas").html();
+        $("#"+id).find("#test_canvas").remove();
+        $("#"+id).find(".interest-map").find("svg").remove();
+        canvg(document.getElementById("result_canvas_31"),svgHtml);
+      }
+      //背景色问题
+      var $male = $("#"+id).find(".gender-male");
+      $male.find(".gender-map-ico").after('<img src="../images/icon_male_chart.png" style="margin: 40px auto 10px auto;">');
+      $male.find(".gender-map-ico").remove();
+      var $female = $("#"+id).find(".gender-female");
+      $female.find(".gender-map-ico").after('<img src="../images/icon_female_chart.png" style="margin: 40px auto 10px auto;">');
+      $female.find(".gender-map-ico").remove();
+      var $bgtotal = $("#"+id).find(".plan-reports-bg-total");
+      $bgtotal.removeClass("plan-reports-bg-total");
+      $bgtotal.before('<img src="../images/icon-ta.png" style="position: absolute;margin-top:20px;left: 50%;margin-left: -60px;" width="120px">');
+      //多选单选问题
+      $("#"+id).find(".checkbox").each(function(){
+        $(this).attr("class","");
+        var checkId = $(this).find("input").attr("id");
+        $(this).find("input").remove();
+        var checkClass = $("#"+checkId).is(":checked") ? "fa-check-square" : "fa-square-o";
+        $(this).prepend('<span class="fa '+checkClass+'" style="color: #5AAAEA;font-size: 17px;"></span>');
+        $(this).find("label").attr("style","display:inline-block;padding-left:5px;");
+      })
+      $("#"+id).find(".radio").each(function(){
+        $(this).removeClass("radio");
+        var checkId = $(this).find("input").attr("id");
+        $(this).find("input").remove();
+        var checkClass = $("#"+checkId).is(":checked") ? "fa-dot-circle-o" : "fa-circle-o";
+        $(this).prepend('<span class="fa '+checkClass+'" style="color: #5AAAEA;font-size: 17px;"></span>');
+        $(this).find("label").attr("style","display:inline-block;padding-left:5px;");
+      })
+    };
+    html2canvas($("#"+id),{
+      onrendered: function(canvas) {
+        var data = canvas.toDataURL("image/jpeg");
+        // $("#result_jpg").attr("src",data);
+        callback && callback(data,id);
+        if (id=="reports_pdf") {
+          // console.log(data);
+          // $("#"+id).find(".plan-title").find(".button-right").show();
+          // $("#"+id).find(".plan-reports-result").css({"height":"500px","overflow-y":"auto"});
+        }
+        if(par.hasClass('hide')) par.hide();
+
+        return data;
+      }
+    });
+  },
+  resetData: function(){
+    this.pdfData = {
+      title_pdf: '',
+      reports_pdf:''
+    }
+  },
+  /**
+  *为导出pdf做的一些准备
+  */
+  init_for_pdf: function(containerId){
+    $('#title_pdf').html("<span style='font-size:20px;'>"+$('.page_title').find('h1').html()+$('.page_title').find('a').html()+"</span>");
+
+    $("#reports_pdf").css("width","100%");
+
+    $("#reports_pdf").empty();
+    var date = new Date().Format("yyyy-MM-dd hh:mm:ss");
+    var myheading = $(".myheading:first").clone();
+    myheading.find(".navbar-inverse").attr("style","border-bottom:1px solid #dfdfdf;padding: 0 20px;margin: 0 -20px;");
+    myheading.find(".container-fluid").css("padding-left",0);
+    myheading.find(".x-search").remove();
+    myheading.find(".x-top-menu").remove();
+    myheading.find(".x-user-main").html('<div class="x-user-con" style="min-width: 90px;background:none"><span class="x-user-dis">&nbsp;Date: '+date+'</span></div>');
+    myheading.find(".navbar-form").remove();
+    myheading.find(".navbar-collapse").append('<div style="float: left;height: 60px;line-height: 60px;font-weight: bold;font-size: 15px;">Symphony-iAudience</div>');
+    
+    var $pageTitle = $(".page_title:first").clone();
+    $pageTitle.find(".fa").remove();
+    var pageTitle = '<div class="page_title">'+$pageTitle.html() +'</div>';
+
+    var $nav = $("#myTab").clone();
+    var nav = '<ul class="nav nav-tabs sub-nav-tabs" style="margin-bottom:20px;">'+$nav.html()+'</ul>';
+
+    $("#reports_pdf").html(myheading.html()+pageTitle+nav+$("#"+containerId).html());
+    
+    // if(containerId=="for_export_share"){
+      $("#reports_pdf").css("width",$("#"+containerId).css("width"));
+    // }
+    $("#reports_pdf").find(".plan-reports").css("width","100%");
+
+  },
+  exportPdf: function(imgData){
+    
+    var title_pdf = imgData.title_pdf;
+    var reports_pdf = imgData.reports_pdf;
+    var doc = new jsPDF();
+    var top = 3;
+    function title(){
+      doc.setFontSize(12);
+      doc.setTextColor(40);
+    }
+    // top += 4;
+    //添加标题
+    // doc.addImage(title_pdf, 'JPEG',10, top, 90, 10);
+    //添加报表内容
+    // top+=24;
+    doc.addImage(reports_pdf, 'JPEG',10, top, 190, 180);
+    doc.save('Symphony-iAudience'+'.pdf');
   },
   getLength: function(str){
     var len = 0;

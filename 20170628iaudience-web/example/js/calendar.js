@@ -33,6 +33,7 @@ function xmoCalendar(options){
   _this.endTimeOld = '';
   _this.compareFrom = '';
   _this.compareTo = '';
+  _this.maxRange = options['maxRange'] || 0;
   // 被删除的时间
   _this.removed = {};
   _this.exclude_dates_obj = _this.inputObj.parent().find('.exclude_dates')
@@ -244,41 +245,50 @@ xmoCalendar.prototype.init_Event = function(){
 
   $('.xmoCalendarDataRange dd',_this.wrapperBox).click(function(){
     var type = $(this).attr('data-type');
+    var inputVal = '';
     switch(type){
       case 'none':
-        _this.inputObj.val('');
         break;
       case 'today':
-        _this.inputObj.val(_this.today);
+        inputVal = _this.today;
         break;
       case 'last_7_days':
-        _this.inputObj.val(_this.last_7_days());
+        inputVal = _this.last_7_days();
         break;
       case 'last_30_days':
-        _this.inputObj.val(_this.last_30_days());
+        inputVal = _this.last_30_days();
         break;
       case 'this_week':
-        _this.inputObj.val(_this.getThisWeek());
+        inputVal = _this.getThisWeek();
         break;
       case 'this_month':
-        _this.inputObj.val(_this.getThisMonth());
+        inputVal = _this.getThisMonth();
         break;
       case 'this_yeah':
-        _this.inputObj.val(_this.getThisYear());
+        inputVal = _this.getThisYear();
         break;
       case 'last_week':
-        _this.inputObj.val(_this.getLastWeek());
+        inputVal = _this.getLastWeek();
         break;
       case 'last_month':
-        _this.inputObj.val(_this.getLastMonth());
+        inputVal = _this.getLastMonth();
         break;
       case 'last_3_month':
-        _this.inputObj.val(_this.getLast_Month(3));
+        inputVal = _this.getLast_Month(3);
         break;
       case 'last_12_month':
-        _this.inputObj.val(_this.getLast_Month(12));
+        inputVal = _this.getLast_Month(12);
         break;
     }
+    var dateFrom = inputVal.split(" ~ ")[0];
+    var dateTo = inputVal.split(" ~ ")[1];
+    var isOutrange = _this.isOutRange(dateFrom, dateTo);
+    var lang = _this.lang[_this.lang_opt];
+    if(isOutrange){
+      $('.xmoCalendarTableTips',_this.wrapperBox).html('').html("<p style='color:#ef4136;'>"+lang['outRange'][0]+_this.maxRange+lang['outRange'][1]+"</p>");
+      return false;
+    }
+    _this.inputObj.val(inputVal);
     _this.submitCallback && _this.submitCallback(_this.inputId.substring(0));
     _this.closeBox();
   });
@@ -465,6 +475,12 @@ xmoCalendar.prototype.init_Event = function(){
         _this.errorTip(lang['err_2']);
         e.preventDefault();
         e.stopPropagation();
+        return false;
+      }
+      var isOutrange = _this.isOutRange(dateFrom, dateTo);
+      var lang = _this.lang[_this.lang_opt];
+      if(isOutrange){
+        $('.xmoCalendarTableTips',_this.wrapperBox).html('').html("<p style='color:#ef4136;'>"+lang['outRange'][0]+_this.maxRange+lang['outRange'][1]+"</p>");
         return false;
       }
       $(_this.inputId).val(result);
@@ -1107,6 +1123,13 @@ xmoCalendar.prototype.focusCheck = function(){
   }else{
     _this.selecting();
   }
+  var isOutrange = _this.isOutRange(dateFrom.val(), dateTo.val());
+  var lang = _this.lang[_this.lang_opt];
+  if(isOutrange){
+    $('.xmoCalendarTableTips',_this.wrapperBox).html('').html("<p style='color:#ef4136;'>"+lang['outRange'][0]+_this.maxRange+lang['outRange'][1]+"</p>");
+  }else{
+    $('.xmoCalendarTableTips',_this.wrapperBox).html('');
+  }
 }
 xmoCalendar.prototype.focusCheckFoot = function(){
   var _this = this;
@@ -1122,6 +1145,14 @@ xmoCalendar.prototype.focusCheckFoot = function(){
   }
   _this.wrapperBox.removeClass('inputingBox');
   $('.xmoCalendarMainFoot .inputing',_this.wrapperBox).removeClass('inputing');
+  var isOutrange = _this.isOutRange(dateFrom.val(), dateTo.val());
+  var lang = _this.lang[_this.lang_opt];
+  if(isOutrange){
+    $('.xmoCalendarTableTips',_this.wrapperBox).html('').html("<p style='color:#ef4136;'>"+lang['outRange'][0]+_this.maxRange+lang['outRange'][1]+"</p>");
+  }else{
+    $('.xmoCalendarTableTips',_this.wrapperBox).html('');
+  }
+
 }
 
 xmoCalendar.prototype.dateToAry = function(date){
@@ -1157,6 +1188,27 @@ xmoCalendar.prototype.isInRange = function(date,start,end){
  // console.log(dateFrom+"@@"+dateTo+"!!"+date+"$$");
   if(milliseconds <= millisecondsTo&&millisecondsFrom <= milliseconds) return true;
   return false;
+}
+
+xmoCalendar.prototype.isOutRange = function(start,end){
+  var _this = this;
+  var dateFrom = start || _this.dateFrom;
+  var dateTo = end || _this.dateTo;
+  if (_this.maxRange==0) {
+    return false;
+  };
+  if(typeof(dateFrom)==="string" && dateFrom.indexOf("-")>-1){
+    dateFrom = new Date((dateFrom).replace(/-/g, '/'));
+  }
+  if(typeof(dateTo)==="string" && dateTo.indexOf("-")>-1){
+    dateTo = new Date((dateTo).replace(/-/g, '/'));
+  }
+  var millisecondsFrom = new Date(dateFrom).getTime();
+  var millisecondsTo = new Date(dateTo).getTime();
+  var milliseconds = (_this.maxRange-1) * 24 * 60 * 60 * 1000;
+ // console.log(dateFrom+"@@"+dateTo+"!!"+date+"$$");
+  if(millisecondsFrom <= millisecondsTo && (millisecondsTo-millisecondsFrom <= milliseconds)) return false;
+  return true;
 }
 
 xmoCalendar.prototype.btnLeftFunc = function(){
@@ -1420,7 +1472,8 @@ xmoCalendar.prototype.lang = {
       allWeekStrUnselect1 : [' 已经选择','是否要选择其它月份的','?'],
       everyMonthStr : '',
       dateFormatUncorrect : '日期格式不正确',
-      period : '。'
+      period : '。',
+      outRange : ['*您只能选择最多 ',' 天'],
   },
   'en' : {
       errAlertMsg: "Invalid date or the date out of range,redo or not?",
@@ -1463,6 +1516,7 @@ xmoCalendar.prototype.lang = {
       allWeekStrUnselect1 : [' is selected','Select ','in every month?'],
       everyMonthStr : ' in every month',
       dateFormatUncorrect : 'Date format is not correct',
-      period : '.'
+      period : '.',
+      outRange : ['*You can select up to ',' days'],
   }
 }
