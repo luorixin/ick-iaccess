@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Audiences</title>
+    <title>iAudience</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -84,7 +84,7 @@
                       </label>
 
                     </span>
-                    <i class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></i>
+                    <span class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></span>
                 </div>
                 <div class="x-user-list x-top-search-list">
                   <span class="nav-arrow"></span>
@@ -327,19 +327,13 @@
                  <span class="x-m8">简体中文</span>
               </a>
             </li>
-            <li>
-              <a href="#">
-              <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
-                 <span class="x-m8">简体中文</span>
-              </a>
-            </li>
           </ul>
           <ul class="x-menu-lang">
 
             <li>
               <a href="javascript:;">
               <i class="fa fa-cog fa-globe" aria-hidden="true"></i>
-                 <span class="x-m8">langauage English</span>
+                 <span class="x-m8">English</span>
               </a>
             </li>
           </ul>
@@ -369,7 +363,7 @@
 
           <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
             <li class="active">
-              <a data-toggle="tab" href="#tab-share" data-id="share">Market Share & Trend</a>
+              <a data-toggle="tab" href="#tab-share" data-id="share">Industry Penetration & Trend</a>
             </li>
             <li class="">
               <a data-toggle="tab" href="#tab-analysis" data-id="market">Market Analysis</a>
@@ -397,19 +391,19 @@
                           <!--Trend map-->
                           <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:600px;padding: 0 7.5px 0 0;">
                             <div class="plan-result-text">
-                              <div class="result-text-header clearfix">
-                                <label id="date_header">Trend of Market Audience & Market Share
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <div class="result-text-header">
+                                <label id="date_header">Trend of Market Audience & Industry Penetration
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in the related industry compare to internet netizen."></i>
                                 </label>
                                 <div class="report-dropdown" style="top:30px;right:20px;">
                                   <div class="date-range">
                                     <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
                                     <input type="text" id="daterange"
                                       style="width:155px;"
-                                      placeholder="please select a period" value=""
+                                      placeholder="please select a period" 
                                       class="form-control date-range-input xmoCalendarInputSchedule">
-                                       <input type="hidden" id="min" name="begin" value="" />
-                                      <input type="hidden" id="max" name="end" value="" />
+                                       <input type="hidden" id="min" name="begin" value="2017-05-20" />
+                                      <input type="hidden" id="max" name="end" value="2017-06-15" />
                                      <span class="caret arrow-calendar"></span>
                                   </div>
                                 </div>
@@ -436,7 +430,7 @@
                             <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
                               <div class="result-text-header clearfix">
                                 <label id="date_header">Audience Scale
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
                                 </label>
                               </div>
                               <div class="result-text-info clearfix x-mt10">
@@ -446,11 +440,11 @@
                               </div>
                             </div>
                             
-                            <!--Market share-->
+                            <!--Industry Penetration-->
                             <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
                               <div class="result-text-header">
-                                <label id="date_header">Market Share
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                <label id="date_header">Industry Penetration
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The percentage of audience in the industry compare to internet netizen."></i>
                                 </label>
                               </div>
                               <div class="result-graph-info x-mt10">
@@ -470,7 +464,7 @@
                             <div class="plan-result-text">
                               <div class="result-text-header clearfix">
                                 <label>Keywords
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Words that related to the industry. The more relevant words to the market, the bigger and bolder they appear in the word cloud."></i>
                                 </label>
                               </div>
                               <div class="result-graph-info x-mt10">
@@ -501,7 +495,7 @@
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label id="date_header">Market Landscape
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The competitiveness, market position of brands in the market, comparison among your brand and your competitors."></i>
                               </label>
                             </div>
                             <div class="result-graph-info x-mt10">
@@ -568,7 +562,7 @@
                           <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
                             <div class="result-text-header clearfix">
                               <label id="date_header">Audience Scale
-                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
                               </label>
                             </div>
                             <div class="result-text-info clearfix x-mt10">
@@ -581,14 +575,14 @@
                           <div class="plan-result-middle-line">
                             <div class="plan-middle-line"></div>
                             <div class="plan-middle-line-info">
-                              <label>Market: <span>0</span></label>
+                              <label>The Market: <span>0</span></label>
                             </div>
                           </div>
-                          <!--Market share-->
+                          <!--Industry Penetration-->
                           <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
                             <div class="result-text-header">
-                              <label id="date_header">Market Share
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <label id="date_header">Industry Penetration
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of the industry."></i>
                               </label>
                             </div>
                             <div class="result-graph-info x-mt10">
@@ -661,7 +655,7 @@
                                 </div>
                                 <div class="result-graph-word-content">
 
-                                  
+
                                 </div>
                               </div>
                             </div>
@@ -704,8 +698,8 @@
                   <option value="Guangdong">Guangdong</option>
                   <option value="Shenzhen">Shenzhen</option>
                 </select>
-                <div style="display:inline-block;margin-left:5px;">
-                  <i class="fa fa-question-circle-o" style="float:left;line-height:30px;" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                <div style="display:inline-block;margin-left:-10px;position:relative;left: 400px;float:left;">
+                  <i class="fa fa-question-circle-o" style="line-height:30px;" data-toggle="tooltip" data-placement="bottom" data-original-title="Based on the keywords and geographical locations to match the information and calculate how much inventory(PV) and audience(UV) in this place."></i>
                 </div>
                 <div class="map-container">
                   <div class="map-info">
@@ -725,7 +719,9 @@
                       <button type="button" class="btn btn-success" disabled>Save</button>
                     </div>
                   </div>
-                  <div id="map_container"></div>
+                  <div class="map-content">
+                    <div id="map_container"></div>
+                  </div>
                 </div>
               </div>
       			</div>
@@ -791,27 +787,28 @@
                 "top5brand":{
                   "Estee Lauder":852,
                   "Lancome":789,
-                  "Shiseido":507,
+                  "Shiseido":5107,
                   "Bobbi Brown":456,
-                  "SKII":278,
+                  "SKII":2378,
                 },
                 "top5products":{
                   "Makeup":852,
                   "Skincare":789,
                   "Foundation":507,
                   "Concealer":456,
-                  "Body Wash":278,
+                  "Body Wash":2278,
                 },
               "result":[
                 {
                   "data":{
                     "age_group": {
-                        "18-24": 20,
-                        "25-34": 15,
-                        "35-44": 35,
-                        "45-54": 20,
-                        "55-64": 10,
-                        "65+": 3
+                        "0-17": 2022,
+                        "18-24": 2022,
+                        "25-34": 1522,
+                        "35-44": 3522,
+                        "45-54": 2022,
+                        "55-64": 1022,
+                        "65+": 322
                     },
                     "audience": "3.3M",
                     "allMarket": "3.3M",
@@ -832,7 +829,7 @@
                     },
                     
                     "market_share":{
-                      "market":666,
+                      "market":0,
                       "market_show":333,
                     },
                     "interest": {
@@ -864,19 +861,30 @@
                         "_others":{
                             "name": "Other Related Interests",
                             "value": 20,
-                            "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                            "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / CustomerMake-up / CustomerMake-up / Customer"]
                         }
                     },
                     "regions":[
-                          {"name": "北京", "value": "123"},
-                          {"name": "天津", "value": "61"},
-                          {"name": "上海", "value": "123"},
-                          {"name": "重庆", "value": "62"},
-                          {"name": "河北", "value": "123"},
-                          {"name": "河南", "value": "123"},
-                          {"name": "云南", "value": "123"},
-                          {"name": "辽宁", "value": "33"},
-                          {"name": "其他", "value": "55"}
+                          {"name": "BeiJing", "value": "123"},
+                          {"name": "TianJin", "value": "61"},
+                          {"name": "ShanXi", "value": "123"},
+                          {"name": "NeiMeng", "value": "62"},
+                          {"name": "HeBei", "value": "1223"},
+                          {"name": "JiLin", "value": "123"},
+                          {"name": "JiangXi", "value": "123"},
+                          {"name": "ShanDong", "value": "33"},
+                          {"name": "ChongQing", "value": "123"},
+                          {"name": "SiChuan", "value": "62"},
+                          {"name": "GuiZhou",  "value": "1223"},
+                          {"name": "YunNan",  "value": "123"},
+                          {"name": "XiZang", "value": "33"},
+                          {"name": "ShanXi1", "value": "123"},
+                          {"name": "GanSu", "value": "62"},
+                          {"name": "QingHai", "value": "4223"},
+                          {"name": "NingXia", "value": "123"},
+                          {"name": "XinJiang", "value": "123"},
+                          {"name": "Heilongjiang", "value": "33"},
+                          {"name": "Other Cities", "value": "5551"}
                     ]
                   },
                   "id": "all",
@@ -885,6 +893,7 @@
                 {
                   "data":{
                     "age_group": {
+                        "0-17": 2022,
                         "18-24": 20,
                         "25-34": 55,
                         "35-44": 55,
@@ -922,7 +931,7 @@
                         },
                         "Cooking & Recipes": {
                             "name": "Cooking & Recipes",
-                            "value": 19,
+                            "value": 29,
                             "sub": ["Skin Care","Make-up / Customer"]
                         },
                         "Female Fashion": {
@@ -947,15 +956,26 @@
                         }
                     },
                     "regions":[
-                          {"name": "北京", "value": "123"},
-                          {"name": "天津", "value": "61"},
-                          {"name": "上海", "value": "123"},
-                          {"name": "重庆", "value": "62"},
-                          {"name": "河北", "value": "123"},
-                          {"name": "河南", "value": "123"},
-                          {"name": "云南", "value": "123"},
-                          {"name": "辽宁", "value": "33"},
-                          {"name": "其他", "value": "55"}
+                          {"name": "BeiJing", "value": "123"},
+                          {"name": "TianJin", "value": "61"},
+                          {"name": "ShanXi", "value": "123"},
+                          {"name": "NeiMeng", "value": "62"},
+                          {"name": "HeBei", "value": "1223"},
+                          {"name": "JiLin", "value": "123"},
+                          {"name": "JiangXi", "value": "123"},
+                          {"name": "ShanDong", "value": "33"},
+                          {"name": "ChongQing", "value": "123"},
+                          {"name": "SiChuan", "value": "62"},
+                          {"name": "GuiZhou",  "value": "1223"},
+                          {"name": "YunNan",  "value": "123"},
+                          {"name": "XiZang", "value": "33"},
+                          {"name": "ShanXi1", "value": "123"},
+                          {"name": "GanSu", "value": "62"},
+                          {"name": "QingHai", "value": "4223"},
+                          {"name": "NingXia", "value": "123"},
+                          {"name": "XinJiang", "value": "123"},
+                          {"name": "Heilongjiang", "value": "33"},
+                          {"name": "Other Cities", "value": "5551"}
                     ]
                   },
                   "id": "0",
@@ -964,6 +984,7 @@
                 {
                   "data":{
                     "age_group": {
+                        "0-17": 2022,
                         "18-24": 30,
                         "25-34": 15,
                         "35-44": 25,
@@ -1026,15 +1047,26 @@
                         }
                     },
                     "regions":[
-                          {"name": "北京", "value": "123"},
-                          {"name": "天津", "value": "61"},
-                          {"name": "上海", "value": "123"},
-                          {"name": "重庆", "value": "62"},
-                          {"name": "河北", "value": "123"},
-                          {"name": "河南", "value": "123"},
-                          {"name": "云南", "value": "123"},
-                          {"name": "辽宁", "value": "33"},
-                          {"name": "其他", "value": "55"}
+                          {"name": "BeiJing", "value": "123"},
+                          {"name": "TianJin", "value": "61"},
+                          {"name": "ShanXi", "value": "123"},
+                          {"name": "NeiMeng", "value": "62"},
+                          {"name": "HeBei", "value": "1223"},
+                          {"name": "JiLin", "value": "123"},
+                          {"name": "JiangXi", "value": "123"},
+                          {"name": "ShanDong", "value": "33"},
+                          {"name": "ChongQing", "value": "123"},
+                          {"name": "SiChuan", "value": "62"},
+                          {"name": "GuiZhou",  "value": "1223"},
+                          {"name": "YunNan",  "value": "123"},
+                          {"name": "XiZang", "value": "33"},
+                          {"name": "ShanXi1", "value": "123"},
+                          {"name": "GanSu", "value": "62"},
+                          {"name": "QingHai", "value": "4223"},
+                          {"name": "NingXia", "value": "123"},
+                          {"name": "XinJiang", "value": "123"},
+                          {"name": "Heilongjiang", "value": "33"},
+                          {"name": "Other Cities", "value": "5551"}
                     ]
                   },
                   "id": "1",
@@ -1043,6 +1075,7 @@
                 {
                   "data":{
                     "age_group": {
+                        "0-17": 2022,
                         "18-24": 60,
                         "25-34": 55,
                         "35-44": 45,
@@ -1105,15 +1138,26 @@
                         }
                     },
                     "regions":[
-                          {"name": "北京", "value": "123"},
-                          {"name": "天津", "value": "61"},
-                          {"name": "上海", "value": "123"},
-                          {"name": "重庆", "value": "62"},
-                          {"name": "河北", "value": "123"},
-                          {"name": "河南", "value": "123"},
-                          {"name": "云南", "value": "123"},
-                          {"name": "辽宁", "value": "33"},
-                          {"name": "其他", "value": "55"}
+                          {"name": "BeiJing", "value": "123"},
+                          {"name": "TianJin", "value": "61"},
+                          {"name": "ShanXi", "value": "123"},
+                          {"name": "NeiMeng", "value": "62"},
+                          {"name": "HeBei", "value": "1223"},
+                          {"name": "JiLin", "value": "123"},
+                          {"name": "JiangXi", "value": "123"},
+                          {"name": "ShanDong", "value": "33"},
+                          {"name": "ChongQing", "value": "123"},
+                          {"name": "SiChuan", "value": "62"},
+                          {"name": "GuiZhou",  "value": "1223"},
+                          {"name": "YunNan",  "value": "123"},
+                          {"name": "XiZang", "value": "33"},
+                          {"name": "ShanXi1", "value": "123"},
+                          {"name": "GanSu", "value": "62"},
+                          {"name": "QingHai", "value": "4223"},
+                          {"name": "NingXia", "value": "123"},
+                          {"name": "XinJiang", "value": "123"},
+                          {"name": "Heilongjiang", "value": "33"},
+                          {"name": "Other Cities", "value": "5551"}
                     ]
                   },
                   "id": "0-1",
@@ -1128,6 +1172,7 @@
         },{
             "data": {
                 "age_group": {
+                    "0-17": 2022,
                     "18-24": 30,
                     "25-34": 25,
                     "35-44": 65,
@@ -1156,67 +1201,67 @@
                   "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
                   "result":{"Market Audience":
                     [
-                      {"date":"2017-05-20","name":"Market Audience","value":"11"},
-                      {"date":"2017-05-21","name":"Market Audience","value":"21"},
-                      {"date":"2017-05-22","name":"Market Audience","value":"31"},
-                      {"date":"2017-05-23","name":"Market Audience","value":"41"},
-                      {"date":"2017-05-24","name":"Market Audience","value":"51"},
-                      {"date":"2017-05-25","name":"Market Audience","value":"61"},
-                      {"date":"2017-05-26","name":"Market Audience","value":"71"},
-                      {"date":"2017-05-27","name":"Market Audience","value":"11"},
-                      {"date":"2017-05-28","name":"Market Audience","value":"21"},
-                      {"date":"2017-05-29","name":"Market Audience","value":"31"},
-                      {"date":"2017-05-30","name":"Market Audience","value":"51"},
-                      {"date":"2017-05-31","name":"Market Audience","value":"81"},
-                      {"date":"2017-06-01","name":"Market Audience","value":"21"},
-                      {"date":"2017-06-02","name":"Market Audience","value":"31"},
-                      {"date":"2017-06-03","name":"Market Audience","value":"71"},
-                      {"date":"2017-06-04","name":"Market Audience","value":"61"},
-                      {"date":"2017-06-05","name":"Market Audience","value":"51"},
-                      {"date":"2017-06-06","name":"Market Audience","value":"41"},
-                      {"date":"2017-06-07","name":"Market Audience","value":"51"},
-                      {"date":"2017-06-08","name":"Market Audience","value":"61"},
-                      {"date":"2017-06-09","name":"Market Audience","value":"71"},
-                      {"date":"2017-06-10","name":"Market Audience","value":"81"},
-                      {"date":"2017-06-11","name":"Market Audience","value":"31"},
-                      {"date":"2017-06-12","name":"Market Audience","value":"41"},
-                      {"date":"2017-06-13","name":"Market Audience","value":"51"},
-                      {"date":"2017-06-14","name":"Market Audience","value":"61"},
-                      {"date":"2017-06-15","name":"Market Audience","value":"11"},
-                    ],"Market Share":
+                      {"date":"2017-05-20","name":"Market Audience","value":"1111"},
+                      {"date":"2017-05-21","name":"Market Audience","value":"1212"},
+                      {"date":"2017-05-22","name":"Market Audience","value":"3111"},
+                      {"date":"2017-05-23","name":"Market Audience","value":"4221"},
+                      {"date":"2017-05-24","name":"Market Audience","value":"5111"},
+                      {"date":"2017-05-25","name":"Market Audience","value":"6111"},
+                      {"date":"2017-05-26","name":"Market Audience","value":"7111"},
+                      {"date":"2017-05-27","name":"Market Audience","value":"1111"},
+                      {"date":"2017-05-28","name":"Market Audience","value":"2111"},
+                      {"date":"2017-05-29","name":"Market Audience","value":"3111"},
+                      {"date":"2017-05-30","name":"Market Audience","value":"5111"},
+                      {"date":"2017-05-31","name":"Market Audience","value":"8111"},
+                      {"date":"2017-06-01","name":"Market Audience","value":"2111"},
+                      {"date":"2017-06-02","name":"Market Audience","value":"3111"},
+                      {"date":"2017-06-03","name":"Market Audience","value":"7111"},
+                      {"date":"2017-06-04","name":"Market Audience","value":"6111"},
+                      {"date":"2017-06-05","name":"Market Audience","value":"5111"},
+                      {"date":"2017-06-06","name":"Market Audience","value":"4111"},
+                      {"date":"2017-06-07","name":"Market Audience","value":"5111"},
+                      {"date":"2017-06-08","name":"Market Audience","value":"6111"},
+                      {"date":"2017-06-09","name":"Market Audience","value":"7111"},
+                      {"date":"2017-06-10","name":"Market Audience","value":"8111"},
+                      {"date":"2017-06-11","name":"Market Audience","value":"3111"},
+                      {"date":"2017-06-12","name":"Market Audience","value":"4111"},
+                      {"date":"2017-06-13","name":"Market Audience","value":"5111"},
+                      {"date":"2017-06-14","name":"Market Audience","value":"6111"},
+                      {"date":"2017-06-15","name":"Market Audience","value":"1111"},
+                    ],"Industry Penetration":
                     [
-                      {"date":"2017-05-20","name":"Market Share","value":"91"},
-                      {"date":"2017-05-21","name":"Market Share","value":"81"},
-                      {"date":"2017-05-22","name":"Market Share","value":"71"},
-                      {"date":"2017-05-23","name":"Market Share","value":"61"},
-                      {"date":"2017-05-24","name":"Market Share","value":"51"},
-                      {"date":"2017-05-25","name":"Market Share","value":"41"},
-                      {"date":"2017-05-26","name":"Market Share","value":"71"},
-                      {"date":"2017-05-27","name":"Market Share","value":"81"},
-                      {"date":"2017-05-28","name":"Market Share","value":"91"},
-                      {"date":"2017-05-29","name":"Market Share","value":"91"},
-                      {"date":"2017-05-30","name":"Market Share","value":"11"},
-                      {"date":"2017-05-31","name":"Market Share","value":"21"},
-                      {"date":"2017-06-01","name":"Market Share","value":"31"},
-                      {"date":"2017-06-02","name":"Market Share","value":"41"},
-                      {"date":"2017-06-03","name":"Market Share","value":"51"},
-                      {"date":"2017-06-04","name":"Market Share","value":"11"},
-                      {"date":"2017-06-05","name":"Market Share","value":"11"},
-                      {"date":"2017-06-06","name":"Market Share","value":"61"},
-                      {"date":"2017-06-07","name":"Market Share","value":"11"},
-                      {"date":"2017-06-08","name":"Market Share","value":"71"},
-                      {"date":"2017-06-09","name":"Market Share","value":"11"},
-                      {"date":"2017-06-10","name":"Market Share","value":"11"},
-                      {"date":"2017-06-11","name":"Market Share","value":"11"},
-                      {"date":"2017-06-12","name":"Market Share","value":"11"},
-                      {"date":"2017-06-13","name":"Market Share","value":"11"},
-                      {"date":"2017-06-14","name":"Market Share","value":"11"},
-                      {"date":"2017-06-15","name":"Market Share","value":"11"},
+                      {"date":"2017-05-20","name":"Industry Penetration","value":"191"},
+                      {"date":"2017-05-21","name":"Industry Penetration","value":"281"},
+                      {"date":"2017-05-22","name":"Industry Penetration","value":"71"},
+                      {"date":"2017-05-23","name":"Industry Penetration","value":"61"},
+                      {"date":"2017-05-24","name":"Industry Penetration","value":"51"},
+                      {"date":"2017-05-25","name":"Industry Penetration","value":"41"},
+                      {"date":"2017-05-26","name":"Industry Penetration","value":"71"},
+                      {"date":"2017-05-27","name":"Industry Penetration","value":"81"},
+                      {"date":"2017-05-28","name":"Industry Penetration","value":"91"},
+                      {"date":"2017-05-29","name":"Industry Penetration","value":"91"},
+                      {"date":"2017-05-30","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-05-31","name":"Industry Penetration","value":"21"},
+                      {"date":"2017-06-01","name":"Industry Penetration","value":"31"},
+                      {"date":"2017-06-02","name":"Industry Penetration","value":"41"},
+                      {"date":"2017-06-03","name":"Industry Penetration","value":"51"},
+                      {"date":"2017-06-04","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-05","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-06","name":"Industry Penetration","value":"61"},
+                      {"date":"2017-06-07","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-08","name":"Industry Penetration","value":"71"},
+                      {"date":"2017-06-09","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-10","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-11","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-12","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-13","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-14","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-06-15","name":"Industry Penetration"},
                     ]},
                     "topBrands":[
                       {"date":"2017-05-20","articles":[
-                        {"date":"2017/05/20 12:15","index":"1","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 18:15","index":"2","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"1","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"2","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beautify fulllifly","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 18:15","index":"3","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 12:15","index":"4","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 12:15","index":"5","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
@@ -1243,29 +1288,58 @@
                         {"date":"2017/06/15 12:15","index":"4","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
                         {"date":"2017/06/15 12:15","index":"5","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
                         {"date":"2017/06/15 12:15","index":"6","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_newstttt.png"},
+                        {"date":"2017/06/15 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com"},
                         ]
                       },
                     ],
                 },
                 "market_share":{
-                  "market":222,
-                  "market_show":888,
+                  "market":88888888888888,
+                  "market_show":1,
                 },
-                "cloud_tag" :[
-                      {text: "Variety & Entertainment", weight: 33},
-                      {text: "Leisure Travel", weight: 30.5},
-                      {text: "Home & Lifestyle", weight: 20.4},
-                      {text: "Food & Drink", weight: 10},
-                      {text: "Healthcare", weight: 6.2},
-                      {text: "Psychology", weight: 18.2},
-                      {text: "Jobs & Education", weight: 20.2},
-                      {text: "Careers", weight: 5.2},
-                      {text: "Automobile", weight: 3.2},
-                      {text: "Investing", weight: 5.2}
-
-                ]
+                "cloud_tag": [
+                    {
+                        "text": "小棕瓶",
+                        "weight": 100.0
+                    },
+                    {
+                        "text": "唇膏",
+                        "weight": 41.91399002075195
+                    },
+                    {
+                        "text": "真假辨别",
+                        "weight": 40.50263214111328
+                    },
+                    {
+                        "text": "wear",
+                        "weight": 39.256526947021484
+                    },
+                    {
+                        "text": "粉底液",
+                        "weight": 36.01508331298828
+                    },
+                    {
+                        "text": "double",
+                        "weight": 34.853759765625
+                    },
+                    {
+                        "text": "红石榴",
+                        "weight": 32.2340202331543
+                    },
+                    {
+                        "text": "眼霜",
+                        "weight": 31.098222732543945
+                    },
+                    {
+                        "text": "倾慕",
+                        "weight": 27.179134368896484
+                    },
+                    {
+                        "text": "修护",
+                        "weight": 26.62397003173828
+                    }
+                ],
             },
             "id": "2",
             "name": "share",
@@ -2328,7 +2402,7 @@
       function initCalendar(id) {
        new xmoCalendar({
          inputId : '#' + id,
-         lang : "zh", //"zh" "en"
+         lang : "en", //"zh" "en"
          wrapContainer: $('#'+id).parents(".result-text-header"),
          relativeTop:"60",
          relativeRight:20,

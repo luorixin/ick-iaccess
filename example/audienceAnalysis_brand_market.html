@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Audiences</title>
+    <title>iAudience</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -80,7 +80,7 @@
                       </label>
 
                     </span>
-                    <i class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></i>
+                    <span class="fa fa-caret-down fa-fw head_drop_down" aria-hidden="true"></span>
                 </div>
                 <div class="x-user-list x-top-search-list">
                   <span class="nav-arrow"></span>
@@ -322,19 +322,13 @@
                  <span class="x-m8">简体中文</span>
               </a>
             </li>
-            <li>
-              <a href="#">
-              <i class="fa fa-cog fa-globe" aria-hidden="true" style="visibility:hidden;"></i>
-                 <span class="x-m8">简体中文</span>
-              </a>
-            </li>
           </ul>
           <ul class="x-menu-lang">
 
             <li>
               <a href="javascript:;">
               <i class="fa fa-cog fa-globe" aria-hidden="true"></i>
-                 <span class="x-m8">langauage English</span>
+                 <span class="x-m8">English</span>
               </a>
             </li>
           </ul>
@@ -387,24 +381,46 @@
       			<div class="tab-pane fade in active" id="tab-share">
                 <div class="" id="for_export_share">
                   <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                    <ul class="simulator-check-container" style="margin-bottom:2.5px;">
+                      <li class="selected">
+                        <p class="simulator-check-title">My Brand</p>
+                        <label class="simulator-check-content">Estee Lauder</label>
+                      </li>
+                      <li>
+                        <p class="simulator-check-title">Competitor 1</p>
+                        <label class="simulator-check-content">Lancome</label>
+                      </li>
+                      <li>
+                        <p class="simulator-check-title">Competitor 2</p>
+                        <label class="simulator-check-content">Shiseido</label>
+                      </li>
+                      <li>
+                        <p class="simulator-check-title">Competitor 3</p>
+                        <label class="simulator-check-content">Bobbi Brown</label>
+                      </li>
+                      <li>
+                        <p class="simulator-check-title">Competitor 4</p>
+                        <label class="simulator-check-content">SKII</label>
+                      </li>
+                    </ul>
                     <div class="plan-reports-result clearfix">
                       <div class="plan-reports-result-inner" style="width:65%">
                         <!--Trend map-->
                         <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:600px;padding: 0 7.5px 0 0;">
                           <div class="plan-result-text">
                             <div class="result-text-header">
-                              <label id="date_header">Trend of Market Audience & Market Share
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <label id="date_header">Trend of Market Audience & Brand Share
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in my brand / a competitor compare to the industry."></i>
                               </label>
                               <div class="report-dropdown" style="top:30px;right:20px;">
                                 <div class="date-range">
                                   <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
                                   <input type="text" id="daterange"
                                     style="width:155px;"
-                                    placeholder="please select a period" value=""
+                                    placeholder="please select a period" value="2017-01-01 ~ 2017-01-"
                                     class="form-control date-range-input xmoCalendarInputSchedule">
-                                     <input type="hidden" id="min" name="begin" value="" />
-                                    <input type="hidden" id="max" name="end" value="" />
+                                     <input type="hidden" id="min" name="begin" value="2017-05-20" />
+                                    <input type="hidden" id="max" name="end" value="2017-06-15" />
                                    <span class="caret arrow-calendar"></span>
                                 </div>
                               </div>
@@ -431,7 +447,7 @@
                           <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
                             <div class="result-text-header clearfix">
                               <label id="date_header">Audience Scale
-                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in my brand / a competitor."></i>
                               </label>
                             </div>
                             <div class="result-text-info clearfix x-mt10">
@@ -441,11 +457,11 @@
                             </div>
                           </div>
                           
-                          <!--Market share-->
+                          <!--Industry Penetration-->
                           <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
                             <div class="result-text-header">
-                              <label id="date_header">Market Share
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <label id="date_header">Industry Penetration
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of my brand / a competitor overlaps the industry."></i>
                               </label>
                             </div>
                             <div class="result-graph-info x-mt10">
@@ -465,7 +481,7 @@
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label>Keywords
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Words that related to my brand / competitor. The more relevant words to my brand / a competitor, the bigger and bolder they appear in the word cloud."></i>
                               </label>
                             </div>
                             <div class="result-graph-info x-mt10">
@@ -488,7 +504,30 @@
 
       			<div class="tab-pane fade" id="tab-brand">
               <div class="" id="for_export_brand">
+                
                 <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                  <ul class="simulator-check-container" style="margin-bottom:2.5px;">
+                    <li class="selected">
+                      <p class="simulator-check-title">My Brand</p>
+                      <label class="simulator-check-content">Estee Lauder</label>
+                    </li>
+                    <li>
+                      <p class="simulator-check-title">Competitor 1</p>
+                      <label class="simulator-check-content">Lancome</label>
+                    </li>
+                    <li>
+                      <p class="simulator-check-title">Competitor 2</p>
+                      <label class="simulator-check-content">Shiseido</label>
+                    </li>
+                    <li>
+                      <p class="simulator-check-title">Competitor 3</p>
+                      <label class="simulator-check-content">Bobbi Brown</label>
+                    </li>
+                    <li>
+                      <p class="simulator-check-title">Competitor 4</p>
+                      <label class="simulator-check-content">SKII</label>
+                    </li>
+                  </ul>
                   <div class="plan-reports-result clearfix">
                     <div class="plan-reports-result-inner">
                       <!--line-map-->
@@ -496,7 +535,7 @@
                         <div class="plan-result-text">
                           <div class="result-text-header clearfix">
                             <label id="date_header">Audience Funnel
-                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes, including potential audience (defined by other terms and interests that related to your brand) and brand audience (my brand or a competitor) compare to the market."></i>
                             </label>
                           </div>
                           <div class="result-graph-info x-mt10">
@@ -514,7 +553,7 @@
                         <div class="plan-result-text">
                           <div class="result-text-header clearfix">
                             <label id="date_header">My Product Share
-                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of each products"></i>
                             </label>
                           </div>
                           <div class="result-graph-info x-mt10">
@@ -562,7 +601,7 @@
                       <div class="plan-result-graph" id="select_age" style="padding: 0 7.5px 0 0;width: 100%;">
                         <div class="plan-result-text">
                             <div class="result-text-header clearfix">
-                              <label>AGE GROUPS</label>
+                              <label>Age Groups</label>
                             </div>
                             <div class="result-graph-info clearfix x-mt10">
                               <div class="result-graph-word word-impr">
@@ -583,7 +622,7 @@
                       <div class="plan-result-graph graph-region" style="width:100%;padding-left:7.5px;" id="select_province">
                         <div class="plan-result-text">
                           <div class="result-text-header clearfix">
-                            <label>REGIONS</label>
+                            <label>Regions</label>
                           </div>
                           <div class="result-graph-info x-mt10">
                             <div class="result-graph-word word-impr" style="width:785px;margin:0 auto;">
@@ -607,7 +646,7 @@
                       <div class="plan-result-graph graph-interest" style="width:100%;padding:0;" id="select_interests">
                         <div class="plan-result-text">
                           <div class="result-text-header clearfix">
-                            <label>INTEREST CATEGORIES</label>
+                            <label>Interest Categories</label>
                           </div>
                           <div class="result-graph-info x-mt10">
                             <div class="result-graph-word word-impr" style="width:1058px;margin:0 auto;">
@@ -632,8 +671,29 @@
       			</div>
             <div class="tab-pane fade" id="tab-product">
                 <div class="" id="for_export_product">
-
-                      <div class="plan-reports" id="report_content" style="margin-top:5px;">
+                      <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                        <ul class="simulator-check-container" style="margin-bottom:2.5px;">
+                          <li class="selected">
+                            <p class="simulator-check-title">My Brand</p>
+                            <label class="simulator-check-content">Estee Lauder</label>
+                          </li>
+                          <li>
+                            <p class="simulator-check-title">Competitor 1</p>
+                            <label class="simulator-check-content">Lancome</label>
+                          </li>
+                          <li>
+                            <p class="simulator-check-title">Competitor 2</p>
+                            <label class="simulator-check-content">Shiseido</label>
+                          </li>
+                          <li>
+                            <p class="simulator-check-title">Competitor 3</p>
+                            <label class="simulator-check-content">Bobbi Brown</label>
+                          </li>
+                          <li>
+                            <p class="simulator-check-title">Competitor 4</p>
+                            <label class="simulator-check-content">SKII</label>
+                          </li>
+                        </ul>
                         <div class="plan-reports-result">
                           <div class="plan-reports-result-inner">
                             <!--Total-->
@@ -641,17 +701,17 @@
                               <div class="plan-result-text">
                                 <div class="result-text-header">
                                   <label id="date_header">Trend of My Top 5 Products
-                                    <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                    <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in products. Also it is a comparison among top 5 products."></i>
                                   </label>
                                   <div class="report-dropdown" style="top:30px;right:20px;">
                                     <div class="date-range">
                                       <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
                                       <input type="text" id="daterange_product"
                                         style="width:155px;"
-                                        placeholder="please select a period" value=""
+                                        placeholder="please select a period" value="2017-05-20 ~ 2017-06-15"
                                         class="form-control date-range-input xmoCalendarInputSchedule">
-                                         <input type="hidden"  name="begin" value="" />
-                                        <input type="hidden"  name="end" value="" />
+                                         <input type="hidden"  name="begin" value="2017-05-20" />
+                                        <input type="hidden"  name="end" value="2017-06-15" />
                                        <span class="caret arrow-calendar"></span>
                                     </div>
                                   </div>
@@ -706,7 +766,7 @@
                               <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
                                 <div class="result-text-header clearfix">
                                   <label id="date_header">Product Scale
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience defined by keywords which are related to products."></i>
                                   </label>
                                 </div>
                                 <div class="result-text-info clearfix x-mt10">
@@ -726,7 +786,7 @@
                               <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
                                 <div class="result-text-header">
                                   <label id="date_header">Product Share
-                                    <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
+                                    <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of products which overlaps my brand."></i>
                                   </label>
                                 </div>
                                 <div class="result-graph-info x-mt10">
@@ -890,6 +950,7 @@
                     "total":[
                       {"date":"4 Weeks","name":"All Audience","graphData":{
                         "age_group": {
+                            "0-17": 22,
                             "18-24": 20,
                             "25-34": 55,
                             "35-44": 65,
@@ -935,15 +996,26 @@
                             }
                         },
                         "regions":[
-                              {"name": "北京", "value": "123"},
-                              {"name": "天津", "value": "61"},
-                              {"name": "上海", "value": "123"},
-                              {"name": "重庆", "value": "62"},
-                              {"name": "河北", "value": "1223"},
-                              {"name": "河南", "value": "123"},
-                              {"name": "云南", "value": "123"},
-                              {"name": "辽宁", "value": "33"},
-                              {"name": "其他", "value": "55"}
+                              {"name": "BeiJing", "value": "123"},
+                              {"name": "TianJin", "value": "61"},
+                              {"name": "ShanXi", "value": "123"},
+                              {"name": "NeiMeng", "value": "62"},
+                              {"name": "HeBei", "value": "1223"},
+                              {"name": "JiLin", "value": "123"},
+                              {"name": "JiangXi", "value": "123"},
+                              {"name": "ShanDong", "value": "33"},
+                              {"name": "ChongQing", "value": "123"},
+                              {"name": "SiChuan", "value": "62"},
+                              {"name": "GuiZhou",  "value": "1223"},
+                              {"name": "YunNan",  "value": "123"},
+                              {"name": "XiZang", "value": "33"},
+                              {"name": "ShanXi1", "value": "123"},
+                              {"name": "GanSu", "value": "62"},
+                              {"name": "QingHai", "value": "4223"},
+                              {"name": "NingXia", "value": "123"},
+                              {"name": "XinJiang", "value": "123"},
+                              {"name": "Heilongjiang", "value": "33"},
+                              {"name": "Other Cities", "value": "5551"}
                           ]
 
                       }},
@@ -951,6 +1023,7 @@
                    "bar":[
                       {"date":"Week 1","name":"Potential","value":"31","graphData":{
                         "age_group": {
+                            "0-17": 22,
                             "18-24": 30,
                             "25-34": 15,
                             "35-44": 25,
@@ -996,20 +1069,32 @@
                             }
                         },
                         "regions":[
-                              {"name": "北京", "value": "123"},
-                              {"name": "天津", "value": "61"},
-                              {"name": "上海", "value": "123"},
-                              {"name": "重庆", "value": "62"},
-                              {"name": "河北", "value": "1223"},
-                              {"name": "河南", "value": "123"},
-                              {"name": "云南", "value": "123"},
-                              {"name": "辽宁", "value": "33"},
-                              {"name": "其他", "value": "55"}
+                              {"name": "BeiJing", "value": "123"},
+                              {"name": "TianJin", "value": "61"},
+                              {"name": "ShanXi", "value": "123"},
+                              {"name": "NeiMeng", "value": "62"},
+                              {"name": "HeBei", "value": "1223"},
+                              {"name": "JiLin", "value": "123"},
+                              {"name": "JiangXi", "value": "123"},
+                              {"name": "ShanDong", "value": "33"},
+                              {"name": "ChongQing", "value": "123"},
+                              {"name": "SiChuan", "value": "62"},
+                              {"name": "GuiZhou",  "value": "1223"},
+                              {"name": "YunNan",  "value": "123"},
+                              {"name": "XiZang", "value": "33"},
+                              {"name": "ShanXi1", "value": "123"},
+                              {"name": "GanSu", "value": "62"},
+                              {"name": "QingHai", "value": "4223"},
+                              {"name": "NingXia", "value": "123"},
+                              {"name": "XinJiang", "value": "123"},
+                              {"name": "Heilongjiang", "value": "33"},
+                              {"name": "Other Cities", "value": "5551"}
                           ]
 
                       }},
                       {"date":"Week 2","name":"Potential","value":"131","graphData":{
                         "age_group": {
+                            "0-17": 20,
                             "18-24": 30,
                             "25-34": 15,
                             "35-44": 25,
@@ -1055,20 +1140,32 @@
                             }
                         },
                         "regions":[
-                              {"name": "北京", "value": "123"},
-                              {"name": "天津", "value": "61"},
-                              {"name": "上海", "value": "123"},
-                              {"name": "重庆", "value": "62"},
-                              {"name": "河北", "value": "1223"},
-                              {"name": "河南", "value": "123"},
-                              {"name": "云南", "value": "123"},
-                              {"name": "辽宁", "value": "33"},
-                              {"name": "其他", "value": "55"}
+                              {"name": "BeiJing", "value": "123"},
+                              {"name": "TianJin", "value": "61"},
+                              {"name": "ShanXi", "value": "123"},
+                              {"name": "NeiMeng", "value": "62"},
+                              {"name": "HeBei", "value": "1223"},
+                              {"name": "JiLin", "value": "123"},
+                              {"name": "JiangXi", "value": "123"},
+                              {"name": "ShanDong", "value": "33"},
+                              {"name": "ChongQing", "value": "123"},
+                              {"name": "SiChuan", "value": "62"},
+                              {"name": "GuiZhou",  "value": "1223"},
+                              {"name": "YunNan",  "value": "123"},
+                              {"name": "XiZang", "value": "33"},
+                              {"name": "ShanXi1", "value": "123"},
+                              {"name": "GanSu", "value": "62"},
+                              {"name": "QingHai", "value": "4223"},
+                              {"name": "NingXia", "value": "123"},
+                              {"name": "XinJiang", "value": "123"},
+                              {"name": "Heilongjiang", "value": "33"},
+                              {"name": "Other Cities", "value": "5551"}
                           ]
                         
                       }},
                       {"date":"Week 3","name":"Potential","value":"101","graphData":{
                         "age_group": {
+                            "0-17": 22,
                             "18-24": 11,
                             "25-34": 22,
                             "35-44": 25,
@@ -1114,20 +1211,32 @@
                             }
                         },
                         "regions":[
-                              {"name": "北京", "value": "123"},
-                              {"name": "天津", "value": "61"},
-                              {"name": "上海", "value": "123"},
-                              {"name": "重庆", "value": "62"},
-                              {"name": "河北", "value": "1223"},
-                              {"name": "河南", "value": "123"},
-                              {"name": "云南", "value": "123"},
-                              {"name": "辽宁", "value": "33"},
-                              {"name": "其他", "value": "55"}
+                              {"name": "BeiJing", "value": "123"},
+                              {"name": "TianJin", "value": "61"},
+                              {"name": "ShanXi", "value": "123"},
+                              {"name": "NeiMeng", "value": "62"},
+                              {"name": "HeBei", "value": "1223"},
+                              {"name": "JiLin", "value": "123"},
+                              {"name": "JiangXi", "value": "123"},
+                              {"name": "ShanDong", "value": "33"},
+                              {"name": "ChongQing", "value": "123"},
+                              {"name": "SiChuan", "value": "62"},
+                              {"name": "GuiZhou",  "value": "1223"},
+                              {"name": "YunNan",  "value": "123"},
+                              {"name": "XiZang", "value": "33"},
+                              {"name": "ShanXi1", "value": "123"},
+                              {"name": "GanSu", "value": "62"},
+                              {"name": "QingHai", "value": "4223"},
+                              {"name": "NingXia", "value": "123"},
+                              {"name": "XinJiang", "value": "123"},
+                              {"name": "Heilongjiang", "value": "33"},
+                              {"name": "Other Cities", "value": "5551"}
                           ]
                         
                       }},
                       {"date":"Week 4","name":"Potential","value":"11","graphData":{
                         "age_group": {
+                            "0-17": 22,
                             "18-24": 55,
                             "25-34": 22,
                             "35-44": 44,
@@ -1173,15 +1282,26 @@
                             }
                         },
                         "regions":[
-                              {"name": "北京", "value": "123"},
-                              {"name": "天津", "value": "61"},
-                              {"name": "上海", "value": "123"},
-                              {"name": "重庆", "value": "62"},
-                              {"name": "河北", "value": "1223"},
-                              {"name": "河南", "value": "123"},
-                              {"name": "云南", "value": "123"},
-                              {"name": "辽宁", "value": "33"},
-                              {"name": "其他", "value": "55"}
+                              {"name": "BeiJing", "value": "123"},
+                              {"name": "TianJin", "value": "61"},
+                              {"name": "ShanXi", "value": "123"},
+                              {"name": "NeiMeng", "value": "62"},
+                              {"name": "HeBei", "value": "1223"},
+                              {"name": "JiLin", "value": "123"},
+                              {"name": "JiangXi", "value": "123"},
+                              {"name": "ShanDong", "value": "33"},
+                              {"name": "ChongQing", "value": "123"},
+                              {"name": "SiChuan", "value": "62"},
+                              {"name": "GuiZhou",  "value": "1223"},
+                              {"name": "YunNan",  "value": "123"},
+                              {"name": "XiZang", "value": "33"},
+                              {"name": "ShanXi1", "value": "123"},
+                              {"name": "GanSu", "value": "62"},
+                              {"name": "QingHai", "value": "4223"},
+                              {"name": "NingXia", "value": "123"},
+                              {"name": "XinJiang", "value": "123"},
+                              {"name": "Heilongjiang", "value": "33"},
+                              {"name": "Other Cities", "value": "5551"}
                           ]
                         
                       }},
@@ -1200,10 +1320,10 @@
                       {"date":"Week 4","name":"Owned","value":"21","graphData":{}},
                     ],
                     "line":[
-                      {"date":"Week 1","name":"Brand Share","value":"33","graphData":{}},
+                      {"date":"Week 1","name":"Brand Share","value":"233","graphData":{}},
                       {"date":"Week 2","name":"Brand Share","value":"22","graphData":{}},
-                      {"date":"Week 3","name":"Brand Share","value":"31","graphData":{}},
-                      {"date":"Week 4","name":"Brand Share","value":"66","graphData":{}},
+                      {"date":"Week 3","name":"Brand Share","value":"131","graphData":{}},
+                      {"date":"Week 4","name":"Brand Share","value":"0","graphData":{}},
                     ],
                   }
                 },
@@ -1214,6 +1334,7 @@
         },{
             "data": {
                 "age_group": {
+                    "0-17": 20,
                     "18-24": 30,
                     "25-34": 15,
                     "35-44": 25,
@@ -1421,6 +1542,7 @@
         },{
             "data": {
                 "age_group": {
+                    "0-17": 22,
                     "18-24": 30,
                     "25-34": 25,
                     "35-44": 65,
@@ -1543,7 +1665,7 @@
                     ],
                 },
                 "market_share":{
-                  "market":222,
+                  "market":1000,
                   "market_show":888,
                 },
                 "cloud_tag" :[
@@ -1566,6 +1688,9 @@
       };
       $('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = $(e.target).attr("data-id") // 激活的标签页
+        changeTabGraph(tab);
+      })
+      function changeTabGraph(tab){
         var json = {};
         for (var i = 0; i < data.result.length; i++) {
           if(tab == data.result[i].name){
@@ -1573,32 +1698,40 @@
           }
         };
         if (tab=="brand") {
-          IAX_CHART_TOOL.initData(json.data);
-          IAX_CHART_TOOL.initProductShare("product-map",json.data);
-          IAX_CHART_TOOL.initAudienceFunnel("audience-funnel",json.data);
-          IAX_CHART_TOOL.resizeChart();
+          brandGraph(json);
         }else if (tab=="product") {
-          IAX_CHART_TOOL.initData(json.data);
-          IAX_CHART_TOOL.initTop5Trend("line_chart",json.data);
-          IAX_CHART_TOOL.initTotalAudience("select_product","product_total","market-brand-map",json.data);
-          IAX_CHART_TOOL.initGender("gender-brand-map",json.data);
-          IAX_CHART_TOOL.initAgeGroup("select_age_brand",json.data);
-          IAX_CHART_TOOL.initRegions("region-brand-map",json.data);
-          IAX_CHART_TOOL.initInterests("interest-brand-map",json.data);
-          $(".xmoCalendarWraper").remove();
-          initCalendar("daterange_product");
-          IAX_CHART_TOOL.resizeChart();
+          productGraph(json);
         }else if (tab == "share") {
-          IAX_CHART_TOOL.initData(json.data);
-          IAX_CHART_TOOL.initMixTrend("mix_chart",json.data);
-          IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
-          IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
-          $(".xmoCalendarWraper").remove();
-          initCalendar("daterange");
-          IAX_CHART_TOOL.resizeChart();
+          shareGraph(json);
         };
-      })
-      
+      }
+      function brandGraph(json){
+        IAX_CHART_TOOL.initData(json.data);
+        IAX_CHART_TOOL.initProductShare("product-map",json.data);
+        IAX_CHART_TOOL.initAudienceFunnel("audience-funnel",json.data);
+        IAX_CHART_TOOL.resizeChart();
+      }
+      function productGraph(json){
+        IAX_CHART_TOOL.initData(json.data);
+        IAX_CHART_TOOL.initTop5Trend("line_chart",json.data);
+        IAX_CHART_TOOL.initTotalAudience("select_product","product_total","market-brand-map",json.data);
+        IAX_CHART_TOOL.initGender("gender-brand-map",json.data);
+        IAX_CHART_TOOL.initAgeGroup("select_age_brand",json.data);
+        IAX_CHART_TOOL.initRegions("region-brand-map",json.data);
+        IAX_CHART_TOOL.initInterests("interest-brand-map",json.data);
+        $(".xmoCalendarWraper").remove();
+        initCalendar("daterange_product");
+        IAX_CHART_TOOL.resizeChart();
+      }
+      function shareGraph(json){
+        IAX_CHART_TOOL.initData(json.data);
+        IAX_CHART_TOOL.initMixTrend("mix_chart",json.data);
+        IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
+        IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
+        $(".xmoCalendarWraper").remove();
+        initCalendar("daterange");
+        IAX_CHART_TOOL.resizeChart();
+      }
       //初始化
       $("#tab-share").find("div:first").hide();
       $("#tab-share").append('<div class="analysis-loading"><img class="analysis-gif" src="../images/loading.gif"></img></div>');
@@ -1616,22 +1749,67 @@
         $("#tab-share").find("div:first").show();
         $("#myTab").show();
         $(".button-right").show();
-        IAX_CHART_TOOL.initData(json.data);
-        IAX_CHART_TOOL.initMixTrend("mix_chart",json.data);
-        IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
-        IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
-        initCalendar("daterange");
-        IAX_CHART_TOOL.resizeChart();
+        shareGraph(json);
       },2000)
 
       //导出pdf
       IAX_CHART_TOOL.exportForPdf("export-pdf","myTabContent");
+
+      //切换competitior 第二阶段需求，如不需要，吧所有simulator-check-container隐藏即可
+      $(document).on("click",".simulator-check-container li",function(){
+        //一个点击全部下面的都变样式，目前的布局
+        $(".simulator-check-container").find(".selected").each(function(){
+          $(this).removeClass("selected");
+        })
+        var index = $(this).index();
+        //所有的tab下都切换。。。
+        $(".simulator-check-container").each(function(){
+          $(this).find("li").eq(index).addClass("selected");
+        })
+        //替换data,切换tab
+        data = data;
+        var tab = $(this).parents(".tab-pane").attr("id");
+        //brand里面audinece funnel特殊，如果是competitior的话要改变结构！
+        if (index!=0) {
+          $("#tab-brand #select_line_map").hide();
+          $("#tab-brand #select_product_share").attr("style","width:50%;height:280px;padding: 0 7.5px 0 0;");
+          $("#tab-brand .plan-reports-message").hide();
+          $("#tab-brand #select_province").attr("style","width:100%;padding:0");
+          $("#tab-brand #select_province").parent().attr("style","width:100%;padding:0");
+          $("#tab-brand #select_gender").attr("style","width: 50%;height: 280px;padding: 0 7.5px;");
+          $("#tab-brand #select_age").attr("style","width: 50%;height: 280px;padding: 0 0 0 7.5px;");
+          $("#tab-brand #select_gender .result-graph-info").attr("style","margin-top: 20px;")
+          $("#tab-brand #select_age .result-graph-info").attr("style","margin-top: 20px;")
+          var newInner =  '<div class="plan-reports-result-inner" style="width:50%;">'+
+                            $("#tab-brand #select_gender").parent().html()+
+                          '</div>';
+          $("#tab-brand #select_gender").parent().remove();
+          $("#tab-brand #select_product_share").parent().append(newInner);
+        }else{
+          $("#tab-brand #select_line_map").show();
+          $("#tab-brand #select_product_share").attr("style","width:50%;height:280px;padding: 0 0px 0 7.5px;");
+          $("#tab-brand .plan-reports-message").show();
+          $("#tab-brand #select_province").attr("style","width:100%;padding-left:7.5px");
+          $("#tab-brand #select_province").parent().attr("style","width:75%;");
+          $("#tab-brand #select_gender").attr("style","width: 100%;");
+          $("#tab-brand #select_age").attr("style","padding: 0 7.5px 0 0;width: 100%;");
+          $("#tab-brand #select_gender .result-graph-info").attr("style","margin-top: 0px;")
+          $("#tab-brand #select_age .result-graph-info").attr("style","margin-top: 0px;")
+          var newInner =  '<div class="plan-reports-result-inner" style="width:25%;">'+
+                            $("#tab-brand #select_gender").parent().html()+
+                          '</div>';
+          $("#tab-brand #select_gender").parent().remove();
+          $("#tab-brand .plan-reports-message").after(newInner);
+        }
+        
+        changeTabGraph(tab.split("-")[1])
+      })
     });
 
     function initCalendar(id) {
        new xmoCalendar({
          inputId : '#' + id,
-         lang : "zh", //"zh" "en"
+         lang : "en", //"zh" "en"
          wrapContainer: $('#'+id).parents(".result-text-header"),
          relativeTop:"60",
          relativeRight:20,

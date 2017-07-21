@@ -680,7 +680,7 @@ th.align_right, td.align_right, .align_right {
 }
 .result-text-header label{
   line-height: 40px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 .plan-result-table .result-text-header{
@@ -698,11 +698,10 @@ th.align_right, td.align_right, .align_right {
   position: relative;
 }
 .plan-result-text .result-text-word>label{
-  line-height: 36px;
-  font-size: 36px!important;
+  line-height: 120px;
+  font-size: 25px!important;
   color: #ef4136;
   font-weight: bold;
-  padding-top: 50px;
 }
 .plan-result-text .result-text-word>p{
   color: #ef4136;
@@ -792,10 +791,13 @@ th.align_right, td.align_right, .align_right {
   position: relative;
 }
 .graph-region .result-graph-word .result-graph-word-map .region-map{
-  height:360px;
+  height:400px;
   width:250px;
   margin-right:250px;
   padding-left:20px;
+}
+.graph-region .result-graph-word .result-graph-word-map .region-map~label{
+  bottom: 0!important;
 }
 .graph-region .result-graph-word .result-graph-word-content{
   min-height: 180px;
@@ -896,6 +898,9 @@ th.align_right, td.align_right, .align_right {
 
 .result-graph-word-interest .result-graph-word-interest-inner label,.result-graph-word-interest .result-graph-word-interest-inner li{
  margin: 5px 0;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+ overflow: hidden;
 }
 .forFixed-con{
   position:fixed;
@@ -959,10 +964,10 @@ th.align_right, td.align_right, .align_right {
 .gender-map-info p{
   font-size: 20px;
   font-weight: bold;
-  color: #ef4136;
+  color: #4484CF;
 }
 .gender-map-info.gender-female p{
-  color: #F9A5A5;
+  color: #ef4136;
 }
 .gender-male .gender-map-ico{
   background: url("../images/icon_male_chart.png") no-repeat center transparent;
@@ -982,6 +987,56 @@ th.align_right, td.align_right, .align_right {
   float: left;
   width: 100%;
   margin: 10px 0;
+}
+.audience_total .market-map,#select_product .market-map{
+  margin-top: -8px;
+}
+.audience_total .result-text-info,.graph-top .result-text-info{
+  height: 160px;
+}
+/****************************************** simulator-check-container *********************/
+.simulator-check-container{
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.simulator-check-container:after{
+  content: "";
+  display:table;
+  clear: both;
+}
+.simulator-check-container li{
+  background: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  box-sizing:border-box;
+  float: left;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 5px;
+  width: 100px;
+  height: 45px;
+}
+.simulator-check-container li:hover{
+  background: #efefef;
+}
+.simulator-check-container li.selected{
+  background: #EF4136;
+  border: 1px solid #C52522;
+}
+.simulator-check-container li.selected .simulator-check-title,.simulator-check-container li.selected .simulator-check-content{
+  color: #fff;
+}
+.simulator-check-container .simulator-check-title{
+  font-size: 10px;
+  color: #ef4136;
+  line-height: 16px;
+}
+.simulator-check-container .simulator-check-content{
+  font-size: 12px;
+  color: #ef4136;
+  cursor: pointer;
+  font-weight: bold;
 }
 /****************************************** venn ******************************************/
 .venntooltip {
@@ -1056,10 +1111,14 @@ th.align_right, td.align_right, .align_right {
   height: 380px;
   background: #e9e9e9;
   border-radius: 380px!important;
+  cursor: pointer;
   box-sizing:border-box;
 }
 .bubble-container .bubble-map.bubble-select{
   background: #dfdfdf;
+}
+.bubble-map .label{
+  font-size: 12px;
 }
 /*bar*/
 .xmo-bar_per{width: 12px;float: left;padding: 0 12px;height: 140px;text-align: center;position: relative;}
@@ -1070,6 +1129,7 @@ th.align_right, td.align_right, .align_right {
 .xmo-bar_per .bar_content{position: absolute;bottom: 0;left: 12px;width: 15px;font-size: 12px;}
 .xmo-bar_per .bar_content i{display: block;width: 100%;}
 .xmo-bar_per .bg_ico{width: 20px;height: 20px;position: absolute;bottom: 18px;left: 10px;}
+.xmo-bar_per .bg_ico_0-17{background: url("../images/icon_0-17.png") no-repeat center transparent;background-size: contain;}
 .xmo-bar_per .bg_ico_18-24{background: url("../images/icon_18-24.png") no-repeat center transparent;background-size: contain;}
 .xmo-bar_per .bg_ico_25-34{background: url("../images/icon_25-34.png") no-repeat center transparent;background-size: contain;}
 .xmo-bar_per .bg_ico_35-44{background: url("../images/icon_35-44.png") no-repeat center transparent;background-size: contain;}
@@ -1672,10 +1732,10 @@ th.align_right, td.align_right, .align_right {
   padding: 0 0 0 20px;
 }
 .split-area{
-  height: 50px;
+  height: 1px;
   width: 100%;
   padding-left: 20px;
-  background: #F2F2F2;
+  background: #dfdfdf;
   margin: 0 -20px;
 }
 .page-opt{
@@ -1689,7 +1749,6 @@ th.align_right, td.align_right, .align_right {
   height: 320px;
   overflow-y: auto;
 }
-
 .pic-title-list .pic-title-item{
   width: 50%;
   height: 75px;
@@ -1697,6 +1756,14 @@ th.align_right, td.align_right, .align_right {
   position: relative;
   float: left;
   margin: 5px 0;
+}
+.pic-title-list .pic-title-item .pic-title-item-a{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
 }
 .pic-title-list .pic-title-item .pic-title-item-inner{
   height: 100%;
@@ -1730,6 +1797,12 @@ th.align_right, td.align_right, .align_right {
   padding: 10px 10px 10px 40px;
   height: 55px;
 }
+.pic-title-list .pic-title-item .pic-title-item-inner .pic-title-item-pic img{
+  width: 55px;
+  height: 55px;
+  background: url(../images/icon_news.png) center center no-repeat;
+}
+
 .pic-title-list .pic-title-item .pic-title-item-inner .pic-title-item-container{
   padding: 10px;
   box-sizing:border-box;
@@ -2406,9 +2479,10 @@ th.align_right, td.align_right, .align_right {
 }
 .map-container .map-info{
   float: left;
-  width: 30%;
+  width: 280px;
   height: 100%;
   padding: 20px;
+  margin-right: -280px;
   position: relative;
   box-sizing:border-box;
 }
@@ -2417,15 +2491,35 @@ th.align_right, td.align_right, .align_right {
   font-weight: bold;
 }
 .map-container .map-info input{
-  margin: 0;
+  margin: 0 0 10px 0;
+  width: 220px;
+}
+.map-container .map-info .input-remove{
+  margin-left: 0px;
+  line-height: 14px;
+  font-size: 14px;
+  vertical-align: middle;
+  color: #999;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 9px;
 }
 .map-container .map-set{
   position: absolute;
   bottom: 20px;
 }
 .map-container #map_container{
+  margin-left: 280px;
+  height: 100%;
+  background: #fcf9f2;
+}
+.amap-layers{
+  background: #fcf9f2;
+}
+.map-container .map-content{
+  width: 100%;
   float: right;
-  width: 70%;
   height: 100%;
 }
 /********************************** rating ******************************************/
