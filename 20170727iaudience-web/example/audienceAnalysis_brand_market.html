@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>iAudience</title>
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -63,7 +64,7 @@
           <div class="container-fluid">
             <div class="navbar-header">
               <a href="http://xmostg.optimix.asia/" class="navbar-brand" data-toggle="offcanvas">
-                <img src="../images/logo.png" alt="" style="" width="120" height="50">
+                <img src="../images/logo.png" alt="" style="" width="125" height="50">
               </a>
             </div>
 
@@ -570,7 +571,7 @@
                     <div class="plan-reports-message">
                       <span>Selected Audience Group: </span><span>4 weeks - All Audience</span>
                     </div>
-                    <div class="plan-reports-result-inner" style="width:25%;">
+                    <div class="plan-reports-result-inner" style="width:33%;">
                       <!--性别-->
                       <div class="plan-result-graph" id="select_gender" style="width:100%">
                         <div class="plan-result-text">
@@ -591,6 +592,10 @@
                                   <span class="gender-map-ico"></span>
                                   <p>0%</p>
                                   <span>Female</span>
+                                </div>
+                                <div class="gender-map-info gender-unknown">
+                                  <p>0%</p>
+                                  <span>Unknown</span>
                                 </div>
                               </div>
                             </div>
@@ -617,7 +622,7 @@
                       <!--end-->
                     </div>
                     <!--inner end -->
-                    <div class="plan-reports-result-inner" style="width:75%;">
+                    <div class="plan-reports-result-inner" style="width:67%;">
                       <!--地域-->
                       <div class="plan-result-graph graph-region" style="width:100%;padding-left:7.5px;" id="select_province">
                         <div class="plan-result-text">
@@ -625,9 +630,9 @@
                             <label>Regions</label>
                           </div>
                           <div class="result-graph-info x-mt10">
-                            <div class="result-graph-word word-impr" style="width:785px;margin:0 auto;">
+                            <div class="result-graph-word word-impr" style="width:70px;margin:0 auto;">
                               <div class="result-graph-word-map">
-                                <div class="region-map" id="region-map" style="width:500px;"></div>
+                                <div class="region-map" id="region-map" style="width:450px;"></div>
                                 <label style="position:absolute;left:25px;bottom:40px;">Distribution index</label>
                               </div>
                               <div class="result-graph-word-content">
@@ -708,7 +713,7 @@
                                       <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
                                       <input type="text" id="daterange_product"
                                         style="width:155px;"
-                                        placeholder="please select a period" value="2017-01-01 ~ 2017-01-02"
+                                        placeholder="please select a period" value="2017-05-20 ~ 2017-06-15"
                                         class="form-control date-range-input xmoCalendarInputSchedule">
                                          <input type="hidden"  name="begin" value="2017-05-20" />
                                         <input type="hidden"  name="end" value="2017-06-15" />
@@ -802,7 +807,7 @@
                             </div>
                             
                             <!--年龄-->
-                            <div class="plan-result-graph" id="select_age_brand" style="padding: 0 15px 0 0;width: 50%;">
+                            <div class="plan-result-graph" id="select_age_brand" style="padding: 0 15px 0 0;width: 65%;">
                               <div class="plan-result-text">
                                 <div class="result-text-header clearfix">
                                   <label>Age Groups</label>
@@ -817,15 +822,15 @@
                               </div>
                             </div>
                             <!--gender-->
-                            <div class="plan-result-graph" id="select_gender_brand" style="padding: 0 7.5px 0 0;width: 50%;">
+                            <div class="plan-result-graph" id="select_gender_brand" style="padding: 0 7.5px 0 0;width: 35%;">
                               <div class="plan-result-text">
                                 <div class="result-text-header clearfix">
                                   <label>Gender</label>
                                 </div>
                                 <div class="result-graph-info x-mt10">
                                   <div class="result-graph-word word-impr">
-                                    <div class="result-graph-word-content" style="padding-top:0;">
-                                      <div id="gender-brand-map" class="gender-brand-map" style="width:230px;height:170px;">
+                                    <div class="result-graph-word-content" style="padding-top:0;width:170px;">
+                                      <div id="gender-brand-map" class="gender-brand-map" style="width:130px;height:170px;margin:0 auto;">
                                       </div>
                                       <div class="gender-map-info gender-male">
                                         <span class="gender-map-ico"></span>
@@ -836,6 +841,10 @@
                                         <span class="gender-map-ico"></span>
                                         <p>0%</p>
                                         <span>Female</span>
+                                      </div>
+                                      <div class="gender-map-info gender-unknown">
+                                        <p>0%</p>
+                                        <span>Unknown</span>
                                       </div>
                                     </div>
                                   </div>
@@ -956,11 +965,13 @@
                             "35-44": 65,
                             "45-54": 30,
                             "55-64": 10,
-                            "65+": 3
+                            "65+": 12,
+                            "UNKNOWN": 12,  
                         },
                         "gender": {
                             "female": 50,
-                            "male": 50
+                            "male": 50,
+                            "UNKNOWN":33,
                         },
                         
                         "interest": {
@@ -1015,7 +1026,7 @@
                               {"name": "NingXia", "value": "123"},
                               {"name": "XinJiang", "value": "123"},
                               {"name": "Heilongjiang", "value": "33"},
-                              {"name": "Other Cities", "value": "5551"}
+                              {"name": "Unknown", "value": "5551"}
                           ]
 
                       }},
@@ -1029,11 +1040,13 @@
                             "35-44": 25,
                             "45-54": 20,
                             "55-64": 10,
-                            "65+": 3
+                            "65+": 12,
+                            "UNKNOWN": 12, 
                         },
                         "gender": {
                             "female": 66,
-                            "male": 22
+                            "male": 22,
+                            "UNKNOWN":33,
                         },
                         
                         "interest": {
@@ -1088,7 +1101,7 @@
                               {"name": "NingXia", "value": "123"},
                               {"name": "XinJiang", "value": "123"},
                               {"name": "Heilongjiang", "value": "33"},
-                              {"name": "Other Cities", "value": "5551"}
+                              {"name": "Unknown", "value": "5551"}
                           ]
 
                       }},
@@ -1100,11 +1113,13 @@
                             "35-44": 25,
                             "45-54": 20,
                             "55-64": 10,
-                            "65+": 3
+                            "65+": 12,
+                            "UNKNOWN": 12, 
                         },
                         "gender": {
                             "female": 33,
-                            "male": 55
+                            "male": 55,
+                            "UNKNOWN":33,
                         },
                         
                         "interest": {
@@ -1159,7 +1174,7 @@
                               {"name": "NingXia", "value": "123"},
                               {"name": "XinJiang", "value": "123"},
                               {"name": "Heilongjiang", "value": "33"},
-                              {"name": "Other Cities", "value": "5551"}
+                              {"name": "Unknown", "value": "5551"}
                           ]
                         
                       }},
@@ -1171,11 +1186,13 @@
                             "35-44": 25,
                             "45-54": 20,
                             "55-64": 55,
-                            "65+": 3
+                            "65+": 12,
+                            "UNKNOWN": 12, 
                         },
                         "gender": {
                             "female": 22,
-                            "male": 38
+                            "male": 38,
+                            "UNKNOWN":33,
                         },
                         
                         "interest": {
@@ -1230,7 +1247,7 @@
                               {"name": "NingXia", "value": "123"},
                               {"name": "XinJiang", "value": "123"},
                               {"name": "Heilongjiang", "value": "33"},
-                              {"name": "Other Cities", "value": "5551"}
+                              {"name": "Unknown", "value": "5551"}
                           ]
                         
                       }},
@@ -1242,11 +1259,13 @@
                             "35-44": 44,
                             "45-54": 20,
                             "55-64": 10,
-                            "65+": 3
+                            "65+": 12,
+                            "UNKNOWN": 12, 
                         },
                         "gender": {
                             "female": 22,
-                            "male": 38
+                            "male": 38,
+                            "UNKNOWN":33,
                         },
                         
                         "interest": {
@@ -1301,7 +1320,7 @@
                               {"name": "NingXia", "value": "123"},
                               {"name": "XinJiang", "value": "123"},
                               {"name": "Heilongjiang", "value": "33"},
-                              {"name": "Other Cities", "value": "5551"}
+                              {"name": "Unknown", "value": "5551"}
                           ]
                         
                       }},
@@ -1340,7 +1359,8 @@
                     "35-44": 25,
                     "45-54": 20,
                     "55-64": 10,
-                    "65+": 3
+                    "65+": 12,
+                    "UNKNOWN": 12,  
                 },
                 "audience": "3.3M",
                 "allMarket": "2,567K",
@@ -1351,7 +1371,8 @@
                 },
                 "gender": {
                     "female": 22,
-                    "male": 38
+                    "male": 38,
+                    "UNKNOWN":33,
                 },
                 "product_share": {
                     "Stay-in-Place Makeup": 23500,
@@ -1548,7 +1569,8 @@
                     "35-44": 65,
                     "45-54": 10,
                     "55-64": 10,
-                    "65+": 30
+                    "65+": 12,
+                    "UNKNOWN": 12,
                 },
                 "audience": "11.3M",
                 "allMarket": "3,267K",
@@ -1559,7 +1581,8 @@
                 },
                 "gender": {
                     "female": 11,
-                    "male": 55
+                    "male": 55,
+                    "UNKNOWN":33,
                 },
                 "product_share": {
                     "Stay-in-Place Makeup": 3333,
@@ -1776,8 +1799,11 @@
           $("#tab-brand .plan-reports-message").hide();
           $("#tab-brand #select_province").attr("style","width:100%;padding:0");
           $("#tab-brand #select_province").parent().attr("style","width:100%;padding:0");
-          $("#tab-brand #select_gender").attr("style","width: 50%;height: 280px;padding: 0 7.5px;");
-          $("#tab-brand #select_age").attr("style","width: 50%;height: 280px;padding: 0 0 0 7.5px;");
+          $("#tab-brand #select_gender").attr("style","width: 35%;height: 280px;padding: 0 7.5px;");
+          $("#tab-brand #select_gender .result-graph-word-content").css("width","170px");
+          $("#tab-brand #select_gender .gender-map").css("width","130px");
+          $("#tab-brand #select_gender .gender-map").css("margin","0 auto");
+          $("#tab-brand #select_age").attr("style","width: 65%;height: 280px;padding: 0 0 0 7.5px;");
           $("#tab-brand #select_gender .result-graph-info").attr("style","margin-top: 20px;")
           $("#tab-brand #select_age .result-graph-info").attr("style","margin-top: 20px;")
           var newInner =  '<div class="plan-reports-result-inner" style="width:50%;">'+
@@ -1790,12 +1816,15 @@
           $("#tab-brand #select_product_share").attr("style","width:50%;height:280px;padding: 0 0px 0 7.5px;");
           $("#tab-brand .plan-reports-message").show();
           $("#tab-brand #select_province").attr("style","width:100%;padding-left:7.5px");
-          $("#tab-brand #select_province").parent().attr("style","width:75%;");
+          $("#tab-brand #select_province").parent().attr("style","width:67%;");
           $("#tab-brand #select_gender").attr("style","width: 100%;");
+          $("#tab-brand #select_gender .result-graph-word-content").css("width","");
+          $("#tab-brand #select_gender .gender-map").css("width","");
+          $("#tab-brand #select_gender .gender-map").css("margin","");
           $("#tab-brand #select_age").attr("style","padding: 0 7.5px 0 0;width: 100%;");
           $("#tab-brand #select_gender .result-graph-info").attr("style","margin-top: 0px;")
           $("#tab-brand #select_age .result-graph-info").attr("style","margin-top: 0px;")
-          var newInner =  '<div class="plan-reports-result-inner" style="width:25%;">'+
+          var newInner =  '<div class="plan-reports-result-inner" style="width:33%;">'+
                             $("#tab-brand #select_gender").parent().html()+
                           '</div>';
           $("#tab-brand #select_gender").parent().remove();

@@ -11,15 +11,15 @@ div.jqcloud a {
   text-decoration: none;
 }
 
-div.jqcloud span.w10 { font-size: 35px; font-weight: bold;}
-div.jqcloud span.w9 { font-size: 34px; }
-div.jqcloud span.w8 { font-size: 30px; }
-div.jqcloud span.w7 { font-size: 28px; }
-div.jqcloud span.w6 { font-size: 27px; }
-div.jqcloud span.w5 { font-size: 26px; }
-div.jqcloud span.w4 { font-size: 23px; }
-div.jqcloud span.w3 { font-size: 20px; }
-div.jqcloud span.w2 { font-size: 16px; }
+div.jqcloud span.w10 { font-size: 30px; font-weight: bold;}
+div.jqcloud span.w9 { font-size: 28px; }
+div.jqcloud span.w8 { font-size: 26px; }
+div.jqcloud span.w7 { font-size: 24px; }
+div.jqcloud span.w6 { font-size: 22px; }
+div.jqcloud span.w5 { font-size: 20px; }
+div.jqcloud span.w4 { font-size: 18px; }
+div.jqcloud span.w3 { font-size: 16px; }
+div.jqcloud span.w2 { font-size: 14px; }
 div.jqcloud span.w1 { font-size: 12px; }
 
 /* colors */

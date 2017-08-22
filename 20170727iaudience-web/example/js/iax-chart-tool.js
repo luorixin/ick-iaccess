@@ -189,7 +189,7 @@ var IAX_CHART_TOOL = {
     var chart = venn.VennDiagram()
                  .width(width)
                  .height(width);
-
+    $("#"+id).find(".bubble-map").empty();
     var div = d3.select("#"+id).select(".bubble-map").attr("style","padding-top:"+paddingtop+"px");
     div.datum(sets).call(chart);
 
@@ -320,6 +320,8 @@ var IAX_CHART_TOOL = {
             _this.initMarketGraphByBubble(_this.brandData[0]);
             _this.currentBubble = _this.brandData[0].id;
           };
+          //文字变会正常色
+         $("#"+id).find(".label").attr("fill","#333"); 
       })
       $("#"+id).on("mouseover",".bubble-map",function(e){
           e = e || window.event;
@@ -335,6 +337,8 @@ var IAX_CHART_TOOL = {
           e.stopPropagation();
           $(this).css("opacity","1");
       })
+      //初始化背景圆的文字标题
+      $("#"+id).find(".bubble-map").append('<label class="bubble-main-title">The Market</label>');
   },
   showCampare: function(id,d){
     var _this = this;
@@ -346,6 +350,8 @@ var IAX_CHART_TOOL = {
     var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
     var tooltip_title_num = 'The number of audience in competitors.';
     var tooltip_title_per = 'The audience percentage of competitors that overlaps the market.';
+    //文字变会正常色
+    $("#"+id).find(".label").attr("fill","#333"); 
     if (label!="") {
       if (d.sets[0]==0) {
         tooltip_title_num = 'The number of audience in my brand.';
@@ -372,6 +378,10 @@ var IAX_CHART_TOOL = {
       tooltip_title_per = 'The audience percentage of competitors that overlaps my brand.';
       audienceTitle = 'Overlapping Audience Scale <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_num+'"></i>';
       marketTitle = 'Overlapping Audience % <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_per+'"></i>';
+      //交叉的两圆文字变成白色
+      for (var i = 0; i < d.sets.length; i++) {
+        $("#"+id).find("[data-venn-sets='"+d.sets[i]+"']").find(".label").attr("fill","#fff");
+      };
     };
     $(audience).find(".result-text-header label").html(audienceTitle);
     $(market).find(".result-text-header label").html(marketTitle);
@@ -490,7 +500,7 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:['#ef4136','#FB8731','#F4D96C','#F9A5A5'],
+        color:['#ef4136','#FB8731','#F4D96C','#F9A5A5','#B3170E'],
         tooltip : {
             trigger : 'axis',
             backgroundColor : "#f2f2f2",
@@ -774,7 +784,7 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:['#ef4136','#FB8731','#F4D96C','#F9A5A5'],
+        color:['#ef4136','#FB8731','#F4D96C','#F9A5A5','#B3170E'],
         tooltip : {
             trigger : 'axis',
             backgroundColor : "#f2f2f2",
@@ -925,9 +935,9 @@ var IAX_CHART_TOOL = {
       };
       //竖着排12345.。。。。
       if (j==0 || j==5) {
-        _itemhtml += '<div style="float:left;width:50%;">'
+        // _itemhtml += '<div style="float:left;width:50%;">'
       };
-      _itemhtml += '<div class="pic-title-item" style="width:100%;" data-date="'+convertDate+'">'+
+      _itemhtml += '<div class="pic-title-item" style="width:50%;" data-date="'+convertDate+'">'+
                       '  <a href="'+item.url+'" target="_blank" class="pic-title-item-a"></a>'+
                       '  <div class="pic-title-item-inner">'+
                       '    <span class="pic-title-item-index">'+index+'</span>'+
@@ -947,7 +957,7 @@ var IAX_CHART_TOOL = {
                       '  </div>'+
                       '</div>';
       if (j==4 || j==9 || j==data.length-1) {
-        _itemhtml += '</div>';
+        // _itemhtml += '</div>';
       };
     }
     return _itemhtml;
@@ -1045,6 +1055,12 @@ var IAX_CHART_TOOL = {
                 icon:"circle",
                 name:result[j].name,
               })
+            }else{
+              seriesJson.itemStyle = {
+                normal : {
+                  color:"#FB8731",
+                }
+              }
             }
             series.push(seriesJson);
             seriesCount[result[j].name] = parseInt(result[j].value);
@@ -1109,7 +1125,7 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:['#ef4136','#F97373','#EBA5A7','#ECD3D3','#FB8731'],
+        color:['#ef4136','#F97373','#EBA5A7','#ECD3D3','#FB8731','#B3170E'],
         tooltip : {
             trigger : 'item',
             backgroundColor : "#f2f2f2",
@@ -1195,33 +1211,33 @@ var IAX_CHART_TOOL = {
       };
       myChart.setOption(option);
       var _this = this;
-      myChart.on('click', function (params) {
-          if (typeof params.seriesIndex == 'undefined') {      
-           return;      
-          }
-          var type = params.seriesType;
-          var name = params.seriesName;
-          var date = params.name;
-          var json = data.audienceFunnel.result.total[0];
-          function isEmptyObject(e) {   
-          　　for (var name in e){
-          　　　　return false;//返回false，不为空对象
-          　　}　　
-          　　return true;//返回true，为空对象
-          }
-          for (var i in data.audienceFunnel.result) {
-            var result = data.audienceFunnel.result[i];
-            if (i==type) {
-              for (var j = 0; j < result.length; j++) {
-                if (result[j].date == date && result[j].name == name && !isEmptyObject(result[j].graphData)) {
-                  json = result[j]; 
-                };
-              };
-            };
-          }
-          _this.initFunnelGraph(json);
-          $(".plan-reports-message").find("span:last").text(date+" - "+name +" Audience");
-      });
+      // myChart.on('click', function (params) {
+      //     if (typeof params.seriesIndex == 'undefined') {      
+      //      return;      
+      //     }
+      //     var type = params.seriesType;
+      //     var name = params.seriesName;
+      //     var date = params.name;
+      //     var json = data.audienceFunnel.result.total[0];
+      //     function isEmptyObject(e) {   
+      //     　　for (var name in e){
+      //     　　　　return false;//返回false，不为空对象
+      //     　　}　　
+      //     　　return true;//返回true，为空对象
+      //     }
+      //     for (var i in data.audienceFunnel.result) {
+      //       var result = data.audienceFunnel.result[i];
+      //       if (i==type) {
+      //         for (var j = 0; j < result.length; j++) {
+      //           if (result[j].date == date && result[j].name == name && !isEmptyObject(result[j].graphData)) {
+      //             json = result[j]; 
+      //           };
+      //         };
+      //       };
+      //     }
+      //     _this.initFunnelGraph(json);
+      //     $(".plan-reports-message").find("span:last").text(date+" - "+name +" Audience");
+      // });
       var isExists = false;
       for (var i = 0; i < this.charts.length; i++) {
         if(this.charts[i].id == id){
@@ -1233,7 +1249,7 @@ var IAX_CHART_TOOL = {
         this.charts.push({id:id,chart:myChart});
       };
       //初始化all week相关的grpah
-      this.initFunnelGraph(data.audienceFunnel.result.total[0]);
+//      this.initFunnelGraph(data.audienceFunnel.result.total[0]);
   },
   initFunnelGraph: function(json){
     IAX_CHART_TOOL.initGender("gender-map",json.graphData);
@@ -1279,14 +1295,14 @@ var IAX_CHART_TOOL = {
         // seriesJson.selected = true;
         showValue = data.market_share[i];
       };
-      if (seriesJson.value==0) {
-        borderWidth = 0;
-      };
       seriesData.push(seriesJson);
     }
     for (var i = 0; i < seriesData.length; i++) {
       if(seriesData[i].name == "market"){
         seriesData[i].value = seriesData[i].value - showValue;
+        if (seriesData[i].value==0) {
+          borderWidth = 0;
+        };
       }
     };    
     var option = {
@@ -1328,7 +1344,7 @@ var IAX_CHART_TOOL = {
                           },
                           textStyle: {
                             color:'#ef4136',
-                            fontSize:36,
+                            fontSize:25,
                             fontWeight:"bold",
                             fontFamily: 'Open Sans, Noto Sans SC,Arial,sans-serif'
                           }
@@ -1375,12 +1391,18 @@ var IAX_CHART_TOOL = {
     if (!document.getElementById(id)) return;
     var male = data ? data.gender.male : 0;
     var female = data ? data.gender.female : 0;
-    var _total = male+female;
+    var unknown = data ? data.gender.UNKNOWN? data.gender.UNKNOWN:0: 0;
+    var _total = male+female+unknown;
     var malePercent = (parseFloat(male)/_total)*100; 
     var femalePercent = (parseFloat(female)/_total)*100; 
+    var unknownPercent = 100-malePercent-femalePercent;
+    if(unknownPercent<0){
+      unknownPercent =0;
+    }
     var _this = this;
     $("#"+id).parent().find(".gender-male").find("p").text(malePercent.toFixed(0)+"%");
     $("#"+id).parent().find(".gender-female").find("p").text(femalePercent.toFixed(0)+"%");
+    $("#"+id).parent().find(".gender-unknown").find("p").text(unknownPercent.toFixed(0)+"%");
     var myChart = echarts.init(document.getElementById(id));
     var option = {
           tooltip: {
@@ -1401,7 +1423,7 @@ var IAX_CHART_TOOL = {
           legend: {
               show:false
           },
-          color: ['#ef4136','#4484CF'],
+          color: ['#ef4136','#4484CF','#c1c1c1'],
           series: [
               {
                   name:'Gender',
@@ -1431,6 +1453,7 @@ var IAX_CHART_TOOL = {
                   data:[
                       {value: female, name:'Female'},
                       {value: male, name:'Male'},
+                      {value: unknown, name:'Unknown'},
                   ]
               }
           ]
@@ -1459,17 +1482,25 @@ var IAX_CHART_TOOL = {
     for (var i in data.age_group) {
       var per = (parseFloat(data.age_group[i])/_total)*100; 
       var isRight = "";
-      if (i=="55-64" || i=="65+") {
+      var bgname = i.replace("+","");
+      var name = i;
+      if (i=="55-64" || i=="65+" || i=="UNKNOWN" || i=="未知") {
         isRight = "toolright";
       };
+      if (i=="UNKNOWN" || i=="未知") {
+        bgname = "Unknown";
+      };
+      if (i=="UNKNOWN") {
+        name = "Unknown";
+      };
       var _html = '<div class="xmo-bar_per">'+
-                '<span class="name">'+i+'</span>'+
+                '<span class="name">'+name+'</span>'+
                 '<span class="result">'+per.toFixed(0)+'%</span>'+
-                '<span class="bg_ico bg_ico_'+i.replace("+","")+'"></span>'+
+                '<span class="bg_ico bg_ico_'+bgname+'"></span>'+
                 '<span class="bar_main">'+
                   '<div class="bar_bg"></div>'+
                   '<div class="tooltip-content '+isRight+'">'+
-                  '  <p>Age: '+i+'</p>'+
+                  '  <p>Age: '+name+'</p>'+
                   ' <span>Audience: '+_this.getKWMformat(data.age_group[i])+'</span>'+
                   '</div>'+
                   '<div class="bar_content">'+
@@ -1533,7 +1564,7 @@ var IAX_CHART_TOOL = {
                 fontFamily: 'Open Sans, Noto Sans SC,Arial,sans-serif'
               }
           },
-          color: ['#ef4136','#FB8731', '#F4D96C','#F9A5A5'],
+          color: ['#ef4136','#FB8731', '#F4D96C','#F9A5A5','#B3170E'],
           series: [
               {
                   name:'PRODUCT',
@@ -1651,7 +1682,7 @@ var IAX_CHART_TOOL = {
     var min = 0,max = 0;
     for (var i = 0; i < data.regions.length; i++) {
       if (!data.regions[i].name) data.regions[i].name="null";
-      var isOthers = data.regions[i].name=="其他" || data.regions[i].name=="其他城市" || data.regions[i].name.indexOf("Other")>-1;
+      var isOthers = data.regions[i].name=="未知" || data.regions[i].name=="Unknown";
       if (!isOthers) {
         var value = parseInt(data.regions[i].value);
         if (min==0 || min>value) {
@@ -1822,7 +1853,7 @@ var IAX_CHART_TOOL = {
       var pageItem = 10;
       for (var i = 0; i < data.regions.length; i++) {
         if (!data.regions[i].name) data.regions[i].name="null";
-        var isOthers = data.regions[i].name=="其他" || data.regions[i].name=="其他城市" || data.regions[i].name.indexOf("Other")>-1;
+        var isOthers = data.regions[i].name=="未知" || data.regions[i].name=="Unknown";
         var per = (parseFloat(data.regions[i].value)/_total)*100;
         var display = "block";
         if(index > pageItem){
@@ -1850,7 +1881,7 @@ var IAX_CHART_TOOL = {
           index++;
         }
       }
-      $("#"+id).parent().parent().find(".result-graph-word-content").append(others);
+      if(others!="") $("#"+id).parent().parent().find(".result-graph-word-content").append(others);
       
       var disabledPrev = "disabled",
           disabledNext = totalItem>pageItem ? "" : "disabled";
@@ -1905,7 +1936,7 @@ var IAX_CHART_TOOL = {
       if (lastindex > pageItem) {
         $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per:last").hide();
       };
-      $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per:last").find(".name").text(lastindex+"."+othersName);
+      if(othersName!="") $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per:last").find(".name").text(lastindex+"."+othersName);
   },
   initInterests: function(id,data){
     if (!data) return;
@@ -1917,31 +1948,34 @@ var IAX_CHART_TOOL = {
       $("#"+id).parent().parent().find(".result-graph-word-content").empty();
     };
     var counter = 0,maxLen=22;
+    var interestArr = [];
     for(var i in data.interest){
+      interestArr.push(data.interest[i]);
+    }
+    var newData = interestArr.sort(this.sortJson("desc","value","parseFloat"));
+    for (var i = 0; i < newData.length; i++) {
       counter++;
-      if (i!="xxx_test") {
         var indicatorJson = {};
-        indicatorJson.text = data.interest[i].name;
+        indicatorJson.text = newData[i].name;
         indicatorJson.max = 100;
         indicator.push(indicatorJson);
         var topPointJson = {};
-        topPointJson.name= data.interest[i].name;
-        topPointJson.value = data.interest[i].value+"%";
+        topPointJson.name= newData[i].name;
+        topPointJson.value = newData[i].value+"%";
         topPointArr.push(topPointJson);
-        dataArr.push(data.interest[i].value);
+        dataArr.push(newData[i].value);
 
-        datas.push(data.interest[i].value);
-        categories.push(data.interest[i].name);
-      }
+        datas.push(newData[i].value);
+        categories.push(newData[i].name);
       //初始化副标题
         if($("#"+id).parent().parent().find(".result-graph-word-content").length>0){
           var _li = "";
-          for (var j = 0; j < data.interest[i].sub.length; j++) {
-            _li += '<li title="'+data.interest[i].sub[j]+'">'+(j+1)+'.'+data.interest[i].sub[j]+'</li>';
+          for (var j = 0; j < newData[i].sub.length; j++) {
+            _li += '<li title="'+newData[i].sub[j]+'">'+(j+1)+'.'+newData[i].sub[j]+'</li>';
           };
           var _html = '<div class="result-graph-word-interest">'+
                             '<div class="result-graph-word-interest-inner">'+
-                              '<label title="'+data.interest[i].name+'">'+data.interest[i].name+'</label>'+
+                              '<label title="'+newData[i].name+'">'+newData[i].name+'</label>'+
                               '<ul>'+
                               _li+
                               '</ul>'+
@@ -1951,11 +1985,11 @@ var IAX_CHART_TOOL = {
           $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
         }
         var _li = "";
-        for (var j = 0; j < data.interest[i].sub.length; j++) {
-          _li += '<li title="'+data.interest[i].sub[j]+'">'+data.interest[i].sub[j]+'</li>';
+        for (var j = 0; j < newData[i].sub.length; j++) {
+          _li += '<li title="'+newData[i].sub[j]+'">'+newData[i].sub[j]+'</li>';
          };
         var _html = '<ul>'+_li+'</ul>';
-        liCon[data.interest[i].name] = _html;
+        liCon[newData[i].name] = _html;
     }
     if($("#"+id).parent().parent().find(".result-graph-word-content").length>0){
       // this.createSpiderByEchart(id,indicator,topPointArr,dataArr);

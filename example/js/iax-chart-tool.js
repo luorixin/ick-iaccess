@@ -1,5 +1,5 @@
 var IAX_CHART_TOOL = {
-  colorMap : ['#f2e1e1', '#ecd3d3', '#eab7b7', '#eca5a7', '#fa7373', '#ef4136'],
+  colorMap : ['#EF4136', '#FFBD00', '#4484CF', '#946EDB', '#8D7B7B', '#54C7B0','#F47920','#194283','#59C754'],
   brandData: [],
   sets: [],
   currentBubble:"",
@@ -189,7 +189,7 @@ var IAX_CHART_TOOL = {
     var chart = venn.VennDiagram()
                  .width(width)
                  .height(width);
-
+    $("#"+id).find(".bubble-map").empty();
     var div = d3.select("#"+id).select(".bubble-map").attr("style","padding-top:"+paddingtop+"px");
     div.datum(sets).call(chart);
 
@@ -197,8 +197,8 @@ var IAX_CHART_TOOL = {
 
     div.selectAll("path")
         .style("stroke-opacity", 1)
-        .style("stroke", "none")
-        .style("stroke-width", 1)
+        .style("stroke", "#fff")
+        .style("stroke-width", 0)
         // .style("stroke-dasharray",[5,5])
     d3.selectAll(".venn-circle path:not(.path_select)")
         .style("fill-opacity",  .5);
@@ -236,7 +236,7 @@ var IAX_CHART_TOOL = {
           selection.select("path")
               .style("fill-opacity", d.sets.length == 1 ? .8 : .1)
               .style("stroke-opacity", 1)
-              .style("stroke-width", 1)
+              .style("stroke-width", 3)
               .style("stroke-dasharray",[0,0]);
       })
 
@@ -255,7 +255,7 @@ var IAX_CHART_TOOL = {
 
           d3.selectAll("path")
               .style("stroke-opacity", 1)
-              .style("stroke-width", 1)
+              .style("stroke-width", 0)
               // .style("stroke-dasharray",[5,5]); 
           d3.selectAll(".venn-circle path")
               .style("fill-opacity",  .5);
@@ -279,7 +279,7 @@ var IAX_CHART_TOOL = {
           d3.selectAll(".path_select")
               .classed("path_select",false)
               .style("stroke-opacity", 0)
-              .style("stroke-width", 1)
+              .style("stroke-width", 0)
               // .style("stroke-dasharray",[5,5]);
 
           selection.select("path")
@@ -302,15 +302,15 @@ var IAX_CHART_TOOL = {
               .transition().duration(400)
               // .style("fill-opacity", 0.5)
               .style("stroke-opacity", 0)
-              .style("stroke-width", 1)
+              .style("stroke-width", 0)
           $(this).css("opacity","1");
           $(this).addClass("bubble-select");
           var subTitle = "The Market";
           var audience = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[0];
           var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
           var selectLabel = $("#"+id).find(".bubble-info").find("#bubble-brandall").next().text();
-          var audienceTitle = 'Audience Scale <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>';
-          var marketTitle = 'Industry Penetration <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of the industry."></i>';
+          var audienceTitle = 'Audience Size <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>';
+          var marketTitle = 'Market Share <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of the industry."></i>';
           $(audience).find(".result-text-header label").html(audienceTitle);
           $(market).find(".result-text-header label").html(marketTitle);
           $(market).find(".result-graph-word-content>label").text(subTitle);
@@ -320,6 +320,8 @@ var IAX_CHART_TOOL = {
             _this.initMarketGraphByBubble(_this.brandData[0]);
             _this.currentBubble = _this.brandData[0].id;
           };
+          //文字变会正常色
+         $("#"+id).find(".label").attr("fill","#333"); 
       })
       $("#"+id).on("mouseover",".bubble-map",function(e){
           e = e || window.event;
@@ -335,6 +337,8 @@ var IAX_CHART_TOOL = {
           e.stopPropagation();
           $(this).css("opacity","1");
       })
+      //初始化背景圆的文字标题
+      $("#"+id).find(".bubble-map").append('<label class="bubble-main-title">The Market</label>');
   },
   showCampare: function(id,d){
     var _this = this;
@@ -346,14 +350,16 @@ var IAX_CHART_TOOL = {
     var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
     var tooltip_title_num = 'The number of audience in competitors.';
     var tooltip_title_per = 'The audience percentage of competitors that overlaps the market.';
+    //文字变会正常色
+    $("#"+id).find(".label").attr("fill","#333"); 
     if (label!="") {
       if (d.sets[0]==0) {
         tooltip_title_num = 'The number of audience in my brand.';
         tooltip_title_per = 'The audience percentage of my brand that overlaps the market.';
       }
     };
-    var audienceTitle = 'Audience Scale <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_num+'"></i>';
-    var marketTitle = 'Industry Penetration <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_per+'"></i>';
+    var audienceTitle = 'Audience Size <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_num+'"></i>';
+    var marketTitle = 'Market Share <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_per+'"></i>';
     if (label=="") {
       for (var i = 0; i < d.sets.length; i++) {
         var currentSet = d.sets[i];
@@ -367,11 +373,15 @@ var IAX_CHART_TOOL = {
       };
       label = label.substring(0,label.length-3);
       subTitle = label.split(" & ").reverse().join(" overlaps ");
-      //audience scale & Industry Penetration 变更标题
+      //Audience Size & Market Share 变更标题
       tooltip_title_num = 'The number of audience between my brand and my competitors.';
       tooltip_title_per = 'The audience percentage of competitors that overlaps my brand.';
       audienceTitle = 'Overlapping Audience Scale <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_num+'"></i>';
       marketTitle = 'Overlapping Audience % <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_per+'"></i>';
+      //交叉的两圆文字变成白色
+      for (var i = 0; i < d.sets.length; i++) {
+        $("#"+id).find("[data-venn-sets='"+d.sets[i]+"']").find(".label").attr("fill","#fff");
+      };
     };
     $(audience).find(".result-text-header label").html(audienceTitle);
     $(market).find(".result-text-header label").html(marketTitle);
@@ -390,6 +400,7 @@ var IAX_CHART_TOOL = {
     if (!json) return;
     this.initTotalAudience("select_audience","audience_total","market-map",json.data);
     this.initGender("gender-map",json.data);
+    this.initDevice("device-map",json.data);
     this.initAgeGroup("select_age",json.data);
     this.initRegions("region-map",json.data);
     this.initInterests("interest-map",json.data);
@@ -490,7 +501,7 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:['#ef4136','#FB8731','#F4D96C','#F9A5A5'],
+        color:this.colorMap,
         tooltip : {
             trigger : 'axis',
             backgroundColor : "#f2f2f2",
@@ -598,9 +609,10 @@ var IAX_CHART_TOOL = {
         this.charts.push({id:id,chart:myChart});
       };
   },
-  initMixTrend: function(id,data){
+  initMixTrend: function(id,articleId,data){
     if(!data || !data.mixTrend) return;
     if (!document.getElementById(id)) return;
+    if (!document.getElementById(articleId)) articleId = $("#"+id).parents(".plan-result-graph").attr("id");
     var myChart = echarts.init(document.getElementById(id));
     var _this = this;
     var legends=[],date=[],series=[],seriesJson={},title,dateJson={},yAxis=[],yAxisIndex=0,splitNumber=5;
@@ -692,8 +704,8 @@ var IAX_CHART_TOOL = {
         }
       };
       if (yAxisIndex==1) {
-        yAxisJson.max=100;
-        yAxisJson.interval = parseInt(100/splitNumber);
+        // yAxisJson.max=100;
+        // yAxisJson.interval = parseInt(100/splitNumber);
         seriesJson.lineStyle.normal.color = "#FB8731";
         seriesJson.itemStyle.normal.color = "#FB8731";
         yAxisJson.axisLabel.formatter='{value}%';
@@ -711,9 +723,10 @@ var IAX_CHART_TOOL = {
       topBrandsData.push(json);
     };
     if (data.mixTrend.topBrands.length>0) {
-      var itemtitle = '<div class="pic-title-title"><b>Related Articles in '+data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].date+'</b></div>';
-      var itemHtmls = itemtitle + this.markeArticle(data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].articles);
-      $("#"+id).next().html(itemHtmls);
+      var itemtitle = '<b>'+data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].date+'</b>';
+      var itemHtmls = this.markeArticle(data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].articles);
+      $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").after(itemtitle);
+      $("#"+articleId).find(".pic-title-list").html(itemHtmls);
     };
     // $("#"+id).find(".fa").remove();
     // $("#"+id).append('<i class="fa fa-caret-up" style="position:absolute;color:#999;font-size:18px;transform: translateX(-50%);left:592px;top:128px;"></i>')
@@ -774,7 +787,7 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:['#ef4136','#FB8731','#F4D96C','#F9A5A5'],
+        color:this.colorMap,
         tooltip : {
             trigger : 'axis',
             backgroundColor : "#f2f2f2",
@@ -811,9 +824,7 @@ var IAX_CHART_TOOL = {
           itemHeight:8,
           itemGap:20,
           data:legends,
-          x: 'left',
-          y:'bottom',
-          bottom:0,
+          bottom:0
         },
         grid : {
             left : '0',
@@ -865,8 +876,9 @@ var IAX_CHART_TOOL = {
             };
           };
           var itemtitle = '<div class="pic-title-title"><b>Related Articles in '+date+'</b></div>';
-          var aritclesHtml = itemtitle+_this.markeArticle(articles);
-          $("#"+id).next().html(aritclesHtml);
+          var aritclesHtml = _this.markeArticle(articles);
+          $("#"+articleId).find("#acticle-title").html(itemtitle);
+          $("#"+articleId).find(".pic-title-list").html(aritclesHtml);
           //小三角显示在报表中
           // console.log(params);
           // var offsetX = params.event.offsetX;
@@ -925,9 +937,9 @@ var IAX_CHART_TOOL = {
       };
       //竖着排12345.。。。。
       if (j==0 || j==5) {
-        _itemhtml += '<div style="float:left;width:50%;">'
+        // _itemhtml += '<div style="float:left;width:50%;">'
       };
-      _itemhtml += '<div class="pic-title-item" style="width:100%;" data-date="'+convertDate+'">'+
+      _itemhtml += '<div class="pic-title-item" style="width:50%;" data-date="'+convertDate+'">'+
                       '  <a href="'+item.url+'" target="_blank" class="pic-title-item-a"></a>'+
                       '  <div class="pic-title-item-inner">'+
                       '    <span class="pic-title-item-index">'+index+'</span>'+
@@ -947,7 +959,7 @@ var IAX_CHART_TOOL = {
                       '  </div>'+
                       '</div>';
       if (j==4 || j==9 || j==data.length-1) {
-        _itemhtml += '</div>';
+        // _itemhtml += '</div>';
       };
     }
     return _itemhtml;
@@ -1045,6 +1057,12 @@ var IAX_CHART_TOOL = {
                 icon:"circle",
                 name:result[j].name,
               })
+            }else{
+              seriesJson.itemStyle = {
+                normal : {
+                  color:"#FB8731",
+                }
+              }
             }
             series.push(seriesJson);
             seriesCount[result[j].name] = parseInt(result[j].value);
@@ -1109,7 +1127,7 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:['#ef4136','#F97373','#EBA5A7','#ECD3D3','#FB8731'],
+        color:this.colorMap,
         tooltip : {
             trigger : 'item',
             backgroundColor : "#f2f2f2",
@@ -1195,33 +1213,33 @@ var IAX_CHART_TOOL = {
       };
       myChart.setOption(option);
       var _this = this;
-      // myChart.on('click', function (params) {
-      //     if (typeof params.seriesIndex == 'undefined') {      
-      //      return;      
-      //     }
-      //     var type = params.seriesType;
-      //     var name = params.seriesName;
-      //     var date = params.name;
-      //     var json = data.audienceFunnel.result.total[0];
-      //     function isEmptyObject(e) {   
-      //     　　for (var name in e){
-      //     　　　　return false;//返回false，不为空对象
-      //     　　}　　
-      //     　　return true;//返回true，为空对象
-      //     }
-      //     for (var i in data.audienceFunnel.result) {
-      //       var result = data.audienceFunnel.result[i];
-      //       if (i==type) {
-      //         for (var j = 0; j < result.length; j++) {
-      //           if (result[j].date == date && result[j].name == name && !isEmptyObject(result[j].graphData)) {
-      //             json = result[j]; 
-      //           };
-      //         };
-      //       };
-      //     }
-      //     _this.initFunnelGraph(json);
-      //     $(".plan-reports-message").find("span:last").text(date+" - "+name +" Audience");
-      // });
+      myChart.on('click', function (params) {
+          if (typeof params.seriesIndex == 'undefined') {      
+           return;      
+          }
+          var type = params.seriesType;
+          var name = params.seriesName;
+          var date = params.name;
+          var json = data.audienceFunnel.result.total[0];
+          function isEmptyObject(e) {   
+          　　for (var name in e){
+          　　　　return false;//返回false，不为空对象
+          　　}　　
+          　　return true;//返回true，为空对象
+          }
+          for (var i in data.audienceFunnel.result) {
+            var result = data.audienceFunnel.result[i];
+            if (i==type) {
+              for (var j = 0; j < result.length; j++) {
+                if (result[j].date == date && result[j].name == name && !isEmptyObject(result[j].graphData)) {
+                  json = result[j]; 
+                };
+              };
+            };
+          }
+          _this.initFunnelGraph(json);
+          $(".plan-reports-message").find("span:last").text(date+" - "+name +" Audience");
+      });
       var isExists = false;
       for (var i = 0; i < this.charts.length; i++) {
         if(this.charts[i].id == id){
@@ -1233,13 +1251,576 @@ var IAX_CHART_TOOL = {
         this.charts.push({id:id,chart:myChart});
       };
       //初始化all week相关的grpah
-      // this.initFunnelGraph(data.audienceFunnel.result.total[0]);
+      this.initFunnelGraph(data.audienceFunnel.result.total[0]);
   },
   initFunnelGraph: function(json){
     IAX_CHART_TOOL.initGender("gender-map",json.graphData);
+    IAX_CHART_TOOL.initDevice("device-map",json.graphData);
     IAX_CHART_TOOL.initAgeGroup("select_age",json.graphData);
     IAX_CHART_TOOL.initRegions("region-map",json.graphData);
     IAX_CHART_TOOL.initInterests("interest-map",json.graphData);
+    IAX_CHART_TOOL.initSentiment("sentiment-map",json.graphData);
+    var data = {
+      'Lancome':[
+        [0,55,"30%","Age","0-17" ],
+        [1,25,"20%","Age","18-24"],
+        [2,56,"10%","Age","25-34"],
+        [3,33,"20%","Age","35-44"],
+        [4,42,"10%","Age","45-54"],
+        [5,82,"60%","Age","55-64"]
+      ],
+      'series':[
+        [0,35,"30%","Age","0-17" ],
+        [1,15,"20%","Age","18-24"],
+        [2,26,"10%","Age","25-34"],
+        [3,43,"20%","Age","35-44"],
+        [4,52,"10%","Age","45-54"],
+        [5,12,"60%","Age","55-64"]
+      ]
+    };
+    IAX_CHART_TOOL.initGroupIndex("group-index-map",data);
+  },
+  initSentiment: function(id,data){
+    if(!data) return;
+    if (!document.getElementById(id)) return;
+    var degreeArr = ["0~22.5","22.5~67.5","67.5~112.5","112.5~157.5","157.5~180"];
+    var scaleArr = ["10~17.5","17.5~22.5","22.5~27.5","27.5~32.5","55~62.5","62.5~67.5","67.5~72.5","72.5~77.5","100~107.5","107.5~112.5","112.5~117.5","117.5~122.5","145~152.5","152.5~157.5","157.5~162.5","162.5~167.5"];
+    var origin = 15;
+    $("#"+id).find(".sentiment-scale").each(function(i){
+      if (i%4==0 && i!=0) {
+        origin += 45;
+      };
+      var rotate = 5*(i%4)+origin;
+      var left = 100-Math.cos(2*Math.PI / 360*rotate)*130;
+      var bottom = Math.sin(2*Math.PI / 360*rotate)*130-3;
+      $(this).css("transform","rotate("+(rotate-180)+"deg)");
+      $(this).css("left",left+"px");
+      $(this).css("bottom",bottom+"px");
+    })
+    $("#"+id).find(".sentiment-selected").removeClass("sentiment-selected");
+    $("#"+id).find(".sentiment-scale").removeClass("selected");
+    var scaleIndex = 0,degreeIndex = 0;
+    for (var i = 0; i < scaleArr.length; i++) {
+      var scale = scaleArr[i].split("~");
+      if (data.sentiment>=scale[0] && data.sentiment<=scale[1]) {
+        $("#"+id).find(".sentiment-scale").eq(i).addClass("selected");
+        scaleIndex = $("#"+id).find(".sentiment-scale").eq(i).index();
+        // $("#"+id).find(".sentiment-scale").eq(i).prevAll().addClass("selected");
+      };
+    };
+    for (var i = 0; i < degreeArr.length; i++) {
+      var degree = degreeArr[i].split("~");
+      if (data.sentiment>=degree[0] && data.sentiment<=degree[1]) {
+        $("#"+id).find("div").eq(i*5).addClass("sentiment-selected");
+        // $("#"+id).find("div").eq(i*5).prevAll(".sentiment-scale").addClass("selected");
+        degreeIndex = i*5;
+      };
+    };
+    //两者之间的元素也要点亮
+    if (scaleIndex!=0) {
+      var middle=0;
+      if (scaleIndex>degreeIndex) {
+        middle = degreeIndex;
+        degreeIndex = scaleIndex;
+        scaleIndex = middle;
+      };
+      console.log(scaleIndex,degreeIndex)
+      for (var i = scaleIndex; i < degreeIndex; i++) {
+        $("#"+id).find("div").eq(i).addClass("selected");
+      };
+    };
+    
+    $("#"+id).find(".sentiment-pointer").css("transform","rotate("+(data.sentiment-180)+"deg)");
+  },
+  changeToGroupIndex:function(data){
+    if (!data) return "";
+    var indexArr = [],index = 0;
+    var _total = 0;
+    for (var k in data) {
+      if (k!="name") {
+        _total +=parseFloat(data[k]);
+      }
+    }
+    for(var i in data){
+      var per = (parseFloat(data[i])/_total)*100; 
+      var indexData = [index];
+      indexData.push(data[i]);
+      indexData.push(per.toFixed(2)+"%");
+      indexData.push("Age");
+      indexData.push(i);
+      indexArr.push(indexData);
+      index++;
+    }
+    return indexArr;
+  },
+  initGroupIndex:function(id,data){
+    if(!data) return;
+    if (!document.getElementById(id)) return;
+    var myChart = echarts.init(document.getElementById(id));
+    var _this = this;
+    var legend=[];
+    var picData = [];
+    
+    var picSeriesArr = [];
+    for(var i in data){
+      var series = {
+          name: i,
+          type: 'scatter',
+          seriesIndex:0,
+          label:{
+            normal:{
+              show:true,
+              position:"top",
+              formatter:function(params){
+                return params.data[2];
+              },
+              textStyle:{
+                color:"#333",
+              }
+            }
+          },
+          itemStyle: {
+            normal: {
+              opacity: 0.8,
+            }
+          },
+          data: data[i]
+      }
+      series.label.normal.show=false;
+      picSeriesArr.push(series);
+      legend.push(i);
+    }
+    //横坐标轴的图片。。
+    var picSeries = {
+      name : 'test',
+      type : 'line',
+      stack : 'symbol:1',
+      yAxisIndex:1,
+      symbol : 'image://../images/icon_0-17.png',
+      symbolSize : [26,26],
+      showAllSymbol:true,
+      clipOverflow:false,
+      symbolOffset:[0,'18'],
+      hoverAnimation:false,
+      lineStyle : {
+        normal : {
+          opacity:0,
+          color:"#ef4136",
+        }
+      },
+      itemStyle:{
+        normal:{
+          color:"#999",
+          label:{
+            show:false,
+          }
+        },
+        emphasis:{
+          color:"#ef4136"
+        }
+      },
+      areaStyle : {
+        normal : {
+          opacity:0
+        }
+      },
+      data : picData,
+    }
+    var arrs = [];
+    for (var i = 0; i < picSeriesArr[0].data.length; i++) {
+      arrs.push(picSeriesArr[0].data[i][4]);
+    };
+    for (var i = 0; i < arrs.length; i++) {
+      var picSeries2 = $.extend({},picSeries);
+      var picData = [];
+      for (var k = 0; k < picSeriesArr[0].data.length; k++) {
+        var json = {};
+        json.value = null;
+        json.size = 24;
+        picData.push(json);
+      };
+      picData[i].value=0;
+      picSeries2.data = [].concat(picData);
+      picSeries2.symbol = 'image://../images/icon_'+arrs[i].toLocaleLowerCase()+'.png';
+      picSeriesArr.push(picSeries2);
+    };
+    var seriesIndexArr = new Array(picSeriesArr.length-arrs.length);
+    for (var i = 0; i < seriesIndexArr.length; i++) {
+      seriesIndexArr[i] = i;
+    };
+    var option = {
+        color: this.colorMap,
+        legend: {
+            data: legend,
+            itemWidth:8,
+            itemHeight:8,
+            itemGap:20,
+            bottom:0,
+        },
+        grid: {
+            y: '20',
+            right:'0',
+            left:30,
+            bottom:'90',
+        },
+        tooltip: {
+            trigger:"item",
+            formatter: function (params) {
+              if (params.seriesName!="test") {
+                return "<p><b>"+params.value[3]+": "+params.value[4]+"</b></p><p>Audience: "+_this.getKWMformat(params.value[1])+"</p>";
+              }
+            },
+            backgroundColor:"#f2f2f2",
+            borderColor:"#dfdfdf",
+            borderWidth:1,
+            textStyle:{
+              fontSize:10,
+              fontFamily:"Open Sans, Noto Sans SC,Arial,sans-serif",
+              color:"#333"
+            },
+            extraCssText:'text-align:left;',
+        },
+        xAxis: {
+            type: 'category',
+            name: '',
+            nameTextStyle: {
+                color: '#333',
+                fontSize: 12
+            },
+            data:arrs,
+            offset:30,
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                show:false
+            },
+            axisTick:{
+              show:false
+            },
+            axisPointer:{
+              show:false
+            }
+        },
+        yAxis: [{
+            type: 'value',
+            name: '',
+            nameTextStyle: {
+                color: '#333',
+                fontSize: 12
+            },
+            axisLine: {
+                show:false,
+            },
+            axisPointer:{
+              show:false
+            },
+            axisTick:{
+              show:false
+            },
+            splitLine:{
+              show:true,
+              lineStyle:{
+                color:"#dfdfdf"
+              }
+            },
+        },{
+            type: 'value',
+            name: 'icon',
+            show:false,
+        }],
+        visualMap: [
+            {
+                left: 'right',
+                top: '10%',
+                dimension: 1,
+                min: 0,
+                max: 100,
+                show:false,
+                itemWidth: 30,
+                itemHeight: 120,
+                calculable: true,
+                seriesIndex:seriesIndexArr,
+                precision: 0.1,
+                text: ['圆形大小'],
+                textGap: 30,
+                textStyle: {
+                    color: '#333'
+                },
+                inRange: {
+                    symbolSize: [10, 70]
+                },
+                outOfRange: {
+                    symbolSize: [10, 70],
+                    color: ['rgba(255,255,255,.2)']
+                },
+                controller: {
+                    inRange: {
+                        color: ['#c23531']
+                    },
+                    outOfRange: {
+                        color: ['#444']
+                    }
+                }
+            }
+        ],
+        series: picSeriesArr
+    };
+    myChart.setOption(option);
+    var isExists = false;
+    for (var i = 0; i < this.charts.length; i++) {
+      if(this.charts[i].id == id){
+        this.charts[i].chart = myChart;
+        isExists = true;
+      }
+    };
+    if (!isExists) {
+      this.charts.push({id:id,chart:myChart});
+    };
+  },
+  initBrandFunnel: function(genderId,deviceId,ageGroupId,groupIndexId,data){
+    if(!data) return;
+    if (!document.getElementById(genderId)) return;
+    if (!document.getElementById(deviceId)) return;
+    if (!document.getElementById(ageGroupId)) return;
+    if (!document.getElementById(groupIndexId)) return;
+    var genderArr=[],deviceArr=[],ageGroupArr=[],groupIndexArr=[];
+    var genderSeries=[],deviceSeries=[],ageGroupSeries=[],groupIndexSeries=[];
+    var genderJson={},deviceJson={},ageGroupJson={},groupIndexJson={};
+    var genderLegend=['Male','Female','UNKNOWN'],deviceLegend=['PC','Mobile','UNKNOWN'];
+    var genderLegendIndex={'male':'Male','female':'Female','UNKNOWN':'UNKNOWN'};
+    var ageGroupLegend=[],groupIndexLegend=[];
+    var _this = this;
+    var dataArr = data.brandFunnel;
+    for (var i = 0; i < dataArr.length; i++) {
+      var data = dataArr[i];
+      var indexValue = $.extend({},data.age_group);
+      data.gender.name=data.name;
+      data.device.name=data.name;
+      genderArr.push(data.gender);
+      deviceArr.push(data.device);
+      ageGroupArr.push({name:data.name,value:data.age_group});
+      groupIndexArr.push({name:data.name,value:data.age_group});
+    };
+    //处理gender数据
+    var gender_data={},xAxisData_gender=[];
+    for (var i = 0; i < genderArr.length; i++) {
+      var data = genderArr[i]
+      var _total = 0;
+      for (var k in data) {
+        if (k!="name") {
+          _total +=parseFloat(data[k]);
+        }
+      }
+      for (var j in data) {
+        var per = (parseFloat(data[j])/_total)*100; 
+        var json = {
+          name:j,
+          percent:per,
+          value:parseFloat(data[j])
+        };
+        if(gender_data[j]){
+          gender_data[j].push(json);
+        }else{
+          gender_data[j] = [json];
+        }
+      }
+      xAxisData_gender.push(data.name);
+    };
+    for (var i in gender_data) {
+      genderSeries.push({
+        name:genderLegendIndex[i],
+        type:"bar",
+        stack:"gender",
+        barWidth:20,
+        data:gender_data[i]
+      })
+    };
+    //处理device数据
+    var device_data={},xAxisData_device=[];
+    for (var i = 0; i < deviceArr.length; i++) {
+      var data = deviceArr[i]
+      var _total = 0;
+      for (var k in data) {
+        if (k!="name") {
+          _total +=parseFloat(data[k]);
+        }
+      }
+      for (var j in data) {
+        var per = (parseFloat(data[j])/_total)*100; 
+        var json = {
+          name:j,
+          percent:per,
+          value:parseFloat(data[j])
+        };
+        if(device_data[j]){
+          device_data[j].push(json);
+        }else{
+          device_data[j] = [json];
+        }
+      }
+      xAxisData_device.push(data.name);
+    };
+    for (var i in device_data) {
+      deviceSeries.push({
+        name:i,
+        type:"bar",
+        stack:"device",
+        barWidth:20,
+        data:device_data[i]
+      })
+    };
+    //处理age group数据
+    var group_data={},xAxisData_age_group=[];
+    for (var i = 0; i < ageGroupArr.length; i++) {
+      var data = ageGroupArr[i].value;
+      var _total = 0;
+      group_data[ageGroupArr[i].name]=[];
+      ageGroupLegend.push(ageGroupArr[i].name);
+      for (var k in data) {
+        if (k!="name") {
+          _total +=parseFloat(data[k]);
+        }
+      }
+      for (var j in data) {
+        var per = (parseFloat(data[j])/_total)*100; 
+        var json = {
+          name:j,
+          percent:per,
+          value:parseFloat(data[j])
+        };
+        group_data[ageGroupArr[i].name].push(json);
+        if (i==0) {
+          xAxisData_age_group.push(j);
+        };
+      }
+    };
+    for (var i in group_data) {
+      if (i!="name") {
+        ageGroupSeries.push({
+          name:i,
+          type:"bar",
+          barWidth:10,
+          data:group_data[i]
+        })
+      };
+    };
+    //处理groupindex数据
+    var groupindexData = {};
+    for (var i = 0; i < groupIndexArr.length; i++) {
+      groupindexData[groupIndexArr[i].name] = _this.changeToGroupIndex(groupIndexArr[i].value);
+    };
+    _this.initBarFunnel(genderId,genderLegend,genderSeries,xAxisData_gender,['#4484CF', '#EF4136 ', '#c1c1c1']);
+    _this.initBarFunnel(deviceId,deviceLegend,deviceSeries,xAxisData_device,['#4484CF', '#FFBD00 ', '#c1c1c1']);
+    _this.initBarFunnel(ageGroupId,ageGroupLegend,ageGroupSeries,xAxisData_age_group,['#ef4136', '#8D7B7B ', '#FFBD00','#4484CF','#946EDB','#54C7B0','#F47920','#194283']);
+    _this.initGroupIndex(groupIndexId,groupindexData);
+  },
+  initBarFunnel: function(id,legend,series,xAxisData,color){
+    if (!legend) return;
+    if (!document.getElementById(id)) return;
+    var _this = this;
+    var myChart = echarts.init(document.getElementById(id));
+    var splitNumber = 1,yaxisLabel=false,legendshow = true,gridleft=0;
+    if (id=="age-group-map") {
+      splitNumber = 4;
+      yaxisLabel = true;
+      gridleft=30;
+    };
+    var option = {
+        color: color,
+        legend: {
+            show:legendshow,
+            data: legend,
+            itemWidth:8,
+            itemHeight:8,
+            itemGap:20,
+            bottom:0,
+            icon:"circle",
+        },
+        grid: {
+            y: '20',
+            left:gridleft,
+            right:0,
+            bottom:'50',
+        },
+        tooltip: {
+            trigger:"item",
+            formatter: function (params) {
+              if (params.seriesName!="test") {
+                return "<p><b>"+params.seriesName+"</b></p><p>Audience: "+_this.formatNum(params.data.percent,2)+"% ("+_this.getKWMformat(params.value)+")</p>";
+              }
+            },
+            backgroundColor:"#f2f2f2",
+            borderColor:"#dfdfdf",
+            borderWidth:1,
+            textStyle:{
+              fontSize:10,
+              fontFamily:"Open Sans, Noto Sans SC,Arial,sans-serif",
+              color:"#333"
+            },
+            extraCssText:'text-align:left;',
+        },
+        xAxis: {
+            type: 'category',
+            name: '',
+            nameTextStyle: {
+                color: '#333',
+                fontSize: 12
+            },
+            data:xAxisData,
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                show:false
+            },
+            axisTick:{
+              show:false
+            },
+            axisPointer:{
+              show:false
+            }
+        },
+        yAxis: {
+            type: 'value',
+            name: '',
+            nameTextStyle: {
+                color: '#333',
+                fontSize: 12
+            },
+            splitNumber:splitNumber,
+            axisLine: {
+                show:false,
+            },
+            axisPointer:{
+              show:false
+            },
+            axisTick:{
+              show:false
+            },
+            axisLabel:{
+              show:yaxisLabel
+            },
+            splitLine:{
+              show:true,
+              lineStyle:{
+                color:"#dfdfdf"
+              }
+            },
+        },
+        series: series
+    };
+    myChart.setOption(option);
+    var isExists = false;
+    for (var i = 0; i < this.charts.length; i++) {
+      if(this.charts[i].id == id){
+        this.charts[i].chart = myChart;
+        isExists = true;
+      }
+    };
+    if (!isExists) {
+      this.charts.push({id:id,chart:myChart});
+    };
   },
   initTotalAudience: function(mainId,audId,marketId,data){
     if(!data) return;
@@ -1279,14 +1860,14 @@ var IAX_CHART_TOOL = {
         // seriesJson.selected = true;
         showValue = data.market_share[i];
       };
-      if (seriesJson.value==0) {
-        borderWidth = 0;
-      };
       seriesData.push(seriesJson);
     }
     for (var i = 0; i < seriesData.length; i++) {
       if(seriesData[i].name == "market"){
         seriesData[i].value = seriesData[i].value - showValue;
+        if (seriesData[i].value==0) {
+          borderWidth = 0;
+        };
       }
     };    
     var option = {
@@ -1375,12 +1956,19 @@ var IAX_CHART_TOOL = {
     if (!document.getElementById(id)) return;
     var male = data ? data.gender.male : 0;
     var female = data ? data.gender.female : 0;
+    var unknown = data ? data.gender.UNKNOWN? data.gender.UNKNOWN:0: 0;
+    // var _total = male+female+unknown;
     var _total = male+female;
     var malePercent = (parseFloat(male)/_total)*100; 
     var femalePercent = (parseFloat(female)/_total)*100; 
+    var unknownPercent = 100-malePercent-femalePercent;
+    if(unknownPercent<0){
+      unknownPercent =0;
+    }
     var _this = this;
     $("#"+id).parent().find(".gender-male").find("p").text(malePercent.toFixed(0)+"%");
     $("#"+id).parent().find(".gender-female").find("p").text(femalePercent.toFixed(0)+"%");
+    $("#"+id).parent().find(".gender-unknown").find("p").text(unknownPercent.toFixed(0)+"%");
     var myChart = echarts.init(document.getElementById(id));
     var option = {
           tooltip: {
@@ -1401,7 +1989,7 @@ var IAX_CHART_TOOL = {
           legend: {
               show:false
           },
-          color: ['#ef4136','#4484CF'],
+          color: ['#ef4136','#4484CF','#c1c1c1'],
           series: [
               {
                   name:'Gender',
@@ -1431,6 +2019,7 @@ var IAX_CHART_TOOL = {
                   data:[
                       {value: female, name:'Female'},
                       {value: male, name:'Male'},
+                      // {value: unknown, name:'Unknown'},
                   ]
               }
           ]
@@ -1459,17 +2048,25 @@ var IAX_CHART_TOOL = {
     for (var i in data.age_group) {
       var per = (parseFloat(data.age_group[i])/_total)*100; 
       var isRight = "";
-      if (i=="55-64" || i=="65+") {
+      var bgname = i.replace("+","");
+      var name = i;
+      if (i=="55-64" || i=="65+" || i=="UNKNOWN" || i=="未知") {
         isRight = "toolright";
       };
+      if (i=="UNKNOWN" || i=="未知") {
+        bgname = "Unknown";
+      };
+      if (i=="UNKNOWN") {
+        name = "Unknown";
+      };
       var _html = '<div class="xmo-bar_per">'+
-                '<span class="name">'+i+'</span>'+
+                '<span class="name">'+name+'</span>'+
                 '<span class="result">'+per.toFixed(0)+'%</span>'+
-                '<span class="bg_ico bg_ico_'+i.replace("+","")+'"></span>'+
+                '<span class="bg_ico bg_ico_'+bgname+'"></span>'+
                 '<span class="bar_main">'+
                   '<div class="bar_bg"></div>'+
                   '<div class="tooltip-content '+isRight+'">'+
-                  '  <p>Age: '+i+'</p>'+
+                  '  <p>Age: '+name+'</p>'+
                   ' <span>Audience: '+_this.getKWMformat(data.age_group[i])+'</span>'+
                   '</div>'+
                   '<div class="bar_content">'+
@@ -1533,7 +2130,7 @@ var IAX_CHART_TOOL = {
                 fontFamily: 'Open Sans, Noto Sans SC,Arial,sans-serif'
               }
           },
-          color: ['#ef4136','#FB8731', '#F4D96C','#F9A5A5'],
+          color: this.colorMap,
           series: [
               {
                   name:'PRODUCT',
@@ -1577,42 +2174,54 @@ var IAX_CHART_TOOL = {
       };
   },
   initDevice: function(id,data){
-    if (!data) return;
     if (!document.getElementById(id)) return;
-    var myChart = echarts.init(document.getElementById(id));
-    var legendData = [], seriesData = [];
-    for(var i in data.device){
-      var legendJson = {};
-      var seriesJson = {};
-      legendJson.name = i;
-      legendJson.icon = "circle";
-      seriesJson.name = i;
-      seriesJson.value = data.device[i];
-      legendData.push(legendJson);
-      seriesData.push(seriesJson);
+    var pc = data ? data.device.PC : 0;
+    var mobile = data ? data.device.Mobile : 0;
+    var unknown = data ? data.device.UNKNOWN? data.device.UNKNOWN:0: 0;
+    // var _total = pc+mobile+unknown;
+    var _total = pc+mobile;
+    var pcPercent = (parseFloat(pc)/_total)*100; 
+    var mobilePercent = (parseFloat(mobile)/_total)*100; 
+    var unknownPercent = 100-pcPercent-mobilePercent;
+    if(unknownPercent<0){
+      unknownPercent =0;
     }
+    var _this = this;
+    $("#"+id).parent().find(".device-pc").find("p").text(pcPercent.toFixed(0)+"%");
+    $("#"+id).parent().find(".device-mobile").find("p").text(mobilePercent.toFixed(0)+"%");
+    $("#"+id).parent().find(".device-unknown").find("p").text(unknownPercent.toFixed(0)+"%");
+    var myChart = echarts.init(document.getElementById(id));
     var option = {
           tooltip: {
               trigger: 'item',
-              formatter: "{b}: {c} ({d}%)"
+              formatter: function(params){
+                return "<p><b>"+params.name+"</b></p><p>Audience: "+_this.getKWMformat(params.value)+"</p>";
+              },
+              backgroundColor:"#f2f2f2",
+              borderColor:"#dfdfdf",
+              borderWidth:1,
+              textStyle:{
+                fontSize:10,
+                fontFamily:"Open Sans, Noto Sans SC,Arial,sans-serif",
+                color:"#333"
+              },
+              extraCssText:'text-align:left;',
           },
           legend: {
-              orient: 'horizontal',
-              bottom: '0',
-              itemWidth:10,
-              itemHeight:10,
-              data:legendData
+              show:false
           },
-          color: ['#ef4136','#f9a5a5', '#ffcfcf'],
+          color: ['#946EDB','#FFBD00','#c1c1c1'],
           series: [
               {
-                  name:'DEVICE',
+                  name:'Gender',
                   type:'pie',
-                  radius: ['50%', '70%'],
+                  radius: ['40%', '70%'],
+                  hoverAnimation:false,
                   avoidLabelOverlap: false,
+                  selectedOffset:5,
                   label: {
                       normal: {
-                          show: true,
+                          show: false,
                           position: 'outside',
                           formatter: '{d}%',
                           textStyle: {
@@ -1623,10 +2232,16 @@ var IAX_CHART_TOOL = {
                   },
                   labelLine: {
                       normal: {
-                          show: false
+                          show: false,
+                          length: 5,
+                          length2: 0,
                       }
                   },
-                  data:seriesData
+                  data:[
+                      {value: mobile, name:'Mobile'},
+                      {value: pc, name:'PC'},
+                      // {value: unknown, name:'Unknown'},
+                  ]
               }
           ]
       };
@@ -1651,7 +2266,7 @@ var IAX_CHART_TOOL = {
     var min = 0,max = 0;
     for (var i = 0; i < data.regions.length; i++) {
       if (!data.regions[i].name) data.regions[i].name="null";
-      var isOthers = data.regions[i].name=="其他" || data.regions[i].name=="其他城市" || data.regions[i].name.indexOf("Other")>-1;
+      var isOthers = data.regions[i].name=="未知" || data.regions[i].name=="Unknown" || data.regions[i].name=="Overseas";
       if (!isOthers) {
         var value = parseInt(data.regions[i].value);
         if (min==0 || min>value) {
@@ -1822,7 +2437,7 @@ var IAX_CHART_TOOL = {
       var pageItem = 10;
       for (var i = 0; i < data.regions.length; i++) {
         if (!data.regions[i].name) data.regions[i].name="null";
-        var isOthers = data.regions[i].name=="其他" || data.regions[i].name=="其他城市" || data.regions[i].name.indexOf("Other")>-1;
+        var isOthers = data.regions[i].name=="未知" || data.regions[i].name=="Unknown" || data.regions[i].name=="Overseas";
         var per = (parseFloat(data.regions[i].value)/_total)*100;
         var display = "block";
         if(index > pageItem){
@@ -1850,7 +2465,7 @@ var IAX_CHART_TOOL = {
           index++;
         }
       }
-      $("#"+id).parent().parent().find(".result-graph-word-content").append(others);
+      if(others!="") $("#"+id).parent().parent().find(".result-graph-word-content").append(others);
       
       var disabledPrev = "disabled",
           disabledNext = totalItem>pageItem ? "" : "disabled";
@@ -1905,7 +2520,7 @@ var IAX_CHART_TOOL = {
       if (lastindex > pageItem) {
         $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per:last").hide();
       };
-      $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per:last").find(".name").text(lastindex+"."+othersName);
+      if(othersName!="") $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per:last").find(".name").text(lastindex+"."+othersName);
   },
   initInterests: function(id,data){
     if (!data) return;
@@ -1917,31 +2532,34 @@ var IAX_CHART_TOOL = {
       $("#"+id).parent().parent().find(".result-graph-word-content").empty();
     };
     var counter = 0,maxLen=22;
+    var interestArr = [];
     for(var i in data.interest){
+      interestArr.push(data.interest[i]);
+    }
+    var newData = interestArr.sort(this.sortJson("desc","value","parseFloat"));
+    for (var i = 0; i < newData.length; i++) {
       counter++;
-      if (i!="xxx_test") {
         var indicatorJson = {};
-        indicatorJson.text = data.interest[i].name;
+        indicatorJson.text = newData[i].name;
         indicatorJson.max = 100;
         indicator.push(indicatorJson);
         var topPointJson = {};
-        topPointJson.name= data.interest[i].name;
-        topPointJson.value = data.interest[i].value+"%";
+        topPointJson.name= newData[i].name;
+        topPointJson.value = newData[i].value+"%";
         topPointArr.push(topPointJson);
-        dataArr.push(data.interest[i].value);
+        dataArr.push(newData[i].value);
 
-        datas.push(data.interest[i].value);
-        categories.push(data.interest[i].name);
-      }
+        datas.push(newData[i].value);
+        categories.push(newData[i].name);
       //初始化副标题
         if($("#"+id).parent().parent().find(".result-graph-word-content").length>0){
           var _li = "";
-          for (var j = 0; j < data.interest[i].sub.length; j++) {
-            _li += '<li title="'+data.interest[i].sub[j]+'">'+(j+1)+'.'+data.interest[i].sub[j]+'</li>';
+          for (var j = 0; j < newData[i].sub.length; j++) {
+            _li += '<li title="'+newData[i].sub[j]+'">'+(j+1)+'.'+newData[i].sub[j]+'</li>';
           };
           var _html = '<div class="result-graph-word-interest">'+
                             '<div class="result-graph-word-interest-inner">'+
-                              '<label title="'+data.interest[i].name+'">'+data.interest[i].name+'</label>'+
+                              '<label title="'+newData[i].name+'">'+newData[i].name+'</label>'+
                               '<ul>'+
                               _li+
                               '</ul>'+
@@ -1951,11 +2569,11 @@ var IAX_CHART_TOOL = {
           $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
         }
         var _li = "";
-        for (var j = 0; j < data.interest[i].sub.length; j++) {
-          _li += '<li title="'+data.interest[i].sub[j]+'">'+data.interest[i].sub[j]+'</li>';
+        for (var j = 0; j < newData[i].sub.length; j++) {
+          _li += '<li title="'+newData[i].sub[j]+'">'+newData[i].sub[j]+'</li>';
          };
         var _html = '<ul>'+_li+'</ul>';
-        liCon[data.interest[i].name] = _html;
+        liCon[newData[i].name] = _html;
     }
     if($("#"+id).parent().parent().find(".result-graph-word-content").length>0){
       // this.createSpiderByEchart(id,indicator,topPointArr,dataArr);

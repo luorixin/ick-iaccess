@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>iAudience</title>
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -67,7 +68,7 @@
           <div class="container-fluid">
             <div class="navbar-header">
               <a href="http://xmostg.optimix.asia/" class="navbar-brand" data-toggle="offcanvas">
-                <img src="../images/logo.png" alt="" style="" width="120" height="50">
+                <img src="../images/logo.png" alt="" style="" width="125" height="50">
               </a>
             </div>
 
@@ -295,6 +296,10 @@
                   <a href="./audienceAnalysis_brand_market.html"><span class="x-m8">My Brand</span></a>
 
                 </li>
+                 <li class="">
+                  <a href="./Competitors.html"><span class="x-m8">Competitors</span></a>
+
+                </li>
               </ul>
             </li>
 
@@ -387,9 +392,66 @@
                 <div class="" id="for_export_share" style="float:left;width:100%;">
                     <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
                       <div class="plan-reports-result clearfix">
+                        <div class="plan-reports-result-inner" style="width:35%">
+                          <!--total-->
+                          <div class="plan-result-graph graph-top" style="width:100%;height:300px;padding: 0 7.5px 0 0;" id="select_audience_share">
+                            <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
+                              <div class="result-text-header clearfix">
+                                <label id="date_header">Market Scale
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
+                                </label>
+                              </div>
+                              <label style="margin-top:-10px;height:35px;">(Defined by number of market audience)</label>
+                              <div class="result-text-info clearfix x-mt10">
+                                <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:35px;">
+                                  <label class="titleRed" id="audience_total_share" style="">0</label>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!--Industry Penetration-->
+                            <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
+                              <div class="result-text-header">
+                                <label id="date_header">Industry Penetration
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The percentage of audience in the industry compare to internet netizen."></i>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr">
+                                    <div class="result-graph-word-content" style="padding-top:40px;width:180px;">
+                                      <div id="market-map_share" class="market-map" style="width:180px;height:160px;">
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--end-->
+
+                          <!--cloud tag-->
+                          <div class="plan-result-graph graph-top" style="width:100%;height:400px;padding: 0 7.5px 0 0;" id="select_keywords_share">
+                            <div class="plan-result-text">
+                              <div class="result-text-header clearfix">
+                                <label>Market Related Keywords
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Words that related to the industry. The more relevant words to the market, the bigger and bolder they appear in the word cloud."></i>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word-content" style="padding-top:0">
+                                      <div id="cloud_tag_share" class="cloud-tag" style="width:340px;margin:0 -20px;height:320px;">
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--end-->
+
+                        </div>
                         <div class="plan-reports-result-inner" style="width:65%">
                           <!--Trend map-->
-                          <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:600px;padding: 0 7.5px 0 0;">
+                          <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:300px;padding:0 0px 0 7.5px;">
                             <div class="plan-result-text">
                               <div class="result-text-header">
                                 <label id="date_header">Trend of Market Audience & Industry Penetration
@@ -411,8 +473,26 @@
                               <div class="result-graph-info x-mt10">
                                 <div class="result-graph-word word-impr">
                                   <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-                                    <div id="line_chart" class="line-chart-map" style="width:100%;height:200px;">
+                                    <div id="line_chart" class="line-chart-map" style="width:100%;height:250px;">
                                     </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--文章列表-->
+                          <div class="plan-result-graph" id="select_trend_article" style="width:100%;height:400px;padding:0 0px 0 7.5px;">
+                            <div class="plan-result-text clearfix">
+                              <div class="result-text-header">
+                                <label id="acticle-title">
+                                  <div class="pic-title-title">
+                                    <b>Market Related Latest Article Snapshot on </b>
+                                  </div>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
                                     <!-- 图片文字列表 begin-->
                                     <div class="pic-title-list">
                                       
@@ -424,62 +504,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="plan-reports-result-inner" style="width:35%">
-                          <!--total-->
-                          <div class="plan-result-graph graph-top" style="width:100%;padding:0 0px 0 7.5px" id="select_audience_share">
-                            <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
-                              <div class="result-text-header clearfix">
-                                <label id="date_header">Audience Scale
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
-                                </label>
-                              </div>
-                              <div class="result-text-info clearfix x-mt10">
-                                <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:20px;">
-                                  <label class="titleRed" id="audience_total_share" style="">0</label>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <!--Industry Penetration-->
-                            <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
-                              <div class="result-text-header">
-                                <label id="date_header">Industry Penetration
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The percentage of audience in the industry compare to internet netizen."></i>
-                                </label>
-                              </div>
-                              <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr">
-                                    <div class="result-graph-word-content" style="padding-top:0;width:180px;">
-                                      <div id="market-map_share" class="market-map" style="width:180px;height:160px;">
-                                      </div>
-                                    </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!--end-->
 
-                          <!--cloud tag-->
-                          <div class="plan-result-graph graph-top" style="width:100%;height:367px;" id="select_keywords_share">
-                            <div class="plan-result-text">
-                              <div class="result-text-header clearfix">
-                                <label>Keywords
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Words that related to the industry. The more relevant words to the market, the bigger and bolder they appear in the word cloud."></i>
-                                </label>
-                              </div>
-                              <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr">
-                                  <div class="result-graph-word-content" style="padding-top:0">
-                                      <div id="cloud_tag_share" class="cloud-tag" style="width:340px;margin:0 -20px;height:300px;">
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!--end-->
-
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -488,13 +513,13 @@
       			<div class="tab-pane fade" id="tab-analysis">
                 <div class="" id="for_export_analysis">
                   <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
-                    <div class="plan-reports-result clearfix">
+                    <div class="plan-reports-result">
                       <div class="plan-reports-result-inner" style="width:65%">
                         <!--Total-->
                         <div class="plan-result-graph" style="width:100%;height:451px;padding: 0 7.5px 0 0;">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
-                              <label id="date_header">Market Landscape
+                              <label id="date_header">Market landscape - Competitor Analysis & Overlapping Audience
                                 <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The competitiveness, market position of brands in the market, comparison among your brand and your competitors."></i>
                               </label>
                             </div>
@@ -525,7 +550,7 @@
                         <div class="plan-result-graph graph-top" style="width:100%;padding:0 0px 0 7.5px" id="select_top_brand">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
-                              <label>Top 5 Brands</label>
+                              <label>Top Brands (Max. 5)</label>
                             </div>
                             <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
@@ -542,7 +567,7 @@
                         <div class="plan-result-graph graph-top" style="width:100%;" id="select_top_products">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
-                              <label>Top 5 Products</label>
+                              <label>Top 5 Products (Max. 5)</label>
                             </div>
                             <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
@@ -556,12 +581,12 @@
                         <!--end-->
 
                       </div>
-                      <div class="plan-reports-result-inner" style="width:50%;">
+                      <div class="plan-reports-result-inner" style="width:100%;">
                         <!--Total-->
-                        <div class="plan-result-graph audience_total" id="select_audience" style="width:100%;position:relative;">
+                        <div class="plan-result-graph audience_total" id="select_audience" style="width:50%;position:relative;">
                           <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
                             <div class="result-text-header clearfix">
-                              <label id="date_header">Audience Scale
+                              <label id="date_header">Audience Size
                               <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
                               </label>
                             </div>
@@ -581,7 +606,7 @@
                           <!--Industry Penetration-->
                           <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
                             <div class="result-text-header">
-                              <label id="date_header">Industry Penetration
+                              <label id="date_header">Market Share
                                 <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of the industry."></i>
                               </label>
                             </div>
@@ -596,8 +621,41 @@
                             </div>
                           </div>
                         </div>
-                        <!--gender-->
-                        <div class="plan-result-graph" id="select_gender" style="padding: 0 7.5px 0 0;width: 50%;">
+                        <!--device-->
+                        <div class="plan-result-graph" id="select_device" style="padding: 0 7.5px;width: 50%;">
+                          <div class="plan-result-text">
+                            <div class="result-text-header clearfix">
+                              <label>Device</label>
+                            </div>
+                            <div class="result-graph-info x-mt10">
+                              <div class="result-graph-word word-impr">
+                                <div class="result-graph-word-content" style="padding-top:0;">
+                                  <div id="device-map" class="device-map" style="width:230px;height:170px;">
+                                  </div>
+                                  <div class="device-map-info device-pc">
+                                    <span class="device-map-ico"></span>
+                                    <p>0%</p>
+                                    <span>PC</span>
+                                  </div>
+                                  <div class="device-map-info device-mobile">
+                                    <span class="device-map-ico"></span>
+                                    <p>0%</p>
+                                    <span>Mobile</span>
+                                  </div>
+                                  <div class="device-map-info device-unknown hide">
+                                    <p>0%</p>
+                                    <span>Unknown</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--inner end -->
+                      <div class="plan-reports-result-inner" style="width:33%">
+                        <!--性别-->
+                        <div class="plan-result-graph" id="select_gender" style="width:100%">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label>Gender</label>
@@ -617,13 +675,17 @@
                                     <p>0%</p>
                                     <span>Female</span>
                                   </div>
+                                  <div class="gender-map-info gender-unknown hide">
+                                    <p>0%</p>
+                                    <span>Unknown</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                         <!--年龄-->
-                        <div class="plan-result-graph" id="select_age" style="padding: 0 7.5px;width: 50%;">
+                        <div class="plan-result-graph" id="select_age" style="padding: 0 7.5px 0 0;width: 100%;">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label>Age Groups</label>
@@ -639,8 +701,7 @@
                         </div>
                         <!--end-->
                       </div>
-                      <!--inner end -->
-                      <div class="plan-reports-result-inner" style="width:50%;">
+                      <div class="plan-reports-result-inner" style="width:67%;">
                         <!--地域-->
                         <div class="plan-result-graph graph-region" style="width:100%;padding-left:7.5px;" id="select_province">
                           <div class="plan-result-text">
@@ -648,9 +709,9 @@
                               <label>Regions</label>
                             </div>
                             <div class="result-graph-info x-mt10">
-                              <div class="result-graph-word word-impr" style="width:520px;margin:0 auto;">
+                              <div class="result-graph-word word-impr" style="margin:0 auto;">
                                 <div class="result-graph-word-map">
-                                  <div class="region-map" id="region-map"></div>
+                                  <div class="region-map" id="region-map" style="width:450px;"></div>
                                   <label style="position:absolute;left:25px;bottom:40px;">Distribution index</label>
                                 </div>
                                 <div class="result-graph-word-content">
@@ -772,11 +833,11 @@
         var data = {"result": [{
             "data": {
               "bubble": [
-                    {"sets": [0], "label": "Estee Lauder", "size": 37348,"ranking":"0"},
-                    {"sets": [1], "label": "Lancome", "size": 25621,"ranking":"1"},
-                    {"sets": [2], "label": "Shiseido", "size": 17773,"ranking":"2"},
+                    {"sets": [0], "label": "洲际酒店", "size": 37348,"ranking":"0"},
+                    {"sets": [1], "label": "索菲特", "size": 25621,"ranking":"1"},
+                    {"sets": [2], "label": "朗庭", "size": 17773,"ranking":"2"},
                     {"sets": [3], "label": "Bobbi Brown", "size": 15053,"ranking":"3"},
-                    {"sets": [4], "label": "SKII", "size": 13056,"ranking":"4"},
+                    {"sets": [4], "label": "香格里拉", "size": 13056,"ranking":"4"},
                     {"sets": [0, 1], "size": 4832,"overlap":"12.12%","ranking":"0"},
                     {"sets": [0, 2], "size": 2602,"overlap":"8.12%","ranking":"0"},
                     {"sets": [0, 3], "size": 6141,"overlap":"15.12%","ranking":"0"},
@@ -808,18 +869,20 @@
                         "35-44": 3522,
                         "45-54": 2022,
                         "55-64": 1022,
-                        "65+": 322
+                        "65+": 1022,
+                        "UNKNOWN": 1022,
                     },
                     "audience": "3.3M",
                     "allMarket": "3.3M",
                     "device": {
                         "Mobile": 222,
                         "PC": 646,
-                        "Tablet": 579
+                        "UNKNOWN": 579
                     },
                     "gender": {
                         "female": 32,
-                        "male": 68
+                        "male": 68,
+                        "UNKNOWN":33,
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -829,7 +892,7 @@
                     },
                     
                     "market_share":{
-                      "market":0,
+                      "market":333,
                       "market_show":333,
                     },
                     "interest": {
@@ -884,7 +947,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "all",
@@ -899,18 +962,20 @@
                         "35-44": 55,
                         "45-54": 10,
                         "55-64": 10,
-                        "65+": 3
+                        "65+": 1022,
+                        "UNKNOWN": 1022,
                     },
                     "audience": "5.3M",
                     "allMarket": "5.3M",
                     "device": {
                         "Mobile": 52,
                         "PC": 246,
-                        "Tablet": 179
+                        "UNKNOWN": 179
                     },
                     "gender": {
                         "female": 52,
-                        "male": 38
+                        "male": 38,
+                        "UNKNOWN":33
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -941,12 +1006,12 @@
                         },
                         "Food & Drink": {
                             "name": "Food & Drink",
-                            "value": 20,
+                            "value": 30,
                             "sub": ["Skin Care","Make-up / Customer"]
                         },
                         "Restaurants": {
                             "name": "Restaurants",
-                            "value": 20,
+                            "value": 10,
                             "sub": ["Skin Care","Make-up / Customer"]
                         },
                         "_others":{
@@ -975,7 +1040,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "0",
@@ -990,18 +1055,20 @@
                         "35-44": 25,
                         "45-54": 20,
                         "55-64": 10,
-                        "65+": 3
+                        "65+": 102,
+                        "UNKNOWN": 102,
                     },
                     "audience": "13.3M",
                     "allMarket": "13.3M",
                     "device": {
                         "Mobile": 852,
                         "PC": 1246,
-                        "Tablet": 179
+                        "UNKNOWN": 179
                     },
                     "gender": {
                         "female": 22,
-                        "male": 38
+                        "male": 38,
+                        "UNKNOWN":33
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -1066,7 +1133,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "1",
@@ -1081,18 +1148,20 @@
                         "35-44": 45,
                         "45-54": 30,
                         "55-64": 10,
-                        "65+": 3
+                        "65+": 102,
+                        "UNKNOWN": 102,
                     },
                     "audience": "39.3M",
                     "allMarket": "1,567K",
                     "device": {
                         "Mobile": 852,
                         "PC": 1246,
-                        "Tablet": 179
+                        "UNKNOWN": 179
                     },
                     "gender": {
                         "female": 22,
-                        "male": 38
+                        "male": 38,
+                        "UNKNOWN":33
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -1157,7 +1226,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "0-1",
@@ -1178,18 +1247,20 @@
                     "35-44": 65,
                     "45-54": 10,
                     "55-64": 10,
-                    "65+": 30
+                    "65+": 1022,
+                    "UNKNOWN": 1022,  
                 },
                 "audience": "11.3M",
                 "allMarket": "3,267K",
                 "device": {
                     "Mobile": 852,
                     "PC": 1246,
-                    "Tablet": 179
+                    "UNKNOWN": 179
                 },
                 "gender": {
                     "female": 11,
-                    "male": 55
+                    "male": 55,
+                    "UNKNOWN":33,
                 },
                 "product_share": {
                     "Stay-in-Place Makeup": 3333,
@@ -1230,16 +1301,16 @@
                       {"date":"2017-06-15","name":"Market Audience","value":"1111"},
                     ],"Industry Penetration":
                     [
-                      {"date":"2017-05-20","name":"Industry Penetration","value":"191"},
-                      {"date":"2017-05-21","name":"Industry Penetration","value":"281"},
+                      {"date":"2017-05-20","name":"Industry Penetration","value":"11"},
+                      {"date":"2017-05-21","name":"Industry Penetration","value":"22"},
                       {"date":"2017-05-22","name":"Industry Penetration","value":"71"},
                       {"date":"2017-05-23","name":"Industry Penetration","value":"61"},
                       {"date":"2017-05-24","name":"Industry Penetration","value":"51"},
                       {"date":"2017-05-25","name":"Industry Penetration","value":"41"},
                       {"date":"2017-05-26","name":"Industry Penetration","value":"71"},
-                      {"date":"2017-05-27","name":"Industry Penetration","value":"81"},
-                      {"date":"2017-05-28","name":"Industry Penetration","value":"91"},
-                      {"date":"2017-05-29","name":"Industry Penetration","value":"91"},
+                      {"date":"2017-05-27","name":"Industry Penetration","value":"51"},
+                      {"date":"2017-05-28","name":"Industry Penetration","value":"41"},
+                      {"date":"2017-05-29","name":"Industry Penetration","value":"31"},
                       {"date":"2017-05-30","name":"Industry Penetration","value":"11"},
                       {"date":"2017-05-31","name":"Industry Penetration","value":"21"},
                       {"date":"2017-06-01","name":"Industry Penetration","value":"31"},
@@ -2351,7 +2422,7 @@
         $("#myTab").show();
         $(".button-right").show();
         IAX_CHART_TOOL.initData(json.data);
-        IAX_CHART_TOOL.initMixTrend("line_chart",json.data);
+        IAX_CHART_TOOL.initMixTrend("line_chart","select_trend_article",json.data);
         IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
         IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
         initCalendar("daterange");

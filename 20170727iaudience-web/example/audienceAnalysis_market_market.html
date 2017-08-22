@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>iAudience</title>
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -67,7 +68,7 @@
           <div class="container-fluid">
             <div class="navbar-header">
               <a href="http://xmostg.optimix.asia/" class="navbar-brand" data-toggle="offcanvas">
-                <img src="../images/logo.png" alt="" style="" width="120" height="50">
+                <img src="../images/logo.png" alt="" style="" width="125" height="50">
               </a>
             </div>
 
@@ -488,7 +489,7 @@
       			<div class="tab-pane fade" id="tab-analysis">
                 <div class="" id="for_export_analysis">
                   <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
-                    <div class="plan-reports-result clearfix">
+                    <div class="plan-reports-result">
                       <div class="plan-reports-result-inner" style="width:65%">
                         <!--Total-->
                         <div class="plan-result-graph" style="width:100%;height:451px;padding: 0 7.5px 0 0;">
@@ -597,15 +598,15 @@
                           </div>
                         </div>
                         <!--gender-->
-                        <div class="plan-result-graph" id="select_gender" style="padding: 0 7.5px 0 0;width: 50%;">
+                        <div class="plan-result-graph" id="select_gender" style="padding: 0 7.5px 0 0;width: 35%;">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label>Gender</label>
                             </div>
                             <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-content" style="padding-top:0;">
-                                  <div id="gender-map" class="gender-map" style="width:230px;height:170px;">
+                                <div class="result-graph-word-content" style="padding-top:0;width:170px;">
+                                  <div id="gender-map" class="gender-map" style="width:130px;height:170px;margin:0 auto;">
                                   </div>
                                   <div class="gender-map-info gender-male">
                                     <span class="gender-map-ico"></span>
@@ -617,13 +618,17 @@
                                     <p>0%</p>
                                     <span>Female</span>
                                   </div>
+                                  <div class="gender-map-info gender-unknown">
+                                    <p>0%</p>
+                                    <span>Unknown</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                         <!--年龄-->
-                        <div class="plan-result-graph" id="select_age" style="padding: 0 7.5px;width: 50%;">
+                        <div class="plan-result-graph" id="select_age" style="padding: 0 7.5px;width: 65%;">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label>Age Groups</label>
@@ -698,7 +703,7 @@
                   <option value="Guangdong">Guangdong</option>
                   <option value="Shenzhen">Shenzhen</option>
                 </select>
-                <div style="display:inline-block;margin-left:-10px;position:relative;left:15px;">
+                <div style="display:inline-block;margin-left:-10px;position:relative;left: 400px;float:left;">
                   <i class="fa fa-question-circle-o" style="line-height:30px;" data-toggle="tooltip" data-placement="bottom" data-original-title="Based on the keywords and geographical locations to match the information and calculate how much inventory(PV) and audience(UV) in this place."></i>
                 </div>
                 <div class="map-container">
@@ -808,7 +813,8 @@
                         "35-44": 3522,
                         "45-54": 2022,
                         "55-64": 1022,
-                        "65+": 322
+                        "65+": 1022,
+                        "UNKNOWN": 1022,
                     },
                     "audience": "3.3M",
                     "allMarket": "3.3M",
@@ -819,7 +825,8 @@
                     },
                     "gender": {
                         "female": 32,
-                        "male": 68
+                        "male": 68,
+                        "UNKNOWN":33,
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -829,7 +836,7 @@
                     },
                     
                     "market_share":{
-                      "market":0,
+                      "market":333,
                       "market_show":333,
                     },
                     "interest": {
@@ -884,7 +891,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "all",
@@ -899,7 +906,8 @@
                         "35-44": 55,
                         "45-54": 10,
                         "55-64": 10,
-                        "65+": 3
+                        "65+": 1022,
+                        "UNKNOWN": 1022,
                     },
                     "audience": "5.3M",
                     "allMarket": "5.3M",
@@ -910,7 +918,8 @@
                     },
                     "gender": {
                         "female": 52,
-                        "male": 38
+                        "male": 38,
+                        "UNKNOWN":33
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -975,7 +984,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "0",
@@ -990,7 +999,8 @@
                         "35-44": 25,
                         "45-54": 20,
                         "55-64": 10,
-                        "65+": 3
+                        "65+": 102,
+                        "UNKNOWN": 102,
                     },
                     "audience": "13.3M",
                     "allMarket": "13.3M",
@@ -1001,7 +1011,8 @@
                     },
                     "gender": {
                         "female": 22,
-                        "male": 38
+                        "male": 38,
+                        "UNKNOWN":33
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -1066,7 +1077,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "1",
@@ -1081,7 +1092,8 @@
                         "35-44": 45,
                         "45-54": 30,
                         "55-64": 10,
-                        "65+": 3
+                        "65+": 102,
+                        "UNKNOWN": 102,
                     },
                     "audience": "39.3M",
                     "allMarket": "1,567K",
@@ -1092,7 +1104,8 @@
                     },
                     "gender": {
                         "female": 22,
-                        "male": 38
+                        "male": 38,
+                        "UNKNOWN":33
                     },
                     "product_share": {
                         "Stay-in-Place Makeup": 23500,
@@ -1157,7 +1170,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Other Cities", "value": "5551"}
+                          {"name": "Unknown", "value": "5551"}
                     ]
                   },
                   "id": "0-1",
@@ -1178,7 +1191,8 @@
                     "35-44": 65,
                     "45-54": 10,
                     "55-64": 10,
-                    "65+": 30
+                    "65+": 1022,
+                    "UNKNOWN": 1022,  
                 },
                 "audience": "11.3M",
                 "allMarket": "3,267K",
@@ -1189,7 +1203,8 @@
                 },
                 "gender": {
                     "female": 11,
-                    "male": 55
+                    "male": 55,
+                    "UNKNOWN":33,
                 },
                 "product_share": {
                     "Stay-in-Place Makeup": 3333,

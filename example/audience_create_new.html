@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>iAudience</title>
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta http-equiv="Cache-Control" content="no-store" />
   <meta http-equiv="Pragma" content="no-cache" />
@@ -319,7 +320,7 @@
                             </div>
                             <div class="split-line"></div>
                             <div class="plan-group">
-                              <label class="plan-label">Select an industry that describe your brand and products/services</label>
+                              <label class="plan-label">Select a market that describe your brand and products/services</label>
                               <div class="plans">
                                  <div class="dropdown modifylabel tree-stop">
                                     <input name="brandCategory" id="category" type="hidden" value=""/>
@@ -331,7 +332,7 @@
                                       <div class="dropdown-tree-category clearfix">
                                         <div class="parent_layer">
                                             <div class="pannel">
-                                              <span>Industry</span>
+                                              <span>Market</span>
                                             </div>
                                             <ul class="tree">
                                             </ul>
@@ -718,7 +719,7 @@
                                
                                 <div class="plan-group">
                                    <i class="fa fa-plus-square showHideIco"></i>
-                                  <label class="plan-label">Enter keywords that describes your competitor’s brand</label>
+                                  <label class="plan-label">Enter keywords that describe your competitor’s brand</label>
                                   <div class="plans" style="display:none">
                                     <div class="select-radio-con">
                                       <div class="radio radio-primary radio-switch">
@@ -1345,6 +1346,7 @@
         <div class="myfooter" style="text-align:left;position: fixed;height: 50px;bottom: 0;">
           <div class="split-area"></div>
             <div class="page-opt">
+              <button type="button" class="btn btn-success" disabled>Save And Run</button>
               <button type="button" class="btn btn-success" disabled>Save</button>
               <button type="button" class="btn btn-cancel">Cancel</button>
             </div>
@@ -1757,6 +1759,11 @@
             $(this).after('<label class="area-mesage">Please enter full information</label>');
             return;
           }
+          //不能超过9个
+          if($proCon.find("[name='product_json']").length==9){
+            $(this).after('<label class="area-mesage">You can add no more than 9 products</label>');
+            return;
+          }
           //将之前的enter_history的值放到下拉框中
           var historyArr = $("[name='enter_history']").map(function(){
             if ($(this).val()!="") {
@@ -1831,6 +1838,9 @@
           if(!json.keywordResult || !json.competitorName){//!json.products ||
             isDisabled = true;
           }
+          if ($("[name=competitor_json]").length==8) {
+            isDisabled = true;
+          }; 
           //目前不需要products填写也可clone下一个
           // if (json.products) {
           //   if (json.products==0) {
@@ -1850,6 +1860,9 @@
         }
         //添加competitors
         $(".addCompetitor").on("click",function(){
+           if ($("[name=competitor_json]").length==8) {
+            return;
+           };
            //把之前展开的comeptitor都缩放成一行
            $(this).parents(".plan-container").find(".plan-competitor").each(function(){
             $(this).find(".plan-info").remove();

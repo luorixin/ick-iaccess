@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>iAudience</title>
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<meta http-equiv="Pragma" content="no-cache" />
@@ -191,6 +192,16 @@
 
                   <li class="selected" style="display: block;">
                     <a href="#">iAudience</a>
+                    <ul class="dropdown-top-menu" aria-labelledby="dropdownMenu1">
+                      <span class="nav-arrow"></span>
+                      <li><a href="">test</a>
+                        <ul class="sub-top-menu ">
+                          <li><a href="">test1</a></li>
+                          <li><a href="">test2</a></li>
+                        </ul> 
+                        <span class="caret-right"></span>
+                      </li>
+                    </ul>
                   </li>
 
                   <li class="">
@@ -338,8 +349,8 @@
 			        <thead>
 			            <tr>
 			                <th>Audience Plan Name</th>
-			                <th>My Brand Audience</th>
-			                <th>My Compeititor's Audience</th>
+			                <th>Brand Audience</th>
+			                <th>Compeititor's Audience</th>
 			                <th>Potential Audience</th>
                       <th>Onsite Audience</th>
                       <th>Owned Audience</th>
@@ -354,38 +365,38 @@
                         <a href="./audienceAnalysis_market_market.html" class="bluelink">Estee Lauder - Makeup</a>
                       </td>
 			                <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
 
                         <label style="float:right">15,212K</label>
                       </td>
 			                <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                        <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                        <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                        <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                       <td class="align_center">
-                        <a href="javascript:;" class="bluelink" onclick="startAnalysis(this)">Play</a>
+                        <a href="javascript:;" class="orangelink" onclick="startAnalysis(this)">Play</a>
                       </td>
                        <td class="align_center">
-                        <a href="javascript:;" class="fa-icon-box">
+                        <a href="javascript:;" class="fa-icon-box" title="Edit" >
                           <i class="fa fa-edit"></i>
                         </a>
                        
                         <a href="javascript:;" class="fa-icon-box" onclick="getHistory(122)">
                           <i class="fa fa-history"></i>
                         </a>
-                        <a href="javascript:;" class="fa-icon-box" onclick="deletePlan(122,'Estee Lauder - Makeup')">
+                        <a href="javascript:;" class="fa-icon-box" title="Delete" onclick="deletePlan(122,'Estee Lauder - Makeup')">
                           <i class="fa fa-close"></i>
                         </a>
                       </td>
@@ -395,36 +406,36 @@
                        <a href="./audienceAnalysis_market_market.html" class="bluelink">Estee Lauder - Makeup</a>
                       </td>
                       <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                       <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                        <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                        <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                        <td style="position:relative">
-                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onclick="showGraph(this)"></i>
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
                       <td class="align_center">
-                        <a href="./audienceAnalysis_market_market.html" target="_blank" class="bluelink">View Result</a>
+                        <a href="./audienceAnalysis_market_market.html" target="_blank" class="orangelink">View Result</a>
                       </td>
                        <td class="align_center">
-                        <a href="javascript:;" class="fa-icon-box">
+                        <a href="javascript:;" class="fa-icon-box" title="Edit" >
                           <i class="fa fa-edit"></i>
                         </a>
                         <a href="javascript:;" class="fa-icon-box" onclick="getHistory(123)">
                           <i class="fa fa-history"></i>
                         </a>
-                        <a href="javascript:;" class="fa-icon-box" onclick="deletePlan(123,'Estee Lauder - Makeup')">
+                        <a href="javascript:;" class="fa-icon-box" title="Delete" onclick="deletePlan(123,'Estee Lauder - Makeup')">
                           <i class="fa fa-close"></i>
                         </a>
                       </td>
@@ -598,13 +609,8 @@
         left=-500;
       }
       $(_this).after('<div class="table-graph" style="left:'+left+'px"><div id="_chart" style="width:100%;height:180px;"></div></div>');
-      $(".table-graph").hover(function(){
-        $('body').unbind('mousedown');
-        },function(){
-        $('body').bind('mousedown', function(){
-            $(".table-graph").hide();
-
-          });
+      $(_this).parent().mouseleave(function(){
+        $(".table-graph").hide();
       });
 
       var myChart = echarts.init(document.getElementById('_chart'));
