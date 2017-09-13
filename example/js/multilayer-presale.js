@@ -10,6 +10,16 @@ function multilayer_presale (options) {
 	_this.parent_layer = new Date().getTime();
 	_this.child_layer=new Date().getTime()+999;
 	_this.limitCount=options["limit"] || "5";
+	_this.classId = options["classId"] || "multi_layer_presale";
+	_this.lang = options["langLabel"] || {
+	'ZH' : {
+			pLabel : ["兴趣标签","已选择 (", ")","添加","清空","Audience Reach"]
+		},
+	'EN' : {
+		pLabel : ["Interest labels","Selected (", ")","Add","Remove all","Audience Reach"]
+
+		}
+	}
 	_this.html="";
 	_this.selectArr=[];
 	_this.layer_init();
@@ -162,7 +172,7 @@ multilayer_presale.prototype.renderHtml = function(){
 	var $parentHtml = $("<div class='parent_layer'><ul class='pannel'><span>"+label_lang[0]+"</span><span style='float:right; margin: 0 5px 0 0!important;'>"+label_lang[5]+"</span></ul><ul id='"+_this.parent_layer+"' class='tree'></ul></div>");
 	var $childHtml = $("<div class='child_layer'><ul class='pannel'><span>"+label_lang[1]+"<font>0/"+_this.limitCount+"</font>"+label_lang[2]+"</span><span class='clearAll'><a href='javascript:;' style='color:#333;'>"+label_lang[4]+"</a></span></ul><ul id='"+_this.child_layer+"' class='tree'></ul></div>");
 	var $button = $('<div class="button_layer"><label ><a href="javascript:;"><i class="fa fa-angle-right"></i></a></label></div>');
-	$('<div id="multi_layer_presale" class="clearfloat"></div>').append($parentHtml).append($button).append($childHtml).appendTo(_this.container);
+	$('<div id="'+_this.classId+'" class="clearfloat"></div>').append($parentHtml).append($button).append($childHtml).appendTo(_this.container);
 	var str= _this.forTree(_this.values);
 	$("#"+_this.parent_layer,_this.container).append(str);
 	_this.menuTree();
@@ -209,12 +219,4 @@ multilayer_presale.prototype.clearAll = function(){
 
 	_this.sum();
 }
-multilayer_presale.prototype.lang = {
-	'CN' : {
-			pLabel : ["兴趣标签","已选择 (", ")","添加","清空","Audience Reach"]
-		},
-	'EN' : {
-		pLabel : ["Interest labels","Selected (", ")","Add","Remove all","Audience Reach"]
 
-	}
-}

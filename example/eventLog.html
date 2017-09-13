@@ -265,6 +265,12 @@
             <a href="./audienceAnalysis_brand_market.html"><span class="x-m8">My Brand</span></a>
 
           </li>
+          <li class="">
+            <a href="./Competitors.html"><span class="x-m8">Competitors</span></a>
+          </li>
+          <li class="">
+            <a href="./comparison.html"><span class="x-m8">Comparison</span></a>
+          </li>
         </ul>
       </li>
 
@@ -288,7 +294,12 @@
           </li>
         </ul>
       </li>
-      
+      <li id="" class="">
+        <a href="./ownedAudience.html">
+         <i class="fa fa-street-view" aria-hidden="true"></i>
+        <span class="x-m8">Owned Audience</span>
+        </a>
+      </li>
     </ul>
     <ul class="x-menu-lang-select">
       <li>
@@ -464,22 +475,22 @@
     $(function(){
 	 oTable=$('#client_list').dataTable({
 			"oLanguage": {
-				"sProcessing":   "处理中...",
-				"sLengthMenu":   "显示 _MENU_ 项结果",
-				"sZeroRecords":  "没有匹配结果",
-				"sInfo":         "（共 _TOTAL_ 项）",
-				"sInfoEmpty":    "（共 0 项）",
-				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-				"sInfoPostFix":  "",
-				"sSearch":       "寻找:",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "&nbsp;",
-					"sPrevious": "&nbsp;",
-					"sNext":     "&nbsp;",
-					"sLast":     "&nbsp;"
-				}
-			},
+            "sProcessing":   "Loading data... Please wait...",
+            "sLengthMenu":   "Show _MENU_ entries",
+            "sZeroRecords":  "No matching records found",
+            "sInfo":         "&nbsp;(Results: _TOTAL_)&nbsp;",
+            "sInfoEmpty":    "",
+            "sInfoFiltered": "&nbsp;(Filtered from _MAX_ total entries)&nbsp;",
+            "sInfoPostFix":  "",
+            "sSearch":       "Find:",
+            "sUrl":          "",
+            "oPaginate": {
+              "sFirst":    "&nbsp;",
+              "sPrevious": "&nbsp;",
+              "sNext":     "&nbsp;",
+              "sLast":     "&nbsp;"
+            }
+          },
 			  "sDom": "<'x'>t<'table_bottom'<'table_length'l><'table_pagin'p><'table_info'i>>",
 			  "sPaginationType": "extStyle",
 			  "bPaginate": true,

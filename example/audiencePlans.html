@@ -19,10 +19,10 @@
 
 
 
-	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script><!--ie下tab切换需要1.10-->
+   <script type="text/javascript" src="../bootstrap/js/bootstrap-3.3.5.min.js"></script><!--ie下tab切换需要1.10-->
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/fnPagingInfo.js"></script>
 	<script type="text/javascript" src="js/extjs.js"></script>
   <script type="text/javascript" src="./js/echarts.min.js"></script>
@@ -275,6 +275,12 @@
             <a href="./audienceAnalysis_brand_market.html"><span class="x-m8">My Brand</span></a>
 
           </li>
+          <li class="">
+            <a href="./Competitors.html"><span class="x-m8">Competitors</span></a>
+          </li>
+          <li class="">
+            <a href="./comparison.html"><span class="x-m8">Comparison</span></a>
+          </li>
         </ul>
       </li>
       <li id="" class="">
@@ -297,7 +303,12 @@
           </li>
         </ul>
       </li>
-      
+      <li id="" class="">
+        <a href="./ownedAudience.html">
+         <i class="fa fa-street-view" aria-hidden="true"></i>
+        <span class="x-m8">Owned Audience</span>
+        </a>
+      </li>
     </ul>
     <ul class="x-menu-lang-select">
       <li>
@@ -360,6 +371,47 @@
 			        </thead>
 
 			        <tbody>
+                  <tr id="tr_121">
+                      <td>
+                        <a href="./audienceAnalysis_market_market.html" class="bluelink">Lacome</a>
+                      </td>
+                      <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+
+                        <label style="float:right">15,212K</label>
+                      </td>
+                      <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                      <td class="align_center">
+                        <a href="javascript:;" class="redlink" onclick="startAnalysis(this)">Play</a>
+                      </td>
+                       <td class="align_center">
+                        <a href="javascript:;" class="fa-icon-box" title="Edit" >
+                          <i class="fa fa-edit"></i>
+                        </a>
+                       
+                        <a href="javascript:;" class="fa-icon-box" onclick="getHistory(121)">
+                          <i class="fa fa-history"></i>
+                        </a>
+                        <a href="javascript:;" class="fa-icon-box" title="Delete" onclick="deletePlan(121,'Lacome')">
+                          <i class="fa fa-close"></i>
+                        </a>
+                      </td>
+                  </tr>
 			            <tr id="tr_122">
 			                <td>
                         <a href="./audienceAnalysis_market_market.html" class="bluelink">Estee Lauder - Makeup</a>
@@ -386,7 +438,7 @@
                         <label style="float:right">15,212K</label>
                       </td>
                       <td class="align_center">
-                        <a href="javascript:;" class="orangelink" onclick="startAnalysis(this)">Play</a>
+                        <a href="javascript:;" class="redlink" onclick="startAnalysis(this)">Play</a>
                       </td>
                        <td class="align_center">
                         <a href="javascript:;" class="fa-icon-box" title="Edit" >
@@ -593,10 +645,19 @@
     }
     function startAnalysis(_this){
       var id = $(_this).parents("tr").attr("id").split("tr_")[1];
+      var title = $(_this).parents("tr").find("td:first").text();
       var $tr = $(_this).parents("tr");
       $(_this).parent().html('<div style="position:relative;"><i class="fa fa-spinner fa-spin" style="font-size:18px;"></i></div>');
       $tr.find(".fa-edit").parent().addClass("fa-readonly").attr("onclick","");
       $tr.find(".fa-close").parent().addClass("fa-readonly").attr("onclick","");
+      var paramJson = {
+        'title' : 'This audience plan is running.',
+        'content' : title,
+        'tip' : "Please refresh this page to view the result after around 1 minute.",
+        'id' : id,
+      }
+      IAX_TOOL.analysisBox(paramJson);
+    
     }
     function showGraph(_this){
       //获取折线图数据

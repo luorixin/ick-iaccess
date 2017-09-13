@@ -146,7 +146,7 @@ var IAX_TEMPLATE = {
 			'            </form>'+
 			'        </div>'+
 		            '<div class="del-confirm-btn">'+
-          				'{{#cancel}}<button type="button" class="btn btn-cancel" data-dismiss="modal">{{cancel}}</button>{{/cancel}}'+
+          				'{{#cancel}}<button type="button" {{#cancelFn}}onclick="{{cancelFn}}"{{/cancelFn}} class="btn btn-cancel" data-dismiss="modal">{{cancel}}</button>{{/cancel}}'+
 		            	'<button type="button" class="btn btn-success" onclick="{{fn}}" data-dismiss="modal">{{save}}</button>'+
 		            '</div>'+
 		        '</div>'+
@@ -492,4 +492,23 @@ var IAX_TEMPLATE = {
 '    </div>'+
 '	</div>'+
 '</div>',
+'analysisBox' : 
+	'<div id="analysis-confirm{{id}}" class="modal fade analysis-confirm-box" tabindex="-1" style="z-index: 1051;" role="dialog">'+
+		'<div class="modal-dialog modal-sm" role="document">'+
+		    '<div class="modal-content">'+
+		        '<div class="modal-body">'+
+		            '<div class="del-confirm-container">'+
+		            	'<label class="del-confirm-title">{{title}}</label>'+
+		            	'<p class="del-confirm-content">{{content}}</p>'+
+		            '</div>'+
+	        '        <div class="edit-container">'+
+	        '			<div style="position:relative;text-align:center;">'+
+	        '				<i class="fa fa-spinner fa-spin" style="font-size:40px;"></i>'+
+	        '			</div>'+
+	        '			<p style="margin-top:10px;color:#ef4136;text-align:center;font-size:20px;line-height:27px;">{{tip}}</p>'+
+			'        </div>'+
+		        '</div>'+
+		    '</div>'+
+		'</div>'+
+	'</div>',
 }

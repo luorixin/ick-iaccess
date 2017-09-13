@@ -21,10 +21,10 @@
 
 
 
-	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script><!--ie下tab切换需要1.10-->
+  <script type="text/javascript" src="./js/common.js"></script>
+   <script type="text/javascript" src="../bootstrap/js/bootstrap-3.3.5.min.js"></script><!--ie下tab切换需要1.10-->
 	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/fnPagingInfo.js"></script>
 	<script type="text/javascript" src="js/extjs.js"></script>
   <script type="text/javascript" src="./js/sorttable.js"></script>
@@ -268,6 +268,12 @@
             <a href="./audienceAnalysis_brand_market.html"><span class="x-m8">My Brand</span></a>
 
           </li>
+          <li class="">
+            <a href="./Competitors.html"><span class="x-m8">Competitors</span></a>
+          </li>
+          <li class="">
+            <a href="./comparison.html"><span class="x-m8">Comparison</span></a>
+          </li>
         </ul>
       </li>
 
@@ -290,6 +296,12 @@
 
           </li>
         </ul>
+      </li>
+      <li id="" class="">
+        <a href="./ownedAudience.html">
+         <i class="fa fa-street-view" aria-hidden="true"></i>
+        <span class="x-m8">Owned Audience</span>
+        </a>
       </li>
       
     </ul>
@@ -326,7 +338,7 @@
       <div class="">
         <ul class="nav nav-pills event_filter" style="float:left;">
           <li class="filter_icon active">
-            <a class="pull-left add-button" id="createAudience" href="javascript:;" data-toggle="modal" ><i class="fa fa-plus"></i><span style="margin: 0 10px 0 5px">Onsite Audience</span></a>
+            <a class="pull-left add-button" id="createAudience" data-toggle="modal" ><i class="fa fa-plus"></i><span style="margin: 0 10px 0 5px">Onsite Audience</span></a>
           </li>
         </ul>
         <table class="table table-total-sum width_100" cellspacing="0" width="100%">

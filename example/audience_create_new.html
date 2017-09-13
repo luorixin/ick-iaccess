@@ -16,15 +16,15 @@
    <link rel="stylesheet" type="text/css" href="../css/head.css">
   <link rel="stylesheet" type="text/css" href="../css/index.css">
   <link rel="stylesheet" type="text/css" href="../css/keywordsLayer.css">
-  <link rel="stylesheet" type="text/css" href="../css/multilayer-presale.css">
+  <link rel="stylesheet" type="text/css" href="../css/multilayer-audience.css">
   <link rel="stylesheet" type="text/css" href="../css/chosen.css">
 
-  <script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.min.js"></script><!--ie下tab切换需要1.10-->
   <script type="text/javascript" src="./js/common.js"></script>
+   <script type="text/javascript" src="../bootstrap/js/bootstrap-3.3.5.min.js"></script><!--ie下tab切换需要1.10-->
   <script type="text/javascript" src="./js/keywordsLayer.js"></script>
   <script type="text/javascript" src="./js/Sortable.js"></script>
   <script type="text/javascript" src="./js/multilayer-presale.js"></script>
-   <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="./js/chosen.jquery.min.js"></script>
     <script type="text/javascript" src="./js/hogan-2.0.0.min.js"></script>
   <script type="text/javascript" src="./js/iax-tool.js"></script>
@@ -251,10 +251,54 @@
               </a>
             </li>
 
-            <li id="li003" class="">
+             <li id="" class="">
               <a href="./audienceAnalysis_market_market.html">
                <i class="fa fa-bar-chart" aria-hidden="true"></i>
                 <span class="x-m8">Audience Analysis</span>
+               <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+              </a>
+              <ul class="sub-menu" >
+                <li class="active">
+                  <a href="./audienceAnalysis_market_market.html"><span class="x-m8">Market</span></a>
+                </li>
+                <li class="">
+                  <a href="./audienceAnalysis_brand_market.html"><span class="x-m8">My Brand</span></a>
+
+                </li>
+                 <li class="">
+                  <a href="./Competitors.html"><span class="x-m8">Competitors</span></a>
+                </li>
+                <li class="">
+                  <a href="./comparison.html"><span class="x-m8">Comparison</span></a>
+                </li>
+              </ul>
+            </li>
+
+            <li id="" class="">
+              <a href="./eventSetup.html">
+               <i class="fa fa-eye" aria-hidden="true"></i>
+                <span class="x-m8">Event Management</span>
+               <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+              </a>
+              <ul class="sub-menu" >
+                <li class="">
+                  <a href="./eventSetup.html"><span class="x-m8">Event Setup</span></a>
+                </li>
+                <li class="">
+                  <a href="./eventLog.html"><span class="x-m8">Event Log</span></a>
+
+                </li>
+                <li class="">
+                  <a href="./outsiteAudience.html"><span class="x-m8">Onsite Audience</span></a>
+
+                </li>
+              </ul>
+            </li>
+
+            <li id="" class="">
+              <a href="./ownedAudience.html">
+               <i class="fa fa-street-view" aria-hidden="true"></i>
+              <span class="x-m8">Owned Audience</span>
               </a>
             </li>
             
@@ -569,7 +613,7 @@
                                   <div class="product-suggest-con" style="display:none">
                                     <div class="product-suggest-index"></div>
                                     <div class="product-suggest">
-                                      <input type="text" name="product" />
+                                      <input type="text" name="product" placeholder="Enter a product name"/>
                                       <a href="javascript:;" style="margin-left:10px;" class="bluelink">Remove</a>
                                       <div class="product-suggest-area">
                                         <div class="dropdown enter-select-con">
@@ -1324,6 +1368,45 @@
                                 </div>
                               </div>
                             </div>
+
+                            <div class="split-line"></div>
+                            <div class="plan-group">
+                              <i class="fa fa-plus-square showHideIco"></i>
+                              <label class="plan-label">Select your visitors collected by iClick Tracking
+                              </label>
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
+                              <div class="plans" style="display:none">
+                                <!-- 如果没有显示这个提示信息 -->
+                                 <label class="plan-sub-label" style="color:#ef4136;">There is no visitors groups under this advertiser. Save the audience plan now and go to create visitors tracking.Then come back to select visitors group(s).</label>
+                                <div style="margin-top:10px;">
+                                  <button class="btn dropdown-toggle" onclick="doSavetoOnsite()" type="button">
+                                      Create your Visitors Tracking&nbsp;
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="split-line"></div>
+                            <div class="plan-group">
+                              <i class="fa fa-plus-square showHideIco"></i>
+                              <label class="plan-label">Upload your owned audience data
+                              </label>
+                              <div class="plans" style="display:none">
+                                <!-- 如果没有显示这个提示信息 
+                                 <label class="plan-sub-label" style="color:#ef4136;">There is no verified owned audience groups under this advertiser. Save the audience plan now and go to create owned audience.Then come back to select owned audience group(s).</label>
+                                <div style="margin-top:10px;">
+                                  <button class="btn dropdown-toggle" onclick="doSavetoOnsite()" type="button">
+                                      Create your Owned Audience&nbsp;
+                                  </button>
+                                </div>
+                                -->
+                                <div class="multilayer-con">
+                                    <input type="hidden" name="audience_group_result" />
+                                    <div name="multilayer"></div>
+                                </div>
+                              </div>
+                            </div>
+
                           </form>
                         </div>
                         <!-- my advanced settings container end-->
@@ -1346,8 +1429,8 @@
         <div class="myfooter" style="text-align:left;position: fixed;height: 50px;bottom: 0;">
           <div class="split-area"></div>
             <div class="page-opt">
-              <button type="button" class="btn btn-success" disabled>Save And Run</button>
               <button type="button" class="btn btn-success" disabled>Save</button>
+              <button type="button" class="btn btn-success donext" disabled>Save And Play</button>
               <button type="button" class="btn btn-cancel">Cancel</button>
             </div>
         </div>
@@ -1496,15 +1579,33 @@
       //****************category choose option end
 
         //子选项显示隐藏
-        $(document).on("click",".showHideIco",function(){
-          var isShow = $(this).hasClass("fa-plus-square");
+        function doShowHide(isShow,$fa){
           if(isShow){
-            $(this).removeClass("fa-plus-square").addClass("fa-minus-square");
-            $(this).parent().find(".plans").slideDown();
+            $fa.removeClass("fa-plus-square").addClass("fa-minus-square");
+            $fa.parent().find(".plans").slideDown();
           }else{
-            $(this).removeClass("fa-minus-square").addClass("fa-plus-square");
-            $(this).parent().find(".plans").slideUp();
+            $fa.removeClass("fa-minus-square").addClass("fa-plus-square");
+            $fa.parent().find(".plans").slideUp();
+            $fa.parents(".plan-container").css("cursor","pointer");
           }
+        }
+        $(document).on("click",".showHideIco",function(e){
+          e = e || window.event;
+          e.preventDefault();
+          e.stopPropagation();
+          var isShow = $(this).hasClass("fa-plus-square");
+          doShowHide(isShow,$(this));
+        })
+        //扩大点击范围，添加遮罩层
+        $(".showHideIco").each(function(){
+          $(this).before('<div class="showHideLayer"></div>');
+        })
+        $(document).on("click",".showHideLayer",function(e){
+          e = e || window.event;
+          e.preventDefault();
+          e.stopPropagation();
+          var isShow = $(this).next().hasClass("fa-plus-square");
+          doShowHide(isShow,$(this).next());
         })
         //单选div点击事件
         $(document).on("click",".select-div",function(e){
@@ -1661,6 +1762,23 @@
             $(this).parents(".product-suggest-enter-area").find(".fa-plus-circle").click();
           } 
         })
+        //copy操作
+        $(document).on("paste",".product-suggest-enter-area input",function(event){
+          event = event || window.event;
+          var input = $(this).val();
+          var pastedText = undefined;
+          if (window.clipboardData && window.clipboardData.getData) { // IE
+            pastedText = window.clipboardData.getData('Text');
+          } else {
+            pastedText = event.originalEvent.clipboardData.getData('Text');//e.clipboardData.getData('text/plain');
+          }
+          var texts = pastedText.split(/[\t\n]/);
+          var $selectArea = $(this).parents(".product-suggest-enter-area").find(".selected-area");
+          for (var i = 0; i < texts.length; i++) {
+            addText($selectArea,texts[i]);
+          };
+          return false;
+        });
         function addText($selectArea,addInput){
           var limit = 10;
           var currentLength = $selectArea.find(".selected-tag").length;
@@ -1906,6 +2024,11 @@
           })
           //disabled按钮
           $(this).attr("disabled",true);
+          $("#competitorBox_"+id).find(".showHideIco").each(function(){
+            if ($(this).prev().length==0) {
+              $(this).before('<div class="showHideLayer"></div>');
+            };
+          })
         })
         $("[name='keywordsLayer']").each(function(){
             initkeyLayer(this);
@@ -1935,6 +2058,38 @@
             })
         }
         function keywordsLayerCall(ids){
+          $(this).prev().change();
+        }
+        $("[name='multilayer']").each(function(){
+            initmultilayer_presale(this);
+        })
+        function initmultilayer_presale(_this){
+          new multilayer_presale({
+            container : $(_this),
+            // lang : 'EN',
+            lang : "EN", //"CN" "EN"
+            values : [
+                {"name":"高档汽车","name_en":"Onsite Audience Group 1","audience_id":1},
+                {"name":"中档汽车","name_en":"Onsite Audience Group 2","audience_id":2},
+                {"name":"入门级汽车","name_en":"Onsite Audience Group 3","audience_id":3},
+                {"name":"二手车","name_en":"Onsite Audience Group 4","audience_id":4},
+                {"name":"汽车租赁","name_en":"Onsite Audience Group 5","audience_id":5},
+              ],
+            result:$(_this).prev(),
+            classId:"multi_layer_audience",//不同的样式。。
+            langLabel:{
+            'ZH' : {
+                pLabel : ["受众分组","已选择分组 (", ")","添加","",""]
+              },
+            'EN' : {
+              pLabel : ["Audience Group","Selected Audience Group (", ")","Add","",""]
+
+              }
+            },
+            callback:multilayerCallBackFun.bind(_this),
+          })
+        }
+        function multilayerCallBackFun(){
           $(this).prev().change();
         }
         //移除competitor
@@ -1996,42 +2151,21 @@
         
         //保存计划
         $(document).on("click",".page-opt .btn-success",function(){
-          var brandName = $("[name='brandName']").val();
-          var date = new Date().Format("yyyyMMdd");
-          var params = [],paramsJson={};
-          paramsJson.input={'label':'Plan Name','name':'planName','value':brandName+'_'+date};
-          params.push(paramsJson);
-          var paramJson = {
-            'title' : 'Do you want to save this plan?',
-            'params' :params,
-            'cancel' : "Cancel",
-            'save' : "Save",
-            'fn' : "savePlan()",
-            'callbackFun':setBtnDisabled
-          }
-          IAX_TOOL.confirmBox(paramJson);
-        })
-        function setBtnDisabled($form){
-          $form.on("keyup","[name='planName']",function(){
-            if($(this).val()!=""){
-              $form.parents(".modal").find(".btn-success").attr("disabled",false);
-            }else{
-              $form.parents(".modal").find(".btn-success").attr("disabled",true);
-            }
-          })
-        }  
+            doSave(!$(this).hasClass("donext"));
+        });
         //取消计划
         $(document).on("click",".page-opt .btn-cancel",function(){
           var _this = this;
           cp = cancelPlan.bind(_this);
-          var paramJson = {
-            'title' : 'Your plan has been saved.',
-            'content' : 'Back to Audience Plan List?',
-            'cancel' : "Cancel",
-            'save' : "Go back to Plan List",
-            'fn' : "cp()"
-          }
-          IAX_TOOL.confirmBox(paramJson);
+          // var paramJson = {
+          //   'title' : 'Your plan has been saved.',
+          //   'content' : 'Back to Audience Plan List?',
+          //   'cancel' : "Cancel",
+          //   'save' : "Go back to Plan List",
+          //   'fn' : "cp()"
+          // }
+          // IAX_TOOL.confirmBox(paramJson);
+          cp();
         })
         //upload import 显示隐藏相关
         $(document).on("click",".select-radio-con input",function(){
@@ -2041,17 +2175,70 @@
             if (target!="") {
               $(this).parents(".plans").find("."+target).parent().show();
             }
+            //弹出层提示，如果是keyword的话，标志是name包含brandtype
+            var name = $(this).attr("name");
+            var keywords = $(this).parents(".select-radio-con").parent().find("[name=keywordsLayer]").prev().val();
+            if (name.indexOf("brandType")>-1) {
+              if (keywords!="") {
+                var paramJson = {
+                  'title' : 'Select another option to improve keywords will cause the entered keywords to be emptied.Are you sure you want to select another option?',
+                  'cancel' : "No",
+                  'save' : "Yes",
+                  'fn' : ""
+                }
+                IAX_TOOL.confirmBox(paramJson);
+              };
+            };
         })
     });
     var cp;
     function cancelPlan(){
       //取消计划
       console.log($(this).parent().html())
-      window.location = './audiencePlans.html';
+      $('.modal-backdrop').remove();
+      var paramJson = {
+        'title' : 'There are unsaved changes in this plan. Do you want to save this plan?',
+        'cancel' : "No",
+        'save' : "Yes",
+        'cancelFn' : 'savePlan()',
+        'fn' : "doSave()"
+      }
+      IAX_TOOL.confirmBox(paramJson);
     } 
-    function savePlan(){
+    function savePlan(local){
       //保存计划
-      window.location = './audiencePlans.html';
+      if (local) return;
+      window.location = './audiencePlans.html';      
+    }
+    function setBtnDisabled($form){
+      $form.on("keyup","[name='planName']",function(){
+        if($(this).val()!=""){
+          $form.parents(".modal").find(".btn-success").attr("disabled",false);
+        }else{
+          $form.parents(".modal").find(".btn-success").attr("disabled",true);
+        }
+      })
+    }  
+    function doSave(local){
+      var brandName = $("[name='brandName']").val();
+      var date = new Date().Format("yyyyMMdd");
+      var params = [],paramsJson={};
+      paramsJson.input={'label':'Plan Name','name':'planName','value':brandName+'_'+date};
+      params.push(paramsJson);
+      $('.modal-backdrop').remove();    
+      var fn = "savePlan()";
+      if (local) {
+        fn = "savePlan(true)";
+      };
+      var paramJson = {
+        'title' : 'Do you want to save this plan?',
+        'params' :params,
+        'cancel' : "Cancel",
+        'save' : "Save",
+        'fn' : fn,
+        'callbackFun':setBtnDisabled
+      }
+      IAX_TOOL.confirmBox(paramJson);
     }     
     function removeCompetitor(id){
       var $btn = $("#"+id).parent().find(".addCompetitor");
@@ -2099,6 +2286,28 @@
       $(_this).hide();
       $(_this).prev().text("");
       $(_this).parent().parent().find(".fileStyle").val("");
+    }
+    function doSavetoOnsite(url){
+      if (!url) url="./outsiteAudience.html";
+      var brandName = $("[name='brandName']").val();
+      var date = new Date().Format("yyyyMMdd");
+      var params = [],paramsJson={};
+      paramsJson.input={'label':'Plan Name','name':'planName','value':brandName+'_'+date};
+      params.push(paramsJson);
+      $('.modal-backdrop').remove();    
+      var fn = "toOnsite('"+url+"')";
+      var paramJson = {
+        'title' : 'Do you want to save this plan?',
+        'params' :params,
+        'cancel' : "Cancel",
+        'save' : "Save",
+        'fn' : fn,
+        'callbackFun':setBtnDisabled
+      }
+      IAX_TOOL.confirmBox(paramJson);
+    }
+    function toOnsite(url){
+      window.location = url;
     }
   </script>
 </html>

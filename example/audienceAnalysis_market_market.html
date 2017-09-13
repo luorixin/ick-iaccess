@@ -20,9 +20,9 @@
   <link rel="stylesheet" type="text/css" href="../css/jqcloud.css">
 
 
-	<script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="./js/common.js"></script>
-	 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script><!--ie下tab切换需要1.10-->
+  <script type="text/javascript" src="./js/common.js"></script>
+   <script type="text/javascript" src="../bootstrap/js/bootstrap-3.3.5.min.js"></script><!--ie下tab切换需要1.10-->
    <script type="text/javascript" src="./js/chosen.jquery.min.js"></script>
     <script type="text/javascript" src="./js/echarts.min.js"></script>
     <script type="text/javascript" src="./js/calendar.js"></script>
@@ -54,8 +54,6 @@
     <script type="text/javascript" src="./js/iax-tool.js"></script>
     <script type="text/javascript" src="./js/iax-template.js"></script>
     <script type="text/javascript" src="./js/iax-chart-tool.js"></script>
-     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=62a73830c63e6a4953da07f6dc92d898&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
-    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
     <script type="text/javascript" src="./js/jqcloud-1.0.4.js"></script>
 
 </head>
@@ -298,8 +296,11 @@
                 </li>
                  <li class="">
                   <a href="./Competitors.html"><span class="x-m8">Competitors</span></a>
-
                 </li>
+                <li class="">
+                  <a href="./comparison.html"><span class="x-m8">Comparison</span></a>
+                </li>
+                
               </ul>
             </li>
 
@@ -322,6 +323,13 @@
 
                 </li>
               </ul>
+            </li>
+
+            <li id="" class="">
+              <a href="./ownedAudience.html">
+               <i class="fa fa-street-view" aria-hidden="true"></i>
+              <span class="x-m8">Owned Audience</span>
+              </a>
             </li>
             
           </ul>
@@ -368,13 +376,10 @@
 
           <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
             <li class="active">
-              <a data-toggle="tab" href="#tab-share" data-id="share">Industry Penetration & Trend</a>
+              <a data-toggle="tab" href="#tab-share" data-id="share">Market Scale & Trend</a>
             </li>
             <li class="">
               <a data-toggle="tab" href="#tab-analysis" data-id="market">Market Analysis</a>
-            </li>
-            <li class="">
-              <a data-toggle="tab" href="#tab-location" data-id="location">Location Analysis</a>
             </li>
           </ul>
           <div class="button-right" style="margin:-40px 0 10px 0;">
@@ -394,45 +399,131 @@
                       <div class="plan-reports-result clearfix">
                         <div class="plan-reports-result-inner" style="width:35%">
                           <!--total-->
-                          <div class="plan-result-graph graph-top" style="width:100%;height:300px;padding: 0 7.5px 0 0;" id="select_audience_share">
-                            <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
+                          <div class="plan-result-graph graph-top" style="width:100%;height:480px;padding: 0 7.5px 0 0;" id="select_audience_share">
+                            <div class="plan-result-text" style="float:left;">
                               <div class="result-text-header clearfix">
                                 <label id="date_header">Market Scale
                                 <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
                                 </label>
                               </div>
-                              <label style="margin-top:-10px;height:35px;">(Defined by number of market audience)</label>
-                              <div class="result-text-info clearfix x-mt10">
-                                <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:35px;">
+                              <label style="margin-top:-10px;height:35px;">(Number of unique audiences in the defined market)</label>
+                              <div class="result-text-info clearfix x-mt10" style="height:250px;">
+                                <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;">
                                   <label class="titleRed" id="audience_total_share" style="">0</label>
                                 </div>
-                              </div>
-                            </div>
-                            
-                            <!--Industry Penetration-->
-                            <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
-                              <div class="result-text-header">
-                                <label id="date_header">Industry Penetration
-                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The percentage of audience in the industry compare to internet netizen."></i>
-                                </label>
-                              </div>
-                              <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr">
-                                    <div class="result-graph-word-content" style="padding-top:40px;width:180px;">
-                                      <div id="market-map_share" class="market-map" style="width:180px;height:160px;">
-                                      </div>
-                                    </div>
+                                <div class="plan-growth" style="margin-top:20px;">
+                                  <div>Daily Growth</div>
+                                  <i class="fa fa-caret-up fa-fw"  aria-hidden="true"></i>
+                                  <span >1.25M (1.3%)</span>
+                                </div>
+                                <div class="plan-growth" style="width:50%;float:left;">
+                                  <div>Weekly Growth</div>
+                                  <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i>
+                                  <span >1.25M (1.3%)</span>
+                                </div>
+                                 <div class="plan-growth" style="float:right;width:50%;">
+                                  <div>Monthly Growth</div>
+                                  <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+                                  <span >1.25M (1.3%)</span>
                                 </div>
                               </div>
+                              <hr style="margin:0 18px"/>
+                                <div class="compare_detail">
+                                  <table id="compare_list" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                          <td style="width:140px;">2017-08-18</td>
+                                          <td style="width:55px"></td>
+                                          <td style="width:55px"></td>
+                                          <td style="width:45px"></td>
+                                          <td style="width:45px"></td>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Total Days</td>
+                                          <td><b>38 days</b></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Range</td>
+                                          <td colspan="2"><b>11.28M - 12.56M</b></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                        </tr>
+                                        <tr style="height:15px;">
+                                          <td></td>
+                                          <td colspan="2"></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Average</td>
+                                          <td><b>12.56M</b></td>
+                                          <td>
+                                            <i class="fa fa-caret-down" style="" aria-hidden="true"></i>
+                                            <span>1.25%</span>
+                                          </td>
+                                          <td style="text-align:right">
+                                            <div class="compare-progress-line caret-down" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                              <div style="width: 35.0%;" class="bar"></div>
+                                            </div>
+                                          </td>
+                                          <td>
+                                            
+                                          </td>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Last 7 days Average</td>
+                                          <td><b>12.56M</b></td>
+                                          <td>
+                                            <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
+                                            <span>1.25%</span>
+                                          </td>
+                                          <td style="text-align:right">
+                                            
+                                          </td>
+                                          <td>
+                                            <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                              <div style="width: 35.0%;" class="bar"></div>
+                                            </div>
+                                          </td>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <td>Last 30 days Average</td>
+                                          <td><b>12.56M</b></td>
+                                          <td>
+                                            <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
+                                            <span>1.25%</span>
+                                          </td>
+                                          <td style="text-align:right">
+                                           
+                                          </td>
+                                          <td>
+                                            <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                              <div style="width: 55.0%;" class="bar"></div>
+                                            </div>
+                                          </td>
+                                          <td></td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
                             </div>
                           </div>
                           <!--end-->
 
                           <!--cloud tag-->
-                          <div class="plan-result-graph graph-top" style="width:100%;height:400px;padding: 0 7.5px 0 0;" id="select_keywords_share">
+                          <div class="plan-result-graph graph-top" style="width:100%;height:350px;padding: 0 7.5px 0 0;" id="select_keywords_share">
                             <div class="plan-result-text">
                               <div class="result-text-header clearfix">
-                                <label>Market Related Keywords
+                                <label>Keywords in the Market
                                   <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Words that related to the industry. The more relevant words to the market, the bigger and bolder they appear in the word cloud."></i>
                                 </label>
                               </div>
@@ -451,13 +542,13 @@
                         </div>
                         <div class="plan-reports-result-inner" style="width:65%">
                           <!--Trend map-->
-                          <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:300px;padding:0 0px 0 7.5px;">
+                          <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:360px;padding:0 0px 0 7.5px;">
                             <div class="plan-result-text">
                               <div class="result-text-header">
-                                <label id="date_header">Trend of Market Audience & Industry Penetration
+                                <label id="date_header">Trend of Market Scale
                                   <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in the related industry compare to internet netizen."></i>
                                 </label>
-                                <div class="report-dropdown" style="top:30px;right:20px;">
+                                <div class="report-dropdown" style="top:50px;right:20px;">
                                   <div class="date-range">
                                     <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
                                     <input type="text" id="daterange"
@@ -473,7 +564,7 @@
                               <div class="result-graph-info x-mt10">
                                 <div class="result-graph-word word-impr">
                                   <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-                                    <div id="line_chart" class="line-chart-map" style="width:100%;height:250px;">
+                                    <div id="line_chart" class="line-chart-map" style="width:100%;height:280px;margin-top:30px;">
                                     </div>
                                   </div>
                                 </div>
@@ -481,12 +572,12 @@
                             </div>
                           </div>
                           <!--文章列表-->
-                          <div class="plan-result-graph" id="select_trend_article" style="width:100%;height:400px;padding:0 0px 0 7.5px;">
+                          <div class="plan-result-graph" id="select_trend_article" style="width:100%;height:470px;padding:0 0px 0 7.5px;">
                             <div class="plan-result-text clearfix">
                               <div class="result-text-header">
                                 <label id="acticle-title">
                                   <div class="pic-title-title">
-                                    <b>Market Related Latest Article Snapshot on </b>
+                                    <b>Popular Market Content Snapshot on </b>
                                   </div>
                                 </label>
                               </div>
@@ -586,8 +677,8 @@
                         <div class="plan-result-graph audience_total" id="select_audience" style="width:50%;position:relative;">
                           <div class="plan-result-text" style="border-right:none;width:50%;float:left;">
                             <div class="result-text-header clearfix">
-                              <label id="date_header">Audience Size
-                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
+                              <label id="date_header">Audience Scale
+                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
                               </label>
                             </div>
                             <div class="result-text-info clearfix x-mt10">
@@ -599,21 +690,21 @@
                           <!-- 中间信息 -->
                           <div class="plan-result-middle-line">
                             <div class="plan-middle-line"></div>
-                            <div class="plan-middle-line-info">
-                              <label>The Market: <span>0</span></label>
+                            <div class="plan-middle-line-info hide">
+                              <label>All Market: <span>0</span></label>
                             </div>
                           </div>
-                          <!--Industry Penetration-->
+                          <!--Market share-->
                           <div class="plan-result-text" style="border-left:none;width:50%;float:left;">
                             <div class="result-text-header">
                               <label id="date_header">Market Share
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of the industry."></i>
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Find out how many of the same people are in your brand"></i>
                               </label>
                             </div>
                             <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
                                   <div class="result-graph-word-content" style="padding-top:0;">
-                                    <label style="margin-top:-10px;">Estee Lauder overlaps The Market</label>
+                                    <label style="margin-top:-10px;">Estee Lauder overlaps All Market</label>
                                     <div id="market-map" class="market-map" style="width:230px;height:160px;">
                                     </div>
                                   </div>
@@ -621,7 +712,7 @@
                             </div>
                           </div>
                         </div>
-                        <!--device-->
+                         <!--device-->
                         <div class="plan-result-graph" id="select_device" style="padding: 0 7.5px;width: 50%;">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
@@ -651,19 +742,20 @@
                             </div>
                           </div>
                         </div>
+
                       </div>
                       <!--inner end -->
-                      <div class="plan-reports-result-inner" style="width:33%">
-                        <!--性别-->
-                        <div class="plan-result-graph" id="select_gender" style="width:100%">
+                      <div class="plan-reports-result-inner" style="width:33%;">
+                        <!--gender-->
+                        <div class="plan-result-graph" id="select_gender" style="width: 100%;">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label>Gender</label>
                             </div>
                             <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-content" style="padding-top:0;">
-                                  <div id="gender-map" class="gender-map" style="width:230px;height:170px;">
+                                <div class="result-graph-word-content" style="padding-top:0;width:200px;">
+                                  <div id="gender-map" class="gender-map" style="width:160px;height:170px;margin:0 auto;">
                                   </div>
                                   <div class="gender-map-info gender-male">
                                     <span class="gender-map-ico"></span>
@@ -709,14 +801,14 @@
                               <label>Regions</label>
                             </div>
                             <div class="result-graph-info x-mt10">
-                              <div class="result-graph-word word-impr" style="margin:0 auto;">
+                              <div class="result-graph-word word-impr">
                                 <div class="result-graph-word-map">
-                                  <div class="region-map" id="region-map" style="width:450px;"></div>
+                                  <div class="region-map" id="region-map"></div>
                                   <label style="position:absolute;left:25px;bottom:40px;">Distribution index</label>
                                 </div>
                                 <div class="result-graph-word-content">
 
-
+                                  
                                 </div>
                               </div>
                             </div>
@@ -751,41 +843,7 @@
                   </div>
                 </div>
       			</div>
-            <div class="tab-pane fade" id="tab-location">
-              <div class="" id="for_export_location">
-                <select class="select  required" id="regions" name="chooseRegiosn" disname="chosen下拉" style="width: 380px">
-                  <option value="Shanghai">Shanghai</option>
-                  <option value="Beijing">Beijing</option>
-                  <option value="Guangdong">Guangdong</option>
-                  <option value="Shenzhen">Shenzhen</option>
-                </select>
-                <div style="display:inline-block;margin-left:-10px;position:relative;left: 400px;float:left;">
-                  <i class="fa fa-question-circle-o" style="line-height:30px;" data-toggle="tooltip" data-placement="bottom" data-original-title="Based on the keywords and geographical locations to match the information and calculate how much inventory(PV) and audience(UV) in this place."></i>
-                </div>
-                <div class="map-container">
-                  <div class="map-info">
-                    <div class="location-suggest-con">
-                      <label class="location-label">Modify Keywords</label>
-                      <div style="position:relative;">
-                        <input type="text" value="" id="tipinput" placeholder="Search" name="Locations">
-                      </div>
-                      <div class="plus-area">            
-                        <i class="fa fa-plus-circle"></i>           
-                         <button class="btn dropdown-toggle" type="button">
-                          Add one more location&nbsp;            
-                         </button>  
-                      </div>
-                    </div>
-                    <div class="map-set">
-                      <button type="button" class="btn btn-success" disabled>Save</button>
-                    </div>
-                  </div>
-                  <div class="map-content">
-                    <div id="map_container"></div>
-                  </div>
-                </div>
-              </div>
-      			</div>
+            
             
       		</div>
 
@@ -822,13 +880,7 @@
 
   </body>
   <script type="text/javascript">
-    var map = new AMap.Map('map_container', {
-        resizeEnable: true,
-        zoom:11,
-        center: [116.486409,39.921489],
-        scrollWheel:false,
-        
-    });
+    
   	$(function(){
         var data = {"result": [{
             "data": {
@@ -947,7 +999,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Unknown", "value": "5551"}
+                          {"name": "Overseas", "value": "5551"}
                     ]
                   },
                   "id": "all",
@@ -1040,7 +1092,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Unknown", "value": "5551"}
+                          {"name": "Overseas", "value": "5551"}
                     ]
                   },
                   "id": "0",
@@ -1133,7 +1185,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Unknown", "value": "5551"}
+                          {"name": "Overseas", "value": "5551"}
                     ]
                   },
                   "id": "1",
@@ -1226,7 +1278,7 @@
                           {"name": "NingXia", "value": "123"},
                           {"name": "XinJiang", "value": "123"},
                           {"name": "Heilongjiang", "value": "33"},
-                          {"name": "Unknown", "value": "5551"}
+                          {"name": "Overseas", "value": "5551"}
                     ]
                   },
                   "id": "0-1",
@@ -1248,7 +1300,7 @@
                     "45-54": 10,
                     "55-64": 10,
                     "65+": 1022,
-                    "UNKNOWN": 1022,  
+                    "UNKNOWN": 179
                 },
                 "audience": "11.3M",
                 "allMarket": "3,267K",
@@ -1270,64 +1322,35 @@
                 },
                 "mixTrend":{
                   "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
-                  "result":{"Market Audience":
+                  "result":{"Market Scale":
                     [
-                      {"date":"2017-05-20","name":"Market Audience","value":"1111"},
-                      {"date":"2017-05-21","name":"Market Audience","value":"1212"},
-                      {"date":"2017-05-22","name":"Market Audience","value":"3111"},
-                      {"date":"2017-05-23","name":"Market Audience","value":"4221"},
-                      {"date":"2017-05-24","name":"Market Audience","value":"5111"},
-                      {"date":"2017-05-25","name":"Market Audience","value":"6111"},
-                      {"date":"2017-05-26","name":"Market Audience","value":"7111"},
-                      {"date":"2017-05-27","name":"Market Audience","value":"1111"},
-                      {"date":"2017-05-28","name":"Market Audience","value":"2111"},
-                      {"date":"2017-05-29","name":"Market Audience","value":"3111"},
-                      {"date":"2017-05-30","name":"Market Audience","value":"5111"},
-                      {"date":"2017-05-31","name":"Market Audience","value":"8111"},
-                      {"date":"2017-06-01","name":"Market Audience","value":"2111"},
-                      {"date":"2017-06-02","name":"Market Audience","value":"3111"},
-                      {"date":"2017-06-03","name":"Market Audience","value":"7111"},
-                      {"date":"2017-06-04","name":"Market Audience","value":"6111"},
-                      {"date":"2017-06-05","name":"Market Audience","value":"5111"},
-                      {"date":"2017-06-06","name":"Market Audience","value":"4111"},
-                      {"date":"2017-06-07","name":"Market Audience","value":"5111"},
-                      {"date":"2017-06-08","name":"Market Audience","value":"6111"},
-                      {"date":"2017-06-09","name":"Market Audience","value":"7111"},
-                      {"date":"2017-06-10","name":"Market Audience","value":"8111"},
-                      {"date":"2017-06-11","name":"Market Audience","value":"3111"},
-                      {"date":"2017-06-12","name":"Market Audience","value":"4111"},
-                      {"date":"2017-06-13","name":"Market Audience","value":"5111"},
-                      {"date":"2017-06-14","name":"Market Audience","value":"6111"},
-                      {"date":"2017-06-15","name":"Market Audience","value":"1111"},
-                    ],"Industry Penetration":
-                    [
-                      {"date":"2017-05-20","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-05-21","name":"Industry Penetration","value":"22"},
-                      {"date":"2017-05-22","name":"Industry Penetration","value":"71"},
-                      {"date":"2017-05-23","name":"Industry Penetration","value":"61"},
-                      {"date":"2017-05-24","name":"Industry Penetration","value":"51"},
-                      {"date":"2017-05-25","name":"Industry Penetration","value":"41"},
-                      {"date":"2017-05-26","name":"Industry Penetration","value":"71"},
-                      {"date":"2017-05-27","name":"Industry Penetration","value":"51"},
-                      {"date":"2017-05-28","name":"Industry Penetration","value":"41"},
-                      {"date":"2017-05-29","name":"Industry Penetration","value":"31"},
-                      {"date":"2017-05-30","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-05-31","name":"Industry Penetration","value":"21"},
-                      {"date":"2017-06-01","name":"Industry Penetration","value":"31"},
-                      {"date":"2017-06-02","name":"Industry Penetration","value":"41"},
-                      {"date":"2017-06-03","name":"Industry Penetration","value":"51"},
-                      {"date":"2017-06-04","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-05","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-06","name":"Industry Penetration","value":"61"},
-                      {"date":"2017-06-07","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-08","name":"Industry Penetration","value":"71"},
-                      {"date":"2017-06-09","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-10","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-11","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-12","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-13","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-14","name":"Industry Penetration","value":"11"},
-                      {"date":"2017-06-15","name":"Industry Penetration"},
+                      {"date":"2017-05-20","name":"Market Scale","value":"1111"},
+                      {"date":"2017-05-21","name":"Market Scale","value":"1212"},
+                      {"date":"2017-05-22","name":"Market Scale","value":"3111"},
+                      {"date":"2017-05-23","name":"Market Scale","value":"4221"},
+                      {"date":"2017-05-24","name":"Market Scale","value":"5111"},
+                      {"date":"2017-05-25","name":"Market Scale","value":"6111"},
+                      {"date":"2017-05-26","name":"Market Scale","value":"7111"},
+                      {"date":"2017-05-27","name":"Market Scale","value":"1111"},
+                      {"date":"2017-05-28","name":"Market Scale","value":"2111"},
+                      {"date":"2017-05-29","name":"Market Scale","value":"3111"},
+                      {"date":"2017-05-30","name":"Market Scale","value":"5111"},
+                      {"date":"2017-05-31","name":"Market Scale","value":"8111"},
+                      {"date":"2017-06-01","name":"Market Scale","value":"2111"},
+                      {"date":"2017-06-02","name":"Market Scale","value":"3111"},
+                      {"date":"2017-06-03","name":"Market Scale","value":"7111"},
+                      {"date":"2017-06-04","name":"Market Scale","value":"6111"},
+                      {"date":"2017-06-05","name":"Market Scale","value":"5111"},
+                      {"date":"2017-06-06","name":"Market Scale","value":"4111"},
+                      {"date":"2017-06-07","name":"Market Scale","value":"5111"},
+                      {"date":"2017-06-08","name":"Market Scale","value":"6111"},
+                      {"date":"2017-06-09","name":"Market Scale","value":"7111"},
+                      {"date":"2017-06-10","name":"Market Scale","value":"8111"},
+                      {"date":"2017-06-11","name":"Market Scale","value":"3111"},
+                      {"date":"2017-06-12","name":"Market Scale","value":"4111"},
+                      {"date":"2017-06-13","name":"Market Scale","value":"5111"},
+                      {"date":"2017-06-14","name":"Market Scale","value":"6111"},
+                      {"date":"2017-06-15","name":"Market Scale","value":"1111"},
                     ]},
                     "topBrands":[
                       {"date":"2017-05-20","articles":[
@@ -1338,6 +1361,8 @@
                         {"date":"2017/05/20 12:15","index":"5","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 12:15","index":"6","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
@@ -1350,6 +1375,8 @@
                         {"date":"2017/06/01 12:15","index":"6","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
                         {"date":"2017/06/01 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
                         {"date":"2017/06/01 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
                       {"date":"2017-06-15","articles":[
@@ -1361,6 +1388,8 @@
                         {"date":"2017/06/15 12:15","index":"6","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
                         {"date":"2017/06/15 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_newstttt.png"},
                         {"date":"2017/06/15 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com"},
+                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
                     ],
@@ -1426,11 +1455,9 @@
         };
         if (tab=="share") {
           IAX_CHART_TOOL.initData(json.data);
-          IAX_CHART_TOOL.initMixTrend("line_chart",json.data);
+          IAX_CHART_TOOL.initMixTrend("line_chart","select_trend_article","daterange",json.data);
           IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
           IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
-          $(".xmoCalendarWraper").remove();
-          initCalendar("daterange");
           IAX_CHART_TOOL.resizeChart();
         }else if (tab=="market") {
           IAX_CHART_TOOL.initData(json.data);
@@ -1445,963 +1472,6 @@
           // IAX_CHART_TOOL.initInterests("interest-map",json.data);
           // IAX_CHART_TOOL.initTop5Graph("select_top_brand",json.data.top5brand);
           // IAX_CHART_TOOL.initTop5Graph("select_top_products",json.data.top5products);
-        }else if(tab=="location"){
-          $("#regions").val("Beijing");
-          $("#regions").chosen();
-          map.setZoom(11);
-          var placeSearch = new AMap.PlaceSearch({
-              map: map
-          });
-          $("#regions").on("change",function(){
-            placeSearch.search($(this).val()); 
-          })
-          var poiPolys = [],areaPolys = [],streetPolys = [],polygons=[];
-          //构造marker
-          var jsonReq = {
-            "district": [
-                {
-                    "city": "北京市市辖区",
-                    "lat": "39.921489",
-                    "level": "district",
-                    "lng": "116.486409",
-                    "name": "朝阳区",
-                    "pv": 2004,
-                    "uv": 426
-                },
-                {
-                    "city": "北京市市辖区",
-                    "lat": "39.917544",
-                    "level": "district",
-                    "lng": "116.418757",
-                    "name": "东城区",
-                    "pv": 538,
-                    "uv": 133
-                },
-                {
-                    "city": "北京市市辖区",
-                    "lat": "39.956074",
-                    "level": "district",
-                    "lng": "116.310316",
-                    "name": "海淀区",
-                    "pv": 521,
-                    "uv": 208
-                },
-            ],
-            "poi": [
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.924186,116.519108",
-                    "name": "星巴克咖啡(朝阳大悦城)",
-                    "pv": 236,
-                    "street": "高碑店地区街道",
-                    "uv": 13
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.91801,116.47785",
-                    "name": "星巴克(金台店)",
-                    "pv": 200,
-                    "street": "八里庄街道",
-                    "uv": 11
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.92277,116.44566",
-                    "name": "星巴克(百利家居店)",
-                    "pv": 199,
-                    "street": "朝外街道",
-                    "uv": 3
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.909307,116.472482",
-                    "name": "星巴克咖啡(万达广场店)",
-                    "pv": 83,
-                    "street": "建外街道",
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.909313,116.472453",
-                    "name": "星巴克咖啡(万达广场店)",
-                    "pv": 83,
-                    "street": "建外街道",
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.909479,116.480721",
-                    "name": "星巴克咖啡",
-                    "pv": 81,
-                    "street": "建外街道",
-                    "uv": 5
-                },
-                
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "level": "poi",
-                    "location": "39.914133,116.409642",
-                    "name": "星巴克(北京市百货大楼)",
-                    "pv": 43,
-                    "street": "东华门街道",
-                    "uv": 3
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "level": "poi",
-                    "location": "39.914182,116.40967",
-                    "name": "星巴克咖啡(王府井咖啡店)",
-                    "pv": 43,
-                    "street": "东华门街道",
-                    "uv": 3
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "level": "poi",
-                    "location": "39.953342,116.357049",
-                    "name": "星巴克(枫蓝店)",
-                    "pv": 42,
-                    "street": "北太平庄街道",
-                    "uv": 4
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "level": "poi",
-                    "location": "39.893169,116.447501",
-                    "name": "星巴克咖啡(广渠门名敦道店)",
-                    "pv": 36,
-                    "street": "龙潭街道",
-                    "uv": 2
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "level": "poi",
-                    "location": "39.89317,116.447498",
-                    "name": "星巴克咖啡(广渠家园)",
-                    "pv": 36,
-                    "street": "龙潭街道",
-                    "uv": 2
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "level": "poi",
-                    "location": "39.893178,116.447504",
-                    "name": "星巴克咖啡(广渠家园)",
-                    "pv": 36,
-                    "street": "龙潭街道",
-                    "uv": 2
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "level": "poi",
-                    "location": "39.939632,116.403241",
-                    "name": "星巴克咖啡(南锣鼓巷店)",
-                    "pv": 33,
-                    "street": "交道口街道",
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "西城区",
-                    "level": "poi",
-                    "location": "39.910921,116.373551",
-                    "name": "星巴克咖啡(北京西单大悦城店)",
-                    "pv": 30,
-                    "street": "金融街街道",
-                    "uv": 25
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.8694,116.4598",
-                    "name": "星巴克咖啡(京瑞大厦店)",
-                    "pv": 27,
-                    "street": "潘家园街道",
-                    "uv": 8
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "level": "poi",
-                    "location": "39.913846,116.410946",
-                    "name": "星巴克咖啡",
-                    "pv": 27,
-                    "street": "东华门街道",
-                    "uv": 9
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.99919,116.38759",
-                    "name": "星巴克(奥运村店)",
-                    "pv": 27,
-                    "street": "大屯地区街道",
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.999206,116.387622",
-                    "name": "星巴克咖啡(北辰西路店)",
-                    "pv": 27,
-                    "street": "大屯地区街道",
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "level": "poi",
-                    "location": "39.913569,116.280404",
-                    "name": "星巴克(卓展店)",
-                    "pv": 25,
-                    "street": "万寿路街道",
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "level": "poi",
-                    "location": "39.958238,116.288034",
-                    "name": "星巴克(金源新燕莎MALL)",
-                    "pv": 25,
-                    "street": "曙光街道",
-                    "uv": 19
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.907662,116.471017",
-                    "name": "星巴克咖啡(世贸大厦店)",
-                    "pv": 24,
-                    "street": "建外街道",
-                    "uv": 4
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "level": "poi",
-                    "location": "39.90768,116.47105",
-                    "name": "星巴克咖啡(世贸大厦店)",
-                    "pv": 24,
-                    "street": "建外街道",
-                    "uv": 4
-                },
-                
-            ],
-            "street": [
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.906637",
-                    "level": "street",
-                    "lng": "116.477516",
-                    "name": "建外街道",
-                    "pv": 410,
-                    "uv": 33
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.920611",
-                    "level": "street",
-                    "lng": "116.448529",
-                    "name": "朝外街道",
-                    "pv": 265,
-                    "uv": 30
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.914203",
-                    "level": "street",
-                    "lng": "116.522373",
-                    "name": "高碑店地区街道",
-                    "pv": 240,
-                    "uv": 17
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.915279",
-                    "level": "street",
-                    "lng": "116.478939",
-                    "name": "八里庄街道",
-                    "pv": 227,
-                    "uv": 18
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.912062",
-                    "level": "street",
-                    "lng": "116.453722",
-                    "name": "建国门外街道",
-                    "pv": 145,
-                    "uv": 68
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.9987",
-                    "level": "street",
-                    "lng": "116.411841",
-                    "name": "大屯街道",
-                    "pv": 106,
-                    "uv": 20
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.996857",
-                    "level": "street",
-                    "lng": "116.408972",
-                    "name": "大屯地区街道",
-                    "pv": 71,
-                    "uv": 15
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "40.048298",
-                    "level": "street",
-                    "lng": "116.591276",
-                    "name": "兴谷街道",
-                    "pv": 65,
-                    "uv": 13
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.937637",
-                    "level": "street",
-                    "lng": "116.447204",
-                    "name": "三里屯街道",
-                    "pv": 61,
-                    "uv": 20
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.970847",
-                    "level": "street",
-                    "lng": "116.443422",
-                    "name": "太阳宫地区街道",
-                    "pv": 61,
-                    "uv": 22
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.92085",
-                    "level": "street",
-                    "lng": "116.437929",
-                    "name": "朝阳门外街道",
-                    "pv": 49,
-                    "uv": 32
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.871904",
-                    "level": "street",
-                    "lng": "116.467973",
-                    "name": "潘家园街道",
-                    "pv": 46,
-                    "uv": 14
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.896995",
-                    "level": "street",
-                    "lng": "116.46662",
-                    "name": "双井街道",
-                    "pv": 44,
-                    "uv": 18
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.949418",
-                    "level": "street",
-                    "lng": "116.451187",
-                    "name": "左家庄街道",
-                    "pv": 35,
-                    "uv": 17
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.931728",
-                    "level": "street",
-                    "lng": "116.463825",
-                    "name": "团结湖街道",
-                    "pv": 25,
-                    "uv": 11
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "40.032082",
-                    "level": "street",
-                    "lng": "116.433647",
-                    "name": "来广营乡",
-                    "pv": 24,
-                    "uv": 3
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.922339",
-                    "level": "street",
-                    "lng": "116.466794",
-                    "name": "呼家楼街道",
-                    "pv": 23,
-                    "uv": 16
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.96707",
-                    "level": "street",
-                    "lng": "116.400593",
-                    "name": "安贞街道",
-                    "pv": 17,
-                    "uv": 8
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "40.003667",
-                    "level": "street",
-                    "lng": "116.474335",
-                    "name": "东湖街道",
-                    "pv": 16,
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.987255",
-                    "level": "street",
-                    "lng": "116.421078",
-                    "name": "小关街道",
-                    "pv": 13,
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.993232",
-                    "level": "street",
-                    "lng": "116.488694",
-                    "name": "望京街道",
-                    "pv": 13,
-                    "uv": 11
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.961218",
-                    "level": "street",
-                    "lng": "116.437325",
-                    "name": "香河园街道",
-                    "pv": 11,
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.883199",
-                    "level": "street",
-                    "lng": "116.47816",
-                    "name": "南磨房地区街道",
-                    "pv": 9,
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.96888",
-                    "level": "street",
-                    "lng": "116.488978",
-                    "name": "将台地区",
-                    "pv": 8,
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.918071",
-                    "level": "street",
-                    "lng": "116.43901",
-                    "name": "朝阳门外",
-                    "pv": 8,
-                    "uv": 2
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "39.935682",
-                    "level": "street",
-                    "lng": "116.469324",
-                    "name": "麦子店街道",
-                    "pv": 7,
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "朝阳区",
-                    "lat": "40.041565",
-                    "level": "street",
-                    "lng": "116.523633",
-                    "name": "孙河乡",
-                    "pv": 5,
-                    "uv": 4
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.916108",
-                    "level": "street",
-                    "lng": "116.407242",
-                    "name": "东华门街道",
-                    "pv": 176,
-                    "uv": 50
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.887188",
-                    "level": "street",
-                    "lng": "116.43278",
-                    "name": "龙潭街道",
-                    "pv": 108,
-                    "uv": 2
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.865631",
-                    "level": "street",
-                    "lng": "116.402031",
-                    "name": "永定门外街道",
-                    "pv": 68,
-                    "uv": 8
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.934285",
-                    "level": "street",
-                    "lng": "116.440165",
-                    "name": "东直门街道",
-                    "pv": 43,
-                    "uv": 14
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.914134",
-                    "level": "street",
-                    "lng": "116.427639",
-                    "name": "建国门街道",
-                    "pv": 36,
-                    "uv": 15
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.93576",
-                    "level": "street",
-                    "lng": "116.40098",
-                    "name": "交道口街道",
-                    "pv": 33,
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.956395",
-                    "level": "street",
-                    "lng": "116.423882",
-                    "name": "和平里街道",
-                    "pv": 22,
-                    "uv": 4
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.886958",
-                    "level": "street",
-                    "lng": "116.422528",
-                    "name": "体育馆路街道",
-                    "pv": 16,
-                    "uv": 10
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.893921",
-                    "level": "street",
-                    "lng": "116.407186",
-                    "name": "前门街道",
-                    "pv": 12,
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.942387",
-                    "level": "street",
-                    "lng": "116.424356",
-                    "name": "北新桥街道",
-                    "pv": 9,
-                    "uv": 8
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.920681",
-                    "level": "street",
-                    "lng": "116.430464",
-                    "name": "朝阳门街道",
-                    "pv": 7,
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.894647",
-                    "level": "street",
-                    "lng": "116.427389",
-                    "name": "崇文门外街道",
-                    "pv": 6,
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "东城区",
-                    "lat": "39.899256",
-                    "level": "street",
-                    "lng": "116.431472",
-                    "name": "东花市街道",
-                    "pv": 2,
-                    "uv": 2
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.965699",
-                    "level": "street",
-                    "lng": "116.279549",
-                    "name": "曙光街道",
-                    "pv": 106,
-                    "uv": 46
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.978391",
-                    "level": "street",
-                    "lng": "116.31269",
-                    "name": "海淀街道",
-                    "pv": 97,
-                    "uv": 35
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.995044",
-                    "level": "street",
-                    "lng": "116.334368",
-                    "name": "东升镇",
-                    "pv": 74,
-                    "uv": 26
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.950898",
-                    "level": "street",
-                    "lng": "116.362216",
-                    "name": "北太平庄街道",
-                    "pv": 52,
-                    "uv": 8
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.912108",
-                    "level": "street",
-                    "lng": "116.307859",
-                    "name": "羊坊店街道",
-                    "pv": 40,
-                    "uv": 14
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.934241",
-                    "level": "street",
-                    "lng": "116.316948",
-                    "name": "甘家口街道",
-                    "pv": 39,
-                    "uv": 19
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.906182",
-                    "level": "street",
-                    "lng": "116.263216",
-                    "name": "万寿路街道",
-                    "pv": 30,
-                    "uv": 12
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.977897",
-                    "level": "street",
-                    "lng": "116.318197",
-                    "name": "中关村街道",
-                    "pv": 25,
-                    "uv": 20
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "40.042256",
-                    "level": "street",
-                    "lng": "116.294791",
-                    "name": "上地街道",
-                    "pv": 22,
-                    "uv": 6
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.993569",
-                    "level": "street",
-                    "lng": "116.352011",
-                    "name": "学院路街道",
-                    "pv": 13,
-                    "uv": 7
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.954559",
-                    "level": "street",
-                    "lng": "116.274675",
-                    "name": "四季青镇",
-                    "pv": 8,
-                    "uv": 6
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.944508",
-                    "level": "street",
-                    "lng": "116.312039",
-                    "name": "紫竹院街道",
-                    "pv": 6,
-                    "uv": 4
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "40.035624",
-                    "level": "street",
-                    "lng": "116.334126",
-                    "name": "清河街道",
-                    "pv": 5,
-                    "uv": 5
-                },
-                {
-                    "city": "北京市市辖区",
-                    "district": "海淀区",
-                    "lat": "39.990366",
-                    "level": "street",
-                    "lng": "116.29558",
-                    "name": "海淀镇",
-                    "pv": 4,
-                    "uv": 1
-                },
-                
-            ],
-            "total": {
-                "pv": 3580,
-                "uv": 970
-            }
-          }
-          for(var i in jsonReq){
-            var json = jsonReq[i];
-            if (i!="total") {
-              for (var j = 0; j < json.length; j++) {
-                markIcon(json[j]);
-              };
-            };
-          }
-          function markIcon(center){
-            var content = '';
-            var visible = true;
-            var icon = '';
-            if (center.level === "district") {
-              // icon = 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
-             content = '<div class="plate-overlay">'+center.name+'<br>pv:' + center.pv +'<br>uv:' + center.uv +'</div>';
-              visible = true;
-            }else if (center.level==="street") {
-              content = '<div class="estate-overlay js_villageLabel"><div class="estate-overlay__count js_estateOverlayCount">' + center.name + ' pv:' + center.pv +' uv:' + center.uv + '</div><div class="estate-overlay__show-name"><span>pv:'+center.pv +'</span><span class="ml_10">uv:' + center.uv + '</span></div></div>';
-              visible = false;
-            }else if (center.level === "poi") {
-              //content = '';
-              //icon = 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
-              var posArr = center.location.split(",");
-              center.lat = posArr[0];
-              center.lng = posArr[1];
-              content = '<div class="estate-overlay js_villageLabel"><div class="estate-overlay-poi js_estateOverlayCount">' + center.name + ' pv:' + center.pv +' uv:' +center.uv + '</div><div class="estate-overlay__show-name"><span class="ml_10">' + center.street + '</span></div></div>';
-              // content = '<div class="js_poi_lable" style="display:block">sdfkajlkfjadf'+center.pv +'</div>';
-              visible = false;
-            }
-            var marker = new AMap.Marker({ //添加自定义点标记
-              map: map,
-              position: [center.lng, center.lat], //基点位置
-              // offset: new AMap.Pixel(-17, -42), //
-              bubble: true,
-              draggable: false, //是否可拖动
-              icon: icon,
-              content: content, //自定义点标记覆盖物内容
-              visible: visible,
-              extData: center.name
-            });
-            if (center.level ==="poi") {
-              poiPolys.push(marker)
-            }
-            if (center.level ==="street") {
-              marker.on('click', function() {
-              // 设置缩放级别和中心点
-                map.setZoomAndCenter(15, [center.lng,center.lat]);
-              });
-              streetPolys.push(marker);
-            }
-            if (center.level === "district") {
-              marker.on('click', function() {
-                // 设置缩放级别和中心点
-                map.setZoomAndCenter(12 , [center.lng,center.lat]);
-                // 隐藏areaPloys 显示streetPloys
-                for (var i = 0, l = areaPolys.length; i < l; i++) {
-                  areaPolys[i].hide();
-                }
-                for (var i = 0, l = streetPolys.length; i < l; i++) {
-                  streetPolys[i].show();
-                }
-              });
-              marker.on('mouseover',function(){
-                //绘制行政区
-                searchStrict(center.name);
-              })
-              marker.on('mouseout',function(){
-                //清除行政区
-                for (var i = 0, l = polygons.length; i < l; i++) {
-                  polygons[i].setMap(null);
-                }
-              })
-              areaPolys.push(marker);
-            }
-          }
-          function searchStrict(name){
-            //加载行政区划插件
-            AMap.service('AMap.DistrictSearch', function() {
-              var opts = {
-                subdistrict: 1, //返回下一级行政区
-                extensions: 'all', //返回行政区边界坐标组等具体信息
-                level: 'city' //查询行政级别为 市
-              };
-              //实例化DistrictSearch
-              district = new AMap.DistrictSearch(opts);
-              district.setLevel('district');
-              //行政区查询
-              district.search(name, function(status, result) {
-                var bounds = result.districtList[0].boundaries;
-                if (bounds) {
-                  for (var i = 0, l = bounds.length; i < l; i++) {
-                    //生成行政区划polygon
-                    var polygon = new AMap.Polygon({
-                      map: map,
-                      strokeWeight: 1,
-                      path: bounds[i],
-                      fillOpacity: 0.7,
-                      fillColor: '#CCF3FF',
-                      strokeColor: '#CC66CC'
-                    });
-                    polygons.push(polygon);
-                  }
-                 // map.setFitView();//地图自适应
-                }
-              });
-            });
-          }
-          //地图缩放监听
-          map.on("zoomend",function(){
-            var level = map.getZoom();
-            if(level > 14){
-              for (var i = 0, l = areaPolys.length; i < l; i++) {
-                areaPolys[i].hide();
-              }
-              for (var i = 0, l = streetPolys.length; i < l; i++) {
-                streetPolys[i].hide();
-              }
-              for (var i = 0, l = poiPolys.length; i < l; i++) {
-               poiPolys[i].show();
-              }
-            }else if(level > 11) {
-              for (var i = 0, l = areaPolys.length; i < l; i++) {
-                areaPolys[i].hide();
-              }
-              for (var i = 0, l = streetPolys.length; i < l; i++) {
-               streetPolys[i].show();
-              }
-              for (var i = 0, l = poiPolys.length; i < l; i++) {
-                poiPolys[i].hide();
-              }
-            }else{
-              for (var i = 0, l = areaPolys.length; i < l; i++) {
-               areaPolys[i].show();
-              }
-              for (var i = 0, l = streetPolys.length; i < l; i++) {
-                streetPolys[i].hide();
-              }
-              for (var i = 0, l = poiPolys.length; i < l; i++) {
-                poiPolys[i].hide();
-              }
-            }
-          })
-            
         }
       })
       //初始化
@@ -2422,76 +1492,19 @@
         $("#myTab").show();
         $(".button-right").show();
         IAX_CHART_TOOL.initData(json.data);
-        IAX_CHART_TOOL.initMixTrend("line_chart","select_trend_article",json.data);
+        IAX_CHART_TOOL.initMixTrend("line_chart","select_trend_article","daterange",json.data);
         IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
         IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
-        initCalendar("daterange");
         IAX_CHART_TOOL.resizeChart();
       },2000)
       
       //导出pdf
       IAX_CHART_TOOL.exportForPdf("export-pdf","myTabContent");
 
-      //location输入提示。。。
-      var auto = new AMap.Autocomplete({
-          input: "tipinput"
-      });
-      //advanced settings 添加location
-      $(document).on("click",".plus-area .btn",function() {
-        var length = $(this).parent().parent().find("input").length,max=5;
-        var id = "tipinput_"+new Date().getTime();
-        var $clone= $('<div style="position:relative"><input type="text" value="" id="'+id+'" placeholder="Search" name="Locations"><i class="fa fa-remove input-remove"></i></div>');
-        $(this).parent().before($clone);
-        if (length == max-1) {
-          $(this).parent().hide();
-        }
-        $clone.find("input").focus();
-        new AMap.Autocomplete({
-          input: id
-        });
-      })
-      $(document).on("keyup","[name=Locations]",function(){
-        disableVerify($(this).parents(".map-info"));
-      })
-      function disableVerify($form) {
-        var isEmpty = true;        
-        $form.find("[name='Locations']").each(function(i) {
-          if ($(this).val()!="") {
-            isEmpty = false;
-          }
-        })
-        $form.find(".map-set .btn-success").attr("disabled",isEmpty);
-      }
-      $(document).on("click",".input-remove",function(){
-        var $form = $(this).parents(".map-info");
-        $(this).parent().parent().find(".plus-area").show();
-        $(this).parent().remove();
-        disableVerify($form);
-      })
-     
      });
-      function initCalendar(id) {
-       new xmoCalendar({
-         inputId : '#' + id,
-         lang : "en", //"zh" "en"
-         wrapContainer: $('#'+id).parents(".result-text-header"),
-         relativeTop:"60",
-         relativeRight:20,
-         initTime : '2013-10-28',
-         maxRange:31,
-         menu : [ "last_7_days", "last_30_days", "this_week", "this_month",
-             "last_week", "last_month" ],
-         submitCallback : function() {
-           search_column(id);
-         },
-       })
+      function initCalendar(id,options) {
+       new xmoCalendar(options);
      }
-     function search_column(id) {
-        var during = $("#" + id).val();
-        var duringArr = during.split(" ~ ");
-        $("#" + id).parent().find("[name=begin]").val(duringArr[0]);
-        $("#" + id).parent().find("[name=end]").val(duringArr[1]);
-        // $("#form").submit();
-      }
+     
   </script>
 </html>
