@@ -529,10 +529,10 @@
                                     <i class="fa fa-chevron-down" style="position: absolute; top: 10px; left: 10px;"></i>
                                     <div class="dropdown tree-stop" style="width:auto;">
                                       <input name="plan" id="plan" type="hidden" value=""/>
-                                      <button class="btn  dropdown-toggle dropdown-stop" data-type="plan" type="button" style="width:auto;" id="dropdownMenu1" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true">
+                                      <button class="btn  dropdown-toggle dropdown-stop" data-choose="multi" data-type="plan" type="button" style="width:auto;" id="dropdownMenu1" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true">
                                         Choose plan
                                       </button>
-                                      <div class="dropdown-menu dropdown-tree-con" aria-labelledby="dropdownMenu1">
+                                      <div class="dropdown-menu dropdown-tree-con" style="max-height:initial;height:390px;" aria-labelledby="dropdownMenu1">
                                         <div class="dropdown-tree-category">
                                           <div class="parent_layer">
                                               <div class="pannel">
@@ -554,8 +554,8 @@
                                                               <li>
                                                                 <span>All</span>
                                                                 <ul class="childs">
-                                                                  <li><a href="javascript:;">Stay / Concealer</a></li>
-                                                                  <li><a href="javascript:;">Perferct Brown</a></li>
+                                                                  <li><a href="javascript:;" data-id="1">Stay / Concealer</a></li>
+                                                                  <li><a href="javascript:;" data-id="2">Perferct Brown</a></li>
                                                                 </ul>
                                                               </li>
                                                           </ul>
@@ -565,7 +565,17 @@
                                                     <li>
                                                       <span>Competitors</span>
                                                       <ul class="childs">
-                                                        <li><a href="javascript:;">Lancome / Concealer</a></li>
+                                                        <li><a href="javascript:;">Lancome / Concealer</a>
+                                                          <ul class="childs" style="display:none">
+                                                              <li>
+                                                                <span>All</span>
+                                                                <ul class="childs">
+                                                                  <li><a href="javascript:;" data-id="3">Stay / Concealer1</a></li>
+                                                                  <li><a href="javascript:;" data-id="4">Perferct Brown1</a></li>
+                                                                </ul>
+                                                              </li>
+                                                          </ul>
+                                                        </li>
                                                         <li><a href="javascript:;">Bobbi Brown</a></li>
                                                       </ul>
                                                     </li>
@@ -601,6 +611,10 @@
                                                 
                                               </ul>
                                           </div>
+                                        </div>
+                                        <div class="category-button">
+                                          <button type="button" class="btn btn-cancel">Cancel</button>
+                                          <button type="button" class="btn btn-success">Save</button>
                                         </div>
                                       </div>
                                       <label class="dropdown-plan-infos"></label>
@@ -665,6 +679,7 @@
                                     <div class="product-suggest-index">#1</div>
                                     <div class="product-suggest">
                                       <input type="text" name="product" placeholder="Enter a product name"/>
+                                      <a href="javascript:;" style="margin-left:10px;" class="bluelink">Remove</a>
                                       <div class="product-suggest-area">
                                         <div class="dropdown enter-select-con">
                                           <input name="category" type="hidden" value="1"/>
@@ -736,11 +751,13 @@
                       <div class="feature-plan-search-content hide">
                         <!-- my competitor container-->
                         <div class="plan-container">
-                          <label class="plan-title">
+                          <label class="plan-title" style="margin-bottom:0;">
                             Tell us about your competitors
                           </label>
                           <div class="plan-competitor" id="competitorBox_1">
                               <input type="hidden" name="competitor_json" value="{index:1}"/>
+                              <div class="split-line" style="visibility:hidden;"></div>
+                              <i class="fa fa-arrow fa-caret-down" style="visibility:hidden"></i>
                               <label class="plan-title">
                                 Competitor 1
                               </label>
@@ -905,10 +922,10 @@
                                         <i class="fa fa-chevron-down" style="position: absolute; top: 10px; left: 10px;"></i>
                                         <div class="dropdown tree-stop" style="width:auto;">
                                           <input name="plan" id="plan" type="hidden" value=""/>
-                                          <button class="btn  dropdown-toggle dropdown-stop" data-type="plan" type="button" style="width:auto;" id="dropdownMenu1" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true">
+                                          <button class="btn  dropdown-toggle dropdown-stop" data-choose="multi" data-type="plan" type="button" style="width:auto;" id="dropdownMenu1" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true">
                                             Choose plan
                                           </button>
-                                          <div class="dropdown-menu dropdown-tree-con" aria-labelledby="dropdownMenu1">
+                                          <div class="dropdown-menu dropdown-tree-con" style="max-height:initial;height:390px;" aria-labelledby="dropdownMenu1">
                                             <div class="dropdown-tree-category">
                                               <div class="parent_layer">
                                                   <div class="pannel">
@@ -930,8 +947,8 @@
                                                                   <li>
                                                                     <span>All</span>
                                                                     <ul class="childs">
-                                                                      <li><a href="javascript:;">Stay / Concealer</a></li>
-                                                                      <li><a href="javascript:;">Perferct Brown</a></li>
+                                                                      <li><a href="javascript:;" data-id="1">Stay / Concealer</a></li>
+                                                                      <li><a href="javascript:;" data-id="2">Perferct Brown</a></li>
                                                                     </ul>
                                                                   </li>
                                                               </ul>
@@ -941,7 +958,17 @@
                                                         <li>
                                                           <span>Competitors</span>
                                                           <ul class="childs">
-                                                            <li><a href="javascript:;">Lancome / Concealer</a></li>
+                                                            <li><a href="javascript:;">Lancome / Concealer</a>
+                                                              <ul class="childs" style="display:none">
+                                                              <li>
+                                                                <span>All</span>
+                                                                <ul class="childs">
+                                                                  <li><a href="javascript:;" data-id="13">Stay / Concealer1</a></li>
+                                                                  <li><a href="javascript:;" data-id="4">Perferct Brown2</a></li>
+                                                                </ul>
+                                                              </li>
+                                                          </ul>
+                                                            </li>
                                                             <li><a href="javascript:;">Bobbi Brown</a></li>
                                                           </ul>
                                                         </li>
@@ -977,6 +1004,10 @@
                                                     
                                                   </ul>
                                               </div>
+                                            </div>
+                                            <div class="category-button">
+                                              <button type="button" class="btn btn-cancel">Cancel</button>
+                                              <button type="button" class="btn btn-success">Save</button>
                                             </div>
                                           </div>
                                           <label class="dropdown-plan-infos"></label>
@@ -1042,6 +1073,7 @@
                                         <div class="product-suggest-index">#1</div>
                                         <div class="product-suggest">
                                           <input type="text" name="product"  placeholder="Enter a product name"/>
+                                          <a href="javascript:;" style="margin-left:10px;" class="bluelink">Remove</a>
                                           <div class="product-suggest-area">
                                             <div class="dropdown enter-select-con">
                                               <input name="category" type="hidden" value="1"/>
@@ -1127,7 +1159,7 @@
                           <!-- my advanced settings container-->
                         <div class="plan-container">
                           <form class="form-horizontal" action="" method="post"> 
-                            <div class="plan-group">
+                            <div class="plan-group" style="margin-top:0;">
                               <i class="fa fa-plus-square showHideIco"></i>
                               <label class="plan-label">Enter others terms that describe your users’ needs</label>
                               <div class="plans" style="display:none">
@@ -1254,7 +1286,7 @@
 
                             <div class="plan-group">
                               <i class="fa fa-plus-square showHideIco"></i>
-                              <label class="plan-label">Location Targeting</label>
+                              <label class="plan-label">Footfall Targeting</label>
                               <div class="plans" style="display:none;">
                                 <div class="select-radio-con">
                                   <div class="radio radio-primary radio-switch">
@@ -1372,15 +1404,15 @@
                             <div class="split-line"></div>
                             <div class="plan-group">
                               <i class="fa fa-plus-square showHideIco"></i>
-                              <label class="plan-label">Select your visitors collected by iClick Tracking
+                              <label class="plan-label">Select your onsite audience collected by iClick Tracking
                               </label>
                               <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
                               <div class="plans" style="display:none">
                                 <!-- 如果没有显示这个提示信息 -->
-                                 <label class="plan-sub-label" style="color:#ef4136;">There is no visitors groups under this advertiser. Save the audience plan now and go to create visitors tracking.Then come back to select visitors group(s).</label>
+                                 <label class="plan-sub-label" style="color:#ef4136;">There is no onsite audience groups under this advertiser. Save the audience plan now and go to create onsite tracking. Then come back to select onsite audience group(s).</label>
                                 <div style="margin-top:10px;">
                                   <button class="btn dropdown-toggle" onclick="doSavetoOnsite()" type="button">
-                                      Create your Visitors Tracking&nbsp;
+                                      Create your onsite audience&nbsp;
                                   </button>
                                 </div>
                               </div>
@@ -1430,7 +1462,7 @@
           <div class="split-area"></div>
             <div class="page-opt">
               <button type="button" class="btn btn-success" disabled>Save</button>
-              <button type="button" class="btn btn-success donext" disabled>Save And Play</button>
+              <button type="button" class="btn btn-success donext" disabled>Save and Start Analysis</button>
               <button type="button" class="btn btn-cancel">Cancel</button>
             </div>
         </div>
@@ -1443,6 +1475,8 @@
 
 
     $(function(){
+      IAX_TOOL.filterChar4input("您输入的内容中包含了特殊字符如 (\" ,) ，系统已自动过滤！");
+
       $(document).on("focus",".plans input",function() {
         if($(this).parent().next().hasClass("warn-message")){
           $(this).parent().next().removeClass("hide");
@@ -1523,6 +1557,8 @@
           var $dropdown = $(this).parents(".dropdown");
           var text = $(this).text();
           var type = $dropdown.find(".dropdown-toggle").attr("data-type");
+          var chooseType = $dropdown.find(".dropdown-toggle").attr("data-choose");
+          var isMulti = chooseType=="multi" ? true :false;
           if(type==="plan"){
             if($(this).parent().find(".childs:first").prev()[0] && $(this).parent().find(".childs:first").prev()[0].nodeName =="SPAN") return;
             $(this).parents(".tree").find(".active").removeClass("active");
@@ -1534,6 +1570,9 @@
                 $(this).find(".tree").parent().find("[name='plan_text']").val("");
               }
             })
+            if (!lis) {
+              lis = "<li><span style='font-weight:normal;color:#999;'>No products</span></li>";
+            };
             $(this).parents(".tree").parent().next().find(".tree").html(lis);
             if ($(this).parents(".tree").prev()[0].nodeName=="INPUT") {
               var parentText = $(this).parents(".childs").prev().text()+" / ";
@@ -1541,10 +1580,32 @@
               $(this).parents(".tree").prev().val(parentText+text);
             };
             var index = $(this).parents(".tree").parent().index();
-            if (index!=$(this).parents(".dropdown-tree-category").find(".tree").length-1) {
+            var level = $(this).parents(".dropdown-tree-category").find(".tree").length;
+            if (index!=level-1) {
               return;
             };
             //choose plan 赋值，要把关联的父节点信息一起显示，目前只是把内容赋值进去
+            if (isMulti) {
+              var dataId = $(this).attr("data-id");
+              $(this).parent().toggleClass("selected");
+              $(this).parent().toggleClass("active");
+              var currentSelected = $(this).parent().hasClass("selected");
+              var isSelected = $(this).parents(".child_layer").find(".selected").length>0;
+              $(this).parents(".dropdown-tree-category").find(".tree").each(function(i,elem){
+                var parentSelect = $(elem).find("[data-id='"+dataId+"']").parent();
+                currentSelected ? parentSelect.addClass("selected") : parentSelect.removeClass("selected");
+                for (var j = 0; j < level-1-i; j++) {
+                  if (isSelected) {
+                    parentSelect.parent().parent().parent().parent().addClass("selected");
+                  }else{
+                    parentSelect.parent().parent().parent().parent().removeClass("selected");
+                  }
+                  parentSelect = parentSelect.parent().parent().parent().parent();
+                };
+              })
+
+              return;
+            };
             var parentLayerText = $dropdown.find('.parent_layer').find(".active").find("a:first").text() + " / ";
             var parent = $(this).parents(".dropdown-tree-category").find("[name='plan_text']").map(function(){
               return $(this).val();
@@ -1575,6 +1636,26 @@
               $(this).next().hide();
             }
           };
+        })
+        $(document).on("click",".category-button .btn-cancel",function(e){
+          e = e || window.event;
+          var target = e.target || e.srcElement;
+          e.stopPropagation();
+          $(this).parents(".dropdown").removeClass("open");
+        })
+        $(document).on("click",".category-button .btn-success",function(e){
+          e = e || window.event;
+          var locationTextArr=[],locationText="",dataIds=[];
+          var $dropdown =  $(this).parents(".dropdown");
+          $(this).parent().prev().find(".parent_layer").find(".selected").each(function(){
+            if ($(this).find("a:first").attr("data-id")) {
+              locationText = $(this).find("a:first").text();
+              dataIds.push($(this).find("a:first").attr("data-id"));
+              locationTextArr.push(locationText);
+            };
+          })
+          $dropdown.find(".dropdown-plan-infos").html(locationTextArr.join(" ; "));
+          $dropdown.removeClass("open");
         })
       //****************category choose option end
 
@@ -1616,7 +1697,7 @@
           $(this).addClass("selected");
         })
         //***********************my brand 相关逻辑
-          //至少要填第一步my brand 中的name, category, keywords
+          //至少要填第一步my brand 中的name, category, 
         $(document).on("change","[name='brandName']",function(){
           var value = $(this).val();
           if ($.trim(value)!="") {
@@ -1633,19 +1714,19 @@
             $(".page-opt").find(".btn-success").attr("disabled",true);
           }
         })
-        $(document).on("change","[name='brand_result']",function(){
-          var value = $(this).val();
-          if ($.trim(value)!="") {
-            justifyBrand();
-          }else{  
-            $(".page-opt").find(".btn-success").attr("disabled",true);
-          }
-        })
+        // $(document).on("change","[name='brand_result']",function(){
+        //   var value = $(this).val();
+        //   if ($.trim(value)!="") {
+        //     justifyBrand();
+        //   }else{  
+        //     $(".page-opt").find(".btn-success").attr("disabled",true);
+        //   }
+        // })
         function justifyBrand(){
           var brandName = $("[name='brandName']").val();
           var brandCategory = $("[name='brandCategory']").val();
-          var brandResult = $("[name='brand_result']").val();
-          if ($.trim(brandName)=="" || $.trim(brandCategory)=="" || $.trim(brandResult)=="" ) {
+          // var brandResult = $("[name='brand_result']").val();
+          if ($.trim(brandName)=="" || $.trim(brandCategory)==""){// || $.trim(brandResult)=="" ) {
             $(".page-opt").find(".btn-success").attr("disabled",true);
           }else{
             $(".page-opt").find(".btn-success").attr("disabled",false);
@@ -1761,6 +1842,12 @@
           if(e.keyCode==13){
             $(this).parents(".product-suggest-enter-area").find(".fa-plus-circle").click();
           } 
+          if (e.keyCode == 46 || e.keyCode == 8) {
+            if ($(this).attr("data-value")=="" && $(this).parent().hasClass("selected-search")) {
+              $(this).parent().prev().find(".fa-close").click();
+            };
+          };
+          $(this).attr("data-value",$(this).val());
         })
         //copy操作
         $(document).on("paste",".product-suggest-enter-area input",function(event){
@@ -1772,7 +1859,7 @@
           } else {
             pastedText = event.originalEvent.clipboardData.getData('Text');//e.clipboardData.getData('text/plain');
           }
-          var texts = pastedText.split(/[\t\n]/);
+          var texts = pastedText.replace(/[\"]/g,"").split(/[\t\n,;，；]/);
           var $selectArea = $(this).parents(".product-suggest-enter-area").find(".selected-area");
           for (var i = 0; i < texts.length; i++) {
             addText($selectArea,texts[i]);
@@ -1780,10 +1867,16 @@
           return false;
         });
         function addText($selectArea,addInput){
-          var limit = 10;
+          var limit = 20;
           var currentLength = $selectArea.find(".selected-tag").length;
           var searchHtml = '';
-          if ($.trim(addInput)=="") {return;};
+          var addInput = $.trim(addInput);
+          //去重
+          var selectArr = $selectArea.find(".selected-tag span").map(function(){
+            return $(this).text();
+          }).get();
+          if (addInput=="" || $.inArray(addInput, selectArr)>-1) return;
+
           if($selectArea.find(".selected-tag").length==0){
             //如果还没有输入description，则隐藏初始input，增加新的input到ul里面
             $selectArea.prev().val("");
@@ -1816,7 +1909,7 @@
           };
         })
         $(document).on("click",".selected-area .fa-close",function(){
-          var limit = 10;
+          var limit = 20;
           var $selectArea = $(this).parents(".selected-area");
           var currentLength = $selectArea.find(".selected-tag").length;
           //去除提示信息，回复增加按钮
@@ -1840,7 +1933,7 @@
           var $enterArea = $(this).parents(".product-suggest-suggest-area").prev();
           var $selectArea = $enterArea.find(".selected-area");
           var currentSuggestLength = $(this).parents(".selected-area").find(".selected-tag").length;
-          var limit = 10;
+          var limit = 20;
           var currentLength = $selectArea.find(".selected-tag").length;
           
           //等于上限不添加
@@ -1994,6 +2087,10 @@
             $(this).find(".plan-title").before('<i class="fa fa-arrow fa-caret-right"></i>');
             $(this).find(".plan-title").after(html);
             $(this).find(".plan-competion-con").hide();
+            //扩大点击范围
+            if ($(this).find(".showHideLayer").length==$(this).find(".showHideIco").length) {
+              $(this).append('<div class="showHideLayer"></div>');
+            };
            })
           
           var id = parseInt($(".plan-competitor").last().attr("id").split("competitorBox_")[1])+1;
@@ -2037,7 +2134,7 @@
           new keywordsLayer({
               container : $(_this),
               // lang : 'EN',
-              lang : "EN", //"CN" "EN"
+              lang : "en", //"CN" "EN"
               //这个用的是之前的数据，实际应该只有name,name_en这一列。
               /*
               values : [{"name":"高档汽车","name_en":"High-End Cars"},
@@ -2107,16 +2204,16 @@
         })
         
         //编辑competitor
-        $(document).on("click",".plan-competitor .fa-arrow",function(){
+        $(document).on("click",".plan-competitor .showHideLayer",function(){
           var isHide = $(this).parent().find(".plan-info label").is(":hidden");
           if (isHide) {
             $(this).parent().find(".plan-competion-con").slideUp();
             $(this).parent().find(".plan-info label").show();
-            $(this).removeClass("fa-caret-down").addClass("fa-caret-right");
+            $(this).parent().find(".fa-arrow").removeClass("fa-caret-down").addClass("fa-caret-right");
           }else{
             $(this).parent().find(".plan-competion-con").slideDown();
             $(this).parent().find(".plan-info label").hide();
-            $(this).removeClass("fa-caret-right").addClass("fa-caret-down");
+            $(this).parent().find(".fa-arrow").removeClass("fa-caret-right").addClass("fa-caret-down");
           }
           
         })
@@ -2207,7 +2304,37 @@
     } 
     function savePlan(local){
       //保存计划
-      if (local) return;
+      if (local) {
+        return;
+      };
+      // $('.modal').remove();
+      // $('.modal-backdrop').remove();
+      // var id = 'loading_'+new Date().getTime();
+      // var paramJson = {
+      //   'id':id,
+      //   'title' : 'Defining the market...',
+      //   'content' : "Audience plan is running and that can take a few moments. Hang in there, the analysis will be worth the wait.",
+      // }
+      // IAX_TOOL.analysisLoadingBox(paramJson);
+      // var changeText = ["Defining the market..."," Looking for your brand audience… ","Analysing your brand keywords and products…","Searching for your brand related LBS audience…","Looking for your brand potential audience… ","Looking for competitor audience…"," Analysing your competitor keywords and products…","Comparing your brand with competitors…","Comparing your brand products with competitor products…","Loading the audience plan result…"];
+      // function setProcess(){  
+      //   var processbar = $("#analysis-loading-box"+id).find(".loading-hide");  
+      //   var widthArr = processbar.parent().next().text();
+      //   var width = parseFloat(widthArr) + 1.7 ;
+      //   if (width>100) width=100;
+      //   console.log(width)
+      //   var text = changeText[parseInt(width/10)];
+      //   var bgy = width*1.2-120;
+      //   var top = -width*1.2+120;
+      //   processbar.attr("style","background-position-y:"+bgy+"px;top:"+top+"px;");
+      //   processbar.parent().next().text(width.toFixed(2)+"%");
+      //   processbar.parent().parent().next().find("p:first").text(text);
+      //   if(width == 100){  
+      //      window.clearInterval(bartimer);  
+      //      // window.location = './audiencePlans.html'; 
+      //   }  
+      //  }  
+      // var bartimer = window.setInterval(function(){setProcess();},100);  
       window.location = './audiencePlans.html';      
     }
     function setBtnDisabled($form){

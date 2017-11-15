@@ -47,6 +47,7 @@
     <script type="text/javascript" src="./js/hogan-2.0.0.min.js"></script>
     <script type="text/javascript" src="./js/iax-tool.js"></script>
     <script type="text/javascript" src="./js/iax-template.js"></script>
+    <script type="text/javascript" src="./js/echarts-map/HK.js"></script>
 
 </head>
     <body>
@@ -314,19 +315,25 @@
       		<div class="page_title">
       		  <div class="row">
               <div class="client-row"><h1>Audience Analysis:</h1></div> 
-              <div class="client-row">
+              <div class="client-row noborder-chosen">
                 <label style="line-height:20px;">
+                  <select class="select" id="audience_plan" name="audiencePlan" disname="chosen下拉">
+                    <option value="google">Estee Lauder - Makeup</option>
+                    <option value="baidu">Estee Lauder - Makeup2</option>
+                  </select>
+                  <!--
                   <div class="dropdown">
                     <input id="hasSavedPlan" type="hidden" value="1"/>
                     <a class=" dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="cursor:pointer;color:#ef4136;font-size:20px;">
                       Estee Lauder - Makeup
                     </a>
                     <i class="fa fa-caret-down" aria-hidden="true" style="position:absolute;top:5px;right:-10px;color:#ef4136;"></i>
-                    <ul class="dropdown-menu ss"  aria-labelledby="dropdownMenu1" style="top:100%!important;border-top:1px solid #dfdfdf!important;">
+                    <ul class="dropdown-menu ss"  aria-labelledby="dropdownMenu1" style="top:100%!important;border-top:1px solid #dfdfdf!important;min-width:240px;">
                       <li data-value="-1"><a href="javascript:;">google</a></li>
                       <li data-value="-1"><a href="javascript:;">baidu</a></li>
                     </ul>
                   </div>
+                 -->
                 </label>
               </div>
             </div>

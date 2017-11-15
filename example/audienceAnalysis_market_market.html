@@ -55,6 +55,7 @@
     <script type="text/javascript" src="./js/iax-template.js"></script>
     <script type="text/javascript" src="./js/iax-chart-tool.js"></script>
     <script type="text/javascript" src="./js/jqcloud-1.0.4.js"></script>
+    <script type="text/javascript" src="./js/echarts-map/HK.js"></script>
 
 </head>
     <body>
@@ -355,8 +356,13 @@
       		<div class="page_title">
       		  <div class="row">
               <div class="client-row"><h1>Audience Analysis:</h1></div> 
-              <div class="client-row">
+              <div class="client-row noborder-chosen">
                 <label style="line-height:20px;">
+                  <select class="select" id="audience_plan" name="audiencePlan" disname="chosen下拉">
+                    <option value="google">Estee Lauder - Makeup</option>
+                    <option value="baidu">Estee Lauder - Makeup2</option>
+                  </select>
+                  <!--
                   <div class="dropdown">
                     <input id="hasSavedPlan" type="hidden" value="1"/>
                     <a class=" dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="cursor:pointer;color:#ef4136;font-size:20px;">
@@ -368,6 +374,7 @@
                       <li data-value="-1"><a href="javascript:;">baidu</a></li>
                     </ul>
                   </div>
+                 -->
                 </label>
               </div>
             </div>
@@ -399,124 +406,123 @@
                       <div class="plan-reports-result clearfix">
                         <div class="plan-reports-result-inner" style="width:35%">
                           <!--total-->
-                          <div class="plan-result-graph graph-top" style="width:100%;height:480px;padding: 0 7.5px 0 0;" id="select_audience_share">
-                            <div class="plan-result-text" style="float:left;">
-                              <div class="result-text-header clearfix">
-                                <label id="date_header">Market Scale
-                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
-                                </label>
-                              </div>
-                              <label style="margin-top:-10px;height:35px;">(Number of unique audiences in the defined market)</label>
-                              <div class="result-text-info clearfix x-mt10" style="height:250px;">
-                                <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;">
-                                  <label class="titleRed" id="audience_total_share" style="">0</label>
-                                </div>
-                                <div class="plan-growth" style="margin-top:20px;">
-                                  <div>Daily Growth</div>
-                                  <i class="fa fa-caret-up fa-fw"  aria-hidden="true"></i>
-                                  <span >1.25M (1.3%)</span>
-                                </div>
-                                <div class="plan-growth" style="width:50%;float:left;">
-                                  <div>Weekly Growth</div>
-                                  <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i>
-                                  <span >1.25M (1.3%)</span>
-                                </div>
-                                 <div class="plan-growth" style="float:right;width:50%;">
-                                  <div>Monthly Growth</div>
-                                  <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
-                                  <span >1.25M (1.3%)</span>
-                                </div>
-                              </div>
-                              <hr style="margin:0 18px"/>
-                                <div class="compare_detail">
-                                  <table id="compare_list" cellspacing="0" width="100%">
-                                    <tbody>
-                                        <tr>
-                                          <td style="width:140px;">2017-08-18</td>
-                                          <td style="width:55px"></td>
-                                          <td style="width:55px"></td>
-                                          <td style="width:45px"></td>
-                                          <td style="width:45px"></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Total Days</td>
-                                          <td><b>38 days</b></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Range</td>
-                                          <td colspan="2"><b>11.28M - 12.56M</b></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr style="height:15px;">
-                                          <td></td>
-                                          <td colspan="2"></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Average</td>
-                                          <td><b>12.56M</b></td>
-                                          <td>
-                                            <i class="fa fa-caret-down" style="" aria-hidden="true"></i>
-                                            <span>1.25%</span>
-                                          </td>
-                                          <td style="text-align:right">
-                                            <div class="compare-progress-line caret-down" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
-                                              <div style="width: 35.0%;" class="bar"></div>
-                                            </div>
-                                          </td>
-                                          <td>
-                                            
-                                          </td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Last 7 days Average</td>
-                                          <td><b>12.56M</b></td>
-                                          <td>
-                                            <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
-                                            <span>1.25%</span>
-                                          </td>
-                                          <td style="text-align:right">
-                                            
-                                          </td>
-                                          <td>
-                                            <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
-                                              <div style="width: 35.0%;" class="bar"></div>
-                                            </div>
-                                          </td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Last 30 days Average</td>
-                                          <td><b>12.56M</b></td>
-                                          <td>
-                                            <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
-                                            <span>1.25%</span>
-                                          </td>
-                                          <td style="text-align:right">
+                         <div class="plan-result-graph graph-top" style="width:100%;height:480px;padding: 0 7.5px 0 0;" id="audienceScale">
+                           <div class="plan-result-text" style="float:left;">
+                             <div class="result-text-header clearfix">
+                               <label id="date_header">Market Scale
+                               <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in the industry."></i>
+                               </label>
+                             </div>
+                             <label style="margin-top:-10px;height:35px;">(Number of unique audiences in the defined market)</label>
+                             <div class="result-text-info clearfix x-mt10" style="height:250px;">
+                               <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;">
+                                 <label class="titleRed" id="audienceScale_total" style="">0</label>
+                               </div>
+                               <div class="plan-growth" style="margin-top:20px;">
+                                 <div >Daily Growth</div>
+                                 <i class="fa fa-caret-up fa-fw"  aria-hidden="true"></i>
+                                 <span id="audienceScale_dailyGrowth"></span><span id="audienceScale_dailyGrowthP"></span>
+                               </div>
+                               <div class="plan-growth" style="width:50%;float:left;">
+                                 <div>Weekly Growth</div>
+                                 <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i>
+                                 <span id="audienceScale_weeklyGrowth"></span><span id="audienceScale_weeklyGrowthP"></span>
+                               </div>
+                                <div class="plan-growth" style="float:right;width:50%;">
+                                 <div>Monthly Growth</div>
+                                 <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+                                 <span id="audienceScale_monthlyGrowth"></span><span id="audienceScale_monthlyGrowthP"></span>
+                               </div>
+                             </div>
+                             <hr style="margin:0 18px"/>
+                             <div class="compare_detail">
+                                 <table id="compare_list" cellspacing="0" width="100%">
+                                   <tbody>
+                                       <tr>
+                                         <td style="width:135px;"><span id="audienceScale_date"></span></td>
+                                         <td style="width:55px"></td>
+                                         <td style="width:60px"></td>
+                                         <td style="width:45px"></td>
+                                         <td style="width:45px"></td>
+                                         <td></td>
+                                       </tr>
+                                       <tr>
+                                         <td>Total Days</td>
+                                         <td><b><span id="audienceScale_totalDay"></span> days</b></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                       </tr>
+                                       <tr>
+                                         <td>Range</td>
+                                         <td colspan="4"><b><span id="audienceScale_rangeMin"></span> - <span id="audienceScale_rangeMax"></span></b></td>
+                                         <td></td>
+                                       </tr>
+                                       <tr style="height:15px;">
+                                         <td></td>
+                                         <td colspan="2"></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                       </tr>
+                                       <tr>
+                                         <td>Average</td>
+                                         <td><b><span id="audienceScale_average"></span></b></td>
+                                         <td>
+                                           <i class="fa fa-caret-down" style="" aria-hidden="true"></i>
+                                           <span id="audienceScale_averageP"></span>
+                                         </td>
+                                         <td style="text-align:right;border-right:1px solid #dfdfdf;">
+                                           <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                             <div style="width: 35.0%;" class="bar"></div>
+                                           </div>
+                                         </td>
+                                         <td>
+                                         </td>
+                                         <td></td>
+                                       </tr>
+                                       <tr>
+                                         <td>Last 7 days Average</td>
+                                         <td><b><span id="audienceScale_averageWeek"></span></b></td>
+                                         <td>
+                                           <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
+                                           <span id="audienceScale_averageWeekP"></span>
+                                         </td>
+                                         <td style="text-align:right;border-right:1px solid #dfdfdf;">
                                            
-                                          </td>
-                                          <td>
-                                            <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
-                                              <div style="width: 55.0%;" class="bar"></div>
-                                            </div>
-                                          </td>
-                                          <td></td>
-                                        </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                            </div>
-                          </div>
+                                         </td>
+                                         <td>
+                                           <div class="compare-progress-line" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                             <div style="width: 55.0%;" class="bar"></div>
+                                           </div>
+                                         </td>
+                                         <td></td>
+                                       </tr>
+                                       <tr>
+                                         <td>Last 30 days Average</td>
+                                         <td><b><span id="audienceScale_averageMonth"></span></b></td>
+                                         <td>
+                                           <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
+                                           <span id="audienceScale_averageMonthP"></span>
+                                         </td>
+                                         <td style="text-align:right;border-right:1px solid #dfdfdf;">
+                                           <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                             <div style="width: 35.0%;" class="bar"></div>
+                                           </div>
+                                         </td>
+                                         <td>
+                                           <div class="compare-progress-line" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                             <div style="width: 55.0%;" class="bar"></div>
+                                           </div>
+                                         </td>
+                                         <td></td>
+                                       </tr>
+                                   </tbody>
+                                 </table>
+                               </div>
+                           </div>
+                         </div>
                           <!--end-->
 
                           <!--cloud tag-->
@@ -542,7 +548,7 @@
                         </div>
                         <div class="plan-reports-result-inner" style="width:65%">
                           <!--Trend map-->
-                          <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:360px;padding:0 0px 0 7.5px;">
+                          <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:320px;padding:0 0px 0 7.5px;">
                             <div class="plan-result-text">
                               <div class="result-text-header">
                                 <label id="date_header">Trend of Market Scale
@@ -564,7 +570,7 @@
                               <div class="result-graph-info x-mt10">
                                 <div class="result-graph-word word-impr">
                                   <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-                                    <div id="line_chart" class="line-chart-map" style="width:100%;height:280px;margin-top:30px;">
+                                    <div id="line_chart" class="line-chart-map" style="width:100%;height:240px;margin-top:30px;">
                                     </div>
                                   </div>
                                 </div>
@@ -572,7 +578,7 @@
                             </div>
                           </div>
                           <!--文章列表-->
-                          <div class="plan-result-graph" id="select_trend_article" style="width:100%;height:470px;padding:0 0px 0 7.5px;">
+                          <div class="plan-result-graph" id="select_trend_article" style="width:100%;height:510px;padding:0 0px 0 7.5px;">
                             <div class="plan-result-text clearfix">
                               <div class="result-text-header">
                                 <label id="acticle-title">
@@ -713,7 +719,7 @@
                           </div>
                         </div>
                          <!--device-->
-                        <div class="plan-result-graph" id="select_device" style="padding: 0 7.5px;width: 50%;">
+                        <div class="plan-result-graph" id="select_device" style="padding: 0 0 0 7.5px;width: 50%;">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
                               <label>Device</label>
@@ -782,9 +788,9 @@
                             <div class="result-text-header clearfix">
                               <label>Age Groups</label>
                             </div>
-                            <div class="result-graph-info clearfix x-mt10">
+                            <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
-                                <div class="result-graph-word-content">
+                                <div class="result-graph-word-content min-age-group">
                                   
                                 </div>
                               </div>
@@ -803,7 +809,7 @@
                             <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
                                 <div class="result-graph-word-map">
-                                  <div class="region-map" id="region-map"></div>
+                                  <div class="region-map" id="region-map" style="width:450px;"></div>
                                   <label style="position:absolute;left:25px;bottom:40px;">Distribution index</label>
                                 </div>
                                 <div class="result-graph-word-content">
@@ -884,19 +890,7 @@
   	$(function(){
         var data = {"result": [{
             "data": {
-              "bubble": [
-                    {"sets": [0], "label": "洲际酒店", "size": 37348,"ranking":"0"},
-                    {"sets": [1], "label": "索菲特", "size": 25621,"ranking":"1"},
-                    {"sets": [2], "label": "朗庭", "size": 17773,"ranking":"2"},
-                    {"sets": [3], "label": "Bobbi Brown", "size": 15053,"ranking":"3"},
-                    {"sets": [4], "label": "香格里拉", "size": 13056,"ranking":"4"},
-                    {"sets": [0, 1], "size": 4832,"overlap":"12.12%","ranking":"0"},
-                    {"sets": [0, 2], "size": 2602,"overlap":"8.12%","ranking":"0"},
-                    {"sets": [0, 3], "size": 6141,"overlap":"15.12%","ranking":"0"},
-                    {"sets": [0, 4], "size": 2723,"overlap":"8.12%","ranking":"0"},
-                    {"sets": [1, 2], "size": 1062,"overlap":"0.42%"},
-                    {"sets": [0, 1, 2], "size": 662,"overlap":"0.32%"}
-                ],
+              "bubble": [{"label":"Wynn Hotel 永利","ranking":0,"sets":[0],"size":18700},{"label":"Starworld Macau","ranking":1,"sets":[1],"size":15218},{"overlap":"47","ranking":0,"sets":[0,1],"size":12839},{"label":"Venetian Macau","ranking":2,"sets":[2],"size":330000},{"overlap":"49","ranking":0,"sets":[0,2],"size":13365},{"label":"MGM Macau","ranking":3,"sets":[3],"size":24172},{"overlap":"47","ranking":0,"sets":[0,3],"size":12866},{"label":"Studio city Macau","ranking":4,"sets":[4],"size":27584},{"overlap":"47","ranking":0,"sets":[0,4],"size":12859},{"label":"Parisian Macau","ranking":5,"sets":[5],"size":25794},{"overlap":"52","ranking":0,"sets":[0,5],"size":14172},{"label":"Galaxy Hotel","ranking":6,"sets":[6],"size":113398},{"overlap":"48","ranking":0,"sets":[0,6],"size":12901},{"label":"Sands cotal central","ranking":7,"sets":[7],"size":78596},{"overlap":"47","ranking":0,"sets":[0,7],"size":12839}],
                 "top5brand":{
                   "Estee Lauder":852,
                   "Lancome":789,
@@ -904,13 +898,33 @@
                   "Bobbi Brown":456,
                   "SKII":2378,
                 },
-                "top5products":{
-                  "Makeup":852,
-                  "Skincare":789,
-                  "Foundation":507,
-                  "Concealer":456,
-                  "Body Wash":2278,
-                },
+                "top5products":[
+                  {
+                    "brandName":"Estee Lauder",
+                    "name":"Makeup",
+                    "value":852
+                  },
+                  {
+                    "brandName":"Lancome",
+                    "name":"Skincare",
+                    "value":652
+                  },
+                  {
+                    "brandName":"Shiseido",
+                    "name":"Foundation",
+                    "value":333
+                  },
+                  {
+                    "brandName":"Bobbi Brown",
+                    "name":"Concealer",
+                    "value":444
+                  },
+                  {
+                    "brandName":"SKII",
+                    "name":"Body Wash",
+                    "value":852
+                  },
+                ],
               "result":[
                 {
                   "data":{
@@ -1008,14 +1022,14 @@
                 {
                   "data":{
                     "age_group": {
-                        "0-17": 2022,
+                        "0-17": 22,
                         "18-24": 20,
                         "25-34": 55,
                         "35-44": 55,
                         "45-54": 10,
                         "55-64": 10,
-                        "65+": 1022,
-                        "UNKNOWN": 1022,
+                        "65+": 22,
+                        "UNKNOWN": 32,
                     },
                     "audience": "5.3M",
                     "allMarket": "5.3M",
@@ -1398,47 +1412,226 @@
                   "market":88888888888888,
                   "market_show":1,
                 },
+                "audienceScale": {
+                  "average": 2807090,
+                  "averageMonth": 2807090,
+                  "averageMonthP": 5.0,
+                  "averageP": 0.33,
+                  "averageWeek": 2666268,
+                  "averageWeekP": -8.46,
+                  "dailyGrowth": 312911,
+                  "dailyGrowthP": 12.27,
+                  "date": "2017-08-28",
+                  "monthlyGrowth": 19649631,
+                  "monthlyGrowthP": 100.0,
+                  "rangeMax": 2923776,
+                  "rangeMin": 2549460,
+                  "total": 2862371,
+                  "totalDay": 7,
+                  "weeklyGrowth": -3652021,
+                  "weeklyGrowthP": -31.35
+                },
                 "cloud_tag": [
-                    {
-                        "text": "小棕瓶",
-                        "weight": 100.0
-                    },
-                    {
-                        "text": "唇膏",
-                        "weight": 41.91399002075195
-                    },
-                    {
-                        "text": "真假辨别",
-                        "weight": 40.50263214111328
-                    },
-                    {
-                        "text": "wear",
-                        "weight": 39.256526947021484
-                    },
-                    {
-                        "text": "粉底液",
-                        "weight": 36.01508331298828
-                    },
-                    {
-                        "text": "double",
-                        "weight": 34.853759765625
-                    },
-                    {
-                        "text": "红石榴",
-                        "weight": 32.2340202331543
-                    },
-                    {
-                        "text": "眼霜",
-                        "weight": 31.098222732543945
-                    },
-                    {
-                        "text": "倾慕",
-                        "weight": 27.179134368896484
-                    },
-                    {
-                        "text": "修护",
-                        "weight": 26.62397003173828
-                    }
+                  {
+                    "text": "二手车之家",
+                    "weight": 100.0
+                  },
+                  {
+                    "text": "carrera",
+                    "weight": 75.869
+                  },
+                  {
+                    "text": "boxster",
+                    "weight": 33.8978
+                  },
+                  {
+                    "text": "cayman",
+                    "weight": 31.4555
+                  },
+                  {
+                    "text": "保时捷卡宴",
+                    "weight": 30.6561
+                  },
+                  {
+                    "text": "小米",
+                    "weight": 28.5823
+                  },
+                  {
+                    "text": "macan",
+                    "weight": 25.6834
+                  },
+                  {
+                    "text": "mate",
+                    "weight": 25.108
+                  },
+                  {
+                    "text": "华为荣耀",
+                    "weight": 19.4584
+                  },
+                  {
+                    "text": "panamera",
+                    "weight": 18.4039
+                  },
+                  {
+                    "text": "gt3",
+                    "weight": 18.2718
+                  },
+                  {
+                    "text": "麒麟",
+                    "weight": 17.8228
+                  },
+                  {
+                    "text": "评测",
+                    "weight": 17.5097
+                  },
+                  {
+                    "text": "三星",
+                    "weight": 15.4301
+                  },
+                  {
+                    "text": "turbo",
+                    "weight": 15.1799
+                  },
+                  {
+                    "text": "matebook",
+                    "weight": 14.8065
+                  },
+                  {
+                    "text": "plus",
+                    "weight": 14.3042
+                  },
+                  {
+                    "text": "荣耀",
+                    "weight": 13.1802
+                  },
+                  {
+                    "text": "什么值得买",
+                    "weight": 13.0381
+                  },
+                  {
+                    "text": "刘滨",
+                    "weight": 12.9741
+                  },
+                  {
+                    "text": "cabriolet",
+                    "weight": 12.3562
+                  },
+                  {
+                    "text": "双摄像头",
+                    "weight": 11.7167
+                  },
+                  {
+                    "text": "新机",
+                    "weight": 11.616
+                  },
+                  {
+                    "text": "邵华",
+                    "weight": 10.9885
+                  },
+                  {
+                    "text": "旗舰",
+                    "weight": 10.9706
+                  },
+                  {
+                    "text": "max",
+                    "weight": 10.5659
+                  },
+                  {
+                    "text": "nova",
+                    "weight": 10.2549
+                  },
+                  {
+                    "text": "车主",
+                    "weight": 9.8972
+                  },
+                  {
+                    "text": "徕卡",
+                    "weight": 9.8086
+                  },
+                  {
+                    "text": "xplay5",
+                    "weight": 9.8033
+                  },
+                  {
+                    "text": "gts",
+                    "weight": 9.5672
+                  },
+                  {
+                    "text": "亮相",
+                    "weight": 9.4432
+                  },
+                  {
+                    "text": "edition",
+                    "weight": 9.4247
+                  },
+                  {
+                    "text": "pro",
+                    "weight": 8.965
+                  },
+                  {
+                    "text": "提车作业",
+                    "weight": 8.6495
+                  },
+                  {
+                    "text": "闪存",
+                    "weight": 8.5554
+                  },
+                  {
+                    "text": "oppo",
+                    "weight": 8.2912
+                  },
+                  {
+                    "text": "suv",
+                    "weight": 7.697
+                  },
+                  {
+                    "text": "麦芒",
+                    "weight": 7.5647
+                  },
+                  {
+                    "text": "卡宴",
+                    "weight": 7.55
+                  },
+                  {
+                    "text": "畅享",
+                    "weight": 7.4833
+                  },
+                  {
+                    "text": "驱动",
+                    "weight": 7.4294
+                  },
+                  {
+                    "text": "搭载",
+                    "weight": 7.228
+                  },
+                  {
+                    "text": "芯片",
+                    "weight": 7.2012
+                  },
+                  {
+                    "text": "style",
+                    "weight": 7.1329
+                  },
+                  {
+                    "text": "改装",
+                    "weight": 7.1284
+                  },
+                  {
+                    "text": "揭秘",
+                    "weight": 6.9896
+                  },
+                  {
+                    "text": "rs",
+                    "weight": 6.7798
+                  },
+                  {
+                    "text": "ai",
+                    "weight": 6.5507
+                  },
+                  {
+                    "text": "处理器",
+                    "weight": 6.3791
+                  }
                 ],
             },
             "id": "2",
@@ -1462,8 +1655,8 @@
         }else if (tab=="market") {
           IAX_CHART_TOOL.initData(json.data);
           IAX_CHART_TOOL.initTop5Graph("select_top_brand",json.data.top5brand);
-          IAX_CHART_TOOL.initTop5Graph("select_top_products",json.data.top5products);
-          IAX_CHART_TOOL.initBubbleGraph("bubble-container",json.data);
+          IAX_CHART_TOOL.initTop5Graph_product("select_top_products",json.data.top5products);
+          IAX_CHART_TOOL.initBubbleGraph("bubble-container",json.data,"HK");
           IAX_CHART_TOOL.resizeChart();
           // IAX_CHART_TOOL.initTotalAudience("select_audience","audience_total","market-map",json.data);
           // IAX_CHART_TOOL.initGender("gender-map",json.data);
@@ -1476,8 +1669,8 @@
       })
       //初始化
       $("#tab-share").find("div:first").hide();
-      $("#tab-share").append('<div class="analysis-loading"><img class="analysis-gif" src="../images/loading.gif"></img></div>');
-      $("#myTab").hide();
+      var setProcess = IAX_CHART_TOOL.loadingGif("tab-share");
+      // $("#myTab").hide();
       $(".button-right").hide();
       var json = {};
       for (var i = 0; i < data.result.length; i++) {
@@ -1487,19 +1680,26 @@
       };
       //假设5秒后获取json数据，要先show，后init图表
       setTimeout(function(){
-        $(".analysis-loading").remove();
-        $("#tab-share").find("div:first").show();
-        $("#myTab").show();
-        $(".button-right").show();
-        IAX_CHART_TOOL.initData(json.data);
-        IAX_CHART_TOOL.initMixTrend("line_chart","select_trend_article","daterange",json.data);
-        IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
-        IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
-        IAX_CHART_TOOL.resizeChart();
+        setProcess(true);
+        setTimeout(function(){
+          $(".analysis-loading").remove();
+          $("#tab-share").find("div:first").show();
+          // $("#myTab").show();
+          $(".button-right").show();
+          IAX_CHART_TOOL.initData(json.data);
+          IAX_CHART_TOOL.initMixTrend("line_chart","select_trend_article","daterange",json.data);
+          // IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
+          IAX_CHART_TOOL.initAudienceScale("audienceScale",json.data);
+          IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,300);
+          IAX_CHART_TOOL.resizeChart();
+        },100)
+        
       },2000)
       
       //导出pdf
       IAX_CHART_TOOL.exportForPdf("export-pdf","myTabContent");
+
+      $("#audience_plan").chosen();
 
      });
       function initCalendar(id,options) {

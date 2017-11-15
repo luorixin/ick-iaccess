@@ -46,7 +46,7 @@ timeRangeSchedule.prototype.bindEvent = function(){
 		};
 		$(this).val(inputNewValue);
 		var timeArr = $inputCon.parent().find("input").map(function(){
-			return $(this).attr("value");
+			return $(this).val();
 		}).get();
 		var isVerify = _this.verifyInput(timeArr);
 		if (!isVerify) {
@@ -63,7 +63,7 @@ timeRangeSchedule.prototype.bindEvent = function(){
       	var inputOldValue = $input.attr("title");
       	$input.val(inputNewValue);
       	var timeArr = $inputCon.parent().find("input").map(function(){
-			return $(this).attr("value");
+			return $(this).val();
 		}).get();
 		var isVerify = _this.verifyInput(timeArr);
 		if (!isVerify) {
@@ -90,7 +90,7 @@ timeRangeSchedule.prototype.bindEvent = function(){
     })
     $("#"+_this.boxId).on("click",".btn-success",function(){
     	var timeArr = $("#"+_this.boxId).find("input").map(function(){
-			return $(this).attr("value");
+			return $(this).val();
 		}).get();
 		var isVerify = _this.verifyInput(timeArr);
 		if (!isVerify) {

@@ -179,8 +179,10 @@ a:focus{outline:none!important}
   color: #fff;
   width: 900px;
 }
-.login-title .login-description p{padding: 10px 0;font-size: 50px;color:#fff;font-weight: bold;line-height: 30px;}
-.login-title .login-description label{line-height: 20px; font-size: 20px;color: #fff;width: 620px;}
+.login-title .login-description p{height: 70px; line-height: 70px; font-weight: bold; font-size: 40px;}
+    
+.login-title .login-description label{line-height: 25px; font-size:25px;color: #fff;font-weight: bold;}
+.login-title .login-description label:last-child{font-weight: normal;}
 .login-box {
     width: 50%;
     min-height: 100%;
@@ -352,19 +354,32 @@ input:-webkit-autofill {
   height: 40px;
 }
 .x-login-warp .code .img-key,.x-login-warp .code  input[type="text"]{
-	display:inline-block;
-	*display:inline;
-	vertical-align:middle;
+  display:inline-block;
+  *display:inline;
+  vertical-align:middle;
 }
 .x-login-warp .code  input[type="text"]{
-	width:182px!important;
+  width:182px!important;
 }
 .x-login-warp .code .img-key{
-	width:80px;
-	height:40px;
+  width:80px;
+  height:40px;
   border: 1px solid #acb0bc;
   border-left: 0;
-	padding:5px;
+  padding:5px;
   box-sizing: border-box;
-	overflow:hidden;
+  overflow:hidden;
+}
+.announcement{
+  background-color: #FFEEEE;
+  border: 1px solid #da1818;
+  padding: 5px 10px;
+  width: 240px;
+  min-height: 28px;
+  word-wrap: break-word;
+  font-size: 12px;
+  text-align: left;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 20px;
 }

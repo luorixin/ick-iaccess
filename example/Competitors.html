@@ -53,6 +53,7 @@
     <script type="text/javascript" src="./js/iax-template.js"></script>
     <script type="text/javascript" src="./js/iax-chart-tool.js"></script>
     <script type="text/javascript" src="./js/jqcloud-1.0.4.js"></script>
+    <script type="text/javascript" src="./js/echarts-map/HK.js"></script>
 
 </head>
     <body>
@@ -351,21 +352,27 @@
       		<div class="page_title">
       		  <div class="row">
 	              <div class="client-row"><h1>Audience Analysis:</h1></div> 
-	              <div class="client-row">
-	                <label style="line-height:20px;">
-	                  <div class="dropdown">
-	                    <input id="hasSavedPlan" type="hidden" value="1"/>
-	                    <a class=" dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="cursor:pointer;color:#ef4136;font-size:20px;">
-	                      Estee Lauder - Makeup
-	                    </a>
-	                    <i class="fa fa-caret-down" aria-hidden="true" style="position:absolute;top:5px;right:-10px;color:#ef4136;"></i>
-	                    <ul class="dropdown-menu ss"  aria-labelledby="dropdownMenu1" style="top:100%!important;border-top:1px solid #dfdfdf!important;min-width:240px;">
-	                      <li data-value="-1"><a href="javascript:;">google</a></li>
-	                      <li data-value="-1"><a href="javascript:;">baidu</a></li>
-	                    </ul>
-	                  </div>
-	                </label>
-	              </div>
+	              <div class="client-row noborder-chosen">
+                  <label style="line-height:20px;">
+                    <select class="select" id="audience_plan" name="audiencePlan" disname="chosen下拉">
+                      <option value="google">Estee Lauder - Makeup</option>
+                      <option value="baidu">Estee Lauder - Makeup2</option>
+                    </select>
+                    <!--
+                    <div class="dropdown">
+                      <input id="hasSavedPlan" type="hidden" value="1"/>
+                      <a class=" dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="cursor:pointer;color:#ef4136;font-size:20px;">
+                        Estee Lauder - Makeup
+                      </a>
+                      <i class="fa fa-caret-down" aria-hidden="true" style="position:absolute;top:5px;right:-10px;color:#ef4136;"></i>
+                      <ul class="dropdown-menu ss"  aria-labelledby="dropdownMenu1" style="top:100%!important;border-top:1px solid #dfdfdf!important;min-width:240px;">
+                        <li data-value="-1"><a href="javascript:;">google</a></li>
+                        <li data-value="-1"><a href="javascript:;">baidu</a></li>
+                      </ul>
+                    </div>
+                   -->
+                  </label>
+                </div>
 	            </div>
        		</div>
       		  <!-- Page title -->
@@ -395,158 +402,193 @@
       			<div class="tab-pane fade in active" id="tab-share">
 	                <div class="" id="for_export_share">
 	                  <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                      <p>Brands</p>
 	                    <ul class="simulator-check-container simulator-single brand_choose" style="margin-bottom:2.5px;">
 	                      
 	                    </ul>
-	                    <div class="plan-reports-result clearfix">
+                      <hr style="margin:10px -20px 7.5px -20px"/>
+	                    <div class="plan-reports-result">
+                        <div class="plan-reports-result-inner hide">
+                          <!--Total-->
+                          <div class="plan-result-graph" id="select_line_map_share" style="width:100%;height:280px;padding:0;">
+                            <div class="plan-result-text">
+                              <div class="result-text-header">
+                                <label id="date_header">Trend of Overall Brand Scale
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in products. Also it is a comparison among top 5 products."></i>
+                                </label>
+                                <div class="report-dropdown hide" style="top:30px;right:20px;">
+                                  <div class="date-range">
+                                    <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
+                                    <input type="text" id="daterange_share"
+                                      style="width:155px;"
+                                      placeholder="please select a period" value="2017-05-20 ~ 2017-06-15"
+                                      class="form-control date-range-input xmoCalendarInputSchedule">
+                                       <input type="hidden"  name="begin" value="2017-05-20" />
+                                      <input type="hidden"  name="end" value="2017-06-15" />
+                                     <span class="caret arrow-calendar"></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                    <div id="line_chart_share" class="line-chart-map" style="width:100%;height:220px;">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="plan-reports-message hide" id="select_brand_share">
+                          <span>Selected Brand: </span><span></span>
+                        </div>
 	                      <div class="plan-reports-result-inner" style="width:35%">
 	                        <!--total-->
-	                        <div class="plan-result-graph graph-top" style="width:100%;height:500px;padding: 0 7.5px 0 0;" id="select_audience_share">
-	                          <div class="plan-result-text" style="border-right:none;width:50%;float:left;height: 250px;border-bottom: 0;">
-	                            <div class="result-text-header clearfix">
-	                              <label id="date_header">Brand Scale
-	                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in my brand / a competitor."></i>
-	                              </label>
-	                            </div>
-	                             <label style="margin-top:-10px;height:35px;">(Number of unique audiences following your brand)</label>
-	                            <div class="result-text-info clearfix x-mt10" style="height:150px;">
-	                              <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:35px;">
-	                                <label class="titleRed" id="audience_total_share" style="">0</label>
-	                              </div>
-	                            </div>
-	                          </div>
-	                          
-	                          <!--Industry Penetration-->
-	                          <div class="plan-result-text" style="border-left:none;width:50%;float:left;height: 250px;border-bottom: 0;">
-	                            <div class="result-text-header">
-	                              <label id="date_header">Brand Market Share
-	                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of my brand / a competitor overlaps the industry."></i>
-	                              </label>
-	                            </div>
-	                            <div class="result-graph-info x-mt10">
-	                              <div class="result-graph-word word-impr">
-	                                  <div class="result-graph-word-content" style="padding-top:40px;width:180px;">
-	                                    <div id="market-map_share" class="market-map" style="width:180px;height:160px;">
-	                                    </div>
-	                                  </div>
-	                              </div>
-	                            </div>
-	                          </div>
-	                          <!-- compare -->
-	                          <div class="plan-result-text" style="width:100%;float:left;height: 270px;margin-top: -20px;border-top: 0;">
-	                             <div class="result-text-info clearfix x-mt10" style="height:120px;">
-	                                <div class="plan-growth" style="">
-	                                  <div>Daily Growth</div>
-	                                  <i class="fa fa-caret-up fa-fw"  aria-hidden="true"></i>
-	                                  <span >1.25M (1.3%)</span>
-	                                </div>
-	                                <div class="plan-growth" style="width:50%;float:left;">
-	                                  <div>Weekly Growth</div>
-	                                  <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i>
-	                                  <span >1.25M (1.3%)</span>
-	                                </div>
-	                                 <div class="plan-growth" style="float:right;width:50%;">
-	                                  <div>Monthly Growth</div>
-	                                  <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
-	                                  <span >1.25M (1.3%)</span>
-	                                </div>
-	                              </div>
-	                              <hr style="margin:0 18px"/>
-	                              <div class="compare_detail">
-	                                  <table id="compare_list" cellspacing="0" width="100%">
-                                    <tbody>
-                                        <tr>
-                                          <td style="width:140px;">2017-08-18</td>
-                                          <td style="width:55px"></td>
-                                          <td style="width:55px"></td>
-                                          <td style="width:45px"></td>
-                                          <td style="width:45px"></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Total Days</td>
-                                          <td><b>38 days</b></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Range</td>
-                                          <td colspan="2"><b>11.28M - 12.56M</b></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr style="height:15px;">
-                                          <td></td>
-                                          <td colspan="2"></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Average</td>
-                                          <td><b>12.56M</b></td>
-                                          <td>
-                                            <i class="fa fa-caret-down" style="" aria-hidden="true"></i>
-                                            <span>1.25%</span>
-                                          </td>
-                                          <td style="text-align:right">
-                                            <div class="compare-progress-line caret-down" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
-                                              <div style="width: 35.0%;" class="bar"></div>
-                                            </div>
-                                          </td>
-                                          <td>
-                                            
-                                          </td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Last 7 days Average</td>
-                                          <td><b>12.56M</b></td>
-                                          <td>
-                                            <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
-                                            <span>1.25%</span>
-                                          </td>
-                                          <td style="text-align:right">
-                                            
-                                          </td>
-                                          <td>
-                                            <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
-                                              <div style="width: 55.0%;" class="bar"></div>
-                                            </div>
-                                          </td>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Last 30 days Average</td>
-                                          <td><b>12.56M</b></td>
-                                          <td>
-                                            <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
-                                            <span>1.25%</span>
-                                          </td>
-                                          <td style="text-align:right">
-                                            <div class="compare-progress-line caret-down" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
-                                              <div style="width: 35.0%;" class="bar"></div>
-                                            </div>
-                                          </td>
-                                          <td>
-                                            <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
-                                              <div style="width: 55.0%;" class="bar"></div>
-                                            </div>
-                                          </td>
-                                          <td></td>
-                                        </tr>
-                                    </tbody>
-                                  </table>
-	                              </div>
-	                          </div>
-	                        </div>
+	                        <div class="plan-result-graph graph-top" style="width:100%;height:480px;padding: 0 7.5px 0 0;" id="select_audience_share">
+                            <div class="plan-result-text" style="border-right:none;width:50%;float:left;height: 230px;border-bottom: 0;">
+                              <div class="result-text-header clearfix">
+                                <label id="date_header">Brand Scale
+                                <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The number of audience in my brand / a competitor."></i>
+                                </label>
+                              </div>
+                               <label style="margin-top:-10px;height:35px;">(Number of unique audiences following your brand)</label>
+                              <div class="result-text-info clearfix x-mt10" style="height:150px;">
+                                <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:15px;">
+                                  <label class="titleRed" id="audience_total_share" style="">0</label>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!--Industry Penetration-->
+                            <div class="plan-result-text" style="border-left:none;width:50%;float:left;height: 230px;border-bottom: 0;">
+                              <div class="result-text-header">
+                                <label id="date_header">Brand Market Share
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of my brand / a competitor overlaps the industry."></i>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr">
+                                    <div class="result-graph-word-content" style="padding-top:20px;width:180px;">
+                                      <div id="market-map_share" class="market-map" style="width:180px;height:160px;">
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- compare -->
+                            <div class="plan-result-text" style="width:100%;float:left;height: 285px;margin-top: -35px;border-top: 0;">
+                               <div class="result-text-info clearfix x-mt10" style="height:120px;">
+                                  <div class="plan-growth" style="">
+                                    <div>Daily Growth</div>
+                                    <i class="fa fa-caret-up fa-fw"  aria-hidden="true"></i>
+                                    <span >1.25M (1.3%)</span>
+                                  </div>
+                                  <div class="plan-growth" style="width:50%;float:left;">
+                                    <div>Weekly Growth</div>
+                                    <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i>
+                                    <span >1.25M (1.3%)</span>
+                                  </div>
+                                   <div class="plan-growth" style="float:right;width:50%;">
+                                    <div>Monthly Growth</div>
+                                    <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+                                    <span >1.25M (1.3%)</span>
+                                  </div>
+                                </div>
+                                <hr style="margin:0 18px"/>
+                                <div class="compare_detail">
+                                    <table id="compare_list" cellspacing="0" width="100%">
+                                      <tbody>
+                                          <tr>
+                                            <td style="width:135px;">2017-08-18</td>
+                                            <td style="width:55px"></td>
+                                            <td style="width:60px"></td>
+                                            <td style="width:45px"></td>
+                                            <td style="width:45px"></td>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Total Days</td>
+                                            <td><b>38 days</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Range</td>
+                                            <td colspan="2"><b>11.28M - 12.56M</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                          <tr style="height:15px;">
+                                            <td></td>
+                                            <td colspan="2"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Average</td>
+                                            <td><b>12.56M</b></td>
+                                            <td>
+                                              <i class="fa fa-caret-down" style="" aria-hidden="true"></i>
+                                              <span>1.25%</span>
+                                            </td>
+                                            <td style="text-align:right;border-right:1px solid #dfdfdf;">
+                                              <div class="compare-progress-line caret-down" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                                <div style="width: 35.0%;" class="bar"></div>
+                                              </div>
+                                            </td>
+                                            <td>
+                                              
+                                            </td>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Last 7 days Average</td>
+                                            <td><b>12.56M</b></td>
+                                            <td>
+                                              <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
+                                              <span>1.25%</span>
+                                            </td>
+                                            <td style="text-align:right;border-right:1px solid #dfdfdf;">
+                                              
+                                            </td>
+                                            <td>
+                                              <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                                <div style="width: 35.0%;" class="bar"></div>
+                                              </div>
+                                            </td>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Last 30 days Average</td>
+                                            <td><b>12.56M</b></td>
+                                            <td>
+                                              <i class="fa fa-caret-up" style="" aria-hidden="true"></i>
+                                              <span>1.25%</span>
+                                            </td>
+                                            <td style="text-align:right;border-right:1px solid #dfdfdf;">
+                                             
+                                            </td>
+                                            <td>
+                                              <div class="compare-progress-line caret-up" data-toggle="tooltip" data-placement="bottom" data-original-title="35.00%">
+                                                <div style="width: 55.0%;" class="bar"></div>
+                                              </div>
+                                            </td>
+                                            <td></td>
+                                          </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                          </div>
 	                        <!--end-->
 
 	                        <!--cloud tag-->
-	                        <div class="plan-result-graph graph-top" style="width:100%;height:595px;padding: 0 7.5px 0 0;" id="select_keywords_share">
+	                        <div class="plan-result-graph graph-top" style="width:100%;height:585px;padding: 0 7.5px 0 0;" id="select_keywords_share">
 	                          <div class="plan-result-text">
 	                            <div class="result-text-header clearfix">
 	                              <label>Brand Related Keywords
@@ -568,7 +610,7 @@
 	                      </div>
 	                      <div class="plan-reports-result-inner" style="width:65%">
 	                        <!--Trend map-->
-	                        <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:350px;padding:0 7.5px">
+	                        <div class="plan-result-graph" id="select_trend_map" style="width:100%;height:320px;padding:0 7.5px">
 	                          <div class="plan-result-text">
 	                            <div class="result-text-header">
 	                              <label id="date_header">Trend of Brand Scale & Brand Market Share
@@ -590,7 +632,7 @@
 	                            <div class="result-graph-info x-mt10">
 	                              <div class="result-graph-word word-impr">
 	                                <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-	                                  <div id="mix_chart" class="line-chart-map" style="width:100%;height:270px;margin-top:30px;">
+	                                  <div id="mix_chart" class="line-chart-map" style="width:100%;height:240px;margin-top:30px;">
 	                                  </div>
 	                                </div>
 	                              </div>
@@ -675,10 +717,11 @@
 	              <div class="" id="for_export_brand">
 	                
 	                <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                     <p>Brands (You can select max. 5 brands)</p>
 	                    <ul class="simulator-check-container multi_choose_brand" style="margin-bottom:2.5px;">
 	                      
 	                    </ul>
-	                    <hr style="margin:18px -20px"/>
+	                    <hr style="margin:10px -20px 7.5px -20px"/>
 	                    <div class="plan-reports-result">
 	                      <div class="plan-reports-result-inner" name="single_report">
 	                        <!--Total-->
@@ -693,6 +736,7 @@
 		                            <div class="result-graph-word word-impr">
 		                              <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
 		                                <div id="product-map" class="device-map" style="width:100%;height:220px;">
+
 		                                </div>
 		                              </div>
 		                            </div>
@@ -702,19 +746,19 @@
 	                      </div>
 	                      <div class="plan-reports-result-inner hide" name="multi_report">
 	                        <!--Total-->
-	                        <div class="plan-result-graph" style="width:100%;height:380px;padding:0;">
+	                        <div class="plan-result-graph" style="width:100%;height:auto;min-height:300px;padding:0;">
 	                          <div class="plan-result-text">
-		                          <div class="result-text-header clearfix">
+		                          <div class="result-text-header">
 		                            <label id="date_header">Product Share
 		                              <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The audience percentage of each products"></i>
 		                            </label>
 		                          </div>
 		                          <div class="result-graph-info x-mt10">
-		                            <div class="result-graph-word word-impr">
-		                              <div class="interest-multi" id="product-multi-map">
+		                            <div class="result-graph-word word-impr" style="height:auto;min-height:260px;margin-bottom:20px;">
+		                              <div class="interest-multi" id="product-multi-map" style="min-height:260px;">
 		                              	
 		                              </div>
-
+                                  <div class="clearboth"></div>
 		                            </div>
 		                          </div>
 		                        </div>
@@ -764,7 +808,7 @@
 	                            <div class="result-text-header clearfix">
 	                              <label>Age Groups</label>
 	                            </div>
-	                            <div class="result-graph-info clearfix x-mt10">
+	                            <div class="result-graph-info x-mt10">
 	                              <div class="result-graph-word word-impr" style="height:225px;">
 	                                <div class="result-graph-word-content">
 	                                  
@@ -965,7 +1009,7 @@
 	                              <ul class="multi-tab">
 	                                
 	                              </ul>
-	                              <div style="float:left;width:100%;padding:0 20px;"><hr style="margin-right:40px;"/></div>
+	                              <div style="float:left;width:100%;"><hr style="margin:20px;"/></div>
 	                              <div class="result-graph-word word-impr" style="margin:0 auto;">
 	                                <div class="result-graph-word-map">
 	                                  <div class="region-map" id="region-brand-map_multi" style="width:450px;"></div>
@@ -1080,53 +1124,17 @@
 	                    <div class="plan-reports" style="margin-top:-7.5px;">
 	                    	<div name="single-product-add">
 	                    		<p>Brands</p>
-		                    	<ul class="simulator-check-container simulator-single brand_choose" style="margin-bottom:2.5px;">
+		                    	<ul class="cross_brand_choose" style="margin-bottom:2.5px;">
 		                      
 		                    	</ul>
-		                    	<hr style="margin:18px -20px"/>
-		                        <p>Products</p>
-		                        <ul class="simulator-check-container multi_choose" style="margin-bottom:2.5px;">
+		                    	<hr style="margin:10px -20px 10px -20px"/>
+		                        <p>Products (You can select max. 5 products)</p>
+		                        <ul class="simulator-check-container multi_choose simulator-check-product" style="margin-bottom:2.5px;">
 		                        
 		                        </ul>
-		                        <hr style="margin:18px -20px"/>
+		                        <hr style="margin:10px -20px 7.5px -20px"/>
 	                    	</div>
-	                    	<div name="cross-product-add" class="hide">
-		                    	<div class="addProduct-suggest-con">
-				                  <label>Products</label>
-				                  <ul class="cross_add_brand">
-				                    <li>
-				                    	<div class="dropdown modifylabel">
-				                    		<input name="addProduct_name" type="hidden" value="">
-				                    		<div class="checkbox checkbox-primary checkbox-switch" >
-		                                      <input type="checkbox" name="addProducts" data-target="" id="addProducts0" value="0">
-		                                      <label for="addProducts0"></label>
-		                                  	</div>
-		                                  	<button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select A Product<span class="caret arrow-down"></span></button>
-		                                  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-									        </ul>
-				                    	</div>
-				                    </li>
-				                    <li class="plus-area addCrossProduct" style="margin-top:0">            
-				                      <i class="fa fa-plus"></i>           
-				                       <button class="btn dropdown-toggle" type="button">
-				                        Product&nbsp;            
-				                       </button>  
-				                    </li>
-				                    <li>
-				                      <a href="javascript:;" class="word-save">Save</a>
-				                      <a href="javascript:;" class="word-cancel">Cancel</a>
-				                    </li>
-				                  </ul>
-				                  <ul class="simulator-check-container hideImportant cross_choose_brand" style="margin-top:0;margin-bottom:2.5px;">
-		                      
-		                   		  </ul>
-		                   		  <div class="back_single hide" style="margin-top:10px;">
-		                   		  	<span class="fa fa-arrow-left"></span>
-		                   		  	<a href="javascript:;"> Back to Single Brand Product Analysis </a>
-		                   		  </div>
-				                </div>
-				                <hr style="margin:18px -20px"/>
-				            </div>
+	                    	
 	                        <div class="plan-reports-result">
 	                          <div class="plan-reports-result-inner">
 	                            <!--Total-->
@@ -1177,7 +1185,7 @@
 	                                    </label>
 	                                  </div>
 	                                  <div class="result-text-info clearfix x-mt10">
-	                                    <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:20px;">
+	                                    <div class="result-text-word word-impr plan-reports-bg-total" style="height:120px;margin-top:10px;">
 	                                      <label class="titleRed" id="product_total" style="">0</label>
 	                                    </div>
 	                                  </div>
@@ -1314,7 +1322,7 @@
 	                                <div class="result-text-header clearfix">
 	                                  <label>Age Groups</label>
 	                                </div>
-	                                <div class="result-graph-info clearfix x-mt10">
+	                                <div class="result-graph-info x-mt10">
 	                                  <div class="result-graph-word word-impr" style="height:225px;">
 	                                    <div class="result-graph-word-content">
 	                                      
@@ -1514,7 +1522,7 @@
 	                                  <ul class="multi-tab">
 	                                    
 	                                  </ul>
-	                                  <div style="float:left;width:100%;padding:0 20px;"><hr style="margin-right:40px;"/></div>
+	                                  <div style="float:left;width:100%;"><hr style="margin:20px;"/></div>
 	                                  <div class="result-graph-word word-impr" style="margin:0 auto;">
 	                                    <div class="result-graph-word-map">
 	                                      <div class="region-map" id="region-product-map_multi" style="width:450px;"></div>
@@ -1624,8 +1632,8 @@
 	            
 	      		</div>
           	</div>
+        </div>
         	<div class="clearboth"></div>
-      	</div>
       </div>
 
       <!-- footer -->
@@ -1720,7 +1728,7 @@
                   },
                   "Female Fashion": {
                       "name": "Female Fashion",
-                      "value": 20,
+                      "value": 50,
                       "sub": ["Skin Care","Make-up / Customer"]
                   },
                   "Food & Drink": {
@@ -1730,7 +1738,7 @@
                   },
                   "Restaurants": {
                       "name": "Restaurants",
-                      "value": 20,
+                      "value": 40,
                       "sub": ["Skin Care","Make-up / Customer"]
                   },
                   "_others":{
@@ -1762,7 +1770,7 @@
                   {"name": "Overseas", "value": "5551"}
               ]
             },
-            "id": "1",
+            "id": "10",
             "name": "brand"
         },{
             "data": {//格式:productId:data
@@ -1814,33 +1822,33 @@
                   "top5productsTrend":{
                     "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
                     "result":[
-                      {"date":"2017-05-20","name":"Stay-in-Place Makeup","value":"11"},
-                      {"date":"2017-05-21","name":"Stay-in-Place Makeup","value":"21"},
-                      {"date":"2017-05-22","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-05-23","name":"Stay-in-Place Makeup","value":"41"},
-                      {"date":"2017-05-24","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-05-25","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-05-26","name":"Stay-in-Place Makeup","value":"71"},
-                      {"date":"2017-05-27","name":"Stay-in-Place Makeup","value":"11"},
-                      {"date":"2017-05-28","name":"Stay-in-Place Makeup","value":"21"},
-                      {"date":"2017-05-29","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-05-30","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-05-31","name":"Stay-in-Place Makeup","value":"81"},
-                      {"date":"2017-06-01","name":"Stay-in-Place Makeup","value":"21"},
-                      {"date":"2017-06-02","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-06-03","name":"Stay-in-Place Makeup","value":"71"},
-                      {"date":"2017-06-04","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-06-05","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-06-06","name":"Stay-in-Place Makeup","value":"41"},
-                      {"date":"2017-06-07","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-06-08","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-06-09","name":"Stay-in-Place Makeup","value":"71"},
-                      {"date":"2017-06-10","name":"Stay-in-Place Makeup","value":"81"},
-                      {"date":"2017-06-11","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-06-12","name":"Stay-in-Place Makeup","value":"41"},
-                      {"date":"2017-06-13","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-06-14","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-06-15","name":"Stay-in-Place Makeup","value":"11"},
+                      {"date":"2017-05-20","name":"Stay-in-Place Makeup1","value":"11"},
+                      {"date":"2017-05-21","name":"Stay-in-Place Makeup1","value":"21"},
+                      {"date":"2017-05-22","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-05-23","name":"Stay-in-Place Makeup1","value":"41"},
+                      {"date":"2017-05-24","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-05-25","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-05-26","name":"Stay-in-Place Makeup1","value":"71"},
+                      {"date":"2017-05-27","name":"Stay-in-Place Makeup1","value":"11"},
+                      {"date":"2017-05-28","name":"Stay-in-Place Makeup1","value":"21"},
+                      {"date":"2017-05-29","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-05-30","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-05-31","name":"Stay-in-Place Makeup1","value":"81"},
+                      {"date":"2017-06-01","name":"Stay-in-Place Makeup1","value":"21"},
+                      {"date":"2017-06-02","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-06-03","name":"Stay-in-Place Makeup1","value":"71"},
+                      {"date":"2017-06-04","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-06-05","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-06-06","name":"Stay-in-Place Makeup1","value":"41"},
+                      {"date":"2017-06-07","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-06-08","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-06-09","name":"Stay-in-Place Makeup1","value":"71"},
+                      {"date":"2017-06-10","name":"Stay-in-Place Makeup1","value":"81"},
+                      {"date":"2017-06-11","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-06-12","name":"Stay-in-Place Makeup1","value":"41"},
+                      {"date":"2017-06-13","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-06-14","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-06-15","name":"Stay-in-Place Makeup1","value":"11"},
 
                     ]
                   },
@@ -1861,7 +1869,7 @@
                       },
                       "Female Fashion": {
                           "name": "Female Fashion",
-                          "value": 20,
+                          "value": 72,
                           "sub": ["Skin Care","Make-up / Customer"]
                       },
                       "Food & Drink": {
@@ -1871,7 +1879,7 @@
                       },
                       "Restaurants": {
                           "name": "Restaurants",
-                          "value": 20,
+                          "value": 40,
                           "sub": ["Skin Care","Make-up / Customer"]
                       },
                       "_others":{
@@ -2134,7 +2142,7 @@
                       },
                       "Female Fashion": {
                           "name": "Female Fashion",
-                          "value": 20,
+                          "value": 72,
                           "sub": ["Skin Care","Make-up / Customer"]
                       },
                       "Food & Drink": {
@@ -2271,7 +2279,7 @@
                       },
                       "Female Fashion": {
                           "name": "Female Fashion",
-                          "value": 20,
+                          "value": 72,
                           "sub": ["Skin Care","Make-up / Customer"]
                       },
                       "Food & Drink": {
@@ -2408,7 +2416,7 @@
                       },
                       "Female Fashion": {
                           "name": "Female Fashion",
-                          "value": 20,
+                          "value": 72,
                           "sub": ["Skin Care","Make-up / Customer"]
                       },
                       "Food & Drink": {
@@ -2458,7 +2466,7 @@
             "data": {
                 "audience": "11.3M",
                 "allMarket": "3,267K",
-                "sentiment":156,
+                "sentiment":22,
                 "mixTrend":{
                   "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
                   "result":{"Brand Audience":
@@ -2566,23 +2574,11 @@
                   "market":1000,
                   "market_show":50,
                 },
-                "cloud_tag" :[
-                      {text: "Variety & Entertainment", weight: 33},
-                      {text: "Leisure Travel", weight: 30.5},
-                      {text: "Home & Lifestyle", weight: 20.4},
-                      {text: "Food & Drink", weight: 10},
-                      {text: "Healthcare", weight: 6.2},
-                      {text: "Psychology", weight: 18.2},
-                      {text: "Jobs & Education", weight: 20.2},
-                      {text: "Careers", weight: 5.2},
-                      {text: "Automobile", weight: 3.2},
-                      {text: "Investing", weight: 5.2}
-
-                ]
+                "cloud_tag" :[{"text":"歪果仁","weight":100},{"text":"月饼","weight":45.0382},{"text":"监狱学园","weight":22.148},{"text":"评选","weight":16.6745},{"text":"夺冠","weight":16.0865},{"text":"蛋黄","weight":15.9139},{"text":"十大","weight":14.1008},{"text":"半岛酒店","weight":9.6794},{"text":"美心","weight":7.5397},{"text":"劳斯莱斯","weight":7.3295},{"text":"进口港","weight":7.1099},{"text":"黑暗料理","weight":5.3043},{"text":"冰皮月饼","weight":5.1641},{"text":"秀身材","weight":5.1076},{"text":"礼盒","weight":5.0944},{"text":"脑洞","weight":4.8976},{"text":"真会玩","weight":4.6244},{"text":"烤箱烤","weight":4.5626},{"text":"养鱼","weight":4.5291},{"text":"凑齐","weight":4.2363},{"text":"英伦","weight":4.2329},{"text":"party","weight":4.1428},{"text":"试吃","weight":4.0997},{"text":"拉制","weight":4.0869},{"text":"礼盒装","weight":4.0621},{"text":"毛衣","weight":4.0199},{"text":"花式","weight":3.9554},{"text":"锁骨","weight":3.9276},{"text":"流沙","weight":3.9097},{"text":"分分钟","weight":3.7986},{"text":"年糕","weight":3.7755},{"text":"high","weight":3.7198},{"text":"卡片","weight":3.6305},{"text":"白莲","weight":3.5339},{"text":"做法","weight":3.4361},{"text":"大班","weight":3.4318},{"text":"中华","weight":3.4291},{"text":"自己动手","weight":3.3983},{"text":"详细讲解","weight":3.368},{"text":"半岛","weight":3.3195},{"text":"翩跹","weight":3.1109},{"text":"制作过程","weight":3.1086},{"text":"送礼","weight":3.0931},{"text":"改造","weight":3.0024},{"text":"打败","weight":2.9911},{"text":"婚礼","weight":2.927},{"text":"独家揭秘","weight":2.9041},{"text":"发售","weight":2.8313},{"text":"火腿","weight":2.8003},{"text":"名不虚传","weight":2.7826},{"text":"蔡澜","weight":2.7774},{"text":"纯正","weight":2.7176},{"text":"亮相","weight":2.6797},{"text":"金华","weight":2.486},{"text":"京城","weight":2.4588},{"text":"五仁","weight":2.4145},{"text":"解决方法","weight":2.3794},{"text":"diy","weight":2.2294},{"text":"吴京","weight":2.1215},{"text":"防弹","weight":2.1011},{"text":"中国菜","weight":2.0959},{"text":"迷你","weight":2.0499},{"text":"美英","weight":2.0181},{"text":"散装","weight":1.9724},{"text":"招牌","weight":1.8189},{"text":"清单","weight":1.5536},{"text":"英文","weight":1.5126},{"text":"全家","weight":1.4629},{"text":"征服","weight":1.4538},{"text":"淘宝","weight":1.2549}]
             },
             "id": "2",
             "name": "share",
-        }],"id":0,"name":"Estee Lauder"
+        }],"id":5,"name":"Estee Lauder"
       },{"result": [{
            "data": {
               "age_group": {
@@ -2627,6 +2623,7 @@
                   "Prefectionist": 12246,
                   "Advanced Night Cream": 11179,
                   "Resilience Lift":10000,
+                  "Resilience Lift2":10000,
               },
               
               "interest": {
@@ -2642,7 +2639,7 @@
                   },
                   "Female Fashion": {
                       "name": "Female Fashion",
-                      "value": 20,
+                      "value": 72,
                       "sub": ["Skin Care","Make-up / Customer"]
                   },
                   "Food & Drink": {
@@ -2688,690 +2685,690 @@
             "name": "brand"
         },{
             "data": {//格式:productId:data
-              "0":{
-                  "productName":"Stay-in-Place Makeup2",
-                  "age_group": {
-                      "0-17": 20,
-                      "18-24": 30,
-                      "25-34": 15,
-                      "35-44": 25,
-                      "45-54": 20,
-                      "55-64": 10,
-                      "65+": 12,
-                      "UNKNOWN": 12,  
-                  },
-                  "audience": "3.3M",
-                  "allMarket": "2,567K",
-                  "device": {
-                      "Mobile": 852,
-                      "PC": 1246,
-                      "UNKNOWN": 179
-                  },
-                  "gender": {
-                      "female": 22,
-                      "male": 38,
-                      "UNKNOWN":33,
-                  },
-                  "preferenceIndex":{
-                      "gender" : {
-                        "male": 50,
-                        "female": 50,
-                      },
-                      "ageGroup" : {
-                        "0-17": 22,
-                        "18-24": 20,
-                        "25-34": 55,
-                        "35-44": 65,
-                        "45-54": 30,
-                        "55-64": 10,
-                        "65+": 12,
-                      },
-                  },
-                  "product_share": {
-                      "Stay-in-Place Makeup": 23500,
-                      "Prefectionist": 12246,
-                      "Advanced Night Cream": 11179,
-                      "Resilience Lift":10000,
-                  },
-                  "top5productsTrend":{
-                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
-                    "result":[
-                      {"date":"2017-05-20","name":"Stay-in-Place Makeup","value":"11"},
-                      {"date":"2017-05-21","name":"Stay-in-Place Makeup","value":"21"},
-                      {"date":"2017-05-22","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-05-23","name":"Stay-in-Place Makeup","value":"41"},
-                      {"date":"2017-05-24","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-05-25","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-05-26","name":"Stay-in-Place Makeup","value":"71"},
-                      {"date":"2017-05-27","name":"Stay-in-Place Makeup","value":"11"},
-                      {"date":"2017-05-28","name":"Stay-in-Place Makeup","value":"21"},
-                      {"date":"2017-05-29","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-05-30","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-05-31","name":"Stay-in-Place Makeup","value":"81"},
-                      {"date":"2017-06-01","name":"Stay-in-Place Makeup","value":"21"},
-                      {"date":"2017-06-02","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-06-03","name":"Stay-in-Place Makeup","value":"71"},
-                      {"date":"2017-06-04","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-06-05","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-06-06","name":"Stay-in-Place Makeup","value":"41"},
-                      {"date":"2017-06-07","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-06-08","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-06-09","name":"Stay-in-Place Makeup","value":"71"},
-                      {"date":"2017-06-10","name":"Stay-in-Place Makeup","value":"81"},
-                      {"date":"2017-06-11","name":"Stay-in-Place Makeup","value":"31"},
-                      {"date":"2017-06-12","name":"Stay-in-Place Makeup","value":"41"},
-                      {"date":"2017-06-13","name":"Stay-in-Place Makeup","value":"51"},
-                      {"date":"2017-06-14","name":"Stay-in-Place Makeup","value":"61"},
-                      {"date":"2017-06-15","name":"Stay-in-Place Makeup","value":"11"},
+              // "0":{
+              //     "productName":"Stay-in-Place Makeup2",
+              //     "age_group": {
+              //         "0-17": 20,
+              //         "18-24": 30,
+              //         "25-34": 15,
+              //         "35-44": 25,
+              //         "45-54": 20,
+              //         "55-64": 10,
+              //         "65+": 12,
+              //         "UNKNOWN": 12,  
+              //     },
+              //     "audience": "3.3M",
+              //     "allMarket": "2,567K",
+              //     "device": {
+              //         "Mobile": 852,
+              //         "PC": 1246,
+              //         "UNKNOWN": 179
+              //     },
+              //     "gender": {
+              //         "female": 22,
+              //         "male": 38,
+              //         "UNKNOWN":33,
+              //     },
+              //     "preferenceIndex":{
+              //         "gender" : {
+              //           "male": 50,
+              //           "female": 50,
+              //         },
+              //         "ageGroup" : {
+              //           "0-17": 22,
+              //           "18-24": 20,
+              //           "25-34": 55,
+              //           "35-44": 65,
+              //           "45-54": 30,
+              //           "55-64": 10,
+              //           "65+": 12,
+              //         },
+              //     },
+              //     "product_share": {
+              //         "Stay-in-Place Makeup": 23500,
+              //         "Prefectionist": 12246,
+              //         "Advanced Night Cream": 11179,
+              //         "Resilience Lift":10000,
+              //     },
+              //     "top5productsTrend":{
+              //       "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+              //       "result":[
+              //         {"date":"2017-05-20","name":"Stay-in-Place Makeup2","value":"11"},
+              //         {"date":"2017-05-21","name":"Stay-in-Place Makeup2","value":"21"},
+              //         {"date":"2017-05-22","name":"Stay-in-Place Makeup2","value":"31"},
+              //         {"date":"2017-05-23","name":"Stay-in-Place Makeup2","value":"41"},
+              //         {"date":"2017-05-24","name":"Stay-in-Place Makeup2","value":"51"},
+              //         {"date":"2017-05-25","name":"Stay-in-Place Makeup2","value":"61"},
+              //         {"date":"2017-05-26","name":"Stay-in-Place Makeup2","value":"71"},
+              //         {"date":"2017-05-27","name":"Stay-in-Place Makeup2","value":"11"},
+              //         {"date":"2017-05-28","name":"Stay-in-Place Makeup2","value":"21"},
+              //         {"date":"2017-05-29","name":"Stay-in-Place Makeup2","value":"31"},
+              //         {"date":"2017-05-30","name":"Stay-in-Place Makeup2","value":"51"},
+              //         {"date":"2017-05-31","name":"Stay-in-Place Makeup2","value":"81"},
+              //         {"date":"2017-06-01","name":"Stay-in-Place Makeup2","value":"21"},
+              //         {"date":"2017-06-02","name":"Stay-in-Place Makeup2","value":"31"},
+              //         {"date":"2017-06-03","name":"Stay-in-Place Makeup2","value":"71"},
+              //         {"date":"2017-06-04","name":"Stay-in-Place Makeup2","value":"61"},
+              //         {"date":"2017-06-05","name":"Stay-in-Place Makeup2","value":"51"},
+              //         {"date":"2017-06-06","name":"Stay-in-Place Makeup2","value":"41"},
+              //         {"date":"2017-06-07","name":"Stay-in-Place Makeup2","value":"51"},
+              //         {"date":"2017-06-08","name":"Stay-in-Place Makeup2","value":"61"},
+              //         {"date":"2017-06-09","name":"Stay-in-Place Makeup2","value":"71"},
+              //         {"date":"2017-06-10","name":"Stay-in-Place Makeup2","value":"81"},
+              //         {"date":"2017-06-11","name":"Stay-in-Place Makeup2","value":"31"},
+              //         {"date":"2017-06-12","name":"Stay-in-Place Makeup2","value":"41"},
+              //         {"date":"2017-06-13","name":"Stay-in-Place Makeup2","value":"51"},
+              //         {"date":"2017-06-14","name":"Stay-in-Place Makeup2","value":"61"},
+              //         {"date":"2017-06-15","name":"Stay-in-Place Makeup2","value":"11"},
 
-                    ]
-                  },
-                  "market_share":{
-                    "market":666,
-                    "market_show":333,
-                  },
-                  "interest": {
-                      "Arts & Entertainment": {
-                          "name": "Arts & Entertainment",
-                          "value": 21,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Cooking & Recipes": {
-                          "name": "Cooking & Recipes",
-                          "value": 19,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Female Fashion": {
-                          "name": "Female Fashion",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Food & Drink": {
-                          "name": "Food & Drink",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Restaurants": {
-                          "name": "Restaurants",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "_others":{
-                          "name": "Other Related Interests",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
-                      }
-                  },
-                  "regions":[
-                      {"name": "BeiJing", "value": "123"},
-                      {"name": "TianJin", "value": "61"},
-                      {"name": "ShanXi", "value": "123"},
-                      {"name": "NeiMeng", "value": "62"},
-                      {"name": "HeBei", "value": "1223"},
-                      {"name": "JiLin", "value": "123"},
-                      {"name": "JiangXi", "value": "123"},
-                      {"name": "ShanDong", "value": "33"},
-                      {"name": "ChongQing", "value": "123"},
-                      {"name": "SiChuan", "value": "62"},
-                      {"name": "GuiZhou",  "value": "1223"},
-                      {"name": "YunNan",  "value": "123"},
-                      {"name": "XiZang", "value": "33"},
-                      {"name": "ShanXi1", "value": "123"},
-                      {"name": "GanSu", "value": "62"},
-                      {"name": "QingHai", "value": "4223"},
-                      {"name": "NingXia", "value": "123"},
-                      {"name": "XinJiang", "value": "123"},
-                      {"name": "Heilongjiang", "value": "33"},
-                      {"name": "Overseas", "value": "5551"}
-                  ]
-              },
-              "1":{
-                  "productName":"Prefectionist",
-                  "age_group": {
-                      "0-17": 20,
-                      "18-24": 40,
-                      "25-34": 25,
-                      "35-44": 35,
-                      "45-54": 10,
-                      "55-64": 20,
-                      "65+": 12,
-                      "UNKNOWN": 12,  
-                  },
-                  "audience": "3.3M",
-                  "allMarket": "2,567K",
-                  "device": {
-                      "Mobile": 852,
-                      "PC": 1246,
-                      "UNKNOWN": 179
-                  },
-                  "gender": {
-                      "female": 22,
-                      "male": 38,
-                      "UNKNOWN":33,
-                  },
-                  "preferenceIndex":{
-                      "gender" : {
-                        "male": 50,
-                        "female": 50,
-                      },
-                      "ageGroup" : {
-                        "0-17": 22,
-                        "18-24": 20,
-                        "25-34": 55,
-                        "35-44": 65,
-                        "45-54": 30,
-                        "55-64": 10,
-                        "65+": 12,
-                      },
-                  },
-                  "product_share": {
-                      "Stay-in-Place Makeup": 23500,
-                      "Prefectionist": 12246,
-                      "Advanced Night Cream": 11179,
-                      "Resilience Lift":10000,
-                  },
-                  "top5productsTrend":{
-                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
-                    "result":[
-                      {"date":"2017-05-20","name":"Prefectionist","value":"21"},
-                      {"date":"2017-05-21","name":"Prefectionist","value":"31"},
-                      {"date":"2017-05-22","name":"Prefectionist","value":"11"},
-                      {"date":"2017-05-23","name":"Prefectionist","value":"51"},
-                      {"date":"2017-05-24","name":"Prefectionist","value":"51"},
-                      {"date":"2017-05-25","name":"Prefectionist","value":"31"},
-                      {"date":"2017-05-26","name":"Prefectionist","value":"21"},
-                      {"date":"2017-05-27","name":"Prefectionist","value":"31"},
-                      {"date":"2017-05-28","name":"Prefectionist","value":"91"},
-                      {"date":"2017-05-29","name":"Prefectionist","value":"91"},
-                      {"date":"2017-05-30","name":"Prefectionist","value":"11"},
-                      {"date":"2017-05-31","name":"Prefectionist","value":"21"},
-                      {"date":"2017-06-01","name":"Prefectionist","value":"31"},
-                      {"date":"2017-06-02","name":"Prefectionist","value":"41"},
-                      {"date":"2017-06-03","name":"Prefectionist","value":"51"},
-                      {"date":"2017-06-04","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-05","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-06","name":"Prefectionist","value":"61"},
-                      {"date":"2017-06-07","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-08","name":"Prefectionist","value":"71"},
-                      {"date":"2017-06-09","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-10","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-11","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-12","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-13","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-14","name":"Prefectionist","value":"11"},
-                      {"date":"2017-06-15","name":"Prefectionist","value":"11"},
+              //       ]
+              //     },
+              //     "market_share":{
+              //       "market":666,
+              //       "market_show":333,
+              //     },
+              //     "interest": {
+              //         "Arts & Entertainment": {
+              //             "name": "Arts & Entertainment",
+              //             "value": 21,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Cooking & Recipes": {
+              //             "name": "Cooking & Recipes",
+              //             "value": 19,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Female Fashion": {
+              //             "name": "Female Fashion",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Food & Drink": {
+              //             "name": "Food & Drink",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Restaurants": {
+              //             "name": "Restaurants",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "_others":{
+              //             "name": "Other Related Interests",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+              //         }
+              //     },
+              //     "regions":[
+              //         {"name": "BeiJing", "value": "123"},
+              //         {"name": "TianJin", "value": "61"},
+              //         {"name": "ShanXi", "value": "123"},
+              //         {"name": "NeiMeng", "value": "62"},
+              //         {"name": "HeBei", "value": "1223"},
+              //         {"name": "JiLin", "value": "123"},
+              //         {"name": "JiangXi", "value": "123"},
+              //         {"name": "ShanDong", "value": "33"},
+              //         {"name": "ChongQing", "value": "123"},
+              //         {"name": "SiChuan", "value": "62"},
+              //         {"name": "GuiZhou",  "value": "1223"},
+              //         {"name": "YunNan",  "value": "123"},
+              //         {"name": "XiZang", "value": "33"},
+              //         {"name": "ShanXi1", "value": "123"},
+              //         {"name": "GanSu", "value": "62"},
+              //         {"name": "QingHai", "value": "4223"},
+              //         {"name": "NingXia", "value": "123"},
+              //         {"name": "XinJiang", "value": "123"},
+              //         {"name": "Heilongjiang", "value": "33"},
+              //         {"name": "Overseas", "value": "5551"}
+              //     ]
+              // },
+              // "1":{
+              //     "productName":"Prefectionist",
+              //     "age_group": {
+              //         "0-17": 20,
+              //         "18-24": 40,
+              //         "25-34": 25,
+              //         "35-44": 35,
+              //         "45-54": 10,
+              //         "55-64": 20,
+              //         "65+": 12,
+              //         "UNKNOWN": 12,  
+              //     },
+              //     "audience": "3.3M",
+              //     "allMarket": "2,567K",
+              //     "device": {
+              //         "Mobile": 852,
+              //         "PC": 1246,
+              //         "UNKNOWN": 179
+              //     },
+              //     "gender": {
+              //         "female": 22,
+              //         "male": 38,
+              //         "UNKNOWN":33,
+              //     },
+              //     "preferenceIndex":{
+              //         "gender" : {
+              //           "male": 50,
+              //           "female": 50,
+              //         },
+              //         "ageGroup" : {
+              //           "0-17": 22,
+              //           "18-24": 20,
+              //           "25-34": 55,
+              //           "35-44": 65,
+              //           "45-54": 30,
+              //           "55-64": 10,
+              //           "65+": 12,
+              //         },
+              //     },
+              //     "product_share": {
+              //         "Stay-in-Place Makeup": 23500,
+              //         "Prefectionist": 12246,
+              //         "Advanced Night Cream": 11179,
+              //         "Resilience Lift":10000,
+              //     },
+              //     "top5productsTrend":{
+              //       "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+              //       "result":[
+              //         {"date":"2017-05-20","name":"Prefectionist","value":"21"},
+              //         {"date":"2017-05-21","name":"Prefectionist","value":"31"},
+              //         {"date":"2017-05-22","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-05-23","name":"Prefectionist","value":"51"},
+              //         {"date":"2017-05-24","name":"Prefectionist","value":"51"},
+              //         {"date":"2017-05-25","name":"Prefectionist","value":"31"},
+              //         {"date":"2017-05-26","name":"Prefectionist","value":"21"},
+              //         {"date":"2017-05-27","name":"Prefectionist","value":"31"},
+              //         {"date":"2017-05-28","name":"Prefectionist","value":"91"},
+              //         {"date":"2017-05-29","name":"Prefectionist","value":"91"},
+              //         {"date":"2017-05-30","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-05-31","name":"Prefectionist","value":"21"},
+              //         {"date":"2017-06-01","name":"Prefectionist","value":"31"},
+              //         {"date":"2017-06-02","name":"Prefectionist","value":"41"},
+              //         {"date":"2017-06-03","name":"Prefectionist","value":"51"},
+              //         {"date":"2017-06-04","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-05","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-06","name":"Prefectionist","value":"61"},
+              //         {"date":"2017-06-07","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-08","name":"Prefectionist","value":"71"},
+              //         {"date":"2017-06-09","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-10","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-11","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-12","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-13","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-14","name":"Prefectionist","value":"11"},
+              //         {"date":"2017-06-15","name":"Prefectionist","value":"11"},
 
-                    ]
-                  },
-                  "market_share":{
-                    "market":666,
-                    "market_show":333,
-                  },
-                  "interest": {
-                      "Arts & Entertainment": {
-                          "name": "Arts & Entertainment",
-                          "value": 21,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Cooking & Recipes": {
-                          "name": "Cooking & Recipes",
-                          "value": 19,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Female Fashion": {
-                          "name": "Female Fashion",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Food & Drink": {
-                          "name": "Food & Drink",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Restaurants": {
-                          "name": "Restaurants",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "_others":{
-                          "name": "Other Related Interests",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
-                      }
-                  },
-                  "regions":[
-                      {"name": "BeiJing", "value": "223"},
-                      {"name": "TianJin", "value": "31"},
-                      {"name": "ShanXi", "value": "13"},
-                      {"name": "NeiMeng", "value": "162"},
-                      {"name": "HeBei", "value": "123"},
-                      {"name": "JiLin", "value": "1223"},
-                      {"name": "JiangXi", "value": "323"},
-                      {"name": "ShanDong", "value": "33"},
-                      {"name": "ChongQing", "value": "123"},
-                      {"name": "SiChuan", "value": "62"},
-                      {"name": "GuiZhou",  "value": "1223"},
-                      {"name": "YunNan",  "value": "123"},
-                      {"name": "XiZang", "value": "33"},
-                      {"name": "ShanXi1", "value": "123"},
-                      {"name": "GanSu", "value": "62"},
-                      {"name": "QingHai", "value": "4223"},
-                      {"name": "NingXia", "value": "123"},
-                      {"name": "XinJiang", "value": "123"},
-                      {"name": "Heilongjiang", "value": "33"},
-                      {"name": "Overseas", "value": "5551"}
-                  ]
-              },
-              "2":{
-                  "productName":"Advanced Night Cream",
-                  "age_group": {
-                      "0-17": 20,
-                      "18-24": 30,
-                      "25-34": 15,
-                      "35-44": 25,
-                      "45-54": 20,
-                      "55-64": 10,
-                      "65+": 12,
-                      "UNKNOWN": 12,  
-                  },
-                  "audience": "3.3M",
-                  "allMarket": "2,567K",
-                  "device": {
-                      "Mobile": 852,
-                      "PC": 1246,
-                      "UNKNOWN": 179
-                  },
-                  "gender": {
-                      "female": 22,
-                      "male": 38,
-                      "UNKNOWN":33,
-                  },
-                  "preferenceIndex":{
-                      "gender" : {
-                        "male": 50,
-                        "female": 50,
-                      },
-                      "ageGroup" : {
-                        "0-17": 22,
-                        "18-24": 20,
-                        "25-34": 55,
-                        "35-44": 65,
-                        "45-54": 30,
-                        "55-64": 10,
-                        "65+": 12,
-                      },
-                  },
-                  "product_share": {
-                      "Stay-in-Place Makeup": 23500,
-                      "Prefectionist": 12246,
-                      "Advanced Night Cream": 11179,
-                      "Resilience Lift":10000,
-                  },
-                  "top5productsTrend":{
-                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
-                    "result":[
-                      {"date":"2017-05-20","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-05-21","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-05-22","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-05-23","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-05-24","name":"Advanced Night Cream","value":"31"},
-                      {"date":"2017-05-25","name":"Advanced Night Cream","value":"41"},
-                      {"date":"2017-05-26","name":"Advanced Night Cream","value":"51"},
-                      {"date":"2017-05-27","name":"Advanced Night Cream","value":"61"},
-                      {"date":"2017-05-28","name":"Advanced Night Cream","value":"51"},
-                      {"date":"2017-05-29","name":"Advanced Night Cream","value":"31"},
-                      {"date":"2017-05-30","name":"Advanced Night Cream","value":"41"},
-                      {"date":"2017-05-31","name":"Advanced Night Cream","value":"51"},
-                      {"date":"2017-06-01","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-06-02","name":"Advanced Night Cream","value":"21"},
-                      {"date":"2017-06-03","name":"Advanced Night Cream","value":"31"},
-                      {"date":"2017-06-04","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-06-05","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-06-06","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-06-07","name":"Advanced Night Cream","value":"81"},
-                      {"date":"2017-06-08","name":"Advanced Night Cream","value":"91"},
-                      {"date":"2017-06-09","name":"Advanced Night Cream","value":"61"},
-                      {"date":"2017-06-10","name":"Advanced Night Cream","value":"51"},
-                      {"date":"2017-06-11","name":"Advanced Night Cream","value":"41"},
-                      {"date":"2017-06-12","name":"Advanced Night Cream","value":"21"},
-                      {"date":"2017-06-13","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-06-14","name":"Advanced Night Cream","value":"11"},
-                      {"date":"2017-06-15","name":"Advanced Night Cream","value":"11"},
-                    ]
-                  },
-                  "market_share":{
-                    "market":666,
-                    "market_show":333,
-                  },
-                  "interest": {
-                      "Arts & Entertainment": {
-                          "name": "Arts & Entertainment",
-                          "value": 21,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Cooking & Recipes": {
-                          "name": "Cooking & Recipes",
-                          "value": 19,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Female Fashion": {
-                          "name": "Female Fashion",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Food & Drink": {
-                          "name": "Food & Drink",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Restaurants": {
-                          "name": "Restaurants",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "_others":{
-                          "name": "Other Related Interests",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
-                      }
-                  },
-                  "regions":[
-                      {"name": "BeiJing", "value": "123"},
-                      {"name": "TianJin", "value": "61"},
-                      {"name": "ShanXi", "value": "123"},
-                      {"name": "NeiMeng", "value": "62"},
-                      {"name": "HeBei", "value": "1223"},
-                      {"name": "JiLin", "value": "123"},
-                      {"name": "JiangXi", "value": "123"},
-                      {"name": "ShanDong", "value": "33"},
-                      {"name": "ChongQing", "value": "123"},
-                      {"name": "SiChuan", "value": "62"},
-                      {"name": "GuiZhou",  "value": "1223"},
-                      {"name": "YunNan",  "value": "123"},
-                      {"name": "XiZang", "value": "33"},
-                      {"name": "ShanXi1", "value": "123"},
-                      {"name": "GanSu", "value": "62"},
-                      {"name": "QingHai", "value": "4223"},
-                      {"name": "NingXia", "value": "123"},
-                      {"name": "XinJiang", "value": "123"},
-                      {"name": "Heilongjiang", "value": "33"},
-                      {"name": "Overseas", "value": "5551"}
-                  ]
-              },
-              "3":{
-                  "productName":"Resilience Lift",
-                  "age_group": {
-                      "0-17": 20,
-                      "18-24": 30,
-                      "25-34": 15,
-                      "35-44": 25,
-                      "45-54": 20,
-                      "55-64": 10,
-                      "65+": 12,
-                      "UNKNOWN": 12,  
-                  },
-                  "audience": "3.3M",
-                  "allMarket": "2,567K",
-                  "device": {
-                      "Mobile": 852,
-                      "PC": 1246,
-                      "UNKNOWN": 179
-                  },
-                  "gender": {
-                      "female": 22,
-                      "male": 38,
-                      "UNKNOWN":33,
-                  },
-                  "preferenceIndex":{
-                      "gender" : {
-                        "male": 50,
-                        "female": 50,
-                      },
-                      "ageGroup" : {
-                        "0-17": 22,
-                        "18-24": 20,
-                        "25-34": 55,
-                        "35-44": 65,
-                        "45-54": 30,
-                        "55-64": 10,
-                        "65+": 12,
-                      },
-                  },
-                  "product_share": {
-                      "Stay-in-Place Makeup": 23500,
-                      "Prefectionist": 12246,
-                      "Advanced Night Cream": 11179,
-                      "Resilience Lift":10000,
-                  },
-                  "top5productsTrend":{
-                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
-                    "result":[
-                      {"date":"2017-05-20","name":"Resilience Lift","value":"21"},
-                      {"date":"2017-05-21","name":"Resilience Lift","value":"31"},
-                      {"date":"2017-05-22","name":"Resilience Lift","value":"41"},
-                      {"date":"2017-05-23","name":"Resilience Lift","value":"51"},
-                      {"date":"2017-05-24","name":"Resilience Lift","value":"71"},
-                      {"date":"2017-05-25","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-05-26","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-05-27","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-05-28","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-05-29","name":"Resilience Lift","value":"21"},
-                      {"date":"2017-05-30","name":"Resilience Lift","value":"31"},
-                      {"date":"2017-05-31","name":"Resilience Lift","value":"41"},
-                      {"date":"2017-06-01","name":"Resilience Lift","value":"51"},
-                      {"date":"2017-06-02","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-03","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-04","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-05","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-06","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-07","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-08","name":"Resilience Lift","value":"81"},
-                      {"date":"2017-06-09","name":"Resilience Lift","value":"71"},
-                      {"date":"2017-06-10","name":"Resilience Lift","value":"61"},
-                      {"date":"2017-06-11","name":"Resilience Lift","value":"31"},
-                      {"date":"2017-06-12","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-13","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-14","name":"Resilience Lift","value":"11"},
-                      {"date":"2017-06-15","name":"Resilience Lift","value":"11"},
+              //       ]
+              //     },
+              //     "market_share":{
+              //       "market":666,
+              //       "market_show":333,
+              //     },
+              //     "interest": {
+              //         "Arts & Entertainment": {
+              //             "name": "Arts & Entertainment",
+              //             "value": 21,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Cooking & Recipes": {
+              //             "name": "Cooking & Recipes",
+              //             "value": 19,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Female Fashion": {
+              //             "name": "Female Fashion",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Food & Drink": {
+              //             "name": "Food & Drink",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Restaurants": {
+              //             "name": "Restaurants",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "_others":{
+              //             "name": "Other Related Interests",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+              //         }
+              //     },
+              //     "regions":[
+              //         {"name": "BeiJing", "value": "223"},
+              //         {"name": "TianJin", "value": "31"},
+              //         {"name": "ShanXi", "value": "13"},
+              //         {"name": "NeiMeng", "value": "162"},
+              //         {"name": "HeBei", "value": "123"},
+              //         {"name": "JiLin", "value": "1223"},
+              //         {"name": "JiangXi", "value": "323"},
+              //         {"name": "ShanDong", "value": "33"},
+              //         {"name": "ChongQing", "value": "123"},
+              //         {"name": "SiChuan", "value": "62"},
+              //         {"name": "GuiZhou",  "value": "1223"},
+              //         {"name": "YunNan",  "value": "123"},
+              //         {"name": "XiZang", "value": "33"},
+              //         {"name": "ShanXi1", "value": "123"},
+              //         {"name": "GanSu", "value": "62"},
+              //         {"name": "QingHai", "value": "4223"},
+              //         {"name": "NingXia", "value": "123"},
+              //         {"name": "XinJiang", "value": "123"},
+              //         {"name": "Heilongjiang", "value": "33"},
+              //         {"name": "Overseas", "value": "5551"}
+              //     ]
+              // },
+              // "2":{
+              //     "productName":"Advanced Night Cream",
+              //     "age_group": {
+              //         "0-17": 20,
+              //         "18-24": 30,
+              //         "25-34": 15,
+              //         "35-44": 25,
+              //         "45-54": 20,
+              //         "55-64": 10,
+              //         "65+": 12,
+              //         "UNKNOWN": 12,  
+              //     },
+              //     "audience": "3.3M",
+              //     "allMarket": "2,567K",
+              //     "device": {
+              //         "Mobile": 852,
+              //         "PC": 1246,
+              //         "UNKNOWN": 179
+              //     },
+              //     "gender": {
+              //         "female": 22,
+              //         "male": 38,
+              //         "UNKNOWN":33,
+              //     },
+              //     "preferenceIndex":{
+              //         "gender" : {
+              //           "male": 50,
+              //           "female": 50,
+              //         },
+              //         "ageGroup" : {
+              //           "0-17": 22,
+              //           "18-24": 20,
+              //           "25-34": 55,
+              //           "35-44": 65,
+              //           "45-54": 30,
+              //           "55-64": 10,
+              //           "65+": 12,
+              //         },
+              //     },
+              //     "product_share": {
+              //         "Stay-in-Place Makeup": 23500,
+              //         "Prefectionist": 12246,
+              //         "Advanced Night Cream": 11179,
+              //         "Resilience Lift":10000,
+              //     },
+              //     "top5productsTrend":{
+              //       "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+              //       "result":[
+              //         {"date":"2017-05-20","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-05-21","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-05-22","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-05-23","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-05-24","name":"Advanced Night Cream","value":"31"},
+              //         {"date":"2017-05-25","name":"Advanced Night Cream","value":"41"},
+              //         {"date":"2017-05-26","name":"Advanced Night Cream","value":"51"},
+              //         {"date":"2017-05-27","name":"Advanced Night Cream","value":"61"},
+              //         {"date":"2017-05-28","name":"Advanced Night Cream","value":"51"},
+              //         {"date":"2017-05-29","name":"Advanced Night Cream","value":"31"},
+              //         {"date":"2017-05-30","name":"Advanced Night Cream","value":"41"},
+              //         {"date":"2017-05-31","name":"Advanced Night Cream","value":"51"},
+              //         {"date":"2017-06-01","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-06-02","name":"Advanced Night Cream","value":"21"},
+              //         {"date":"2017-06-03","name":"Advanced Night Cream","value":"31"},
+              //         {"date":"2017-06-04","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-06-05","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-06-06","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-06-07","name":"Advanced Night Cream","value":"81"},
+              //         {"date":"2017-06-08","name":"Advanced Night Cream","value":"91"},
+              //         {"date":"2017-06-09","name":"Advanced Night Cream","value":"61"},
+              //         {"date":"2017-06-10","name":"Advanced Night Cream","value":"51"},
+              //         {"date":"2017-06-11","name":"Advanced Night Cream","value":"41"},
+              //         {"date":"2017-06-12","name":"Advanced Night Cream","value":"21"},
+              //         {"date":"2017-06-13","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-06-14","name":"Advanced Night Cream","value":"11"},
+              //         {"date":"2017-06-15","name":"Advanced Night Cream","value":"11"},
+              //       ]
+              //     },
+              //     "market_share":{
+              //       "market":666,
+              //       "market_show":333,
+              //     },
+              //     "interest": {
+              //         "Arts & Entertainment": {
+              //             "name": "Arts & Entertainment",
+              //             "value": 21,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Cooking & Recipes": {
+              //             "name": "Cooking & Recipes",
+              //             "value": 19,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Female Fashion": {
+              //             "name": "Female Fashion",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Food & Drink": {
+              //             "name": "Food & Drink",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Restaurants": {
+              //             "name": "Restaurants",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "_others":{
+              //             "name": "Other Related Interests",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+              //         }
+              //     },
+              //     "regions":[
+              //         {"name": "BeiJing", "value": "123"},
+              //         {"name": "TianJin", "value": "61"},
+              //         {"name": "ShanXi", "value": "123"},
+              //         {"name": "NeiMeng", "value": "62"},
+              //         {"name": "HeBei", "value": "1223"},
+              //         {"name": "JiLin", "value": "123"},
+              //         {"name": "JiangXi", "value": "123"},
+              //         {"name": "ShanDong", "value": "33"},
+              //         {"name": "ChongQing", "value": "123"},
+              //         {"name": "SiChuan", "value": "62"},
+              //         {"name": "GuiZhou",  "value": "1223"},
+              //         {"name": "YunNan",  "value": "123"},
+              //         {"name": "XiZang", "value": "33"},
+              //         {"name": "ShanXi1", "value": "123"},
+              //         {"name": "GanSu", "value": "62"},
+              //         {"name": "QingHai", "value": "4223"},
+              //         {"name": "NingXia", "value": "123"},
+              //         {"name": "XinJiang", "value": "123"},
+              //         {"name": "Heilongjiang", "value": "33"},
+              //         {"name": "Overseas", "value": "5551"}
+              //     ]
+              // },
+              // "3":{
+              //     "productName":"Resilience Lift",
+              //     "age_group": {
+              //         "0-17": 20,
+              //         "18-24": 30,
+              //         "25-34": 15,
+              //         "35-44": 25,
+              //         "45-54": 20,
+              //         "55-64": 10,
+              //         "65+": 12,
+              //         "UNKNOWN": 12,  
+              //     },
+              //     "audience": "3.3M",
+              //     "allMarket": "2,567K",
+              //     "device": {
+              //         "Mobile": 852,
+              //         "PC": 1246,
+              //         "UNKNOWN": 179
+              //     },
+              //     "gender": {
+              //         "female": 22,
+              //         "male": 38,
+              //         "UNKNOWN":33,
+              //     },
+              //     "preferenceIndex":{
+              //         "gender" : {
+              //           "male": 50,
+              //           "female": 50,
+              //         },
+              //         "ageGroup" : {
+              //           "0-17": 22,
+              //           "18-24": 20,
+              //           "25-34": 55,
+              //           "35-44": 65,
+              //           "45-54": 30,
+              //           "55-64": 10,
+              //           "65+": 12,
+              //         },
+              //     },
+              //     "product_share": {
+              //         "Stay-in-Place Makeup": 23500,
+              //         "Prefectionist": 12246,
+              //         "Advanced Night Cream": 11179,
+              //         "Resilience Lift":10000,
+              //     },
+              //     "top5productsTrend":{
+              //       "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+              //       "result":[
+              //         {"date":"2017-05-20","name":"Resilience Lift","value":"21"},
+              //         {"date":"2017-05-21","name":"Resilience Lift","value":"31"},
+              //         {"date":"2017-05-22","name":"Resilience Lift","value":"41"},
+              //         {"date":"2017-05-23","name":"Resilience Lift","value":"51"},
+              //         {"date":"2017-05-24","name":"Resilience Lift","value":"71"},
+              //         {"date":"2017-05-25","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-05-26","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-05-27","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-05-28","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-05-29","name":"Resilience Lift","value":"21"},
+              //         {"date":"2017-05-30","name":"Resilience Lift","value":"31"},
+              //         {"date":"2017-05-31","name":"Resilience Lift","value":"41"},
+              //         {"date":"2017-06-01","name":"Resilience Lift","value":"51"},
+              //         {"date":"2017-06-02","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-03","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-04","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-05","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-06","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-07","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-08","name":"Resilience Lift","value":"81"},
+              //         {"date":"2017-06-09","name":"Resilience Lift","value":"71"},
+              //         {"date":"2017-06-10","name":"Resilience Lift","value":"61"},
+              //         {"date":"2017-06-11","name":"Resilience Lift","value":"31"},
+              //         {"date":"2017-06-12","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-13","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-14","name":"Resilience Lift","value":"11"},
+              //         {"date":"2017-06-15","name":"Resilience Lift","value":"11"},
 
-                    ]
-                  },
-                  "market_share":{
-                    "market":666,
-                    "market_show":333,
-                  },
-                  "interest": {
-                      "Arts & Entertainment": {
-                          "name": "Arts & Entertainment",
-                          "value": 21,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Cooking & Recipes": {
-                          "name": "Cooking & Recipes",
-                          "value": 19,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Female Fashion": {
-                          "name": "Female Fashion",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Food & Drink": {
-                          "name": "Food & Drink",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Restaurants": {
-                          "name": "Restaurants",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "_others":{
-                          "name": "Other Related Interests",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
-                      }
-                  },
-                  "regions":[
-                      {"name": "BeiJing", "value": "123"},
-                      {"name": "TianJin", "value": "61"},
-                      {"name": "ShanXi", "value": "123"},
-                      {"name": "NeiMeng", "value": "62"},
-                      {"name": "HeBei", "value": "1223"},
-                      {"name": "JiLin", "value": "123"},
-                      {"name": "JiangXi", "value": "123"},
-                      {"name": "ShanDong", "value": "33"},
-                      {"name": "ChongQing", "value": "123"},
-                      {"name": "SiChuan", "value": "62"},
-                      {"name": "GuiZhou",  "value": "1223"},
-                      {"name": "YunNan",  "value": "123"},
-                      {"name": "XiZang", "value": "33"},
-                      {"name": "ShanXi1", "value": "123"},
-                      {"name": "GanSu", "value": "62"},
-                      {"name": "QingHai", "value": "4223"},
-                      {"name": "NingXia", "value": "123"},
-                      {"name": "XinJiang", "value": "123"},
-                      {"name": "Heilongjiang", "value": "33"},
-                      {"name": "Overseas", "value": "5551"}
-                  ]
-              },
-              "4":{
-                  "productName":"Elite Cream",
-                  "age_group": {
-                      "0-17": 20,
-                      "18-24": 30,
-                      "25-34": 15,
-                      "35-44": 25,
-                      "45-54": 20,
-                      "55-64": 10,
-                      "65+": 12,
-                      "UNKNOWN": 12,  
-                  },
-                  "audience": "3.3M",
-                  "allMarket": "2,567K",
-                  "device": {
-                      "Mobile": 852,
-                      "PC": 1246,
-                      "UNKNOWN": 179
-                  },
-                  "gender": {
-                      "female": 22,
-                      "male": 38,
-                      "UNKNOWN":33,
-                  },
-                  "preferenceIndex":{
-                      "gender" : {
-                        "male": 50,
-                        "female": 50,
-                      },
-                      "ageGroup" : {
-                        "0-17": 22,
-                        "18-24": 20,
-                        "25-34": 55,
-                        "35-44": 65,
-                        "45-54": 30,
-                        "55-64": 10,
-                        "65+": 12,
-                      },
-                  },
-                  "product_share": {
-                      "Stay-in-Place Makeup": 23500,
-                      "Prefectionist": 12246,
-                      "Advanced Night Cream": 11179,
-                      "Resilience Lift":10000,
-                  },
-                  "top5productsTrend":{
-                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
-                    "result":[
-                      {"date":"2017-05-20","name":"Elite Cream","value":"21"},
-                      {"date":"2017-05-21","name":"Elite Cream","value":"31"},
-                      {"date":"2017-05-22","name":"Elite Cream","value":"41"},
-                      {"date":"2017-05-23","name":"Elite Cream","value":"51"},
-                      {"date":"2017-05-24","name":"Elite Cream","value":"71"},
-                      {"date":"2017-05-25","name":"Elite Cream","value":"11"},
-                      {"date":"2017-05-26","name":"Elite Cream","value":"11"},
-                      {"date":"2017-05-27","name":"Elite Cream","value":"11"},
-                      {"date":"2017-05-28","name":"Elite Cream","value":"11"},
-                      {"date":"2017-05-29","name":"Elite Cream","value":"21"},
-                      {"date":"2017-05-30","name":"Elite Cream","value":"31"},
-                      {"date":"2017-05-31","name":"Elite Cream","value":"41"},
-                      {"date":"2017-06-01","name":"Elite Cream","value":"51"},
-                      {"date":"2017-06-02","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-03","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-04","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-05","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-06","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-07","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-08","name":"Elite Cream","value":"81"},
-                      {"date":"2017-06-09","name":"Elite Cream","value":"71"},
-                      {"date":"2017-06-10","name":"Elite Cream","value":"61"},
-                      {"date":"2017-06-11","name":"Elite Cream","value":"31"},
-                      {"date":"2017-06-12","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-13","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-14","name":"Elite Cream","value":"11"},
-                      {"date":"2017-06-15","name":"Elite Cream","value":"11"},
+              //       ]
+              //     },
+              //     "market_share":{
+              //       "market":666,
+              //       "market_show":333,
+              //     },
+              //     "interest": {
+              //         "Arts & Entertainment": {
+              //             "name": "Arts & Entertainment",
+              //             "value": 21,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Cooking & Recipes": {
+              //             "name": "Cooking & Recipes",
+              //             "value": 19,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Female Fashion": {
+              //             "name": "Female Fashion",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Food & Drink": {
+              //             "name": "Food & Drink",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Restaurants": {
+              //             "name": "Restaurants",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "_others":{
+              //             "name": "Other Related Interests",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+              //         }
+              //     },
+              //     "regions":[
+              //         {"name": "BeiJing", "value": "123"},
+              //         {"name": "TianJin", "value": "61"},
+              //         {"name": "ShanXi", "value": "123"},
+              //         {"name": "NeiMeng", "value": "62"},
+              //         {"name": "HeBei", "value": "1223"},
+              //         {"name": "JiLin", "value": "123"},
+              //         {"name": "JiangXi", "value": "123"},
+              //         {"name": "ShanDong", "value": "33"},
+              //         {"name": "ChongQing", "value": "123"},
+              //         {"name": "SiChuan", "value": "62"},
+              //         {"name": "GuiZhou",  "value": "1223"},
+              //         {"name": "YunNan",  "value": "123"},
+              //         {"name": "XiZang", "value": "33"},
+              //         {"name": "ShanXi1", "value": "123"},
+              //         {"name": "GanSu", "value": "62"},
+              //         {"name": "QingHai", "value": "4223"},
+              //         {"name": "NingXia", "value": "123"},
+              //         {"name": "XinJiang", "value": "123"},
+              //         {"name": "Heilongjiang", "value": "33"},
+              //         {"name": "Overseas", "value": "5551"}
+              //     ]
+              // },
+              // "4":{
+              //     "productName":"Elite Cream",
+              //     "age_group": {
+              //         "0-17": 20,
+              //         "18-24": 30,
+              //         "25-34": 15,
+              //         "35-44": 25,
+              //         "45-54": 20,
+              //         "55-64": 10,
+              //         "65+": 12,
+              //         "UNKNOWN": 12,  
+              //     },
+              //     "audience": "3.3M",
+              //     "allMarket": "2,567K",
+              //     "device": {
+              //         "Mobile": 852,
+              //         "PC": 1246,
+              //         "UNKNOWN": 179
+              //     },
+              //     "gender": {
+              //         "female": 22,
+              //         "male": 38,
+              //         "UNKNOWN":33,
+              //     },
+              //     "preferenceIndex":{
+              //         "gender" : {
+              //           "male": 50,
+              //           "female": 50,
+              //         },
+              //         "ageGroup" : {
+              //           "0-17": 22,
+              //           "18-24": 20,
+              //           "25-34": 55,
+              //           "35-44": 65,
+              //           "45-54": 30,
+              //           "55-64": 10,
+              //           "65+": 12,
+              //         },
+              //     },
+              //     "product_share": {
+              //         "Stay-in-Place Makeup": 23500,
+              //         "Prefectionist": 12246,
+              //         "Advanced Night Cream": 11179,
+              //         "Resilience Lift":10000,
+              //     },
+              //     "top5productsTrend":{
+              //       "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+              //       "result":[
+              //         {"date":"2017-05-20","name":"Elite Cream","value":"21"},
+              //         {"date":"2017-05-21","name":"Elite Cream","value":"31"},
+              //         {"date":"2017-05-22","name":"Elite Cream","value":"41"},
+              //         {"date":"2017-05-23","name":"Elite Cream","value":"51"},
+              //         {"date":"2017-05-24","name":"Elite Cream","value":"71"},
+              //         {"date":"2017-05-25","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-05-26","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-05-27","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-05-28","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-05-29","name":"Elite Cream","value":"21"},
+              //         {"date":"2017-05-30","name":"Elite Cream","value":"31"},
+              //         {"date":"2017-05-31","name":"Elite Cream","value":"41"},
+              //         {"date":"2017-06-01","name":"Elite Cream","value":"51"},
+              //         {"date":"2017-06-02","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-03","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-04","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-05","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-06","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-07","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-08","name":"Elite Cream","value":"81"},
+              //         {"date":"2017-06-09","name":"Elite Cream","value":"71"},
+              //         {"date":"2017-06-10","name":"Elite Cream","value":"61"},
+              //         {"date":"2017-06-11","name":"Elite Cream","value":"31"},
+              //         {"date":"2017-06-12","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-13","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-14","name":"Elite Cream","value":"11"},
+              //         {"date":"2017-06-15","name":"Elite Cream","value":"11"},
 
-                    ]
-                  },
-                  "market_share":{
-                    "market":666,
-                    "market_show":333,
-                  },
-                  "interest": {
-                      "Arts & Entertainment": {
-                          "name": "Arts & Entertainment",
-                          "value": 21,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Cooking & Recipes": {
-                          "name": "Cooking & Recipes",
-                          "value": 19,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Female Fashion": {
-                          "name": "Female Fashion",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Food & Drink": {
-                          "name": "Food & Drink",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "Restaurants": {
-                          "name": "Restaurants",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer"]
-                      },
-                      "_others":{
-                          "name": "Other Related Interests",
-                          "value": 20,
-                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
-                      }
-                  },
-                  "regions":[
-                      {"name": "BeiJing", "value": "123"},
-                      {"name": "TianJin", "value": "61"},
-                      {"name": "ShanXi", "value": "123"},
-                      {"name": "NeiMeng", "value": "62"},
-                      {"name": "HeBei", "value": "1223"},
-                      {"name": "JiLin", "value": "123"},
-                      {"name": "JiangXi", "value": "123"},
-                      {"name": "ShanDong", "value": "33"},
-                      {"name": "ChongQing", "value": "123"},
-                      {"name": "SiChuan", "value": "62"},
-                      {"name": "GuiZhou",  "value": "1223"},
-                      {"name": "YunNan",  "value": "123"},
-                      {"name": "XiZang", "value": "33"},
-                      {"name": "ShanXi1", "value": "123"},
-                      {"name": "GanSu", "value": "62"},
-                      {"name": "QingHai", "value": "4223"},
-                      {"name": "NingXia", "value": "123"},
-                      {"name": "XinJiang", "value": "123"},
-                      {"name": "Heilongjiang", "value": "33"},
-                      {"name": "Overseas", "value": "5551"}
-                  ]
-              },
+              //       ]
+              //     },
+              //     "market_share":{
+              //       "market":666,
+              //       "market_show":333,
+              //     },
+              //     "interest": {
+              //         "Arts & Entertainment": {
+              //             "name": "Arts & Entertainment",
+              //             "value": 21,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Cooking & Recipes": {
+              //             "name": "Cooking & Recipes",
+              //             "value": 19,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Female Fashion": {
+              //             "name": "Female Fashion",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Food & Drink": {
+              //             "name": "Food & Drink",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "Restaurants": {
+              //             "name": "Restaurants",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer"]
+              //         },
+              //         "_others":{
+              //             "name": "Other Related Interests",
+              //             "value": 20,
+              //             "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+              //         }
+              //     },
+              //     "regions":[
+              //         {"name": "BeiJing", "value": "123"},
+              //         {"name": "TianJin", "value": "61"},
+              //         {"name": "ShanXi", "value": "123"},
+              //         {"name": "NeiMeng", "value": "62"},
+              //         {"name": "HeBei", "value": "1223"},
+              //         {"name": "JiLin", "value": "123"},
+              //         {"name": "JiangXi", "value": "123"},
+              //         {"name": "ShanDong", "value": "33"},
+              //         {"name": "ChongQing", "value": "123"},
+              //         {"name": "SiChuan", "value": "62"},
+              //         {"name": "GuiZhou",  "value": "1223"},
+              //         {"name": "YunNan",  "value": "123"},
+              //         {"name": "XiZang", "value": "33"},
+              //         {"name": "ShanXi1", "value": "123"},
+              //         {"name": "GanSu", "value": "62"},
+              //         {"name": "QingHai", "value": "4223"},
+              //         {"name": "NingXia", "value": "123"},
+              //         {"name": "XinJiang", "value": "123"},
+              //         {"name": "Heilongjiang", "value": "33"},
+              //         {"name": "Overseas", "value": "5551"}
+              //     ]
+              // },
             },
             "id": "1",
             "name": "product"
@@ -3380,29 +3377,29 @@
             "data": {
                 "audience": "11.3M",
                 "allMarket": "3,267K",
-                "sentiment":156,
+                "sentiment":-22,
                 "mixTrend":{
                   "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
                   "result":{"Brand Audience":
                     [
-                      {"date":"2017-05-20","name":"Brand Audience","value":"11"},
-                      {"date":"2017-05-21","name":"Brand Audience","value":"21"},
-                      {"date":"2017-05-22","name":"Brand Audience","value":"31"},
-                      {"date":"2017-05-23","name":"Brand Audience","value":"41"},
-                      {"date":"2017-05-24","name":"Brand Audience","value":"51"},
-                      {"date":"2017-05-25","name":"Brand Audience","value":"61"},
-                      {"date":"2017-05-26","name":"Brand Audience","value":"71"},
-                      {"date":"2017-05-27","name":"Brand Audience","value":"11"},
-                      {"date":"2017-05-28","name":"Brand Audience","value":"21"},
-                      {"date":"2017-05-29","name":"Brand Audience","value":"31"},
-                      {"date":"2017-05-30","name":"Brand Audience","value":"51"},
-                      {"date":"2017-05-31","name":"Brand Audience","value":"81"},
-                      {"date":"2017-06-01","name":"Brand Audience","value":"21"},
-                      {"date":"2017-06-02","name":"Brand Audience","value":"31"},
-                      {"date":"2017-06-03","name":"Brand Audience","value":"71"},
-                      {"date":"2017-06-04","name":"Brand Audience","value":"61"},
-                      {"date":"2017-06-05","name":"Brand Audience","value":"51"},
-                      {"date":"2017-06-06","name":"Brand Audience","value":"41"},
+                      {"date":"2017-05-20","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-21","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-22","name":"Brand Audience","value":"45"},
+                      {"date":"2017-05-23","name":"Brand Audience","value":"45"},
+                      {"date":"2017-05-24","name":"Brand Audience","value":"55"},
+                      {"date":"2017-05-25","name":"Brand Audience","value":"65"},
+                      {"date":"2017-05-26","name":"Brand Audience","value":"75"},
+                      {"date":"2017-05-27","name":"Brand Audience","value":"15"},
+                      {"date":"2017-05-28","name":"Brand Audience","value":"25"},
+                      {"date":"2017-05-29","name":"Brand Audience","value":"35"},
+                      {"date":"2017-05-30","name":"Brand Audience","value":"55"},
+                      {"date":"2017-05-31","name":"Brand Audience","value":"85"},
+                      {"date":"2017-06-01","name":"Brand Audience","value":"25"},
+                      {"date":"2017-06-02","name":"Brand Audience","value":"35"},
+                      {"date":"2017-06-03","name":"Brand Audience","value":"75"},
+                      {"date":"2017-06-04","name":"Brand Audience","value":"65"},
+                      {"date":"2017-06-05","name":"Brand Audience","value":"55"},
+                      {"date":"2017-06-06","name":"Brand Audience","value":"45"},
                       {"date":"2017-06-07","name":"Brand Audience","value":"51"},
                       {"date":"2017-06-08","name":"Brand Audience","value":"61"},
                       {"date":"2017-06-09","name":"Brand Audience","value":"71"},
@@ -3604,7 +3601,7 @@
             "name": "brand"
         },{
             "data": {//格式:productId:data
-              "0":{
+              "5":{
                   "productName":"Stay-in-Place Makeup3",
                   "age_group": {
                       "0-17": 20,
@@ -4236,7 +4233,7 @@
                   "interest": {
                       "Arts & Entertainment": {
                           "name": "Arts & Entertainment",
-                          "value": 21,
+                          "value": 71,
                           "sub": ["Skin Care","Make-up / Customer"]
                       },
                       "Cooking & Recipes": {
@@ -4296,23 +4293,23 @@
             "data": {
                 "audience": "11.3M",
                 "allMarket": "3,267K",
-                "sentiment":156,
+                "sentiment":33,
                 "mixTrend":{
                   "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
                   "result":{"Brand Audience":
                     [
                       {"date":"2017-05-20","name":"Brand Audience","value":"11"},
-                      {"date":"2017-05-21","name":"Brand Audience","value":"21"},
-                      {"date":"2017-05-22","name":"Brand Audience","value":"31"},
-                      {"date":"2017-05-23","name":"Brand Audience","value":"41"},
+                      {"date":"2017-05-21","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-22","name":"Brand Audience","value":"11"},
+                      {"date":"2017-05-23","name":"Brand Audience","value":"21"},
                       {"date":"2017-05-24","name":"Brand Audience","value":"51"},
-                      {"date":"2017-05-25","name":"Brand Audience","value":"61"},
+                      {"date":"2017-05-25","name":"Brand Audience","value":"51"},
                       {"date":"2017-05-26","name":"Brand Audience","value":"71"},
-                      {"date":"2017-05-27","name":"Brand Audience","value":"11"},
-                      {"date":"2017-05-28","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-27","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-28","name":"Brand Audience","value":"31"},
                       {"date":"2017-05-29","name":"Brand Audience","value":"31"},
                       {"date":"2017-05-30","name":"Brand Audience","value":"51"},
-                      {"date":"2017-05-31","name":"Brand Audience","value":"81"},
+                      {"date":"2017-05-31","name":"Brand Audience","value":"41"},
                       {"date":"2017-06-01","name":"Brand Audience","value":"21"},
                       {"date":"2017-06-02","name":"Brand Audience","value":"31"},
                       {"date":"2017-06-03","name":"Brand Audience","value":"71"},
@@ -4404,40 +4401,35 @@
                   "market":1000,
                   "market_show":50,
                 },
-                "cloud_tag" :[
-                      {text: "Variety & Entertainment", weight: 33},
-                      {text: "Leisure Travel", weight: 30.5},
-                      {text: "Home & Lifestyle", weight: 20.4},
-                      {text: "Food & Drink", weight: 10},
-                      {text: "Healthcare", weight: 6.2},
-                      {text: "Psychology", weight: 18.2},
-                      {text: "Jobs & Education", weight: 20.2},
-                      {text: "Careers", weight: 5.2},
-                      {text: "Automobile", weight: 3.2},
-                      {text: "Investing", weight: 5.2}
-
-                ]
+                "cloud_tag" :[{"text":"歪果仁","weight":100},{"text":"月饼","weight":45.0382},{"text":"监狱学园","weight":22.148},{"text":"评选","weight":16.6745},{"text":"夺冠","weight":16.0865},{"text":"蛋黄","weight":15.9139},{"text":"十大","weight":14.1008},{"text":"半岛酒店","weight":9.6794},{"text":"美心","weight":7.5397},{"text":"劳斯莱斯","weight":7.3295},{"text":"进口港","weight":7.1099},{"text":"黑暗料理","weight":5.3043},{"text":"冰皮月饼","weight":5.1641},{"text":"秀身材","weight":5.1076},{"text":"礼盒","weight":5.0944},{"text":"脑洞","weight":4.8976},{"text":"真会玩","weight":4.6244},{"text":"烤箱烤","weight":4.5626},{"text":"养鱼","weight":4.5291},{"text":"凑齐","weight":4.2363},{"text":"英伦","weight":4.2329},{"text":"party","weight":4.1428},{"text":"试吃","weight":4.0997},{"text":"拉制","weight":4.0869},{"text":"礼盒装","weight":4.0621},{"text":"毛衣","weight":4.0199},{"text":"花式","weight":3.9554},{"text":"锁骨","weight":3.9276},{"text":"流沙","weight":3.9097},{"text":"分分钟","weight":3.7986},{"text":"年糕","weight":3.7755},{"text":"high","weight":3.7198},{"text":"卡片","weight":3.6305},{"text":"白莲","weight":3.5339},{"text":"做法","weight":3.4361},{"text":"大班","weight":3.4318},{"text":"中华","weight":3.4291},{"text":"自己动手","weight":3.3983},{"text":"详细讲解","weight":3.368},{"text":"半岛","weight":3.3195},{"text":"翩跹","weight":3.1109},{"text":"制作过程","weight":3.1086},{"text":"送礼","weight":3.0931},{"text":"改造","weight":3.0024},{"text":"打败","weight":2.9911},{"text":"婚礼","weight":2.927},{"text":"独家揭秘","weight":2.9041},{"text":"发售","weight":2.8313},{"text":"火腿","weight":2.8003},{"text":"名不虚传","weight":2.7826},{"text":"蔡澜","weight":2.7774},{"text":"纯正","weight":2.7176},{"text":"亮相","weight":2.6797},{"text":"金华","weight":2.486},{"text":"京城","weight":2.4588},{"text":"五仁","weight":2.4145},{"text":"解决方法","weight":2.3794},{"text":"diy","weight":2.2294},{"text":"吴京","weight":2.1215},{"text":"防弹","weight":2.1011},{"text":"中国菜","weight":2.0959},{"text":"迷你","weight":2.0499},{"text":"美英","weight":2.0181},{"text":"散装","weight":1.9724},{"text":"招牌","weight":1.8189},{"text":"清单","weight":1.5536},{"text":"英文","weight":1.5126},{"text":"全家","weight":1.4629},{"text":"征服","weight":1.4538},{"text":"淘宝","weight":1.2549}]
             },
             "id": "2",
             "name": "share",
         }],"id":2,"name":"Shisedo"
       }];
+      //对json进行id排序
+      //第一个固定为brand
+      var _brand = dataArr.splice(0,1);
+      dataArr = dataArr.sort(IAX_CHART_TOOL.sortJson("asc","id","parseFloat"));
+      dataArr.splice(0,0,_brand[0]);
       var data=dataArr[0],brandId=dataArr[0].id;
       //根据data获取brand选择列表
-      var lihtml = "",lihtml_multi="";
+      var lihtml = "",lihtml_multi="",maxBrand=5,allProducts=[],allProductsJson={},lihtml_multi_corss="";
       for (var i = 0; i < dataArr.length; i++) {
       	var isselected = i==0 ? "selected" : "";
       	var checkTitle = i==0 ? "My Brand" : "Competitor";
       	var isChecked = i==0 ? "checked='checked'" : "";
-      	checkTitle = i<2 ? checkTitle : checkTitle+" "+i;
+        var isselected_multi = i<maxBrand ? "selected" : "";
+        var isChecked_multi = i<maxBrand ? "checked='checked'" : "";
+      	checkTitle = i<1 ? checkTitle : checkTitle+" "+i;
       	lihtml += '<li class="'+isselected+'" data-value="'+dataArr[i].id+'">'+
                  '   <p class="simulator-check-title">'+checkTitle+'</p>'+
                  '   <label class="simulator-check-content">'+dataArr[i].name+'</label>'+
                  ' </li>';
         //默认选中所有
-        lihtml_multi += '<li class="selected">'+
-                      '  <div style="float:left;margin-top: 8px;" class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">'+
-                      '      <input type="checkbox" checked name="brand_checkbox" id="brand_checkbox'+dataArr[i].id+'" value="'+dataArr[i].id+'" >'+
+        lihtml_multi += '<li class="'+isselected_multi+'">'+
+                      '  <div style="float:left;margin-top: 5px;" class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">'+
+                      '      <input type="checkbox" '+isChecked_multi+' name="brand_checkbox" id="brand_checkbox'+dataArr[i].id+'" value="'+dataArr[i].id+'" >'+
                       '      <label for="brand_checkbox'+dataArr[i].id+'"></label>'+
                       '  </div>'+
                       '  <div class="simulator-label-container">'+
@@ -4445,11 +4437,48 @@
                       '    <label class="simulator-check-content">'+dataArr[i].name+'</label>'+
                       '  </div>'+
                       '</li>';
+        //cross_product_brand
+        //生成对应product列表
+        var productsLi = "";
+        for (var j in dataArr[i].result) {
+          if (dataArr[i].result[j].name=="product") {
+            for (var k in dataArr[i].result[j].data) {
+              var prodata = dataArr[i].result[j].data[k];
+              var proJson = $.extend({
+                id:k,
+                brandId:dataArr[i].id,
+                brandName:dataArr[i].name,
+              },prodata);
+              allProducts.push(proJson);
+              allProductsJson[dataArr[i].id+"_"+k] = proJson;
+              productsLi += '<li data-value="'+dataArr[i].id+"_"+k+'" class="">'+
+                              '<div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch"> '+
+                              '<input type="checkbox" name="cross_brand_checkbox" id="cross_brand_checkbox'+k+'" value="'+k+'">      <label for="cross_brand_checkbox'+k+'">'+prodata.productName+'</label>  '+
+                              '</div></li>';
+            };
+          };
+        }
+        //对应的brand
+        if (productsLi=="") {
+          productsLi = "<div style='padding:10px;color:#999;'><p>No results</p><p>(There is no products defined under this competitor. Please elaborate them in the audience plan.</p></div>";
+        };
+        lihtml_multi_corss += '<li data-value="'+dataArr[i].id+'">'+
+                              '  <div class="dropdown modifylabel dropdown-stop">'+
+                              '    <input name="addBrand_name" type="hidden" value="" title="">'+
+                              '    <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown-cross" aria-haspopup="true">'+
+                              '    <p style="color:#999;line-height:14px;font-size:10px;">'+checkTitle+'</p>'+
+                              '    <b>'+dataArr[i].name+'</b>'+
+                              '    <span class="caret arrow-down"></span></button>'+
+                              '    <ul class="dropdown-menu dropdown-cross" aria-labelledby="dropdownMenu1">'+productsLi+'</ul>'+
+                              '  </div>'+
+                              '</li>';
         //根据顺序固定颜色。
         dataArr[i].graphColor = IAX_CHART_TOOL.colorMap[i];
       };
       $(".brand_choose").html(lihtml);
       $(".multi_choose_brand").html(lihtml_multi);
+      $(".cross_brand_choose").html(lihtml_multi_corss);
+
       //默认选中所有brand。
       if (dataArr.length>1) {
         $(".multi_choose_brand").parents(".tab-pane").find("[name=multi_report]").removeClass("hide");
@@ -4462,18 +4491,20 @@
         $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").html(html);
         $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").find("li:first").addClass("selected");
       }
-      //根据data获取产品选择列表(可以跨不用的品牌去分析不同的產品。)
-      var productsLi = '<li data-value="" class="hide"><a href="javascript:;">Select A Product</a></li>';
-      for (var i = 0; i < dataArr.length; i++) {
-      	productsLi += '<li data-value="'+dataArr[i].id+'" class="disabled"><a href="javascript:;">'+dataArr[i].name+'</a></li>' ;
-      	for (var j = 0; j < dataArr[i].result.length; j++) {
-      		if(dataArr[i].result[j].name=="product"){
-      			for(var k in dataArr[i].result[j].data){
-      				productsLi += '<li data-value="'+dataArr[i].id+'_'+k+'"><a href="javascript:;">'+dataArr[i].result[j].data[k].productName+'</a></li>';
-      			}
-      		}
-      	};
+      //默认选中top5产品
+      //先进行排序
+      allProducts = allProducts.sort(IAX_CHART_TOOL.sortJson("desc","audience","parseFloat"));
+      var toplength = allProducts.length>5 ? 5 : allProducts.length;
+      for (var i = 0; i < toplength; i++) {
+        var id = allProducts[i].id;
+        var brandId = allProducts[i].brandId;
+        crossProductData[id] = allProducts[i];
+        crossProductData[id].graphColor = IAX_CHART_TOOL.colorMap[i];
+        $(".cross_brand_choose").find("[data-value='"+brandId+"']").addClass("selected");
+        $(".cross_brand_choose").find("[data-value='"+brandId+"']").find("[data-value='"+brandId+"_"+id+"']").addClass("selected").find("[name=cross_brand_checkbox]").prop("checked",true);
       };
+      makeProductDom(crossProductData);
+
       $('#myTab a').click(function (e) {
   	  	e.preventDefault()
   	  	$(this).tab('show')
@@ -4494,24 +4525,9 @@
         if (tab=="brand") {
           brandGraph(dataArr);
         }else if (tab=="product") {
-        	var isCross = $("[name=cross-product-add]").hasClass("hide");
-        	if (!isCross) {
-        		productGraphCross();
-        	}else{
-        		productGraph(json);
-        	}
-          
+        	productGraphCross();
         }else if (tab == "share") {
-
           shareGraph(json);
-        };
-      }
-      function changeTabGraphCross(tab){
-      	if (tab=="brand") {
-        }else if (tab=="product") {
-          productGraphCross();
-        }else if (tab == "share") {
-
         };
       }
       function brandGraph(dataArr){
@@ -4569,31 +4585,25 @@
         IAX_CHART_TOOL.resizeChart();
       }
       function makeProductDom(json){
-        var lihtml = "",index=0;
-        for (var i in json.data) {
-          var isselected = 0==0 ? "selected" : "";//默认选中所有
-          var isChecked = 0==0 ? "checked='checked'" : "";
-          lihtml += '<li class="'+isselected+'">'+
-                    '  <div style="float:left;margin-top: 8px;" class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">'+
-                    '      <input type="checkbox" '+isChecked+' name="product_checkbox" id="product_checkbox'+i+'" value="'+i+'" >'+
-                    '      <label for="product_checkbox'+i+'"></label>'+
+        var lihtml = "",index=0,maxProduct = 5;
+        for (var i in json) {
+          var isselected = index<maxProduct ? "selected" : "";//默认选中所有
+          var isChecked = index<maxProduct ? "checked='checked'" : "";
+          lihtml += '<li class="'+isselected+'" data-value="'+json[i].brandId+"_"+json[i].id+'">'+
+                    '  <div style="float:left;margin-top: 5px;" class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">'+
+                    '      <input type="checkbox" '+isChecked+' name="cross_product_checkbox" id="cross_product_checkbox'+i+'" value="'+i+'" >'+
+                    '      <label for="cross_product_checkbox'+i+'"></label>'+
                     '  </div>'+
                     '  <div class="simulator-label-container">'+
-                    '    <p class="simulator-check-title">'+data.name+'</p>'+
-                    '    <label class="simulator-check-content">'+json.data[i].productName+'</label>'+
+                    '    <p class="simulator-check-title">'+json[i].brandName+'</p>'+
+                    '    <label class="simulator-check-content">'+json[i].productName+'</label>'+
                     '  </div>'+
+                    '  <i class="fa fa-times-circle"></i>'
                     '</li>';
           //根据顺序固定颜色。
-          json.data[i].graphColor = IAX_CHART_TOOL.colorMap[index];
+          json[i].graphColor = IAX_CHART_TOOL.colorMap[index];
           index++;
         };  
-        //额外添加cross add
-        lihtml+='<li class="plus-area">'+
-                '  <i class="fa fa-plus" style="top:15px;"></i>'+
-                '   <button class="btn dropdown-toggle" style="border:none;padding-left:15px;" type="button">'+
-                '    Cross-Brand Products Analysis&nbsp;'+
-                '   </button>'+
-                '</li>';
         $(".multi_choose").html(lihtml);
         //默认选中所有product。
         if (index>1) {
@@ -4606,53 +4616,62 @@
           }).get().join("");
           $(".multi_choose").parents(".tab-pane").find(".multi-tab").html(html);
           $(".multi_choose").parents(".tab-pane").find(".multi-tab").find("li:first").addClass("selected");
+        }else{
+          $(".multi_choose").parents(".tab-pane").find("[name=multi_report]").addClass("hide");
+          $(".multi_choose").parents(".tab-pane").find("[name=single_report]").removeClass("hide");
         }
       }
-      function productGraph(json){
-        //生成对于的product选择列表
-        if ($(".multi_choose").find("li").length==0) {
-          makeProductDom(json);
-        };
-        IAX_CHART_TOOL.initData(json.data);
-        productData = {};
+      function productGraphCross(){
+        //下拉框方向问题
+        $(".cross_brand_choose").find(".dropdown-cross").each(function(){
+          var right = $(window).width()-$(this).parent().offset().left-$(window).scrollLeft();
+          console.log(right)
+          if (right<500) {
+            $(this).css({right:0,left:"initial"});
+          };
+        })
+        IAX_CHART_TOOL.initData(crossProductData);
+        var crossProductData_choose = {};
         var id="";
-        $("[name=product_checkbox]:checked").each(function(){
+        $("[name=cross_product_checkbox]:checked").each(function(){
           id = $(this).val();
-          if (!productData[id]) {
-            var _json = json.data[id];
+          if (!crossProductData_choose[id]) {
+            var _json = crossProductData[id];
             if (_json) {
-              _json.productName = $(this).parent().parent().find(".simulator-check-content").text();
-              productData[id] = _json;
+              crossProductData_choose[id] = _json;
             };
           };
         });
-        IAX_CHART_TOOL.initTop5Trend("line_chart","daterange_product",productData);
-        if ($("[name=product_checkbox]:checked").length>1) {
-          IAX_CHART_TOOL.initTotalAudienceMulti("select_product_multi","select_product_multi_name","select_product_multi_scale","select_product_multi_share",productData);
-          IAX_CHART_TOOL.initGenderMulti("gender_product_multi_name","gender_product_multi_male","gender_product_multi_female",productData);
-          IAX_CHART_TOOL.initAgeGroupMulti("select_age_product_multi_map",productData);
+        IAX_CHART_TOOL.initData(crossProductData_choose);
+        IAX_CHART_TOOL.initTop5Trend("line_chart","daterange_product",crossProductData_choose);
+        if ($("[name=cross_product_checkbox]:checked").length>1) {
+          IAX_CHART_TOOL.initTotalAudienceMulti("select_product_multi","select_product_multi_name","select_product_multi_scale","select_product_multi_share",crossProductData_choose);
+          IAX_CHART_TOOL.initGenderMulti("gender_product_multi_name","gender_product_multi_male","gender_product_multi_female",crossProductData_choose);
+          IAX_CHART_TOOL.initAgeGroupMulti("select_age_product_multi_map",crossProductData_choose);
           var regionId = $("#select_province_product_multi .multi-tab").find(".selected").attr("data-value");
-          IAX_CHART_TOOL.initRegions("region-product-map_multi",productData[regionId]);
-          IAX_CHART_TOOL.initInterestsMulti("interest-product-map-multi",productData);
+          IAX_CHART_TOOL.initRegions("region-product-map_multi",crossProductData_choose[regionId]);
+          IAX_CHART_TOOL.initInterestsMulti("interest-product-map-multi",crossProductData_choose);
           var dataArr = [];
-          for(var i in productData){
-            var dataJson = $.extend({},productData[i]);
-            dataJson.brandName = productData[i].productName;
+          for(var i in crossProductData_choose){
+            var dataJson = $.extend({},crossProductData_choose[i]);
+            dataJson.brandName = crossProductData_choose[i].productName;
             dataArr.push(dataJson);
           }
-          IAX_CHART_TOOL.initDeviceMulti("device_product_multi_name","device_product_multi_pc","device_product_multi_mobile",productData)
+          IAX_CHART_TOOL.initDeviceMulti("device_product_multi_name","device_product_multi_pc","device_product_multi_mobile",crossProductData_choose)
           IAX_CHART_TOOL.initTGI("select_gender_target_product_multi","select_agegroup_target_product_multi",dataArr);
         }else{
-          IAX_CHART_TOOL.initTotalAudience("select_product","product_total","market-product-map",productData[id]);
-          IAX_CHART_TOOL.initGender("gender-product-map",productData[id]);
-          IAX_CHART_TOOL.initAgeGroup("select_age_product",productData[id]);
-          IAX_CHART_TOOL.initRegions("region-product-map",productData[id]);
-          IAX_CHART_TOOL.initInterests("interest-product-map",productData[id]);
-          IAX_CHART_TOOL.initDevice("device-product-map",productData[id]);
-          IAX_CHART_TOOL.initTGI("select_gender_target_product","select_agegroup_target_product",[productData[id]]);
+          IAX_CHART_TOOL.initTotalAudience("select_product","product_total","market-product-map",crossProductData_choose[id]);
+          IAX_CHART_TOOL.initGender("gender-product-map",crossProductData_choose[id]);
+          IAX_CHART_TOOL.initAgeGroup("select_age_product",crossProductData_choose[id]);
+          IAX_CHART_TOOL.initRegions("region-product-map",crossProductData_choose[id]);
+          IAX_CHART_TOOL.initInterests("interest-product-map",crossProductData_choose[id]);
+          IAX_CHART_TOOL.initDevice("device-product-map",crossProductData_choose[id]);
+          IAX_CHART_TOOL.initTGI("select_gender_target_product","select_agegroup_target_product",[crossProductData_choose[id]]);
         }
         
         IAX_CHART_TOOL.resizeChart();
+
+        return;
       }
       function shareGraph(json){
         IAX_CHART_TOOL.initData(json.data);
@@ -4660,12 +4679,13 @@
         IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
         IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,520);
         IAX_CHART_TOOL.initSentiment("sentiment-map",json.data);
+        IAX_CHART_TOOL.initTop5Trend("line_chart_share","daterange_share",shareData);
         IAX_CHART_TOOL.resizeChart();
       }
       //初始化
-      $("#tab-share").find("div:first").hide();
-      $("#tab-share").append('<div class="analysis-loading"><img class="analysis-gif" src="../images/loading.gif"/></div>');
-      $("#myTab").hide();
+       $("#tab-share").find("div:first").hide();
+      var setProcess = IAX_CHART_TOOL.loadingGif("tab-share");
+      // $("#myTab").hide();
       $(".button-right").hide();
       var json = {};
       for (var i = 0; i < data.result.length; i++) {
@@ -4673,28 +4693,45 @@
           json = data.result[i];
         }
       };
+     
+      //初始化首页趋势图，由于是固定全部显示，所以只加载一次。
+      var shareData = [];
+      for (var j = 0; j < dataArr.length; j++) {
+        var _data = dataArr[j],_json={};
+        for (var i = 0; i < _data.result.length; i++) {
+          if("share"==_data.result[i].name){
+            _json = _data.result[i].data.mixTrend.result["Brand Audience"];
+          }
+        };
+        var newJsonArr = [];
+        for (var k = 0; k < _json.length; k++) {
+          var newJson = $.extend({},_json[k]);
+          newJson.name = _data.name;
+          newJsonArr.push(newJson);
+        };
+        shareData[_data.name] = {"top5productsTrend":{"result":newJsonArr},"graphColor":IAX_CHART_TOOL.colorMap[j],"legendSelect":true};
+      }
+       $("#select_brand_share").find("span").eq(1).text(data.name);
+
       //假设5秒后获取json数据，要先show，后init图表
       setTimeout(function(){
-        $(".analysis-loading").remove();
-        $("#tab-share").find("div:first").show();
-        $("#myTab").show();
-        $(".button-right").show();
-        shareGraph(json);
+        setProcess(true);
+        setTimeout(function(){
+          $(".analysis-loading").remove();
+          $("#tab-share").find("div:first").show();
+          // $("#myTab").show();
+          $(".button-right").show();
+          shareGraph(json);
+        },100)
       },2000)
 
       //导出pdf
       IAX_CHART_TOOL.exportForPdf("export-pdf","myTabContent");
 
+      $("#audience_plan").chosen();
       $(document).on("click",".simulator-check-container li",function(e){
          //最大选择数
         e = e || window.event;
-        if ($(this).hasClass("plus-area")) {
-        	$("[name=cross-product-add]").removeClass("hide");
-        	$("[name=single-product-add]").addClass("hide");
-        	$("[name=cross-product-add]").parent().parent().find(".plan-reports-result").hide();
-        	$("[name=cross-product-add]").find(".addProduct-suggest-con").find(".dropdown:first").find(".dropdown-menu").html(productsLi);
-        	return;
-        };
         var max = 5,length = $(this).parent().find(".selected").length;
         var isMulti = !$(this).parent().hasClass("simulator-single");
         var isChecked = $(this).hasClass("selected");
@@ -4702,9 +4739,11 @@
         var tab = $(this).parents(".tab-pane").attr("id");
         if(isMulti){
         	if (!isChecked && length==max) {
+            $(this).find("[type=checkbox]").prop("checked",false);
 	          return;
 	        };
 	        if (isChecked && length==1) {
+            $(this).find("[type=checkbox]").prop("checked",true);
 	          return;
 	        };
         	$(this).find("[type=checkbox]").prop("checked",!isChecked);
@@ -4746,21 +4785,47 @@
               data = dataArr[i]
             };
           };
-          var json = {};
-          for (var i = 0; i < data.result.length; i++) {
-            if("product" == data.result[i].name){
-              json = data.result[i];
-            }
-          };
-          makeProductDom(json);
+          $("#select_brand_share").find("span").eq(1).text($(this).find(".simulator-check-content").text());
         }
-
-        if ($(this).parent().hasClass("cross_choose_brand")) {
-        	changeTabGraphCross(tab.split("-")[1]);
-        }else{
-        	changeTabGraph(tab.split("-")[1])
-        }
+        changeTabGraph(tab.split("-")[1])
         
+        e.stopPropagation();
+        e.preventDefault();
+      })
+      $(document).on("click",".simulator-check-container li .fa-times-circle",function(e){
+        e = e || window.event;
+        var id = $(this).parents("li").attr("data-value");
+        var brandId = id.split("_")[0];
+        var $brandLi = $(".cross_brand_choose").find("[data-value='"+brandId+"']");
+
+        var max = 5,length = $(this).parents("li").parent().find(".selected").length;
+
+        if (length==1) {
+          $(this).find("[type=checkbox]").prop("checked",true);
+          return;
+        };
+        $(this).parents("li").removeClass("selected");
+       
+        $brandLi.find("[data-value='"+id+"']").removeClass("selected").find("[name=cross_brand_checkbox]").prop("checked",false);
+
+        if ($brandLi.find(".selected").length>0) {
+          $brandLi.addClass("selected");
+        }else{
+          $brandLi.removeClass("selected");
+        }
+        ;
+        //生成products
+        var sortProducts = [];
+        crossProductData={};
+        $(".cross_brand_choose").find(".dropdown-cross").find(".selected").each(function(){
+          sortProducts.push(allProductsJson[$(this).attr("data-value")]);
+        })
+        sortProducts = sortProducts.sort(IAX_CHART_TOOL.sortJson("desc","audience","parseFloat"));
+        for (var i = 0; i < sortProducts.length; i++) {
+          crossProductData[sortProducts[i].id] = sortProducts[i];
+        };
+        makeProductDom(crossProductData);
+        productGraphCross();
         e.stopPropagation();
         e.preventDefault();
       })
@@ -4770,7 +4835,7 @@
         $(this).addClass("selected");
         var tab = $(this).parents(".tab-pane").attr("id");
         var value = $(this).attr("data-value");
-        var json = productData[value];
+        var json = crossProductData[value];
         if (tab == "tab-brand") {
         	json = brandData[value];
         };
@@ -4782,219 +4847,69 @@
           	}
         };
       })
-
-      //添加交叉产品相关
-      var productIdJsons = [],productIdjson={},productIdJsons_selected=[];
-      for (var i = 0; i < dataArr.length; i++) {
-  			for (var j = 0; j < dataArr[i].result.length; j++) {
-	      		if(dataArr[i].result[j].name=="product"){
-	      			for(var k in dataArr[i].result[j].data){
-	      				productIdjson={};
-			      		productIdjson.parentId = dataArr[i].id+"";
-			  			productIdjson.parentTitle = dataArr[i].name;
-      					productIdjson.sonId = k+"";
-	      				productIdjson.productJson = dataArr[i].result[j].data[k];
-	      				productIdJsons.push(productIdjson);
-	      			}
-	      		}
-	      	};
-	  	};
-	  $(document).on("change","[name=addProduct_name]",function(){
-	  	if ($(this).val()=="") return;
-	  	var addProduct = $(this).val().split("_");
-	  	var parentTitle = "";
-	  	var sonTitle = $(this).attr("title");
-	  	var productJson = {};
-	  	productJson.parentId = addProduct[0];
-	  	productJson.sonId = addProduct[1];
-	  	
-	  	for (var i = 0; i < productIdJsons.length; i++) {
-	  		if(productIdJsons[i].parentId == productJson.parentId && productIdJsons[i].sonId == productJson.sonId){
-	  			parentTitle = productIdJsons[i].parentTitle;
-	  		}
-	  	};
-	  	productIdJsons_selected = [];
-	  	$(this).parent().parent().parent().find("[name=addProduct_name]").each(function(){
-	  		//重组选中的products
-	  		var pjsonidArr = $(this).val().split("_");
-	  		for (var i = 0; i < productIdJsons.length; i++) {
-		  		if(productIdJsons[i].parentId == pjsonidArr[0] && productIdJsons[i].sonId == pjsonidArr[1]){
-		  			productIdJsons_selected.push(productIdJsons[i]);
-		  		}
-		  	};
-	  	})
-	  	console.log(productIdJsons_selected);
-
-	  	//将已选中的product变成selected
-		$(this).parent().parent().parent().find("[name=addProduct_name]").each(function(){	
-			var thisJsonId = $(this).val();
-			$(this).parent().find(".selected").removeClass("selected");
-			for (var i = 0; i < productIdJsons_selected.length; i++) {
-				var otherJsonId = productIdJsons_selected[i].parentId+"_"+productIdJsons_selected[i].sonId;
-				if (otherJsonId!=thisJsonId) {
-					$(this).parent().find("[data-value='"+otherJsonId+"']").addClass("selected");
-				};
-			};
-		})
-
-	  	$(this).parent().find("button").html('<p style="color:#999;line-height:14px;font-size:10px;">'+parentTitle+'</p><b>'+sonTitle+'</b><span class="caret arrow-down"></span>')
-	  })
-      $(document).on("click",".addCrossProduct .btn",function() {
-        var length = $(this).parent().parent().find(".dropdown").length,max=5;
-        var id = ""+new Date().getTime();
-        var cloneHtml = '<li class="cloneProduct">'+
-	                    '	<div class="dropdown modifylabel">'+
-	                    '		<input name="addProduct_name" type="hidden" value="">'+
-	                    '		<div class="checkbox checkbox-primary checkbox-switch" >'+
-	                    '          <input type="checkbox" name="addProducts" data-target="addProducts_'+id+'" id="'+id+'" value="'+id+'">'+
-	                    '          <label for="'+id+'"></label>'+
-	                    '      	</div>'+
-	                    '      	<button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select A Product<span class="caret arrow-down"></span></button>'+
-	                    '      	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
-	                    				productsLi+
-						'        </ul>'+
-	                    '	</div>'+
-	                    '</li>';
-        $(this).parent().before(cloneHtml);
-        //根据现有的productIdJsons将已选中的变成selected
-        for (var i = 0; i < productIdJsons_selected.length; i++) {
-        	var id = productIdJsons_selected[i].parentId+"_"+productIdJsons_selected[i].sonId;
-        	$(this).parent().parent().find(".dropdown-menu li[data-value='"+id+"']").addClass("selected");
-        };
-        if (length == max-1) {
-          $(this).parent().hide();
+      $(".dropdown-stop").on("mouseover",function(){
+        $(".dropdown-stop").removeClass("open");
+        var isOpen = $(this).hasClass("open");
+        if(!isOpen) $(this).addClass("open")
+      })
+      $(".dropdown-stop").on("mouseout",function(){
+        $(this).removeClass("open");
+      })
+      $(document).on("click",".dropdown-stop",function(e){
+        $(".dropdown-stop").removeClass("open");
+        if ($(this).hasClass("open")){
+          $(this).removeClass("open")
+        }else{
+          $(this).addClass("open");
         }
       })
-	  $(".word-cancel").click(function(){
-	  	productIdJsons_selected=[];
-	  	$(this).parent().parent().find(".addCrossProduct").show();
-	  	$(this).parent().parent().find(".cloneProduct").remove();
-	  	$(this).parent().parent().find("li:first").find(".dropdown").find("[type=checkbox]").prop("checked",false);
-	  	$(this).parent().parent().find("li:first").find(".dropdown-menu").find("li:first").click();
-	  	$(this).parent().parent().find("li:first").find(".dropdown-menu").empty();
-	  	$("[name=cross-product-add]").addClass("hide");
-    	$("[name=single-product-add]").removeClass("hide");
-    	$("[name=cross-product-add]").parent().parent().find(".plan-reports-result").show();
-	  })
-	  $(".back_single a").click(function(){
-	  	$(this).parent().addClass("hide");
-	  	$(this).parent().parent().find(".cross_add_brand").show();
-	  	$(this).parent().parent().find(".cross_choose_brand").addClass("hideImportant");
-	  	$(this).parent().parent().find(".cross_add_brand").show();
-	  	$(".word-cancel").click();
-	  	$("[name=single-product-add]").find(".multi_choose").find(".selected").each(function(){
-	  		$(this).removeClass("selected");
-	  		$(this).find(":checked").prop("checked",false);
-	  	})
-	  	$("[name=single-product-add]").find(".brand_choose").find(".selected").click();
+  	  $(document).on("click",".dropdown-cross li",function(e){
+        e = e || window.event;
 
-	  });
-	  $(".word-save").click(function(){
-	  	if (productIdJsons_selected.length==0) return;
-	  	$(this).parent().parent().hide();
-	  	$(".cross_choose_brand").removeClass("hideImportant");
-	  	$(".back_single").removeClass("hide");
-	  	var $container = $(this).parent().parent();
-	  	//生成对于的product选择列表
-	    var lihtml = "",index=0,id="";
-	    crossProductData = {};
-	    for (var i = 0; i < productIdJsons_selected.length; i++) {
-	    	var liId = productIdJsons_selected[i].parentId+"_"+productIdJsons_selected[i].sonId;
-	    	var isChecked = $container.find("[data-value='"+liId+"'].active").parent().parent().find("[type=checkbox]").is(":checked");
-	        var isselected = isChecked ? "selected" : "";
-	        var isChecked = isChecked ? "checked='checked'" : "";
-	        lihtml += '<li class="'+isselected+'">'+
-	                  '  <div style="float:left;margin-top: 8px;" class="checkbox checkbox-primary checkbox-inlincheckbox-  minwidth checkbox-switch">'+
-	                  '      <input type="checkbox" '+isChecked+' name="cross_product_checkbox" id="cross_product_checkbox'+liId+'" value="'+liId+'" >'+
-	                  '      <label for="cross_product_checkbox'+liId+'"></label>'+
-	                  '  </div>'+
-	                  '  <div class="simulator-label-container">'+
-	                  '    <p class="simulator-check-title">'+productIdJsons_selected[i].parentTitle+'</p>'+
-	                  '    <label class="simulator-check-content">'+productIdJsons_selected[i].productJson.productName+'</label>'+
-	                  '  </div>'+
-	                  '</li>';
-			    crossProductData[liId] = productIdJsons_selected[i].productJson;
-          //根据顺序固定颜色。
-          crossProductData[liId].graphColor = IAX_CHART_TOOL.colorMap[i];
-
-	        if (isChecked) {
-	        	id = liId;
-	        	index++;
-	        };
-	    };  
-	    $(".cross_choose_brand").html(lihtml);
-	    $("[name=cross-product-add]").parent().parent().find(".plan-reports-result").show();
-	    if (id=="") {
-	    	id = productIdJsons_selected[0].parentId+"_"+productIdJsons_selected[0].sonId;
-	    	crossProductData[id] = productIdJsons_selected[0].productJson;
-	    	$(".cross_choose_brand").find("[name=cross_product_checkbox]:first").prop("checked",true);
-	    	$(".cross_choose_brand").find("[name=cross_product_checkbox]:first").parents("li").addClass("selected");
-	    };
-	    if (index>1) {
-            $(this).parents(".tab-pane").find("[name=multi_report]").removeClass("hide");
-            $(this).parents(".tab-pane").find("[name=single_report]").addClass("hide");
-            var html = $(".cross_choose_brand").find(".selected").map(function(){
-              var value = $(this).find("input").val();
-              var name = $(this).find(".simulator-check-content").text();
-              return '<li class="" data-value="'+value+'">'+name+'</li>';
-            }).get().join("");
-            $(this).parents(".tab-pane").find(".multi-tab").html(html);
-            $(this).parents(".tab-pane").find(".multi-tab").find("li:first").addClass("selected");
-        }else{
-          	$(this).parents(".tab-pane").find("[name=multi_report]").addClass("hide");
-          	$(this).parents(".tab-pane").find("[name=single_report]").removeClass("hide");
+        var max = 5,length = $(this).parents(".cross_brand_choose").find(".dropdown-cross").find(".selected").length;
+        var isChecked = $(this).hasClass("selected");
+        if (!isChecked && length==max) {
+          $(this).find("[type=checkbox]").prop("checked",false);
+          return;
         };
-        productGraphCross();
-	  })
-		function productGraphCross(){
-			  IAX_CHART_TOOL.initData(crossProductData);
-        crossProductData_choose = {};
-        var id="";
-        $("[name=cross_product_checkbox]:checked").each(function(){
-          id = $(this).val();
-          if (!crossProductData_choose[id]) {
-            var _json = crossProductData[id];
-            if (_json) {
-              crossProductData_choose[id] = _json;
-            };
-          };
-        });
-        IAX_CHART_TOOL.initData(crossProductData_choose);
-        IAX_CHART_TOOL.initTop5Trend("line_chart","daterange_product",crossProductData_choose);
-        if ($("[name=cross_product_checkbox]:checked").length>1) {
-          IAX_CHART_TOOL.initTotalAudienceMulti("select_product_multi","select_product_multi_name","select_product_multi_scale","select_product_multi_share",crossProductData_choose);
-          IAX_CHART_TOOL.initGenderMulti("gender_product_multi_name","gender_product_multi_male","gender_product_multi_female",crossProductData_choose);
-          IAX_CHART_TOOL.initAgeGroupMulti("select_age_product_multi_map",crossProductData_choose);
-          var regionId = $("#select_province_product_multi .multi-tab").find(".selected").attr("data-value");
-          IAX_CHART_TOOL.initRegions("region-product-map_multi",crossProductData_choose[regionId]);
-          IAX_CHART_TOOL.initInterestsMulti("interest-product-map-multi",crossProductData_choose);
-          var dataArr = [];
-          for(var i in crossProductData_choose){
-            var dataJson = $.extend({},crossProductData_choose[i]);
-            dataJson.brandName = crossProductData_choose[i].productName;
-            dataArr.push(dataJson);
-          }
-          IAX_CHART_TOOL.initDeviceMulti("device_product_multi_name","device_product_multi_pc","device_product_multi_mobile",crossProductData_choose)
-          IAX_CHART_TOOL.initTGI("select_gender_target_product_multi","select_agegroup_target_product_multi",dataArr);
+        if (isChecked && length==1) {
+          $(this).find("[type=checkbox]").prop("checked",true);
+          return;
+        };
+        $(this).find("[type=checkbox]").prop("checked",!isChecked);
+        if (isChecked) {
+          $(this).removeClass("selected");
+          length--;
         }else{
-          IAX_CHART_TOOL.initTotalAudience("select_product","product_total","market-product-map",crossProductData_choose[id]);
-          IAX_CHART_TOOL.initGender("gender-product-map",crossProductData_choose[id]);
-          IAX_CHART_TOOL.initAgeGroup("select_age_product",crossProductData_choose[id]);
-          IAX_CHART_TOOL.initRegions("region-product-map",crossProductData_choose[id]);
-          IAX_CHART_TOOL.initInterests("interest-product-map",crossProductData_choose[id]);
-          IAX_CHART_TOOL.initDevice("device-product-map",crossProductData_choose[id]);
-          IAX_CHART_TOOL.initTGI("select_gender_target_product","select_agegroup_target_product",[crossProductData_choose[id]]);
+          $(this).addClass("selected");
+          length++;
         }
-        
-        IAX_CHART_TOOL.resizeChart();
-
-	    	return;
-		}
-    });
+        if ($(this).parents(".dropdown-cross").find(".selected").length>0) {
+          $(this).parents(".dropdown-cross").parents("li").addClass("selected");
+        }else{
+          $(this).parents(".dropdown-cross").parents("li").removeClass("selected");
+        }
+        //生成products
+        var sortProducts = [];
+        crossProductData={};
+        $(this).parents(".cross_brand_choose").find(".dropdown-cross").find(".selected").each(function(){
+          sortProducts.push(allProductsJson[$(this).attr("data-value")]);
+        })
+        sortProducts = sortProducts.sort(IAX_CHART_TOOL.sortJson("desc","audience","parseFloat"));
+        for (var i = 0; i < sortProducts.length; i++) {
+          crossProductData[sortProducts[i].id] = sortProducts[i];
+        };
+        makeProductDom(crossProductData);
+        productGraphCross();
+  	  	e.stopPropagation();
+        e.preventDefault();
+  	  })
+  
+  });
 	
-    function initCalendar(id,options) {
-       new xmoCalendar(options);
-     }
+  function initCalendar(id,options) {
+     new xmoCalendar(options);
+  }
      
 
   </script>

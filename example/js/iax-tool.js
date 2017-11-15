@@ -75,6 +75,46 @@ IAX_TOOL=
   		$(".audience-history-box").modal("hide");
   		$(".audience-history-box").remove();
   	};
+  	
+  	//转换数据 begin
+	var column = new Array();
+	var dataTh = paramsJson.tableData.tHead;
+	var retHead = new Array();
+	if(dataTh){
+		for(var key in dataTh){
+			var obj = new Object();
+			obj.name = dataTh[key];
+			retHead.push(obj);
+			column.push(key);
+		}
+	}
+	paramsJson.tableData.tHead = retHead;
+	var dataTb = paramsJson.tableData.tBody;
+	var retBody = new Array();
+	if(dataTb){
+		for(var obj in dataTb){
+			if(dataTb[obj]){
+				var trArr = new Array();
+				var trObj = new Object();
+				for(var index in column){
+					var tdObj = new Object();
+					var key = column[index];
+					var keyOmit = key+"Omit";
+					if(dataTb[obj][keyOmit]){
+						tdObj.name = dataTb[obj][keyOmit];
+						tdObj.detail = dataTb[obj][key];
+					}else{
+						tdObj.name = dataTb[obj][key];
+					}
+					trArr.push(tdObj);
+				}
+				trObj.tdValues = trArr;
+				retBody.push(trObj);
+			}
+		}
+	}
+	paramsJson.tableData.tBody = retBody;
+  	//转换数据 end
   	$("body").append(Hogan.compile(IAX_TEMPLATE.getAudienceHistory).render(
   		paramsJson
   	));
@@ -107,6 +147,18 @@ IAX_TOOL=
   		paramsJson
   	));
   	$(".analysis-confirm-box").modal('show');
+  },
+  //分析确认进度框
+  analysisLoadingBox : function(paramsJson){
+    if (!paramsJson) {return false};
+    if ($(".analysis-loading-box").length) {
+      $(".analysis-loading-box").modal("hide");
+      $(".analysis-loading-box").remove();
+    };
+    $("body").append(Hogan.compile(IAX_TEMPLATE.analysisLoadingBox).render(
+      paramsJson
+    ));
+    $(".analysis-loading-box").modal('show');
   },
 	//数字格式化
 	formatNum:function(str,len){
@@ -165,6 +217,31 @@ IAX_TOOL=
 	    } 
 	    return len;
 	},
+  //中文算2个，英文算一个
+  substrByLength:function(str,maxLen){
+    if (!str) return "";
+    if (!Number(maxLen)) maxLen = 0;
+    var strLen = this.getLength(str);
+    var newStr = str;
+    if (strLen > Number(maxLen)) {
+      newStr = "";
+      var len=0;
+      for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i); 
+        if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) { 
+          len++; 
+        } 
+        else { 
+         len+=2; 
+        }
+        if (len<=Number(maxLen)) {
+          newStr += str[i];
+        }; 
+      };
+      newStr +="...";
+    };
+    return newStr
+  },
 	outRepeat: function(a){
 	  var hash=[],arr=[];
 	  for (var i = 0,elem;(elem=a[i])!=null; i++) {
@@ -175,6 +252,88 @@ IAX_TOOL=
 	  }
 	  return arr;
 	},
+    format_to_numeric: function(str){
+        str = this.format_to_machine_number(str);
+        if(/^-?\d+(?:\.\d+)?/.test(str)){
+            digitalGroup = /(\d)((\d{3}?)+)$/;
+            var zhengshu = Math.floor(parseFloat(str)) + '';
+            var xiaoshu = Math.floor(parseFloat(str) * 100 % 100) + '';
+            while (digitalGroup.test(zhengshu)) {
+                zhengshu = zhengshu.replace(digitalGroup, '$1' + "," + '$2');
+            };
+            if(parseInt(xiaoshu) < 10){
+                xiaoshu = '0' + xiaoshu
+            };
+            str = zhengshu + "." + xiaoshu;
+
+            while (digitalGroup.test(str)) {
+                str = str.replace(digitalGroup, '$1' + "," + '$2');
+            };
+            if(/\.\d$/.test(str)){
+                str += '0';
+            }else if(/^[^\.]+$/.test(str)){
+                str += '.00';
+            }
+        }
+        return str;
+    },
+    format_to_machine_number: function(str){
+        str += '';
+        str = str.replace(/[^\d\.\,\-]/g,"");
+        if(/^-?(?:\d+|\d{1,3}(?:,\d{3})*)(?:\.\d+)?/.test(str)){
+            str = str.replace(/,/g,"").replace(/^0+/g,"0").replace(/^0(\d)/g, "$1");
+            str = Math.round( parseFloat(str) * 100 )/ 100 + "";
+            return str;
+        }else{
+            return str
+        }
+    },
+    filterChar4input:function(message){
+      var tagname='';
+      var attrid='';
+      var tagvalue='';
+      var _this = this;
+      document.oninput = function(e){
+        var o = e.srcElement || e.target;
+        getValue(o);
+        if(tagname !='' && tagname=='INPUT'){
+            if(tagvalue != '' && !/^[^\",]*$/.test(tagvalue)){
+              //包含",返回false
+              var str = tagvalue.replace(/[\",]/g,"");
+              $(o).val(str);//把过滤特殊字符后的内容赋值给文本框
+              tagvalue='';//当输入第一个字符为特殊字符，回退键删除后会有缓存
+              alertInfo(message);
+              return false;
+            }
+            return true;
+        }
+        if(tagname !='' && tagname=='TEXTAREA'){
+            if(tagvalue != '' && !/^[^\",]*$/.test(tagvalue)){
+              //包含",返回false
+              var str = tagvalue.replace(/[\",]/g,"");
+              $(o).val(str);//把过滤特殊字符后的内容赋值给文本框
+              tagvalue='';
+              alertInfo(message);
+              return false;
+            }
+            return true;
+        }
+      }
+      function alertInfo(str){
+          _this.notification(str,"info","5000");
+      }
+      function getValue(o){
+        if(o.tagName!=''){
+          tagname=o.tagName;
+        }
+        if($(o).attr('id')){
+         attrid=$(o).attr('id');
+        }
+        if($(o).val()){
+          tagvalue=$(o).val();
+        }
+      }
+    }
 }
 //全局变量
 IAX_TOOL.G={

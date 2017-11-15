@@ -355,8 +355,13 @@
       		<div class="page_title">
       		  <div class="row">
               <div class="client-row"><h1>Audience Analysis:</h1></div> 
-              <div class="client-row">
+              <div class="client-row noborder-chosen">
                 <label style="line-height:20px;">
+                  <select class="select" id="audience_plan" name="audiencePlan" disname="chosen下拉">
+                    <option value="google">Estee Lauder - Makeup</option>
+                    <option value="baidu">Estee Lauder - Makeup2</option>
+                  </select>
+                  <!--
                   <div class="dropdown">
                     <input id="hasSavedPlan" type="hidden" value="1"/>
                     <a class=" dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="cursor:pointer;color:#ef4136;font-size:20px;">
@@ -368,6 +373,7 @@
                       <li data-value="-1"><a href="javascript:;">baidu</a></li>
                     </ul>
                   </div>
+                 -->
                 </label>
               </div>
             </div>
@@ -376,7 +382,7 @@
 
           <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
             <li class="active">
-              <a data-toggle="tab" href="#tab-brand" data-id="brand">Brand Comparison</a>
+              <a data-toggle="tab" href="#tab-share" data-id="share">Brand Comparison</a>
             </li>
             <li class="">
               <a data-toggle="tab" href="#tab-product" data-id="product">Product Comparison</a>
@@ -393,34 +399,224 @@
 
       		<!-- table -->
       		<div class="tab-content" id="myTabContent">
-      			<div class="tab-pane fade in active" id="tab-brand">
-                <div class="" id="for_export_brand" style="float:left;width:100%;">
+      			<div class="tab-pane fade in active" id="tab-share">
+                <div class="" id="for_export_share" style="float:left;width:100%;">
                     <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
-                      <div class="plan-reports-result clearfix">
+                      <p>Brands (You can select max. 5 brands)</p>
+                      <ul class="simulator-check-container multi_choose_brand" style="margin-bottom:2.5px;">
                         
-
+                      </ul>
+                      <hr style="margin:10px -20px 7.5px -20px"/>
+                      <div class="plan-reports-result">
+                        <div class="plan-reports-result-inner">
+                          <!--Total-->
+                          <div class="plan-result-graph" id="select_line_map" style="width:100%;height:280px;padding:0;">
+                            <div class="plan-result-text">
+                              <div class="result-text-header">
+                                <label id="date_header">Trend of Overall Brand Scale
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in products. Also it is a comparison among top 5 products."></i>
+                                </label>
+                                <div class="report-dropdown hide" style="top:30px;right:20px;">
+                                  <div class="date-range">
+                                    <div class="date-range-ico"><i class="fa fa-calendar"></i></div> 
+                                    <input type="text" id="daterange_share"
+                                      style="width:155px;"
+                                      placeholder="please select a period" value="2017-05-20 ~ 2017-06-15"
+                                      class="form-control date-range-input xmoCalendarInputSchedule">
+                                       <input type="hidden"  name="begin" value="2017-05-20" />
+                                      <input type="hidden"  name="end" value="2017-06-15" />
+                                     <span class="caret arrow-calendar"></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                    <div id="line_chart_share" class="line-chart-map" style="width:100%;height:220px;">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="plan-reports-result-inner">
+                         <!--Market Cross-->
+                          <div class="plan-result-graph" style="width:50%;height:550px;">
+                            <div class="plan-result-text">
+                              <div class="result-text-header">
+                                <label>Market Share vs. Market Growth of Brands
+                                   <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in products. Also it is a comparison among top 5 products."></i>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr" style="margin:0 auto;height:500px;">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                    <div id="marketCross_share" class="line-chart-map" style="width:470px;margin:50px auto 0 auto;height:450px;">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--Market Share vs. Market Growth of Brands-->
+                          <div class="plan-result-graph" style="width:50%;padding-left:7.5px;height:550px;">
+                            <div class="plan-result-text">
+                              <div class="result-text-header clearfix">
+                                <label>Brand Association
+                                   <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in products. Also it is a comparison among top 5 products."></i>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr" style="margin:0 auto;height:460px;">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                    <div class="comparison-vs-con">
+                                      <div class="dropdown">
+                                        <input name="comparison_left" type="hidden" value="0"/>
+                                        <button class="btn  dropdown-toggle"  style="min-width:165px;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          X-axis: Whitening
+                                          <span class="caret arrow-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu"  style="min-width:163px;" aria-labelledby="dropdownMenu1">
+                                          <li value="0"><a href="javascript:;">X-axis: Whitening</a></li>
+                                        </ul>
+                                      </div>
+                                      <span>vs</span>
+                                      <div class="dropdown">
+                                        <input name="comparison_left" type="hidden" value="0"/>
+                                        <button class="btn  dropdown-toggle"  style="min-width:165px;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          Y-axis: Moisturizing
+                                          <span class="caret arrow-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu"  style="min-width:163px;" aria-labelledby="dropdownMenu1">
+                                          <li value="0"><a href="javascript:;">Y-axis: Moisturizing</a></li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                    <div id="brandAssociation_share" class="line-chart-map" style="width:470px;margin:20px auto 0 auto;height:450px;">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--end-->
+                        </div>
+                        <div class="clearboth"></div>
                       </div>
                     </div>
-                  </div>
+                </div>
       			</div>
 
       			<div class="tab-pane fade" id="tab-product">
                 <div class="" id="for_export_product">
                   <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
+                    <p>Brands (You can select max. 5 brands)</p>
+                    <ul class="simulator-check-container multi_choose_brand_limit" style="margin-bottom:2.5px;">
+                      
+                    </ul>
+                    <hr style="margin:10px -20px 7.5px -20px"/>
                     <div class="plan-reports-result">
-                     
+                      <div class="plan-reports-result-inner">
+                          <!--Total-->
+                          <div class="plan-result-graph" style="width:100%;height:430px;padding:0;">
+                            <div class="plan-result-text">
+                              <div class="result-text-header">
+                                <label id="date_header">Product Association
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in products. Also it is a comparison among top 5 products."></i>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                    <div id="product_association" class="line-chart-map" style="width:100%;height:360px;">
+                                      <div class="correlation-con">
+                                        <div class="correlation-bg-con">
+                                          <div class="correlation-bg1"></div>
+                                          <div class="correlation-bg2"></div>
+                                          <div class="correlation-bg3"></div>
+                                          <div class="correlation-bg4"></div>
+                                          <div class="correlation-bg5"></div>
+                                        </div>
+                                        <div class="correlation-title">
+                                          <!-- <label>Strong correlation</label>
+                                          <label>Weak correlation</label> -->
+                                          <ul>
+                                            <li data-value="dailyGrowthP" class="selected">Daily</li>
+                                            <li data-value="weeklyGrowthP" >Weekly</li>
+                                            <li data-value="monthlyGrowthP" >Monthly</li>
+                                          </ul>
+                                        </div>
+                                        <div class="correlation-content">
+                                          <div class="time-line">
+                                            <div class="time-title">
+                                              <span class="left-title">Strong correlation</span>
+                                              <span class="right-title">Weak correlation</span>
+                                            </div>
+                                          </div>
+                                          <div class="increase-line">
+                                            <span class="fa fa-caret-up"></span>
+                                            <span class="fa fa-caret-down"></span>
+                                            <div class="increase-title">
+                                              <span class="left-title">Increasing</span>
+                                              <span class="right-title">Decreasing</span>
+                                            </div>
+                                          </div>
+                                          <div class="time-circle origin-circle">
+                                              <label style="line-height:20px;margin-top:45px;margin-left:10px;">
+                                                <select class="select" id="correlation_select" name="correlation_select" disname="chosen下拉">
+                                                  
+                                                </select>
+                                              </label>
+                                          </div>
+                                          <div class="time-content" id="product_time"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="plan-reports-result-inner" style="width:100%;">
+                          <div class="plan-result-graph" style="width:100%;height:470px;padding:0;">
+                            <div class="plan-result-text">
+                              <div class="result-text-header">
+                                <label id="date_header">Product Category Analysis
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="The daily number of audience changes in products. Also it is a comparison among top 5 products."></i>
+                                </label>
+                              </div>
+                              <div class="result-graph-info x-mt10">
+                                <div class="result-graph-word word-impr" style="height:400px;">
+                                  <div class="result-graph-word-content" style="margin:0 auto;width:1050px;">
+                                    <div class="category_analysis" id="category_analysis" style="height:400px;width:450px;float:left;">
+                                      
+                                    </div>
+                                    <div class="product-category-analysis-bg"></div>
+                                    <div class="category_analysis" id="product_category_analysis" style="height:400px;width:580px;float:right;display:flex;flex-wrap:wrap;justify-content:center;">
+                                      
+                                    </div>
+                                    
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="clearboth"></div>
                     </div>
                   </div>
+
+
                 </div>
       			</div>
-            
-            
+          
       		</div>
+        </div>
 
-
-          </div>
-        <div class="clearboth"></div>
       </div>
+      <div class="clearboth"></div>
+    </div>
         <!-- footer -->
         <div class="clearfooter"></div>
         <div class="myfooter">
@@ -452,161 +648,2282 @@
   <script type="text/javascript">
     
   	$(function(){
-        var data = {"result": [{
-            "data": {
-                "age_group": {
-                    "0-17": 2022,
-                    "18-24": 30,
-                    "25-34": 25,
+        var brandData = {};
+        var dataArr = [{"result": [{
+           "data": {
+              "age_group": {
+                  "0-17": 20,
+                  "18-24": 30,
+                  "25-34": 15,
+                  "35-44": 25,
+                  "45-54": 20,
+                  "55-64": 10,
+                  "65+": 12,
+                  "UNKNOWN": 12,  
+              },
+              "audience": "6333",
+              "allMarket": "2,567K",
+              "device": {
+                  "Mobile": 852,
+                  "PC": 1246,
+                  "UNKNOWN": 179
+              },
+              "gender": {
+                  "male": 38,
+                  "female": 22,
+                  "UNKNOWN":33,
+              },
+              "preferenceIndex":{
+                  "gender" : {
+                    "male": 50,
+                    "female": 50,
+                  },
+                  "ageGroup" : {
+                    "0-17": 22,
+                    "18-24": 20,
+                    "25-34": 55,
                     "35-44": 65,
-                    "45-54": 10,
+                    "45-54": 30,
                     "55-64": 10,
-                    "65+": 1022,
-                    "UNKNOWN": 179
-                },
-                "audience": "11.3M",
-                "allMarket": "3,267K",
-                "device": {
-                    "Mobile": 852,
-                    "PC": 1246,
-                    "UNKNOWN": 179
-                },
-                "gender": {
-                    "female": 11,
-                    "male": 55,
-                    "UNKNOWN":33,
-                },
-                "product_share": {
-                    "Stay-in-Place Makeup": 3333,
-                    "Prefectionist": 12246,
-                    "Advanced Night Cream": 222,
-                    "Resilience Lift":10000,
-                },
+                    "65+": 12,
+                  },
+              },
+              "product_association":[
+                    {"category":"Whitening","value":"90"},
+                    {"category":"Moisturizing","value":"30"},
+                    {"category":"Black","value":"70"},
+                    {"category":"Color","value":"20"},
+                    {"category":"Green","value":"50"},
+                    {"category":"Red","value":"10"},
+                    {"category":"Yellow","value":"-20"},
+                  ],
+              "product_share": {
+                  "Stay-in-Place Makeup": 23500,
+                  "Prefectionist": 12246,
+                  "Advanced Night Cream": 11179,
+                  "Resilience Lift":10000,
+              },
+              
+              "interest": {
+                  "Arts & Entertainment": {
+                      "name": "Arts & Entertainment",
+                      "value": 21,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Cooking & Recipes": {
+                      "name": "Cooking & Recipes",
+                      "value": 19,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Female Fashion": {
+                      "name": "Female Fashion",
+                      "value": 50,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Food & Drink": {
+                      "name": "Food & Drink",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Restaurants": {
+                      "name": "Restaurants",
+                      "value": 40,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "_others":{
+                      "name": "Other Related Interests",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                  }
+              },
+              "regions":[
+                  {"name": "BeiJing", "value": "123"},
+                  {"name": "TianJin", "value": "61"},
+                  {"name": "ShanXi", "value": "123"},
+                  {"name": "NeiMeng", "value": "62"},
+                  {"name": "HeBei", "value": "1223"},
+                  {"name": "JiLin", "value": "123"},
+                  {"name": "JiangXi", "value": "123"},
+                  {"name": "ShanDong", "value": "33"},
+                  {"name": "ChongQing", "value": "123"},
+                  {"name": "SiChuan", "value": "62"},
+                  {"name": "GuiZhou",  "value": "1223"},
+                  {"name": "YunNan",  "value": "123"},
+                  {"name": "XiZang", "value": "33"},
+                  {"name": "ShanXi1", "value": "123"},
+                  {"name": "GanSu", "value": "62"},
+                  {"name": "QingHai", "value": "4223"},
+                  {"name": "NingXia", "value": "123"},
+                  {"name": "XinJiang", "value": "123"},
+                  {"name": "Heilongjiang", "value": "33"},
+                  {"name": "Overseas", "value": "5551"}
+              ]
+            },
+            "id": "10",
+            "name": "brand"
+        },{
+            "data": {//格式:productId:data
+              "0":{
+                  "productName":"Stay-in-Place Makeup0",
+                  "category":"Whitening",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 30,
+                      "25-34": 15,
+                      "35-44": 25,
+                      "45-54": 20,
+                      "55-64": 10,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "6666",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "male": 38,
+                      "female": 22,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"-30","dailyGrowthP":8.18,"weeklyGrowthP": -2.22,"monthlyGrowthP": 10.0},
+                    {"category":"Moisturizing","value":"30","dailyGrowthP":-8.18,"weeklyGrowthP": 2.22,"monthlyGrowthP": 10.0},
+                    {"category":"Black","value":"10","dailyGrowthP":18.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 15.0},
+                    {"category":"Color","value":"-20","dailyGrowthP":-18.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 15.0},
+                    {"category":"Green","value":"10","dailyGrowthP":18.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 15.0},
+                    {"category":"Red","value":"-30","dailyGrowthP":18.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0},
+                    {"category":"Yellow","value":"-20","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Stay-in-Place Makeup1","value":"11"},
+                      {"date":"2017-05-21","name":"Stay-in-Place Makeup1","value":"21"},
+                      {"date":"2017-05-22","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-05-23","name":"Stay-in-Place Makeup1","value":"41"},
+                      {"date":"2017-05-24","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-05-25","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-05-26","name":"Stay-in-Place Makeup1","value":"71"},
+                      {"date":"2017-05-27","name":"Stay-in-Place Makeup1","value":"11"},
+                      {"date":"2017-05-28","name":"Stay-in-Place Makeup1","value":"21"},
+                      {"date":"2017-05-29","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-05-30","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-05-31","name":"Stay-in-Place Makeup1","value":"81"},
+                      {"date":"2017-06-01","name":"Stay-in-Place Makeup1","value":"21"},
+                      {"date":"2017-06-02","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-06-03","name":"Stay-in-Place Makeup1","value":"71"},
+                      {"date":"2017-06-04","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-06-05","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-06-06","name":"Stay-in-Place Makeup1","value":"41"},
+                      {"date":"2017-06-07","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-06-08","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-06-09","name":"Stay-in-Place Makeup1","value":"71"},
+                      {"date":"2017-06-10","name":"Stay-in-Place Makeup1","value":"81"},
+                      {"date":"2017-06-11","name":"Stay-in-Place Makeup1","value":"31"},
+                      {"date":"2017-06-12","name":"Stay-in-Place Makeup1","value":"41"},
+                      {"date":"2017-06-13","name":"Stay-in-Place Makeup1","value":"51"},
+                      {"date":"2017-06-14","name":"Stay-in-Place Makeup1","value":"61"},
+                      {"date":"2017-06-15","name":"Stay-in-Place Makeup1","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 50,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 40,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "123"},
+                      {"name": "TianJin", "value": "61"},
+                      {"name": "ShanXi", "value": "123"},
+                      {"name": "NeiMeng", "value": "62"},
+                      {"name": "HeBei", "value": "1223"},
+                      {"name": "JiLin", "value": "123"},
+                      {"name": "JiangXi", "value": "123"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+              "1":{
+                  "productName":"Prefectionist0",
+                  "category":"Moisturizing",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 40,
+                      "25-34": 25,
+                      "35-44": 35,
+                      "45-54": 10,
+                      "55-64": 20,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "5333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "male": 38,
+                      "female": 22,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"-10","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                    {"category":"Moisturizing","value":"90","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                    {"category":"Black","value":"50","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                    {"category":"Color","value":"-5","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                    {"category":"Green","value":"90","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                    {"category":"Red","value":"-30","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                    {"category":"Yellow","value":"-40","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Prefectionist","value":"21"},
+                      {"date":"2017-05-21","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-22","name":"Prefectionist","value":"11"},
+                      {"date":"2017-05-23","name":"Prefectionist","value":"51"},
+                      {"date":"2017-05-24","name":"Prefectionist","value":"51"},
+                      {"date":"2017-05-25","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-26","name":"Prefectionist","value":"21"},
+                      {"date":"2017-05-27","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-28","name":"Prefectionist","value":"91"},
+                      {"date":"2017-05-29","name":"Prefectionist","value":"91"},
+                      {"date":"2017-05-30","name":"Prefectionist","value":"11"},
+                      {"date":"2017-05-31","name":"Prefectionist","value":"21"},
+                      {"date":"2017-06-01","name":"Prefectionist","value":"31"},
+                      {"date":"2017-06-02","name":"Prefectionist","value":"41"},
+                      {"date":"2017-06-03","name":"Prefectionist","value":"51"},
+                      {"date":"2017-06-04","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-05","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-06","name":"Prefectionist","value":"61"},
+                      {"date":"2017-06-07","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-08","name":"Prefectionist","value":"71"},
+                      {"date":"2017-06-09","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-10","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-11","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-12","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-13","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-14","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-15","name":"Prefectionist","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "223"},
+                      {"name": "TianJin", "value": "31"},
+                      {"name": "ShanXi", "value": "13"},
+                      {"name": "NeiMeng", "value": "162"},
+                      {"name": "HeBei", "value": "123"},
+                      {"name": "JiLin", "value": "1223"},
+                      {"name": "JiangXi", "value": "323"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+              "2":{
+                  "productName":"Advanced Night Cream0",
+                  "category":"Moisturizing",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 30,
+                      "25-34": 15,
+                      "35-44": 25,
+                      "45-54": 20,
+                      "55-64": 10,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "13333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "male": 38,
+                      "female": 22,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"-23","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 10.0},
+                    {"category":"Moisturizing","value":"10","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 10.0},
+                    {"category":"Black","value":"20","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 20.0},
+                    {"category":"Color","value":"90","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 20.0},
+                    {"category":"Green","value":"-50","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 20.0},
+                    {"category":"Red","value":"20","dailyGrowthP":45.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 20.0},
+                    {"category":"Yellow","value":"-20","dailyGrowthP":45.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 20.0},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-21","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-22","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-23","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-24","name":"Advanced Night Cream","value":"31"},
+                      {"date":"2017-05-25","name":"Advanced Night Cream","value":"41"},
+                      {"date":"2017-05-26","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-05-27","name":"Advanced Night Cream","value":"61"},
+                      {"date":"2017-05-28","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-05-29","name":"Advanced Night Cream","value":"31"},
+                      {"date":"2017-05-30","name":"Advanced Night Cream","value":"41"},
+                      {"date":"2017-05-31","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-06-01","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-02","name":"Advanced Night Cream","value":"21"},
+                      {"date":"2017-06-03","name":"Advanced Night Cream","value":"31"},
+                      {"date":"2017-06-04","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-05","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-06","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-07","name":"Advanced Night Cream","value":"81"},
+                      {"date":"2017-06-08","name":"Advanced Night Cream","value":"91"},
+                      {"date":"2017-06-09","name":"Advanced Night Cream","value":"61"},
+                      {"date":"2017-06-10","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-06-11","name":"Advanced Night Cream","value":"41"},
+                      {"date":"2017-06-12","name":"Advanced Night Cream","value":"21"},
+                      {"date":"2017-06-13","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-14","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-15","name":"Advanced Night Cream","value":"11"},
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "123"},
+                      {"name": "TianJin", "value": "61"},
+                      {"name": "ShanXi", "value": "123"},
+                      {"name": "NeiMeng", "value": "62"},
+                      {"name": "HeBei", "value": "1223"},
+                      {"name": "JiLin", "value": "123"},
+                      {"name": "JiangXi", "value": "123"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+            },
+            "id": "1",
+            "name": "product"
+        },
+        {
+            "data": {
+                "audience": "11312312312",
+                "allMarket": "26712312",
+                "sentiment":156,
                 "mixTrend":{
                   "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
-                  "result":{"Market Scale":
+                  "result":{"Brand Audience":
                     [
-                      {"date":"2017-05-20","name":"Market Scale","value":"1111"},
-                      {"date":"2017-05-21","name":"Market Scale","value":"1212"},
-                      {"date":"2017-05-22","name":"Market Scale","value":"3111"},
-                      {"date":"2017-05-23","name":"Market Scale","value":"4221"},
-                      {"date":"2017-05-24","name":"Market Scale","value":"5111"},
-                      {"date":"2017-05-25","name":"Market Scale","value":"6111"},
-                      {"date":"2017-05-26","name":"Market Scale","value":"7111"},
-                      {"date":"2017-05-27","name":"Market Scale","value":"1111"},
-                      {"date":"2017-05-28","name":"Market Scale","value":"2111"},
-                      {"date":"2017-05-29","name":"Market Scale","value":"3111"},
-                      {"date":"2017-05-30","name":"Market Scale","value":"5111"},
-                      {"date":"2017-05-31","name":"Market Scale","value":"8111"},
-                      {"date":"2017-06-01","name":"Market Scale","value":"2111"},
-                      {"date":"2017-06-02","name":"Market Scale","value":"3111"},
-                      {"date":"2017-06-03","name":"Market Scale","value":"7111"},
-                      {"date":"2017-06-04","name":"Market Scale","value":"6111"},
-                      {"date":"2017-06-05","name":"Market Scale","value":"5111"},
-                      {"date":"2017-06-06","name":"Market Scale","value":"4111"},
-                      {"date":"2017-06-07","name":"Market Scale","value":"5111"},
-                      {"date":"2017-06-08","name":"Market Scale","value":"6111"},
-                      {"date":"2017-06-09","name":"Market Scale","value":"7111"},
-                      {"date":"2017-06-10","name":"Market Scale","value":"8111"},
-                      {"date":"2017-06-11","name":"Market Scale","value":"3111"},
-                      {"date":"2017-06-12","name":"Market Scale","value":"4111"},
-                      {"date":"2017-06-13","name":"Market Scale","value":"5111"},
-                      {"date":"2017-06-14","name":"Market Scale","value":"6111"},
-                      {"date":"2017-06-15","name":"Market Scale","value":"1111"},
+                      {"date":"2017-05-20","name":"Brand Audience","value":"11"},
+                      {"date":"2017-05-21","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-22","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-23","name":"Brand Audience","value":"41"},
+                      {"date":"2017-05-24","name":"Brand Audience","value":"51"},
+                      {"date":"2017-05-25","name":"Brand Audience","value":"61"},
+                      {"date":"2017-05-26","name":"Brand Audience","value":"71"},
+                      {"date":"2017-05-27","name":"Brand Audience","value":"11"},
+                      {"date":"2017-05-28","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-29","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-30","name":"Brand Audience","value":"51"},
+                      {"date":"2017-05-31","name":"Brand Audience","value":"81"},
+                      {"date":"2017-06-01","name":"Brand Audience","value":"21"},
+                      {"date":"2017-06-02","name":"Brand Audience","value":"31"},
+                      {"date":"2017-06-03","name":"Brand Audience","value":"71"},
+                      {"date":"2017-06-04","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-05","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-06","name":"Brand Audience","value":"41"},
+                      {"date":"2017-06-07","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-08","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-09","name":"Brand Audience","value":"71"},
+                      {"date":"2017-06-10","name":"Brand Audience","value":"81"},
+                      {"date":"2017-06-11","name":"Brand Audience","value":"31"},
+                      {"date":"2017-06-12","name":"Brand Audience","value":"41"},
+                      {"date":"2017-06-13","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-14","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-15","name":"Brand Audience","value":"11"},
+                    ],"Brand Share":
+                    [
+                      {"date":"2017-05-20","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-21","name":"Brand Share","value":"81"},
+                      {"date":"2017-05-22","name":"Brand Share","value":"71"},
+                      {"date":"2017-05-23","name":"Brand Share","value":"61"},
+                      {"date":"2017-05-24","name":"Brand Share","value":"51"},
+                      {"date":"2017-05-25","name":"Brand Share","value":"41"},
+                      {"date":"2017-05-26","name":"Brand Share","value":"71"},
+                      {"date":"2017-05-27","name":"Brand Share","value":"81"},
+                      {"date":"2017-05-28","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-29","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-30","name":"Brand Share","value":"11"},
+                      {"date":"2017-05-31","name":"Brand Share","value":"21"},
+                      {"date":"2017-06-01","name":"Brand Share","value":"31"},
+                      {"date":"2017-06-02","name":"Brand Share","value":"41"},
+                      {"date":"2017-06-03","name":"Brand Share","value":"51"},
+                      {"date":"2017-06-04","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-05","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-06","name":"Brand Share","value":"61"},
+                      {"date":"2017-06-07","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-08","name":"Brand Share","value":"71"},
+                      {"date":"2017-06-09","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-10","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-11","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-12","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-13","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-14","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-15","name":"Brand Share","value":"11"},
                     ]},
                     "topBrands":[
                       {"date":"2017-05-20","articles":[
-                        {"date":"2017/05/20 12:15","index":"1","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion The Business of Fashion","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 18:15","index":"2","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beautify fulllifly","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 18:15","index":"3","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"4","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"5","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"6","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"A","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
                       {"date":"2017-06-01","articles":[
-                        {"date":"2017/06/01 12:15","index":"1","title":"AAAAAA AAAAA AAAA the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/01 18:15","index":"2","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/01 18:15","index":"3","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/01 12:15","index":"4","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/01 12:15","index":"5","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/01 12:15","index":"6","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/01 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/01 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"A","title":"AAAAAA AAAAA AAAA the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
                       {"date":"2017-06-15","articles":[
-                        {"date":"2017/06/15 12:15","index":"1","title":"BBBB BBBB in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 18:15","index":"2","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 18:15","index":"3","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 12:15","index":"4","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 12:15","index":"5","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 12:15","index":"6","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/06/15 12:15","index":"7","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_newstttt.png"},
-                        {"date":"2017/06/15 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com"},
-                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
-                        {"date":"2017/05/20 12:15","index":"8","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"A","title":"BBBB BBBB in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
                     ],
                 },
                 "market_share":{
-                  "market":88888888888888,
-                  "market_show":1,
+                  "market":1000,
+                  "market_show":50,
                 },
-                "cloud_tag": [
-                    {
-                        "text": "小棕瓶",
-                        "weight": 100.0
-                    },
-                    {
-                        "text": "唇膏",
-                        "weight": 41.91399002075195
-                    },
-                    {
-                        "text": "真假辨别",
-                        "weight": 40.50263214111328
-                    },
-                    {
-                        "text": "wear",
-                        "weight": 39.256526947021484
-                    },
-                    {
-                        "text": "粉底液",
-                        "weight": 36.01508331298828
-                    },
-                    {
-                        "text": "double",
-                        "weight": 34.853759765625
-                    },
-                    {
-                        "text": "红石榴",
-                        "weight": 32.2340202331543
-                    },
-                    {
-                        "text": "眼霜",
-                        "weight": 31.098222732543945
-                    },
-                    {
-                        "text": "倾慕",
-                        "weight": 27.179134368896484
-                    },
-                    {
-                        "text": "修护",
-                        "weight": 26.62397003173828
-                    }
+                "market_show_growth":{
+                  "market_show":"60%",
+                  "market_growth":"-60%"
+                },
+                "brand_association":[
+                  {"category":"Whitening","value":"30"},
+                  {"category":"Moisturizing","value":"20"},
+                  {"category":"Black","value":"-30"},
+                  {"category":"Color","value":"40"},
+                  {"category":"Green","value":"80"},
+                  {"category":"Red","value":"-10"},
+                  {"category":"Yellow","value":"-50"},
                 ],
+                "cloud_tag" :[{"text":"歪果仁","weight":100},{"text":"月饼","weight":45.0382},{"text":"监狱学园","weight":22.148},{"text":"评选","weight":16.6745},{"text":"夺冠","weight":16.0865},{"text":"蛋黄","weight":15.9139},{"text":"十大","weight":14.1008},{"text":"半岛酒店","weight":9.6794},{"text":"美心","weight":7.5397},{"text":"劳斯莱斯","weight":7.3295},{"text":"进口港","weight":7.1099},{"text":"黑暗料理","weight":5.3043},{"text":"冰皮月饼","weight":5.1641},{"text":"秀身材","weight":5.1076},{"text":"礼盒","weight":5.0944},{"text":"脑洞","weight":4.8976},{"text":"真会玩","weight":4.6244},{"text":"烤箱烤","weight":4.5626},{"text":"养鱼","weight":4.5291},{"text":"凑齐","weight":4.2363},{"text":"英伦","weight":4.2329},{"text":"party","weight":4.1428},{"text":"试吃","weight":4.0997},{"text":"拉制","weight":4.0869},{"text":"礼盒装","weight":4.0621},{"text":"毛衣","weight":4.0199},{"text":"花式","weight":3.9554},{"text":"锁骨","weight":3.9276},{"text":"流沙","weight":3.9097},{"text":"分分钟","weight":3.7986},{"text":"年糕","weight":3.7755},{"text":"high","weight":3.7198},{"text":"卡片","weight":3.6305},{"text":"白莲","weight":3.5339},{"text":"做法","weight":3.4361},{"text":"大班","weight":3.4318},{"text":"中华","weight":3.4291},{"text":"自己动手","weight":3.3983},{"text":"详细讲解","weight":3.368},{"text":"半岛","weight":3.3195},{"text":"翩跹","weight":3.1109},{"text":"制作过程","weight":3.1086},{"text":"送礼","weight":3.0931},{"text":"改造","weight":3.0024},{"text":"打败","weight":2.9911},{"text":"婚礼","weight":2.927},{"text":"独家揭秘","weight":2.9041},{"text":"发售","weight":2.8313},{"text":"火腿","weight":2.8003},{"text":"名不虚传","weight":2.7826},{"text":"蔡澜","weight":2.7774},{"text":"纯正","weight":2.7176},{"text":"亮相","weight":2.6797},{"text":"金华","weight":2.486},{"text":"京城","weight":2.4588},{"text":"五仁","weight":2.4145},{"text":"解决方法","weight":2.3794},{"text":"diy","weight":2.2294},{"text":"吴京","weight":2.1215},{"text":"防弹","weight":2.1011},{"text":"中国菜","weight":2.0959},{"text":"迷你","weight":2.0499},{"text":"美英","weight":2.0181},{"text":"散装","weight":1.9724},{"text":"招牌","weight":1.8189},{"text":"清单","weight":1.5536},{"text":"英文","weight":1.5126},{"text":"全家","weight":1.4629},{"text":"征服","weight":1.4538},{"text":"淘宝","weight":1.2549}]
             },
             "id": "2",
             "name": "share",
-        }]
+        }],"id":5,"name":"Estee Lauder"
+      },{"result": [{
+           "data": {
+              "age_group": {
+                  "0-17": 20,
+                  "18-24": 30,
+                  "25-34": 15,
+                  "35-44": 25,
+                  "45-54": 20,
+                  "55-64": 10,
+                  "65+": 12,
+                  "UNKNOWN": 12,  
+              },
+              "audience": "3123",
+              "allMarket": "2,567K",
+              "device": {
+                  "Mobile": 852,
+                  "PC": 1246,
+                  "UNKNOWN": 179
+              },
+              "gender": {
+                  "female": 22,
+                  "male": 38,
+                  "UNKNOWN":33,
+              },
+              "preferenceIndex":{
+                  "gender" : {
+                    "male": 50,
+                    "female": 50,
+                  },
+                  "ageGroup" : {
+                    "0-17": 22,
+                    "18-24": 20,
+                    "25-34": 55,
+                    "35-44": 65,
+                    "45-54": 30,
+                    "55-64": 10,
+                    "65+": 12,
+                  },
+              },
+              "product_association":[
+                {"category":"Whitening","value":"-80"},
+                {"category":"Moisturizing","value":"50"},
+                {"category":"Black","value":"-70"},
+                {"category":"Color","value":"55"},
+                {"category":"Green","value":"66"},
+                {"category":"Red","value":"-80"},
+                {"category":"Yellow","value":"-80"},
+              ],
+              "product_share": {
+                  "Stay-in-Place Makeup": 23500,
+                  "Prefectionist": 12246,
+                  "Advanced Night Cream": 11179,
+                  "Resilience Lift":10000,
+                  "Resilience Lift2":10000,
+              },
+              
+              "interest": {
+                  "Arts & Entertainment": {
+                      "name": "Arts & Entertainment",
+                      "value": 21,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Cooking & Recipes": {
+                      "name": "Cooking & Recipes",
+                      "value": 19,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Female Fashion": {
+                      "name": "Female Fashion",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Food & Drink": {
+                      "name": "Food & Drink",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Restaurants": {
+                      "name": "Restaurants",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "_others":{
+                      "name": "Other Related Interests",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                  }
+              },
+              "regions":[
+                  {"name": "BeiJing", "value": "123"},
+                  {"name": "TianJin", "value": "61"},
+                  {"name": "ShanXi", "value": "123"},
+                  {"name": "NeiMeng", "value": "62"},
+                  {"name": "HeBei", "value": "1223"},
+                  {"name": "JiLin", "value": "123"},
+                  {"name": "JiangXi", "value": "123"},
+                  {"name": "ShanDong", "value": "33"},
+                  {"name": "ChongQing", "value": "123"},
+                  {"name": "SiChuan", "value": "62"},
+                  {"name": "GuiZhou",  "value": "1223"},
+                  {"name": "YunNan",  "value": "123"},
+                  {"name": "XiZang", "value": "33"},
+                  {"name": "ShanXi1", "value": "123"},
+                  {"name": "GanSu", "value": "62"},
+                  {"name": "QingHai", "value": "4223"},
+                  {"name": "NingXia", "value": "123"},
+                  {"name": "XinJiang", "value": "123"},
+                  {"name": "Heilongjiang", "value": "33"},
+                  {"name": "Overseas", "value": "5551"}
+              ]
+            },
+            "id": "1",
+            "name": "brand"
+        },{
+            "data": {//格式:productId:data
+              "0":{
+                  "productName":"Stay-in-Place Makeup1",
+                  "category":"Black",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 30,
+                      "25-34": 15,
+                      "35-44": 25,
+                      "45-54": 20,
+                      "55-64": 10,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "31333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "female": 22,
+                      "male": 38,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"39","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Moisturizing","value":"50","dailyGrowthP":-28.18,"weeklyGrowthP": 22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Black","value":"-50","dailyGrowthP":38.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 50.0,},
+                    {"category":"Color","value":"-90","dailyGrowthP":68.18,"weeklyGrowthP": -12.22,"monthlyGrowthP": -10.0,},
+                    {"category":"Green","value":"30","dailyGrowthP":-28.18,"weeklyGrowthP": 52.22,"monthlyGrowthP": -10.0,},
+                    {"category":"Red","value":"-50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Yellow","value":"-20","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Stay-in-Place Makeup2","value":"11"},
+                      {"date":"2017-05-21","name":"Stay-in-Place Makeup2","value":"21"},
+                      {"date":"2017-05-22","name":"Stay-in-Place Makeup2","value":"31"},
+                      {"date":"2017-05-23","name":"Stay-in-Place Makeup2","value":"41"},
+                      {"date":"2017-05-24","name":"Stay-in-Place Makeup2","value":"51"},
+                      {"date":"2017-05-25","name":"Stay-in-Place Makeup2","value":"61"},
+                      {"date":"2017-05-26","name":"Stay-in-Place Makeup2","value":"71"},
+                      {"date":"2017-05-27","name":"Stay-in-Place Makeup2","value":"11"},
+                      {"date":"2017-05-28","name":"Stay-in-Place Makeup2","value":"21"},
+                      {"date":"2017-05-29","name":"Stay-in-Place Makeup2","value":"31"},
+                      {"date":"2017-05-30","name":"Stay-in-Place Makeup2","value":"51"},
+                      {"date":"2017-05-31","name":"Stay-in-Place Makeup2","value":"81"},
+                      {"date":"2017-06-01","name":"Stay-in-Place Makeup2","value":"21"},
+                      {"date":"2017-06-02","name":"Stay-in-Place Makeup2","value":"31"},
+                      {"date":"2017-06-03","name":"Stay-in-Place Makeup2","value":"71"},
+                      {"date":"2017-06-04","name":"Stay-in-Place Makeup2","value":"61"},
+                      {"date":"2017-06-05","name":"Stay-in-Place Makeup2","value":"51"},
+                      {"date":"2017-06-06","name":"Stay-in-Place Makeup2","value":"41"},
+                      {"date":"2017-06-07","name":"Stay-in-Place Makeup2","value":"51"},
+                      {"date":"2017-06-08","name":"Stay-in-Place Makeup2","value":"61"},
+                      {"date":"2017-06-09","name":"Stay-in-Place Makeup2","value":"71"},
+                      {"date":"2017-06-10","name":"Stay-in-Place Makeup2","value":"81"},
+                      {"date":"2017-06-11","name":"Stay-in-Place Makeup2","value":"31"},
+                      {"date":"2017-06-12","name":"Stay-in-Place Makeup2","value":"41"},
+                      {"date":"2017-06-13","name":"Stay-in-Place Makeup2","value":"51"},
+                      {"date":"2017-06-14","name":"Stay-in-Place Makeup2","value":"61"},
+                      {"date":"2017-06-15","name":"Stay-in-Place Makeup2","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "123"},
+                      {"name": "TianJin", "value": "61"},
+                      {"name": "ShanXi", "value": "123"},
+                      {"name": "NeiMeng", "value": "62"},
+                      {"name": "HeBei", "value": "1223"},
+                      {"name": "JiLin", "value": "123"},
+                      {"name": "JiangXi", "value": "123"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+              "1":{
+                  "productName":"Prefectionist1",
+                  "category":"Black",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 40,
+                      "25-34": 25,
+                      "35-44": 35,
+                      "45-54": 10,
+                      "55-64": 20,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "23333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "female": 22,
+                      "male": 38,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"44","dailyGrowthP":-28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Moisturizing","value":"66","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Black","value":"-70","dailyGrowthP":38.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Color","value":"90","dailyGrowthP":58.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": -10.0,},
+                    {"category":"Green","value":"10","dailyGrowthP":-28.18,"weeklyGrowthP": 22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Red","value":"-20","dailyGrowthP":28.18,"weeklyGrowthP": -2.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Yellow","value":"77","dailyGrowthP":8.18,"weeklyGrowthP": 2.22,"monthlyGrowthP": 0.0,},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Prefectionist","value":"21"},
+                      {"date":"2017-05-21","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-22","name":"Prefectionist","value":"11"},
+                      {"date":"2017-05-23","name":"Prefectionist","value":"51"},
+                      {"date":"2017-05-24","name":"Prefectionist","value":"51"},
+                      {"date":"2017-05-25","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-26","name":"Prefectionist","value":"21"},
+                      {"date":"2017-05-27","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-28","name":"Prefectionist","value":"91"},
+                      {"date":"2017-05-29","name":"Prefectionist","value":"91"},
+                      {"date":"2017-05-30","name":"Prefectionist","value":"11"},
+                      {"date":"2017-05-31","name":"Prefectionist","value":"21"},
+                      {"date":"2017-06-01","name":"Prefectionist","value":"31"},
+                      {"date":"2017-06-02","name":"Prefectionist","value":"41"},
+                      {"date":"2017-06-03","name":"Prefectionist","value":"51"},
+                      {"date":"2017-06-04","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-05","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-06","name":"Prefectionist","value":"61"},
+                      {"date":"2017-06-07","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-08","name":"Prefectionist","value":"71"},
+                      {"date":"2017-06-09","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-10","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-11","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-12","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-13","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-14","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-15","name":"Prefectionist","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "223"},
+                      {"name": "TianJin", "value": "31"},
+                      {"name": "ShanXi", "value": "13"},
+                      {"name": "NeiMeng", "value": "162"},
+                      {"name": "HeBei", "value": "123"},
+                      {"name": "JiLin", "value": "1223"},
+                      {"name": "JiangXi", "value": "323"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+              "2":{
+                  "productName":"Advanced Night Cream1",
+                  "category":"Color",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 30,
+                      "25-34": 15,
+                      "35-44": 25,
+                      "45-54": 20,
+                      "55-64": 10,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "33333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "female": 22,
+                      "male": 38,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"55","dailyGrowthP":38.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 20.0,},
+                    {"category":"Moisturizing","value":"50","dailyGrowthP":38.18,"weeklyGrowthP": 32.22,"monthlyGrowthP": -10.0,},
+                    {"category":"Black","value":"-70","dailyGrowthP":-28.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Color","value":"-20","dailyGrowthP":58.18,"weeklyGrowthP": -2.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Green","value":"10","dailyGrowthP":-28.18,"weeklyGrowthP": 2.22,"monthlyGrowthP": 20.0,},
+                    {"category":"Red","value":"-50","dailyGrowthP":-8.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 30.0,},
+                    {"category":"Yellow","value":"-77","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-21","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-22","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-23","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-05-24","name":"Advanced Night Cream","value":"31"},
+                      {"date":"2017-05-25","name":"Advanced Night Cream","value":"41"},
+                      {"date":"2017-05-26","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-05-27","name":"Advanced Night Cream","value":"61"},
+                      {"date":"2017-05-28","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-05-29","name":"Advanced Night Cream","value":"31"},
+                      {"date":"2017-05-30","name":"Advanced Night Cream","value":"41"},
+                      {"date":"2017-05-31","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-06-01","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-02","name":"Advanced Night Cream","value":"21"},
+                      {"date":"2017-06-03","name":"Advanced Night Cream","value":"31"},
+                      {"date":"2017-06-04","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-05","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-06","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-07","name":"Advanced Night Cream","value":"81"},
+                      {"date":"2017-06-08","name":"Advanced Night Cream","value":"91"},
+                      {"date":"2017-06-09","name":"Advanced Night Cream","value":"61"},
+                      {"date":"2017-06-10","name":"Advanced Night Cream","value":"51"},
+                      {"date":"2017-06-11","name":"Advanced Night Cream","value":"41"},
+                      {"date":"2017-06-12","name":"Advanced Night Cream","value":"21"},
+                      {"date":"2017-06-13","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-14","name":"Advanced Night Cream","value":"11"},
+                      {"date":"2017-06-15","name":"Advanced Night Cream","value":"11"},
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "123"},
+                      {"name": "TianJin", "value": "61"},
+                      {"name": "ShanXi", "value": "123"},
+                      {"name": "NeiMeng", "value": "62"},
+                      {"name": "HeBei", "value": "1223"},
+                      {"name": "JiLin", "value": "123"},
+                      {"name": "JiangXi", "value": "123"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+            },
+            "id": "1",
+            "name": "product"
+        },
+        {
+            "data": {
+                "audience": "1130020",
+                "allMarket": "4267000",
+                "sentiment":156,
+                "mixTrend":{
+                  "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
+                  "result":{"Brand Audience":
+                    [
+                      {"date":"2017-05-20","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-21","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-22","name":"Brand Audience","value":"45"},
+                      {"date":"2017-05-23","name":"Brand Audience","value":"45"},
+                      {"date":"2017-05-24","name":"Brand Audience","value":"55"},
+                      {"date":"2017-05-25","name":"Brand Audience","value":"65"},
+                      {"date":"2017-05-26","name":"Brand Audience","value":"75"},
+                      {"date":"2017-05-27","name":"Brand Audience","value":"15"},
+                      {"date":"2017-05-28","name":"Brand Audience","value":"25"},
+                      {"date":"2017-05-29","name":"Brand Audience","value":"35"},
+                      {"date":"2017-05-30","name":"Brand Audience","value":"55"},
+                      {"date":"2017-05-31","name":"Brand Audience","value":"85"},
+                      {"date":"2017-06-01","name":"Brand Audience","value":"25"},
+                      {"date":"2017-06-02","name":"Brand Audience","value":"35"},
+                      {"date":"2017-06-03","name":"Brand Audience","value":"75"},
+                      {"date":"2017-06-04","name":"Brand Audience","value":"65"},
+                      {"date":"2017-06-05","name":"Brand Audience","value":"55"},
+                      {"date":"2017-06-06","name":"Brand Audience","value":"45"},
+                      {"date":"2017-06-07","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-08","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-09","name":"Brand Audience","value":"71"},
+                      {"date":"2017-06-10","name":"Brand Audience","value":"81"},
+                      {"date":"2017-06-11","name":"Brand Audience","value":"31"},
+                      {"date":"2017-06-12","name":"Brand Audience","value":"41"},
+                      {"date":"2017-06-13","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-14","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-15","name":"Brand Audience","value":"11"},
+                    ],"Brand Share":
+                    [
+                      {"date":"2017-05-20","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-21","name":"Brand Share","value":"81"},
+                      {"date":"2017-05-22","name":"Brand Share","value":"71"},
+                      {"date":"2017-05-23","name":"Brand Share","value":"61"},
+                      {"date":"2017-05-24","name":"Brand Share","value":"51"},
+                      {"date":"2017-05-25","name":"Brand Share","value":"41"},
+                      {"date":"2017-05-26","name":"Brand Share","value":"71"},
+                      {"date":"2017-05-27","name":"Brand Share","value":"81"},
+                      {"date":"2017-05-28","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-29","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-30","name":"Brand Share","value":"11"},
+                      {"date":"2017-05-31","name":"Brand Share","value":"21"},
+                      {"date":"2017-06-01","name":"Brand Share","value":"31"},
+                      {"date":"2017-06-02","name":"Brand Share","value":"41"},
+                      {"date":"2017-06-03","name":"Brand Share","value":"51"},
+                      {"date":"2017-06-04","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-05","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-06","name":"Brand Share","value":"61"},
+                      {"date":"2017-06-07","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-08","name":"Brand Share","value":"71"},
+                      {"date":"2017-06-09","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-10","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-11","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-12","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-13","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-14","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-15","name":"Brand Share","value":"11"},
+                    ]},
+                    "topBrands":[
+                      {"date":"2017-05-20","articles":[
+                        {"date":"2017/05/20 12:15","index":"A","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        ]
+                      },
+                      {"date":"2017-06-01","articles":[
+                        {"date":"2017/06/01 12:15","index":"A","title":"AAAAAA AAAAA AAAA the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        ]
+                      },
+                      {"date":"2017-06-15","articles":[
+                        {"date":"2017/06/15 12:15","index":"A","title":"BBBB BBBB in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        ]
+                      },
+                    ],
+                },
+                "market_share":{
+                  "market":1000,
+                  "market_show":50,
+                },
+                "market_show_growth":{
+                  "market_show":"70%",
+                  "market_growth":"40%"
+                },
+                "brand_association":[
+                  {"category":"Whitening","value":"-30"},
+                  {"category":"Moisturizing","value":"-50"},
+                  {"category":"Black","value":"70"},
+                  {"category":"Color","value":"90"},
+                  {"category":"Green","value":"-10"},
+                  {"category":"Red","value":"50"},
+                  {"category":"Yellow","value":"-20"},
+                ],
+                "cloud_tag" :[
+                      {text: "Variety & Entertainment", weight: 33},
+                      {text: "Leisure Travel", weight: 30.5},
+                      {text: "Home & Lifestyle", weight: 20.4},
+                      {text: "Food & Drink", weight: 10},
+                      {text: "Healthcare", weight: 6.2},
+                      {text: "Psychology", weight: 18.2},
+                      {text: "Jobs & Education", weight: 20.2},
+                      {text: "Careers", weight: 5.2},
+                      {text: "Automobile", weight: 3.2},
+                      {text: "Investing", weight: 5.2}
+
+                ]
+            },
+            "id": "2",
+            "name": "share",
+        }],"id":1,"name":"Lancome"
+      },{"result": [{
+           "data": {
+              "age_group": {
+                  "0-17": 20,
+                  "18-24": 30,
+                  "25-34": 15,
+                  "35-44": 25,
+                  "45-54": 20,
+                  "55-64": 10,
+                  "65+": 12,
+                  "UNKNOWN": 12,  
+              },
+              "audience": "53333",
+              "allMarket": "2,567K",
+              "device": {
+                  "Mobile": 852,
+                  "PC": 1246,
+                  "UNKNOWN": 179
+              },
+              "gender": {
+                  "female": 22,
+                  "male": 38,
+                  "UNKNOWN":33,
+              },
+              "preferenceIndex":{
+                  "gender" : {
+                    "male": 50,
+                    "female": 50,
+                  },
+                  "ageGroup" : {
+                    "0-17": 22,
+                    "18-24": 20,
+                    "25-34": 55,
+                    "35-44": 65,
+                    "45-54": 30,
+                    "55-64": 10,
+                    "65+": 12,
+                  },
+              },
+              "product_association":[
+                {"category":"Whitening","value":"-66"},
+                {"category":"Moisturizing","value":"50"},
+                {"category":"Black","value":"-70"},
+                {"category":"Color","value":"90"},
+                {"category":"Green","value":"10"},
+                {"category":"Red","value":"-50"},
+                {"category":"Yellow","value":"-10"},
+              ],  
+              "product_share": {
+                  "Stay-in-Place Makeup": 23500,
+                  "Prefectionist": 12246,
+                  "Advanced Night Cream": 11179,
+                  "Resilience Lift":10000,
+              },
+              
+              "interest": {
+                  "Arts & Entertainment": {
+                      "name": "Arts & Entertainment",
+                      "value": 21,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Cooking & Recipes": {
+                      "name": "Cooking & Recipes",
+                      "value": 19,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Female Fashion": {
+                      "name": "Female Fashion",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Food & Drink": {
+                      "name": "Food & Drink",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "Restaurants": {
+                      "name": "Restaurants",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer"]
+                  },
+                  "_others":{
+                      "name": "Other Related Interests",
+                      "value": 20,
+                      "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                  }
+              },
+              "regions":[
+                  {"name": "BeiJing", "value": "123"},
+                  {"name": "TianJin", "value": "61"},
+                  {"name": "ShanXi", "value": "123"},
+                  {"name": "NeiMeng", "value": "62"},
+                  {"name": "HeBei", "value": "1223"},
+                  {"name": "JiLin", "value": "123"},
+                  {"name": "JiangXi", "value": "123"},
+                  {"name": "ShanDong", "value": "33"},
+                  {"name": "ChongQing", "value": "123"},
+                  {"name": "SiChuan", "value": "62"},
+                  {"name": "GuiZhou",  "value": "1223"},
+                  {"name": "YunNan",  "value": "123"},
+                  {"name": "XiZang", "value": "33"},
+                  {"name": "ShanXi1", "value": "123"},
+                  {"name": "GanSu", "value": "62"},
+                  {"name": "QingHai", "value": "4223"},
+                  {"name": "NingXia", "value": "123"},
+                  {"name": "XinJiang", "value": "123"},
+                  {"name": "Heilongjiang", "value": "33"},
+                  {"name": "Overseas", "value": "5551"}
+              ]
+            },
+            "id": "1",
+            "name": "brand"
+        },{
+            "data": {//格式:productId:data
+              "5":{
+                  "productName":"Stay-in-Place Makeup2",
+                  "category":"Green",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 30,
+                      "25-34": 15,
+                      "35-44": 25,
+                      "45-54": 20,
+                      "55-64": 10,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "23333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "female": 22,
+                      "male": 38,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"-77","dailyGrowthP":58.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Moisturizing","value":"50","dailyGrowthP":58.18,"weeklyGrowthP": -33.34,"monthlyGrowthP": 10.0,},
+                    {"category":"Black","value":"-70","dailyGrowthP":-58.18,"weeklyGrowthP": -33.34,"monthlyGrowthP": 56.0,},
+                    {"category":"Color","value":"90","dailyGrowthP":-58.18,"weeklyGrowthP": -33.34,"monthlyGrowthP": 56.0,},
+                    {"category":"Green","value":"56","dailyGrowthP":58.18,"weeklyGrowthP": 33.34,"monthlyGrowthP": 56.0,},
+                    {"category":"Red","value":"-50","dailyGrowthP":58.18,"weeklyGrowthP": 33.34,"monthlyGrowthP": 56.0,},
+                    {"category":"Yellow","value":"-0","dailyGrowthP":-58.18,"weeklyGrowthP": -33.34,"monthlyGrowthP": 56.0,},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Stay-in-Place Makeup","value":"11"},
+                      {"date":"2017-05-21","name":"Stay-in-Place Makeup","value":"21"},
+                      {"date":"2017-05-22","name":"Stay-in-Place Makeup","value":"31"},
+                      {"date":"2017-05-23","name":"Stay-in-Place Makeup","value":"41"},
+                      {"date":"2017-05-24","name":"Stay-in-Place Makeup","value":"51"},
+                      {"date":"2017-05-25","name":"Stay-in-Place Makeup","value":"61"},
+                      {"date":"2017-05-26","name":"Stay-in-Place Makeup","value":"71"},
+                      {"date":"2017-05-27","name":"Stay-in-Place Makeup","value":"11"},
+                      {"date":"2017-05-28","name":"Stay-in-Place Makeup","value":"21"},
+                      {"date":"2017-05-29","name":"Stay-in-Place Makeup","value":"31"},
+                      {"date":"2017-05-30","name":"Stay-in-Place Makeup","value":"51"},
+                      {"date":"2017-05-31","name":"Stay-in-Place Makeup","value":"81"},
+                      {"date":"2017-06-01","name":"Stay-in-Place Makeup","value":"21"},
+                      {"date":"2017-06-02","name":"Stay-in-Place Makeup","value":"31"},
+                      {"date":"2017-06-03","name":"Stay-in-Place Makeup","value":"71"},
+                      {"date":"2017-06-04","name":"Stay-in-Place Makeup","value":"61"},
+                      {"date":"2017-06-05","name":"Stay-in-Place Makeup","value":"51"},
+                      {"date":"2017-06-06","name":"Stay-in-Place Makeup","value":"41"},
+                      {"date":"2017-06-07","name":"Stay-in-Place Makeup","value":"51"},
+                      {"date":"2017-06-08","name":"Stay-in-Place Makeup","value":"61"},
+                      {"date":"2017-06-09","name":"Stay-in-Place Makeup","value":"71"},
+                      {"date":"2017-06-10","name":"Stay-in-Place Makeup","value":"81"},
+                      {"date":"2017-06-11","name":"Stay-in-Place Makeup","value":"31"},
+                      {"date":"2017-06-12","name":"Stay-in-Place Makeup","value":"41"},
+                      {"date":"2017-06-13","name":"Stay-in-Place Makeup","value":"51"},
+                      {"date":"2017-06-14","name":"Stay-in-Place Makeup","value":"61"},
+                      {"date":"2017-06-15","name":"Stay-in-Place Makeup","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "123"},
+                      {"name": "TianJin", "value": "61"},
+                      {"name": "ShanXi", "value": "123"},
+                      {"name": "NeiMeng", "value": "62"},
+                      {"name": "HeBei", "value": "1223"},
+                      {"name": "JiLin", "value": "123"},
+                      {"name": "JiangXi", "value": "123"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+              "1":{
+                  "productName":"Prefectionist2",
+                  "category":"Green",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 40,
+                      "25-34": 25,
+                      "35-44": 35,
+                      "45-54": 10,
+                      "55-64": 20,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "13333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "female": 22,
+                      "male": 38,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"10","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Moisturizing","value":"50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Black","value":"-70","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Color","value":"90","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Green","value":"10","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Red","value":"-50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Yellow","value":"-20","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Prefectionist","value":"21"},
+                      {"date":"2017-05-21","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-22","name":"Prefectionist","value":"11"},
+                      {"date":"2017-05-23","name":"Prefectionist","value":"51"},
+                      {"date":"2017-05-24","name":"Prefectionist","value":"51"},
+                      {"date":"2017-05-25","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-26","name":"Prefectionist","value":"21"},
+                      {"date":"2017-05-27","name":"Prefectionist","value":"31"},
+                      {"date":"2017-05-28","name":"Prefectionist","value":"91"},
+                      {"date":"2017-05-29","name":"Prefectionist","value":"91"},
+                      {"date":"2017-05-30","name":"Prefectionist","value":"11"},
+                      {"date":"2017-05-31","name":"Prefectionist","value":"21"},
+                      {"date":"2017-06-01","name":"Prefectionist","value":"31"},
+                      {"date":"2017-06-02","name":"Prefectionist","value":"41"},
+                      {"date":"2017-06-03","name":"Prefectionist","value":"51"},
+                      {"date":"2017-06-04","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-05","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-06","name":"Prefectionist","value":"61"},
+                      {"date":"2017-06-07","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-08","name":"Prefectionist","value":"71"},
+                      {"date":"2017-06-09","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-10","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-11","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-12","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-13","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-14","name":"Prefectionist","value":"11"},
+                      {"date":"2017-06-15","name":"Prefectionist","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "223"},
+                      {"name": "TianJin", "value": "31"},
+                      {"name": "ShanXi", "value": "13"},
+                      {"name": "NeiMeng", "value": "162"},
+                      {"name": "HeBei", "value": "123"},
+                      {"name": "JiLin", "value": "1223"},
+                      {"name": "JiangXi", "value": "323"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+              "3":{
+                  "productName":"Resilience Lift2",
+                  "category":"Whitening",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 30,
+                      "25-34": 15,
+                      "35-44": 25,
+                      "45-54": 20,
+                      "55-64": 10,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "23333",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "gender": {
+                      "female": 22,
+                      "male": 38,
+                      "UNKNOWN":33,
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"-90","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Moisturizing","value":"50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Black","value":"-70","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Color","value":"90","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Green","value":"10","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Red","value":"-50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Yellow","value":"-20","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                  ],
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Resilience Lift","value":"21"},
+                      {"date":"2017-05-21","name":"Resilience Lift","value":"31"},
+                      {"date":"2017-05-22","name":"Resilience Lift","value":"41"},
+                      {"date":"2017-05-23","name":"Resilience Lift","value":"51"},
+                      {"date":"2017-05-24","name":"Resilience Lift","value":"71"},
+                      {"date":"2017-05-25","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-05-26","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-05-27","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-05-28","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-05-29","name":"Resilience Lift","value":"21"},
+                      {"date":"2017-05-30","name":"Resilience Lift","value":"31"},
+                      {"date":"2017-05-31","name":"Resilience Lift","value":"41"},
+                      {"date":"2017-06-01","name":"Resilience Lift","value":"51"},
+                      {"date":"2017-06-02","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-03","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-04","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-05","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-06","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-07","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-08","name":"Resilience Lift","value":"81"},
+                      {"date":"2017-06-09","name":"Resilience Lift","value":"71"},
+                      {"date":"2017-06-10","name":"Resilience Lift","value":"61"},
+                      {"date":"2017-06-11","name":"Resilience Lift","value":"31"},
+                      {"date":"2017-06-12","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-13","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-14","name":"Resilience Lift","value":"11"},
+                      {"date":"2017-06-15","name":"Resilience Lift","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "123"},
+                      {"name": "TianJin", "value": "61"},
+                      {"name": "ShanXi", "value": "123"},
+                      {"name": "NeiMeng", "value": "62"},
+                      {"name": "HeBei", "value": "1223"},
+                      {"name": "JiLin", "value": "123"},
+                      {"name": "JiangXi", "value": "123"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+              "4":{
+                  "productName":"Elite Cream2",
+                  "category":"Green",
+                  "age_group": {
+                      "0-17": 20,
+                      "18-24": 30,
+                      "25-34": 15,
+                      "35-44": 25,
+                      "45-54": 20,
+                      "55-64": 10,
+                      "65+": 12,
+                      "UNKNOWN": 12,  
+                  },
+                  "audience": "5555",
+                  "allMarket": "2,567K",
+                  "device": {
+                      "Mobile": 852,
+                      "PC": 1246,
+                      "UNKNOWN": 179
+                  },
+                  "preferenceIndex":{
+                      "gender" : {
+                        "male": 50,
+                        "female": 50,
+                      },
+                      "ageGroup" : {
+                        "0-17": 22,
+                        "18-24": 20,
+                        "25-34": 55,
+                        "35-44": 65,
+                        "45-54": 30,
+                        "55-64": 10,
+                        "65+": 12,
+                      },
+                  },
+                  "product_association":[
+                    {"category":"Whitening","value":"-22","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Moisturizing","value":"50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Black","value":"-70","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Color","value":"90","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Green","value":"10","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Red","value":"-50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Yellow","value":"-20","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                  ],
+                  "gender": {
+                      "female": 22,
+                      "male": 38,
+                      "UNKNOWN":33,
+                  },
+                  "product_share": {
+                      "Stay-in-Place Makeup": 23500,
+                      "Prefectionist": 12246,
+                      "Advanced Night Cream": 11179,
+                      "Resilience Lift":10000,
+                  },
+                  "top5productsTrend":{
+                    "dataPeriod":"Period: 2017/05/20 - 2017/06/19",
+                    "result":[
+                      {"date":"2017-05-20","name":"Elite Cream","value":"21"},
+                      {"date":"2017-05-21","name":"Elite Cream","value":"31"},
+                      {"date":"2017-05-22","name":"Elite Cream","value":"41"},
+                      {"date":"2017-05-23","name":"Elite Cream","value":"51"},
+                      {"date":"2017-05-24","name":"Elite Cream","value":"71"},
+                      {"date":"2017-05-25","name":"Elite Cream","value":"11"},
+                      {"date":"2017-05-26","name":"Elite Cream","value":"11"},
+                      {"date":"2017-05-27","name":"Elite Cream","value":"11"},
+                      {"date":"2017-05-28","name":"Elite Cream","value":"11"},
+                      {"date":"2017-05-29","name":"Elite Cream","value":"21"},
+                      {"date":"2017-05-30","name":"Elite Cream","value":"31"},
+                      {"date":"2017-05-31","name":"Elite Cream","value":"41"},
+                      {"date":"2017-06-01","name":"Elite Cream","value":"51"},
+                      {"date":"2017-06-02","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-03","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-04","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-05","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-06","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-07","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-08","name":"Elite Cream","value":"81"},
+                      {"date":"2017-06-09","name":"Elite Cream","value":"71"},
+                      {"date":"2017-06-10","name":"Elite Cream","value":"61"},
+                      {"date":"2017-06-11","name":"Elite Cream","value":"31"},
+                      {"date":"2017-06-12","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-13","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-14","name":"Elite Cream","value":"11"},
+                      {"date":"2017-06-15","name":"Elite Cream","value":"11"},
+
+                    ]
+                  },
+                  "market_share":{
+                    "market":666,
+                    "market_show":333,
+                  },
+                  "interest": {
+                      "Arts & Entertainment": {
+                          "name": "Arts & Entertainment",
+                          "value": 21,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Cooking & Recipes": {
+                          "name": "Cooking & Recipes",
+                          "value": 19,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Female Fashion": {
+                          "name": "Female Fashion",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Food & Drink": {
+                          "name": "Food & Drink",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "Restaurants": {
+                          "name": "Restaurants",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer"]
+                      },
+                      "_others":{
+                          "name": "Other Related Interests",
+                          "value": 20,
+                          "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
+                      }
+                  },
+                  "regions":[
+                      {"name": "BeiJing", "value": "123"},
+                      {"name": "TianJin", "value": "61"},
+                      {"name": "ShanXi", "value": "123"},
+                      {"name": "NeiMeng", "value": "62"},
+                      {"name": "HeBei", "value": "1223"},
+                      {"name": "JiLin", "value": "123"},
+                      {"name": "JiangXi", "value": "123"},
+                      {"name": "ShanDong", "value": "33"},
+                      {"name": "ChongQing", "value": "123"},
+                      {"name": "SiChuan", "value": "62"},
+                      {"name": "GuiZhou",  "value": "1223"},
+                      {"name": "YunNan",  "value": "123"},
+                      {"name": "XiZang", "value": "33"},
+                      {"name": "ShanXi1", "value": "123"},
+                      {"name": "GanSu", "value": "62"},
+                      {"name": "QingHai", "value": "4223"},
+                      {"name": "NingXia", "value": "123"},
+                      {"name": "XinJiang", "value": "123"},
+                      {"name": "Heilongjiang", "value": "33"},
+                      {"name": "Overseas", "value": "5551"}
+                  ]
+              },
+            },
+            "id": "1",
+            "name": "product"
+        },
+        {
+            "data": {
+                "audience": "721897",
+                "allMarket": "322222",
+                "sentiment":156,
+                "mixTrend":{
+                  "dataPeriod":"Period: 2017/05/20 - 2017/06/15",
+                  "result":{"Brand Audience":
+                    [
+                      {"date":"2017-05-20","name":"Brand Audience","value":"11"},
+                      {"date":"2017-05-21","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-22","name":"Brand Audience","value":"11"},
+                      {"date":"2017-05-23","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-24","name":"Brand Audience","value":"51"},
+                      {"date":"2017-05-25","name":"Brand Audience","value":"51"},
+                      {"date":"2017-05-26","name":"Brand Audience","value":"71"},
+                      {"date":"2017-05-27","name":"Brand Audience","value":"21"},
+                      {"date":"2017-05-28","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-29","name":"Brand Audience","value":"31"},
+                      {"date":"2017-05-30","name":"Brand Audience","value":"51"},
+                      {"date":"2017-05-31","name":"Brand Audience","value":"41"},
+                      {"date":"2017-06-01","name":"Brand Audience","value":"21"},
+                      {"date":"2017-06-02","name":"Brand Audience","value":"31"},
+                      {"date":"2017-06-03","name":"Brand Audience","value":"71"},
+                      {"date":"2017-06-04","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-05","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-06","name":"Brand Audience","value":"41"},
+                      {"date":"2017-06-07","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-08","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-09","name":"Brand Audience","value":"71"},
+                      {"date":"2017-06-10","name":"Brand Audience","value":"81"},
+                      {"date":"2017-06-11","name":"Brand Audience","value":"31"},
+                      {"date":"2017-06-12","name":"Brand Audience","value":"41"},
+                      {"date":"2017-06-13","name":"Brand Audience","value":"51"},
+                      {"date":"2017-06-14","name":"Brand Audience","value":"61"},
+                      {"date":"2017-06-15","name":"Brand Audience","value":"11"},
+                    ],"Brand Share":
+                    [
+                      {"date":"2017-05-20","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-21","name":"Brand Share","value":"81"},
+                      {"date":"2017-05-22","name":"Brand Share","value":"71"},
+                      {"date":"2017-05-23","name":"Brand Share","value":"61"},
+                      {"date":"2017-05-24","name":"Brand Share","value":"51"},
+                      {"date":"2017-05-25","name":"Brand Share","value":"41"},
+                      {"date":"2017-05-26","name":"Brand Share","value":"71"},
+                      {"date":"2017-05-27","name":"Brand Share","value":"81"},
+                      {"date":"2017-05-28","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-29","name":"Brand Share","value":"91"},
+                      {"date":"2017-05-30","name":"Brand Share","value":"11"},
+                      {"date":"2017-05-31","name":"Brand Share","value":"21"},
+                      {"date":"2017-06-01","name":"Brand Share","value":"31"},
+                      {"date":"2017-06-02","name":"Brand Share","value":"41"},
+                      {"date":"2017-06-03","name":"Brand Share","value":"51"},
+                      {"date":"2017-06-04","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-05","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-06","name":"Brand Share","value":"61"},
+                      {"date":"2017-06-07","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-08","name":"Brand Share","value":"71"},
+                      {"date":"2017-06-09","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-10","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-11","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-12","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-13","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-14","name":"Brand Share","value":"11"},
+                      {"date":"2017-06-15","name":"Brand Share","value":"11"},
+                    ]},
+                    "topBrands":[
+                      {"date":"2017-05-20","articles":[
+                        {"date":"2017/05/20 12:15","index":"A","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        ]
+                      },
+                      {"date":"2017-06-01","articles":[
+                        {"date":"2017/06/01 12:15","index":"A","title":"AAAAAA AAAAA AAAA the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/01 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        ]
+                      },
+                      {"date":"2017-06-15","articles":[
+                        {"date":"2017/06/15 12:15","index":"A","title":"BBBB BBBB in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"D","title":"Why Lily Rose Depp is *the* new cool girl in beauty","content":"Glamour.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"E","title":"How beauty giant Dove went from empowering to…","content":"The Guardian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"F","title":"Actress Medalion Rahimi Talks About Representation in…","content":"TeenVogue.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/06/15 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"G","title":"How We Picked the SELF Approved Beauty Awards 20…","content":"Smithsonian","pic":"../images/icon_news.png"},
+                        {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
+                        ]
+                      },
+                    ],
+                },
+                "market_share":{
+                  "market":1000,
+                  "market_show":50,
+                },
+                "market_show_growth":{
+                  "market_show":"30%",
+                  "market_growth":"10%"
+                },
+                "brand_association":[
+                  {"category":"Whitening","value":"30"},
+                  {"category":"Moisturizing","value":"50"},
+                  {"category":"Black","value":"-70"},
+                  {"category":"Color","value":"90"},
+                  {"category":"Green","value":"10"},
+                  {"category":"Red","value":"-50"},
+                  {"category":"Yellow","value":"-20"},
+                ],
+                "cloud_tag" :[{"text":"歪果仁","weight":100},{"text":"月饼","weight":45.0382},{"text":"监狱学园","weight":22.148},{"text":"评选","weight":16.6745},{"text":"夺冠","weight":16.0865},{"text":"蛋黄","weight":15.9139},{"text":"十大","weight":14.1008},{"text":"半岛酒店","weight":9.6794},{"text":"美心","weight":7.5397},{"text":"劳斯莱斯","weight":7.3295},{"text":"进口港","weight":7.1099},{"text":"黑暗料理","weight":5.3043},{"text":"冰皮月饼","weight":5.1641},{"text":"秀身材","weight":5.1076},{"text":"礼盒","weight":5.0944},{"text":"脑洞","weight":4.8976},{"text":"真会玩","weight":4.6244},{"text":"烤箱烤","weight":4.5626},{"text":"养鱼","weight":4.5291},{"text":"凑齐","weight":4.2363},{"text":"英伦","weight":4.2329},{"text":"party","weight":4.1428},{"text":"试吃","weight":4.0997},{"text":"拉制","weight":4.0869},{"text":"礼盒装","weight":4.0621},{"text":"毛衣","weight":4.0199},{"text":"花式","weight":3.9554},{"text":"锁骨","weight":3.9276},{"text":"流沙","weight":3.9097},{"text":"分分钟","weight":3.7986},{"text":"年糕","weight":3.7755},{"text":"high","weight":3.7198},{"text":"卡片","weight":3.6305},{"text":"白莲","weight":3.5339},{"text":"做法","weight":3.4361},{"text":"大班","weight":3.4318},{"text":"中华","weight":3.4291},{"text":"自己动手","weight":3.3983},{"text":"详细讲解","weight":3.368},{"text":"半岛","weight":3.3195},{"text":"翩跹","weight":3.1109},{"text":"制作过程","weight":3.1086},{"text":"送礼","weight":3.0931},{"text":"改造","weight":3.0024},{"text":"打败","weight":2.9911},{"text":"婚礼","weight":2.927},{"text":"独家揭秘","weight":2.9041},{"text":"发售","weight":2.8313},{"text":"火腿","weight":2.8003},{"text":"名不虚传","weight":2.7826},{"text":"蔡澜","weight":2.7774},{"text":"纯正","weight":2.7176},{"text":"亮相","weight":2.6797},{"text":"金华","weight":2.486},{"text":"京城","weight":2.4588},{"text":"五仁","weight":2.4145},{"text":"解决方法","weight":2.3794},{"text":"diy","weight":2.2294},{"text":"吴京","weight":2.1215},{"text":"防弹","weight":2.1011},{"text":"中国菜","weight":2.0959},{"text":"迷你","weight":2.0499},{"text":"美英","weight":2.0181},{"text":"散装","weight":1.9724},{"text":"招牌","weight":1.8189},{"text":"清单","weight":1.5536},{"text":"英文","weight":1.5126},{"text":"全家","weight":1.4629},{"text":"征服","weight":1.4538},{"text":"淘宝","weight":1.2549}]
+            },
+            "id": "2",
+            "name": "share",
+        }],"id":2,"name":"Shisedo"
+      }];
+      //对json进行id排序
+      //第一个固定为brand
+      var _brand = dataArr.splice(0,1);
+      dataArr = dataArr.sort(IAX_CHART_TOOL.sortJson("asc","id","parseFloat"));
+      dataArr.splice(0,0,_brand[0]);
+      var data=dataArr[0],brandId=dataArr[0].id;
+       //根据data获取brand选择列表
+      var lihtml = "",lihtml_multi="",maxBrand=5,allProducts=[],allProductsJson={},lihtml_multi_corss="",productAssociation=[],categoryAssociation={};
+      for (var i = 0; i < dataArr.length; i++) {
+        var isselected = i==0 ? "selected" : "";
+        var checkTitle = i==0 ? "My Brand" : "Competitor";
+        var isChecked = i==0 ? "checked='checked'" : "";
+        var isselected_multi = i<maxBrand ? "selected" : "";
+        var isChecked_multi = i<maxBrand ? "checked='checked'" : "";
+        checkTitle = i<1 ? checkTitle : checkTitle+" "+i;
+        //默认选中所有
+        lihtml_multi += '<li class="'+isselected_multi+'">'+
+                      '  <div style="float:left;margin-top: 5px;" class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">'+
+                      '      <input type="checkbox" '+isChecked_multi+' name="brand_checkbox" id="brand_checkbox'+dataArr[i].id+'" value="'+dataArr[i].id+'" >'+
+                      '      <label for="brand_checkbox'+dataArr[i].id+'"></label>'+
+                      '  </div>'+
+                      '  <div class="simulator-label-container">'+
+                      '    <p class="simulator-check-title">'+checkTitle+'</p>'+
+                      '    <label class="simulator-check-content">'+dataArr[i].name+'</label>'+
+                      '  </div>'+
+                      '</li>';
+        //根据顺序固定颜色。
+        dataArr[i].graphColor = IAX_CHART_TOOL.colorMap[i];
       };
+      $(".multi_choose_brand").html(lihtml_multi);
+      $(".multi_choose_brand_limit").html(lihtml_multi);
+      
+      //默认选中所有brand。
+      if (dataArr.length>1) {
+        $(".multi_choose_brand").parents(".tab-pane").find("[name=multi_report]").removeClass("hide");
+        $(".multi_choose_brand").parents(".tab-pane").find("[name=single_report]").addClass("hide");
+        var html = $(".multi_choose_brand").find(".selected").map(function(){
+          var value = $(this).find("input").val();
+          var name = $(this).find(".simulator-check-content").text();
+          return '<li class="" data-value="'+value+'">'+name+'</li>';
+        }).get().join("");
+        $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").html(html);
+        $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").find("li:first").addClass("selected");
+      }
+      //获取排序好的audience
+      var audienceArr = [];
+      for (var i = 0; i < dataArr.length; i++) {
+        var result = dataArr[i].result;
+        for (var j = 0; j < result.length; j++) {
+          if("share"==result[j].name){
+           audienceArr.push({"id":dataArr[i].id,"audience":result[j].data.audience});
+          }
+        };
+      };
+      audienceArr = audienceArr.sort(IAX_CHART_TOOL.sortJson("asc","audience","parseFloat"));
       $('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var tab = $(e.target).attr("data-id") // 激活的标签页
         var json = {};
@@ -615,38 +2932,348 @@
             json = data.result[i];
           }
         };
-        if (tab=="brand") {
-          IAX_CHART_TOOL.initData(json.data);
-          IAX_CHART_TOOL.resizeChart();
+        if (tab=="share") {
+          shareGraph(json);
         }else if (tab=="product") {
-          IAX_CHART_TOOL.initData(json.data);
-          IAX_CHART_TOOL.resizeChart();
+          productGraph();
         }
       })
       //初始化
-      $("#tab-brand").find("div:first").hide();
-      $("#tab-brand").append('<div class="analysis-loading"><img class="analysis-gif" src="../images/loading.gif"></img></div>');
-      $("#myTab").hide();
+      $("#tab-share").find("div:first").hide();
+      var setProcess = IAX_CHART_TOOL.loadingGif("tab-share");
+      // $("#myTab").hide();
       $(".button-right").hide();
       var json = {};
       for (var i = 0; i < data.result.length; i++) {
-        if("brand" == data.result[i].name){
+        if("share" == data.result[i].name){
           json = data.result[i];
         }
       };
+      function changeTabGraph(tab){
+        //根据选中的brand获取不同数据
+        var json = {};
+        for (var i = 0; i < data.result.length; i++) {
+          if(tab == data.result[i].name){
+            json = data.result[i];
+          }
+        };
+       
+        if (tab=="share") {
+          shareGraph(json);
+        }else if (tab=="product") {
+          productGraph();
+        }
+      }
+      var bubbleColorMap = [];
+      function shareGraph(json){
+        IAX_CHART_TOOL.initData(dataArr);
+        brandData = {},bubbleColorMap=[];
+        var id="";
+        $(".multi_choose_brand [name=brand_checkbox]:checked").each(function(){
+          id = $(this).val();
+          if (!brandData["brand_"+id]) {
+            var _json ;
+            for (var i = 0; i < dataArr.length; i++) {
+              if(dataArr[i].id == id){
+                var result = dataArr[i].result;
+                for (var j = 0; j < result.length; j++) {
+                  if("share"==result[j].name){
+                    _json = result[j].data;
+                    _json.graphColor = dataArr[i].graphColor;
+                  }
+                };
+              }
+            };
+            if (_json) {
+              _json.productName = $(this).parent().parent().find(".simulator-check-content").text();
+              brandData["brand_"+id] = _json;
+            };
+          };
+        });
+        
+        var shareData = [],shareGrowthData = {},showAssociationData={},associationXY=[],associationList=[];
+        
+        for (var j in brandData) {
+          var _data = brandData[j],_json={};
+          bubbleColorMap.push(_data.graphColor);
+          _json = _data.mixTrend.result["Brand Audience"];
+          //生成association下拉框
+          if (associationList.length==0) {
+            for (var p = 0; p < _data.brand_association.length; p++) {
+              associationList.push('<li data-value="'+_data.brand_association[p].category+'"><a href="javascript:;">'+_data.brand_association[p].category+'</a></li>');
+            };
+          };
+          var newJsonArr = [];
+          for (var k = 0; k < _json.length; k++) {
+            var newJson = $.extend({},_json[k]);
+            newJson.name = _data.productName;
+            newJsonArr.push(newJson);
+          };
+          shareData[_data.productName] = {"top5productsTrend":{"result":newJsonArr},"graphColor":_data.graphColor,"legendSelect":true,"audience":_data.audience};
+          //排序，按照audience从小到大显示气泡的大小
+          var audienceIndex = 0;
+          for (var z = 0; z < audienceArr.length; z++) {
+            if("brand_"+audienceArr[z]["id"] == j){
+              audienceIndex = z;
+            }
+            if (audienceIndex == audienceArr.length-1) {
+              audienceIndex = 8;
+            };
+          };
+          shareGrowthData[_data.productName] = [[parseFloat(_data.market_show_growth.market_show),parseFloat(_data.market_show_growth.market_growth),parseFloat(_data.market_show_growth.market_show),parseFloat(_data.market_show_growth.market_growth),audienceIndex]];
+
+        }
+        //association下拉框
+        if (associationList.length>0) {
+          $("#brandAssociation_share").prev().find(".dropdown-menu").html(associationList.join(""));
+          $("#brandAssociation_share").prev().find(".dropdown-menu").each(function(i){
+            var label = i==0 ? "X-axis: " : "Y-axis: ";
+            var value = $(this).find("li").eq(i).attr("data-value");
+            associationXY.push(value);
+            $(this).parent().find("input:first").val(value);
+            $(this).parent().find(".btn:first").html(label+value+"<span class='caret arrow-down'></span>");
+          })
+        };
+        getShowAssociationData(showAssociationData,associationXY);
+        IAX_CHART_TOOL.initData(json.data);
+        IAX_CHART_TOOL.initBubbleCross(bubbleColorMap,"marketCross_share",shareGrowthData,["Market Share (%)","Market Growth (%)"]);
+        IAX_CHART_TOOL.initBubbleCross(bubbleColorMap,"brandAssociation_share",showAssociationData,associationXY,[-100,100]);
+        IAX_CHART_TOOL.initTop5Trend("line_chart_share","daterange_share",shareData);
+        IAX_CHART_TOOL.resizeChart();
+      }
+      function getShowAssociationData(showAssociationData,associationXY){
+        for (var j in brandData) {
+          var _data = brandData[j],x=0,y=0;
+          for(var z = 0 ; z<_data.brand_association.length;z++){
+            if (_data.brand_association[z].category==associationXY[0]) {
+              x = parseFloat(_data.brand_association[z].value);
+            };
+            if (_data.brand_association[z].category==associationXY[1]) {
+              y = parseFloat(_data.brand_association[z].value);
+            };
+          }
+          //排序，按照audience从小到大显示气泡的大小
+          var audienceIndex = 0;
+          for (var z = 0; z < audienceArr.length; z++) {
+            if("brand_"+audienceArr[z]["id"] == j){
+              audienceIndex = z;
+            }
+            if (audienceIndex == audienceArr.length-1) {
+              audienceIndex = 8;
+            };
+          };
+          showAssociationData[_data.productName] = [[x,y,parseFloat(_data.market_show_growth.market_show),parseFloat(_data.market_show_growth.market_growth),audienceIndex]];
+        }
+        return showAssociationData;
+      }
+      function productGraph(){
+        IAX_CHART_TOOL.initData(dataArr);
+        productAssociation = [];
+        var id="",association={};
+        //饼图数据
+        var categoryPie = [],productPie=[];
+        $(".multi_choose_brand_limit [name=brand_checkbox]:checked").each(function(){
+          id = $(this).val();
+          if (!association[id]) {
+            var _json ;
+            for (var i = 0; i < dataArr.length; i++) {
+              if(dataArr[i].id == id){
+                var result = dataArr[i].result;
+                for (var j = 0; j < result.length; j++) {
+                  if("product"==result[j].name){
+                    _json = result[j].data;
+                    //{"category":"xxx","brandName":"yyy","productName":"zzz","color":"aaa","value":"11","audience":"123"}
+                    for(var z in _json){
+                      if (_json[z].product_association) {
+                        for (var t = 0; t < _json[z].product_association.length; t++) {
+                          var assoJson = _json[z].product_association[t];
+                          association = {
+                            category:assoJson.category,
+                            value:parseFloat(assoJson.value),
+                            dailyGrowthP:parseFloat(assoJson.dailyGrowthP),
+                            weeklyGrowthP:parseFloat(assoJson.weeklyGrowthP),
+                            monthlyGrowthP:parseFloat(assoJson.dailyGrowthP),
+                            brandId:id,
+                            brandName:dataArr[i].name,
+                            productName:_json[z].productName,
+                            productId:z,
+                            color:dataArr[i].graphColor,
+                            audience:parseInt(_json[z].audience)
+                          }
+                          productAssociation.push(association);
+                        };
+                      }
+                      productPie.push({
+                        category:_json[z].category,
+                        name:_json[z].productName,
+                        id:z,
+                        value:parseInt(_json[z].audience),
+
+                      })
+                    }
+                  }
+                };
+              }
+            };
+          };
+        });
+        //组装category的报表所需数据,方便画图
+        categoryAssociation={};
+        for (var i = 0; i < productAssociation.length; i++) {
+          var _productjson = {
+              value:productAssociation[i].value,
+              dailyGrowthP:productAssociation[i].dailyGrowthP,
+              weeklyGrowthP:productAssociation[i].weeklyGrowthP,
+              monthlyGrowthP:productAssociation[i].dailyGrowthP,
+              brandId:productAssociation[i].brandId,
+              brandName:productAssociation[i].brandName,
+              productName:productAssociation[i].productName,
+              productId:productAssociation[i].productId,
+              color:productAssociation[i].color,
+              audience:productAssociation[i].audience
+          };
+          if (categoryAssociation[productAssociation[i].category]) {
+            categoryAssociation[productAssociation[i].category].push(_productjson)
+          }else{
+            categoryAssociation[productAssociation[i].category] = [_productjson];
+          }
+        };
+        //组装列表下拉框
+        var options="";
+        for(var i in categoryAssociation){
+          options += '<option value="'+i+'">'+i+'</option>';
+        }
+        $("#correlation_select").html(options);
+        $("#correlation_select").trigger("liszt:updated");
+        $("#correlation_select").chosen();
+
+        //饼图
+        var allCategoryJSON = {},categoryPieJson={};
+        for (var i = 0; i < productPie.length; i++) {
+          var productPieJson = {
+              name:productPie[i].name,
+              id:productPie[i].id,
+              value:productPie[i].value,
+          };
+          if (allCategoryJSON[productPie[i].category]) {
+            allCategoryJSON[productPie[i].category].push(productPieJson);
+            categoryPieJson[productPie[i].category] += productPie[i].value;
+          }else{
+            allCategoryJSON[productPie[i].category] = [productPieJson];
+            categoryPieJson[productPie[i].category] = productPie[i].value;
+          }
+        }
+        for(var i in categoryPieJson){
+          categoryPie.push({
+            name:i,
+            value:categoryPieJson[i]
+          })
+        }
+        console.log(allCategoryJSON);
+        IAX_CHART_TOOL.initProductAssociaton("product_time",categoryAssociation[$("#correlation_select").val()],false,$(".correlation-title").find("li.selected").attr("data-value"));
+        IAX_CHART_TOOL.initProductCategoryAnalysis("category_analysis","product_category_analysis",categoryPie,allCategoryJSON);
+        IAX_CHART_TOOL.resizeChart();
+      }
       //假设5秒后获取json数据，要先show，后init图表
       setTimeout(function(){
-        $(".analysis-loading").remove();
-        $("#tab-brand").find("div:first").show();
-        $("#myTab").show();
-        $(".button-right").show();
-        IAX_CHART_TOOL.initData(json.data);
-        IAX_CHART_TOOL.resizeChart();
+        setProcess(true);
+        setTimeout(function(){
+          $(".analysis-loading").remove();
+          $("#tab-share").find("div:first").show();
+          // $("#myTab").show();
+          $(".button-right").show();
+          shareGraph(json);
+        },100)
       },2000)
       
       //导出pdf
       IAX_CHART_TOOL.exportForPdf("export-pdf","myTabContent");
 
+      $("#audience_plan").chosen();
+      $(document).on("change",".comparison-vs-con .dropdown input",function(e){
+        var showAssociationData={},associationXY=[];
+        var value = $(this).val();
+        var index = $(this).parent().index();
+        var index2 = index==0 ? 1 : 0;
+        var value2 = $(this).parent().parent().find(".dropdown").eq(index2).find("input").val();
+        associationXY[Math.abs(index2-1)] = value;
+        associationXY[index2] = value2;
+        getShowAssociationData(showAssociationData,associationXY);
+        var label = index==0 ? "X-axis: " : "Y-axis: ";
+        $(this).next().html(label+value+"<span class='caret arrow-down'></span>");
+        IAX_CHART_TOOL.initBubbleCross(bubbleColorMap,"brandAssociation_share",showAssociationData,associationXY,[-100,100]);
+      });
+      $(document).on("change","#correlation_select",function(){
+         IAX_CHART_TOOL.initProductAssociaton("product_time",categoryAssociation[$("#correlation_select").val()],true);
+      })
+      $(document).on("click",".correlation-title li",function(){
+        $(this).parent().find(".selected").removeClass("selected");
+        $(this).addClass("selected");
+        IAX_CHART_TOOL.initProductAssociaton("product_time",categoryAssociation[$("#correlation_select").val()],true,$(this).attr("data-value"));
+      })
+      $(document).on("click",".simulator-check-container li",function(e){
+         //最大选择数
+        e = e || window.event;
+        var max = 5,length = $(this).parent().find(".selected").length;
+        var isMulti = !$(this).parent().hasClass("simulator-single");
+        var isChecked = $(this).hasClass("selected");
+        var index = $(this).index();
+        var tab = $(this).parents(".tab-pane").attr("id");
+        if(isMulti){
+          if (!isChecked && length==max) {
+            $(this).find("[type=checkbox]").prop("checked",false);
+            return;
+          };
+          if (isChecked && length==1) {
+            $(this).find("[type=checkbox]").prop("checked",true);
+            return;
+          };
+          $(this).find("[type=checkbox]").prop("checked",!isChecked);
+          if (isChecked) {
+            $(this).removeClass("selected");
+            length--;
+          }else{
+            $(this).addClass("selected");
+            length++;
+          }
+
+          if (length>1) {
+            $(this).parents(".tab-pane").find("[name=multi_report]").removeClass("hide");
+            $(this).parents(".tab-pane").find("[name=single_report]").addClass("hide");
+            var html = $(this).parent().find(".selected").map(function(){
+              var value = $(this).find("input").val();
+              var name = $(this).find(".simulator-check-content").text();
+              return '<li class="" data-value="'+value+'">'+name+'</li>';
+            }).get().join("");
+            $(this).parents(".tab-pane").find(".multi-tab").html(html);
+            $(this).parents(".tab-pane").find(".multi-tab").find("li:first").addClass("selected");
+          }else{
+            $(this).parents(".tab-pane").find("[name=multi_report]").addClass("hide");
+            $(this).parents(".tab-pane").find("[name=single_report]").removeClass("hide");
+          }
+
+        }else{
+          //获取新的data
+          data = data;
+          brandId = $(this).attr("data-value");
+          $(".brand_choose").find(".selected").removeClass("selected");
+          //一变变所有
+          $(".brand_choose").each(function(){
+            $(this).find("li").eq(index).addClass("selected");
+          })
+          //切换brand会生成新的json数据和新的产品列表。
+          for (var i = 0; i < dataArr.length; i++) {
+            if (dataArr[i].id == brandId) {
+              data = dataArr[i]
+            };
+          };
+          $("#select_brand_share").find("span").eq(1).text($(this).find(".simulator-check-content").text());
+        }
+        changeTabGraph(tab.split("-")[1])
+        
+        e.stopPropagation();
+        e.preventDefault();
+      })
      });
       function initCalendar(id,options) {
        new xmoCalendar(options);
