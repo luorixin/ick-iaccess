@@ -4951,7 +4951,7 @@ var IAX_CHART_TOOL = {
         $("#"+id).next().css("top","160px").css("left",0).css("right",0).html("Hong Kong<br><span style='color:#ef4136;font-size:20px;font-weight:bold;line-height:40px;'>"+count+"</span>");
         //添加中国地图
          $("#"+id).parent().parent().find(".result-graph-word-content").html('<div id="'+id+'_mini_china_map" class="china-region" style="width:200px;height:150px;position:absolute;bottom:-30px;right:-20px;border:2px dotted #dfdfdf;border-right:none;border-bottom:none;"></div>');
-         $("#"+id).parent().parent().find(".result-graph-word-content").append("<div style='position:absolute;bottom:15px;right:-20px;width:200px;z-index:9999;'>Mainland China<br><span style='color:#ef4136;font-size:20px;font-weight:bold;line-height:40px;'>"+_this.formatNum(count*19,0)+"</span></div>");
+         $("#"+id).parent().parent().find(".result-graph-word-content").append("<div style='position:absolute;bottom:15px;right:-20px;width:200px;z-index:9999;'>Mainland China<br><span style='color:#ef4136;font-size:20px;font-weight:bold;line-height:40px;'>"+_this.formatNum(parseInt(count)*19,0)+"</span></div>");
          echarts.dispose(document.getElementById(id+'_mini_china_map'));
          var miniChart = echarts.init(document.getElementById(id+'_mini_china_map'));
          option.geo.map='china';
