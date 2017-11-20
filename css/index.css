@@ -4511,6 +4511,18 @@ table.treetable tbody tr.collapsed .indenter a:before{
 .xmo-line_per .result{float: right;margin-left: 0px;}
 .xmo-line_per .line_main{position: relative;float: left;}
 .graph-top .xmo-line_per .name{width: 100px;}
+.regions-line-map .xmo-line_per{
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.regions-line-map .xmo-line_per .name,.regions-line-map .xmo-line_per .result{
+  height: 15px;
+  line-height: 15px;
+  margin-top: 0;
+}
+.regions-line-map .xmo-line_per:hover{
+  background: #dfdfdf;
+}
 .xmo-progress-line {
     overflow: hidden;
     height: 15px;

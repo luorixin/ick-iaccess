@@ -2157,23 +2157,23 @@ var IAX_CHART_TOOL = {
                 return "<p><b>"+params.seriesName+"</b></p><p>Market Growth: "+params.value[3]+"%</p><p>Market Share: "+_this.formatNum(params.value[2],0)+"%</p>";
               }
             },
-            axisPointer:{
-                show: true,
-                type : 'cross',
-                z:0,
-                lineStyle: {
-                    type : 'dashed',
-                    width : 1
-                },
-                label:{
-                    show:false,
-                    formatter:null,
-                    backgroundColor:"transparent",
-                    textStyle:{
-                        color:"transparent"
-                    }
-                }
-            },
+            // axisPointer:{
+            //     show: true,
+            //     type : 'cross',
+            //     z:0,
+            //     lineStyle: {
+            //         type : 'dashed',
+            //         width : 1
+            //     },
+            //     label:{
+            //         show:false,
+            //         formatter:null,
+            //         backgroundColor:"transparent",
+            //         textStyle:{
+            //             color:"transparent"
+            //         }
+            //     }
+            // },
             backgroundColor:"#f2f2f2",
             borderColor:"#dfdfdf",
             borderWidth:1,
@@ -2256,6 +2256,7 @@ var IAX_CHART_TOOL = {
         series: picSeriesArr
     };
     myChart.setOption(option);
+
     var isExists = false;
     for (var i = 0; i < this.charts.length; i++) {
       if(this.charts[i].id == id){
@@ -2445,16 +2446,17 @@ var IAX_CHART_TOOL = {
     myChart.setOption(option,{
       notMerge:true
     });
-    var isExists = false;
-    for (var i = 0; i < this.charts.length; i++) {
-      if(this.charts[i].id == categoryId){
-        this.charts[i].chart = myChart;
-        isExists = true;
-      }
-    };
-    if (!isExists) {
-      this.charts.push({id:categoryId,chart:myChart});
-    };
+    //无需resize
+    // var isExists = false;
+    // for (var i = 0; i < this.charts.length; i++) {
+    //   if(this.charts[i].id == categoryId){
+    //     this.charts[i].chart = myChart;
+    //     isExists = true;
+    //   }
+    // };
+    // if (!isExists) {
+    //   this.charts.push({id:categoryId,chart:myChart});
+    // };
     
     index = 0;
     $("#"+productsId).empty();
@@ -4396,7 +4398,7 @@ var IAX_CHART_TOOL = {
               itemGap:3,
               itemWidth:8,
               itemHeight:15,
-              seriesIndex: [1],
+              seriesIndex: [0],
               inRange: {
                   symbolSize:symbolSizeRange,
                   color: rangeColor
@@ -4430,10 +4432,19 @@ var IAX_CHART_TOOL = {
               nameMap:nameMap
           },
           series : [
+              {
+                  name: '数量',
+                  type: 'map',
+                  geoIndex: 0,
+                  silent:true,
+                  // tooltip: {show: false},
+                  data:data.regions,
+              },
              {
                  type: 'scatter',
                  coordinateSystem: 'geo',
                  cursor:'default',
+                 geoIndex: 1,
                  data:[],
                  symbolSize: 20,
                  symbol: '',
@@ -4453,18 +4464,12 @@ var IAX_CHART_TOOL = {
                           color: '#F06C00'
                      }
                  }
-              },
-              {
-                  name: '数量',
-                  type: 'map',
-                  geoIndex: 0,
-                  silent:true,
-                  // tooltip: {show: false},
-                  data:data.regions,
               }
+              
           ]
       };
       myChart.setOption(option);
+      
       var isExists = false;
       for (var i = 0; i < this.charts.length; i++) {
         if(this.charts[i].id == id){
@@ -4785,16 +4790,16 @@ var IAX_CHART_TOOL = {
           },{
             notMerge:true,
           })
-          _this.initRegionsPart(id,cityData);
+          _this.initRegionsPart(id,cityData,myChart);
         }else{
           myChart.setOption(option,{
             notMerge:true,
           });
-          _this.initRegionsPart(id,data.regions);
+          _this.initRegionsPart(id,data.regions,myChart);
         }
       });
       //regions排名
-      _this.initRegionsPart(id,data.regions)
+      _this.initRegionsPart(id,data.regions,myChart)
   },
   initRegionsCity: function(id,data,city){
     if (!data) return;
@@ -4972,7 +4977,7 @@ var IAX_CHART_TOOL = {
       $("#"+id).parent().parent().find(".result-graph-word-content").append(selectTab);
       _this.initRegionsPart(id,data.regions)
   },
-  initRegionsPart: function(id,regions){
+  initRegionsPart: function(id,regions,myChart){
     var _this = this;
     var _total = 0;
     $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per").remove();
@@ -4996,10 +5001,10 @@ var IAX_CHART_TOOL = {
                    '<span class="name">'+index+'.'+regions[i].name+'</span>'+
                     '<span class="result">'+per.toFixed(2)+'%</span>'+
                     '<span class="line_main">'+
-                      '<div class="tooltip-content">'+
-                      '  <p>Region: '+regions[i].name+'</p>'+
-                      ' <span>Audience: '+_this.formatNum(regions[i].value,0)+'</span>'+
-                      '</div>'+
+                      // '<div class="tooltip-content">'+
+                      // '  <p>Region: '+regions[i].name+'</p>'+
+                      // ' <span>Audience: '+_this.formatNum(regions[i].value,0)+'</span>'+
+                      // '</div>'+
                       '<div class="xmo-progress-line left">'+
                         '<div style="width: '+(per*2).toFixed(2)+'%;" class="bar"></div>'+
                       '</div>'+
@@ -5026,6 +5031,21 @@ var IAX_CHART_TOOL = {
     if (regions.length==1) { 
       return;
     }
+    //添加背景样式
+    $("#"+id).parent().parent().find(".result-graph-word-content").removeClass("regions-line-map").addClass("regions-line-map")
+    //关联地图
+   
+    $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per").on("mouseover",function(){
+      var name = $(this).find(".name").text().split(".").pop();
+      myChart.dispatchAction({type: 'hideTip', seriesIndex: '0'});
+      myChart.dispatchAction({type: 'downplay', seriesIndex: '0'});
+      myChart.dispatchAction({type: 'showTip', seriesIndex: '0', name: name});
+      myChart.dispatchAction({type: 'highlight', seriesIndex: '0', name: name});
+    })
+    $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per").on("mouseout",function(){
+      myChart.dispatchAction({type: 'hideTip', seriesIndex: '0'});
+      myChart.dispatchAction({type: 'downplay', seriesIndex: '0'});
+    })
     var disabledPrev = "disabled",
         disabledNext = totalItem>pageItem ? "" : "disabled";
     var _page = '<div style="display:flex;padding-left:80px;" id="paginate_'+id+'">'+
