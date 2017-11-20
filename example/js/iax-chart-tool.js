@@ -100,12 +100,14 @@ var IAX_CHART_TOOL = {
         return !data.remove;
       })
       $(this).parents(".bubble-container").find(".bubble-map svg").click();
-      // $(this).parents(".bubble-container").find(".bubble-map").empty();
-      // _this.initBubble($(this).parents(".bubble-container").attr("id"),newBubbleData);
+
+      $(this).parents(".bubble-container").find(".bubble-map").empty();
+      _this.initBubble($(this).parents(".bubble-container").attr("id"),newBubbleData);
       $("g").show();
-      for (var i = 0; i < vennSets.length; i++) {
-        $("[data-venn-sets='"+vennSets[i]+"']").hide();
-      };
+
+      // for (var i = 0; i < vennSets.length; i++) {
+      //   $("[data-venn-sets='"+vennSets[i]+"']").hide();
+      // };
     })
     //将泡泡中文字居中
     $(".venn-circle").each(function(){
@@ -880,7 +882,7 @@ var IAX_CHART_TOOL = {
       diff = 1.1*max-0.9*min;
       diff = Math.ceil(diff);
       yAxisJson.interval = parseFloat((diff/splitNumber));
-      yAxisJson.min = 0.9*min.toFixed(2);
+      yAxisJson.min = (0.9*min).toFixed(2);
       yAxisJson.max = (yAxisJson.interval*splitNumber+0.9*min).toFixed(2);
       if (yAxisIndex==0) {
         yAxisJson.axisLabel.formatter = function (value, index) {
@@ -3416,9 +3418,9 @@ var IAX_CHART_TOOL = {
   },
   initGender: function(id,data){
     if (!document.getElementById(id)) return;
-    var male = data ? data.gender.male : 0;
-    var female = data ? data.gender.female : 0;
-    var unknown = data ? data.gender.UNKNOWN? data.gender.UNKNOWN:0: 0;
+    var male = (data && data.gender && data.gender.male) ? data.gender.male : 0;
+    var female = (data && data.gender && data.gender.female)  ? data.gender.female : 0;
+    var unknown = (data && data.gender && data.gender.UNKNOWN)  ? data.gender.UNKNOWN: 0;
     // var _total = male+female+unknown;
     var _total = male+female;
     var malePercent = (parseFloat(male)/_total)*100; 
@@ -3514,9 +3516,9 @@ var IAX_CHART_TOOL = {
     for(var i in data){
       if (data[i]) {
         nameList.push('<li title="'+data[i].productName+'">'+data[i].productName+'</li>');
-        var male = data[i] ? data[i].gender.male : 0;
-        var female = data[i] ? data[i].gender.female : 0;
-        var unknown = data[i] ? data[i].gender.UNKNOWN? data[i].gender.UNKNOWN:0: 0;
+        var male = (data[i] && data[i].gender && data[i].gender.male) ? data[i].gender.male : 0;
+        var female = (data[i] && data[i].gender && data[i].gender.female) ? data[i].gender.female : 0;
+        var unknown = (data[i] && data[i].gender && data[i].gender.UNKNOWN) ? data[i].gender.UNKNOWN: 0;
         // var _total = male+female+unknown;
         var _total = male+female;
         var malePercent = (parseFloat(male)/_total)*100; 
@@ -3559,6 +3561,7 @@ var IAX_CHART_TOOL = {
     $("#"+maleId).html(maleList.join(""));
     $("#"+femaleId).html(femaleList.join(""));
   },
+
   initAgeGroup: function(id,data){
     if (!data) return;
     if (!document.getElementById(id)) return;
@@ -3964,9 +3967,9 @@ var IAX_CHART_TOOL = {
   },
   initDevice: function(id,data){
     if (!document.getElementById(id)) return;
-    var pc = data ? data.device.PC : 0;
-    var mobile = data ? data.device.Mobile : 0;
-    var unknown = data ? data.device.UNKNOWN? data.device.UNKNOWN:0: 0;
+    var pc = (data && data.device && data.device.PC) ? data.device.PC : 0;
+    var mobile = (data && data.device && data.device.Mobile) ? data.device.Mobile : 0;
+    var unknown = (data && data.device && data.device.UNKNOWN) ? data.device.UNKNOWN: 0;
     // var _total = pc+mobile+unknown;
     var _total = pc+mobile;
     var pcPercent = (parseFloat(pc)/_total)*100; 
@@ -4064,9 +4067,9 @@ var IAX_CHART_TOOL = {
     for(var i in data){
       if (data[i]) {
         nameList.push('<li title="'+data[i].productName+'">'+data[i].productName+'</li>');
-        var pc = data[i] ? data[i].device.PC : 0;
-        var mobile = data[i] ? data[i].device.Mobile : 0;
-        var unknown = data[i] ? data[i].device.UNKNOWN? data[i].device.UNKNOWN:0: 0;
+        var pc = (data[i] && data[i].device && data[i].device.PC) ? data[i].device.PC : 0;
+        var mobile = (data[i] && data[i].device && data[i].device.Mobile) ? data[i].device.Mobile : 0;
+        var unknown = (data[i] && data[i].device && data[i].device.UNKNOWN) ? data[i].device.UNKNOWN: 0;
         // var _total = male+female+unknown;
         var _total = pc+mobile;
         var pcPercent = (parseFloat(pc)/_total)*100; 
@@ -4799,7 +4802,8 @@ var IAX_CHART_TOOL = {
     var _this = this;
     city = JSON.parse(city);
     if (city.smallName=="HK") {
-      // $("#"+id).css("width","600px");
+      // $("#"+id).css("width","600px")
+      $("#"+id).css("width","100%");;
       $("#"+id).css("margin","0 auto");
       $("#"+id).css("padding","0");
     };
@@ -4950,8 +4954,10 @@ var IAX_CHART_TOOL = {
         var count = _this.formatNum(data.regions[0].value,0);
         $("#"+id).next().css("top","160px").css("left",0).css("right",0).html("Hong Kong<br><span style='color:#ef4136;font-size:20px;font-weight:bold;line-height:40px;'>"+count+"</span>");
         //添加中国地图
-         $("#"+id).parent().parent().find(".result-graph-word-content").html('<div id="'+id+'_mini_china_map" class="china-region" style="width:200px;height:150px;position:absolute;bottom:-30px;right:-20px;border:2px dotted #dfdfdf;border-right:none;border-bottom:none;"></div>');
-         $("#"+id).parent().parent().find(".result-graph-word-content").append("<div style='position:absolute;bottom:15px;right:-20px;width:200px;z-index:9999;'>Mainland China<br><span style='color:#ef4136;font-size:20px;font-weight:bold;line-height:40px;'>"+_this.formatNum(parseInt(count)*19,0)+"</span></div>");
+        $("#"+id+"_mini_china_title").remove();
+        $("#"+id+"_mini_china_map").remove();
+         $("#"+id).parents(".plan-result-text").append('<div id="'+id+'_mini_china_map" class="china-region" style="width:200px;height:150px;position:absolute;bottom:0px;right:0px;border:2px dotted #dfdfdf;border-right:none;border-bottom:none;"></div>');
+         $("#"+id).parents(".plan-result-text").append("<div id='"+id+"_mini_china_title' style='position:absolute;bottom:35px;right:0px;width:200px;z-index:9999;'>Mainland China<br><span style='color:#ef4136;font-size:20px;font-weight:bold;line-height:40px;'>"+_this.formatNum(parseInt(data.regions[0].value)*19,0)+"</span></div>");
          echarts.dispose(document.getElementById(id+'_mini_china_map'));
          var miniChart = echarts.init(document.getElementById(id+'_mini_china_map'));
          option.geo.map='china';
