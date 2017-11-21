@@ -1133,7 +1133,7 @@ th.align_right, td.align_right, .align_right {
 }
 .male_multi .line_main,.female_multi .line_main,.pc_multi .line_main,.mobile_multi .line_main{
   position: relative;
-  cursor: pointer;
+  cursor: default;
 }
 .male_multi .line_main:hover .tooltip-content,.female_multi .line_main:hover .tooltip-content,.pc_multi .line_main:hover .tooltip-content,.mobile_multi .line_main:hover .tooltip-content{
   display: block;

@@ -1799,6 +1799,7 @@ var IAX_CHART_TOOL = {
       name : 'test',
       type : 'line',
       stack : 'symbol:1',
+      cursor:'default',
       yAxisIndex:1,
       symbol : 'image://../images/icon_0-17.png',
       symbolSize : [26,26],
@@ -2666,6 +2667,7 @@ var IAX_CHART_TOOL = {
       name : 'test',
       type : 'line',
       stack : 'symbol:1',
+      cursor:'default',
       yAxisIndex:1,
       symbol : 'image://../images/icon_0-17.png',
       symbolSize : [26,26],
@@ -3712,6 +3714,7 @@ var IAX_CHART_TOOL = {
           name:i,
           type:"bar",
           // barGap:10,
+          cursor:'default',
           seriesIndex:0,
           barWidth:10,
           max:max,
@@ -4408,6 +4411,7 @@ var IAX_CHART_TOOL = {
           geo: {
               map: 'china',
               // roam: true,
+              cursor:'default',
               label: {
                   normal: {
                       show: false,
@@ -4435,6 +4439,7 @@ var IAX_CHART_TOOL = {
               {
                   name: '数量',
                   type: 'map',
+                  cursor:'default',
                   geoIndex: 0,
                   silent:true,
                   // tooltip: {show: false},
@@ -4770,6 +4775,7 @@ var IAX_CHART_TOOL = {
                       type: 'scatter',
                       coordinateSystem: 'geo',
                       data:convertData(cityData),
+                      cursor:'default',
                       symbolSize: 12,
                       label: {
                           normal: {
@@ -5907,6 +5913,7 @@ var IAX_CHART_TOOL = {
             series: [{
                 name: 'Allocated Budget',
                 data: datas,
+                cursor:'default',
                 pointPlacement: 'false',
                 color: '#ef4136',
                 fillOpacity:'0.6'
