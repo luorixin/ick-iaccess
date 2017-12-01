@@ -160,6 +160,18 @@ IAX_TOOL=
     ));
     $(".analysis-loading-box").modal('show');
   },
+  //onsite弹出框
+  retargetAudienceBox:function(paramsJson){
+    if (!paramsJson) return false;
+    if ($(".retargeting-audience-create-box").length) {
+      $(".retargeting-audience-create-box").modal("hide");
+      $(".retargeting-audience-create-box").remove();
+    };
+    $("body").append(Hogan.compile(IAX_TEMPLATE.retargetAudienceBox).render(
+      paramsJson
+    ))
+    $(".retargeting-audience-create-box").modal("show");
+  },
 	//数字格式化
 	formatNum:function(str,len){
 		var newStr = "";

@@ -424,7 +424,7 @@
                   <td class="align_right green">0.38%</td>
                   <td class="align_right green">8.10%</td>
                   <td class="align_center">
-                    <div class="audiences-opt">
+                    <div class="audiences-opt" onclick="editAudience(2318)">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </div>
                   </td>
@@ -439,7 +439,7 @@
                   <td class="align_right green">0.38%</td>
                   <td class="align_right green">8.10%</td>
                   <td class="align_center">
-                    <div class="audiences-opt">
+                    <div class="audiences-opt" onclick="editAudience(2318)">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </div>
                   </td>
@@ -454,7 +454,7 @@
                   <td class="align_right green">0.38%</td>
                   <td class="align_right green">8.10%</td>
                   <td class="align_center">
-                    <div class="audiences-opt">
+                    <div class="audiences-opt" onclick="editAudience(2318)">
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </div>
                   </td>
@@ -712,190 +712,87 @@
       </div>
     </div>
 
-     <!--retargeting-audience-create-box -->
-    <div class="modal fade slide-box retargeting-audience-create-box" style="display:none;">
-      <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>
-      <div class="slide-content">
-          <div class="modal-content">
-            <div class="modal-body">
-              <ul class="nav nav-tabs sub-nav-tabs" id="myTab">
-                <li class="active">
-                  <a data-toggle="tab" href="#tab-create-search">Create a Retargeting Audience Group</a>
-                </li>
-              </ul>
-              <div class="tab-content" id="myTabContent">
-
-                <div class="tab-pane fade in active" id="tab-create-search">
-                  <div onclick="$(this).remove()" class="message-top-tip">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                    <div class="message-top-tip-container">
-                      <div class="message-tip">
-                        <div class="message-tip-contents">
-                          <div class="message-tip-msg">Goal event saved successfully. You can now create a retargeting audience group.</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="edit-container">
-                    <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">
-                      <div class="control-group">
-                        <label class="control-label">Name</label>
-                        <div class="controls">
-                          <div class="clearfix">
-                            <input type="text" name="name" value="iCLick" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Divided By Events</label>
-                        <div class="controls">
-                          <div class="">
-                            <div class="table_white">
-                              <table class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Logic</th>
-                                        <th>Parameter</th>
-                                        <th>Event</th>
-                                        <th>Receny</th>
-                                        <th>Frequency(Min.)</th>
-                                        <th>Frequency(Max.)</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                  <tr class="tack-plus" data-type="andOr">
-                                    <td colspan="6">
-                                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                      <label>Add one more event</label>
-                                    </td>
-                                  </tr>
-                                </tfoot>
-                                <tbody>
-                                  <!-- for clone -->
-                                  <tr style="background-color:#fff;display:none">
-                                    <td class="align_left"></td>
-                                    <td class="align_right"></td>
-                                    <td class="align_center">
-                                      <div class="dropdown modifylabel" style="width:120px;" >
-                                        <input name="edivided" type="hidden" value=""  />
-                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                          Homepage
-                                          <span class="caret arrow-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
-                                          <li data-value="counter"><a href="javascript:;">Homepage</a></li>
-                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
-                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
-                                        </ul>
-                                      </div>
-                                    </td>
-                                    <td class="align_center">
-                                      <div class="dropdown modifylabel" style="width:120px;" >
-                                        <input name="erency" type="hidden" value=""  />
-                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                          Last month
-                                          <span class="caret arrow-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
-                                          <li data-value="counter"><a href="javascript:;">Last month</a></li>
-                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
-                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
-                                        </ul>
-                                      </div>
-                                    </td>
-                                    <td class="">
-                                      <div class="rangeBox">
-                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">
-                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                      </div>
-                                    </td>
-                                    <td class="">
-                                      <div class="rangeBox">
-                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">
-                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                      </div>
-                                    </td>
-                                  </tr>
-
-                                  <tr style="background-color:#fff;">
-                                    <td class="align_left"><span style="margin-left:12px;">-</span></td>
-                                    <td class="align_right">#1</td>
-                                    <td class="align_center">
-                                      <div class="dropdown modifylabel" style="width:120px;" >
-                                        <input name="edivided" type="hidden" value=""  />
-                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                          Homepage
-                                          <span class="caret arrow-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
-                                          <li data-value="counter"><a href="javascript:;">Homepage</a></li>
-                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
-                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
-                                        </ul>
-                                      </div>
-                                    </td>
-                                    <td class="align_center">
-                                      <div class="dropdown modifylabel" style="width:120px;" >
-                                        <input name="erency" type="hidden" value=""  />
-                                        <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                          Last month
-                                          <span class="caret arrow-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
-                                          <li data-value="counter"><a href="javascript:;">Last month</a></li>
-                                          <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
-                                          <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
-                                        </ul>
-                                      </div>
-                                    </td>
-                                    <td class="">
-                                      <div class="rangeBox">
-                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">
-                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                      </div>
-                                    </td>
-                                    <td class="">
-                                      <div class="rangeBox">
-                                        <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                        <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">
-                                        <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                      </div>
-                                    </td>
-                                  </tr>
-
-                                </tbody>
-                              </table>
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      <div class="control-group">
-                        <label style="width:100%;">Total Audience: - | Last Updated: -</label>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer slide-bottom">
-                    <button type="button" class="btn btn-success" onclick="{{fn}}">Save</button>
-                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-            <!--modal-body-end-->
-        </div>
-      </div>
-    </div>
-    <!-- modal content end -->
+    
 
 </body>
     <script type="text/javascript">
-
+      var json = {
+          "assist": {
+            "eventList": [
+              {
+                "client_id": 2318,
+                "deduplication": true,
+                "deduplication_type": -2,
+                "enable_cookie_matching": true,
+                "event_name": "enquiry",
+                "event_one_name": "Counter",
+                "event_one_type": "Counter",
+                "event_type": "1",
+                "id": 389,
+                "javascripts": "",
+                "status": 1
+              },
+              {
+                "client_id": 2318,
+                "deduplication": true,
+                "deduplication_type": -2,
+                "enable_cookie_matching": true,
+                "event_name": "Booking",
+                "event_one_name": "Counter",
+                "event_one_type": "Counter",
+                "event_type": "1",
+                "id": 390,
+                "javascripts": "",
+                "status": 1
+              },
+              {
+                "client_id": 2318,
+                "deduplication": false,
+                "deduplication_type": 0,
+                "enable_cookie_matching": false,
+                "event_name": "本地添加来测测",
+                "event_one_name": "",
+                "event_one_type": "",
+                "event_type": "1",
+                "id": 20079,
+                "javascripts": "",
+                "status": 0
+              }
+            ],
+            "recencyList": [{"id":"All","name":"All Period"},{"id":"14DAYS","name":"Last 14 days"},{"id":"1MONTHS","name":"Last month"},{"id":"2MONTHS","name":"Last 2 months"},{"id":"3MONTHS","name":"Last 3 months"},{"id":"4MONTHS","name":"Last 4 months"},{"id":"5MONTHS","name":"Last 5 months"},{"id":"6MONTHS","name":"Last 6 months"},{"id":"7MONTHS","name":"Last 7 months"},{"id":"8MONTHS","name":"Last 8 months"},{"id":"9MONTHS","name":"Last 9 months"},{"id":"10MONTHS","name":"Last 10 months"},{"id":"11MONTHS","name":"Last 11 months"},{"id":"12MONTHS","name":"Last 12 months"}],
+            "logicList": [{"id":"+","name":"Or"},{"id":"&","name":"And"},{"id":"!","name":"Not"}]
+          },
+          "data": {
+            
+          }
+        }
+      var data = {
+            "clientId": 2318,
+            "customSetting": "389,6MONTHS,1,9999!390,6MONTHS,1,9999",
+            "id": 8,
+            "name": "Air New Zealand_Customer_with_strong_Intent",
+            "settings": [
+              {
+                "eventId": "389",
+                "frequencyMax": "9999",
+                "frequencyMin": "10",
+                "index": 1,
+                "logic": "",
+                "receny": "6MONTHS"
+              },
+              {
+                "eventId": "390",
+                "frequencyMax": "9989",
+                "frequencyMin": "5",
+                "index": 2,
+                "logic": "&",
+                "receny": "6MONTHS"
+              }
+            ],
+            "status": 0
+          };
       $(function(){
+        
         $(document).on("click","#createAudience",function(){
           $(".retargeting-audience-box").modal("show");
           //no events 提示框
@@ -946,7 +843,9 @@
                         '</div>';
           }
           var cloneHtml = $table.find("tbody tr:first").clone();
-          cloneHtml.find("td:first").html(logicHtml);
+          if (type != "andOr") {
+            cloneHtml.find("td:first").html(logicHtml);
+          }
           if (type=="andOr") {
             cloneHtml.find("td").eq(1).html('<span>'+id+'</span>');
           };
@@ -1046,8 +945,55 @@
         setTimeout(function(){
           $(thi).next().click();
           $(thi).attr("disabled",false);
-          $(".retargeting-audience-create-box").modal("show");
+          json.data ={};
+          json.saveFn = "saveAudience(this)";
+          IAX_TOOL.retargetAudienceBox(json);
+          setRetargetDropDown();
+          // $(".retargeting-audience-create-box").modal("show");
         },1000)
+      }
+      function editAudience(id){
+        json.data = data;
+        json.saveFn = "saveAudience(this)";
+        IAX_TOOL.retargetAudienceBox(json);
+        setRetargetDropDown();
+        $(".retargeting-audience-create-box").find("#tab-create-audience").find("table tbody").find("tr").eq(1).find("td:first").html('<span style="margin-left:12px;">-</span>');
+      }
+      function setRetargetDropDown(){
+        $(".retargeting-audience-create-box").find(".dropdown").each(function(){
+          var value = $(this).find("input:first").val();
+          if (value=="") {
+             $(this).find(".dropdown-menu").find("li:first").trigger("click");
+          }else{
+            $(this).find(".dropdown-menu").find("li[data-value='"+value+"']").trigger("click");
+          }
+        })
+      }
+      function saveAudience(that){
+        var con = $(that).parents(".tab-pane");
+        var settings = [];
+        con.find("table tbody").find("tr").each(function(i){
+          if (i!=0) {
+            var json = {
+              "eventId": $(this).find("[name=eventId]").val(),
+              "frequencyMax": $(this).find("[name=frequencyMax]").val().replace(/,/g,""),
+              "frequencyMin": $(this).find("[name=frequencyMin]").val().replace(/,/g,""),
+              "index": i,
+              "logic": $(this).find("[name=logic]").val(),
+              "receny": $(this).find("[name=receny]").val()
+            }
+            settings.push(json);
+          };
+        })
+        var newData = {
+            "clientId": con.find("[name=clientId]").val(),
+            "id": con.find("[name=id]").val(),
+            "name": con.find("[name=name]").val(),
+            "settings": settings,
+        };
+        //更新
+        data = newData;
+        $(that).next().click();
       }
    </script>
 </html>

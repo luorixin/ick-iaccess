@@ -2939,12 +2939,22 @@ th.align_right, td.align_right, .align_right {
 .plan-container .location-con{
   position: relative;
 }
-.plan-container .location-con .location-suggest-con{
+.plan-container .location-con .location-suggest-con,.plan-container .location-con .select-radio-con{
   margin-top :20px; 
 }
-.plan-container .location-con .location-suggest-con .location-label{
+.plan-container .location-con .location-suggest-con .location-label,.plan-container .location-con .select-radio-con .location-label{
   margin-bottom: 10px;
   font-weight: bold;
+}
+.location-suggest-con .location-radio{
+  position: relative;
+  margin-top: -10px;
+}
+.location-suggest-con .location-radio .radio{
+  width: 150px;
+}
+.location-suggest-con .location-radio input{
+  width: auto;
 }
 .location-suggest-con{
   margin-top: 10px;

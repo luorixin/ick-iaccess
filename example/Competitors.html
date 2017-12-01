@@ -2464,7 +2464,7 @@
         },
         {
             "data": {
-                "audience": "11.3M",
+                "audience": "12.3M",
                 "allMarket": "3,267K",
                 "sentiment":22,
                 "mixTrend":{
@@ -4412,11 +4412,11 @@
       var _brand = dataArr.splice(0,1);
       dataArr = dataArr.sort(IAX_CHART_TOOL.sortJson("asc","id","parseFloat"));
       dataArr.splice(0,0,_brand[0]);
-      var data=dataArr[0],brandId=dataArr[0].id;
+      var data=dataArr[1],brandId=dataArr[1].id;
       //根据data获取brand选择列表
       var lihtml = "",lihtml_multi="",maxBrand=5,allProducts=[],allProductsJson={},lihtml_multi_corss="";
       for (var i = 0; i < dataArr.length; i++) {
-      	var isselected = i==0 ? "selected" : "";
+      	var isselected = i==1 ? "selected" : "";
       	var checkTitle = i==0 ? "My Brand" : "Competitor";
       	var isChecked = i==0 ? "checked='checked'" : "";
         var isselected_multi = i<maxBrand ? "selected" : "";

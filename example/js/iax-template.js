@@ -537,4 +537,258 @@ var IAX_TEMPLATE = {
 		    '</div>'+
 		'</div>'+
 	'</div>',
+'retargetAudienceBox':
+	'<div class="modal fade slide-box retargeting-audience-create-box" style="display:none;">'+
+    '  <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>'+
+    '  <div class="slide-content">'+
+    '      <div class="modal-content">'+
+    '        <div class="modal-body">'+
+    '          <ul class="nav nav-tabs sub-nav-tabs" id="myTab">'+
+    '            <li class="active">'+
+    '              <a data-toggle="tab" href="#tab-create-audience">Create a Retargeting Audience Group</a>'+
+    '            </li>'+
+    '          </ul>'+
+    '          <div class="tab-content" id="myTabContent">'+
+    '            <div class="tab-pane fade in active" id="tab-create-audience">'+
+    '              <div onclick="$(this).remove()" class="message-top-tip">'+
+    '                <i class="fa fa-times" aria-hidden="true"></i>'+
+    '                <div class="message-top-tip-container">'+
+    '                  <div class="message-tip">'+
+    '                    <div class="message-tip-contents">'+
+    '                      <div class="message-tip-msg">Goal event saved successfully. You can now create a retargeting audience group.</div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                </div>'+
+    '              </div>'+
+    '              <div class="edit-container">'+
+    '                <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Name</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                        <input type="hidden" name="id" value="{{data.id}}" />'+
+    '                        <input type="hidden" name="clientId" value="{{data.clientId}}" />'+
+    '                        <input type="text" name="name" value="{{data.name}}" />'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Divided By Events</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="">'+
+    '                        <div class="table_white">'+
+    '                          <table class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">'+
+    '                            <thead>'+
+    '                                <tr>'+
+    '                                    <th>Logic</th>'+
+    '                                    <th>Parameter</th>'+
+    '                                    <th>Event</th>'+
+    '                                    <th>Receny</th>'+
+    '                                    <th>Frequency(Min.)</th>'+
+    '                                    <th>Frequency(Max.)</th>'+
+    '                                </tr>'+
+    '                            </thead>'+
+    '                            <tfoot>'+
+    '                              <tr class="tack-plus" data-type="andOr">'+
+    '                                <td colspan="6">'+
+    '                                  <i class="fa fa-plus-circle" aria-hidden="true"></i>'+
+    '                                  <label>Add one more event</label>'+
+    '                                </td>'+
+    '                              </tr>'+
+    '                            </tfoot>'+
+    '                            <tbody>'+
+    '                              <tr style="background-color:#fff;display:none">'+
+    '                                <td class="align_left">'+
+    '									<i class="fa fa-minus-circle" aria-hidden="true" style="margin-left:8px;margin-top:7px;float:left;font-size:14px;cursor:pointer;color:#ef4136;"></i>'+
+    '									<div class="dropdown modifylabel" style="width:52px;float:right;">'+
+    '									  <input name="logic" type="hidden" value="">'+
+    '									  <button class="btn  dropdown-toggle" style="width:52px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '									    or'+
+    '									    <span class="caret arrow-down"></span>'+
+    '									  </button>'+
+    '									  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:50px;min-width: 50px;text-align:left;">'+
+    '										{{#assist.logicList}}'+
+    '                                      	<li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
+    '										{{/assist.logicList}}'+
+    '									  </ul>'+
+    '									</div>'+
+    '								 </td>'+
+    '                                <td class="align_right"></td>'+
+    '                                <td class="align_center">'+
+    '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
+    '                                    <input name="eventId" type="hidden" value=""  />'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                      Please select a option'+
+    '                                      <span class="caret arrow-down"></span>'+
+    '                                    </button>'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '										{{#assist.eventList}}'+
+    '                                      	<li data-value="{{id}}"><a href="javascript:;">{{event_name}}</a></li>'+
+    '										{{/assist.eventList}}'+
+    '                                    </ul>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="align_center">'+
+    '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
+    '                                    <input name="receny" type="hidden" value=""  />'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                      Please select a option'+
+    '                                      <span class="caret arrow-down"></span>'+
+    '                                    </button>'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '										{{#assist.recencyList}}'+
+    '                                      <li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
+    '										{{/assist.recencyList}}'+
+    '                                    </ul>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="">'+
+    '                                  <div class="rangeBox">'+
+    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">'+
+    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="">'+
+    '                                  <div class="rangeBox">'+
+    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">'+
+    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                              </tr>'+
+    '							{{^data.settings}}'+
+   	'                              <tr style="background-color:#fff;">'+
+    '                                <td class="align_left">'+
+    '									  <input name="logic" type="hidden" value="">'+
+    '									<span style="margin-left:12px;">-</span>'+
+    '								 </td>'+
+    '                                <td class="align_right">#1</td>'+
+    '                                <td class="align_center">'+
+    '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
+    '                                    <input name="eventId" type="hidden" value=""  />'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                      Please select'+
+    '                                      <span class="caret arrow-down"></span>'+
+    '                                    </button>'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '										{{#assist.eventList}}'+
+    '                                      	<li data-value="{{id}}"><a href="javascript:;">{{event_name}}</a></li>'+
+    '										{{/assist.eventList}}'+
+    '                                    </ul>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="align_center">'+
+    '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
+    '                                    <input name="receny" type="hidden" value=""  />'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                      Please select'+
+    '                                      <span class="caret arrow-down"></span>'+
+    '                                    </button>'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '										{{#assist.recencyList}}'+
+    '                                      <li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
+    '										{{/assist.recencyList}}'+
+    '                                    </ul>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="">'+
+    '                                  <div class="rangeBox">'+
+    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">'+
+    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="">'+
+    '                                  <div class="rangeBox">'+
+    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">'+
+    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                              </tr>'+ 	
+    '							{{/data.settings}}'+
+    '							{{#data.settings}}'+
+    '                              <tr style="background-color:#fff;">'+
+    '                                <td class="align_left">'+
+    '									<i class="fa fa-minus-circle" aria-hidden="true" style="margin-left:8px;margin-top:7px;float:left;font-size:14px;cursor:pointer;color:#ef4136;"></i>'+
+    '									<div class="dropdown modifylabel" style="width:52px;float:right;">'+
+    '									  <input name="logic" type="hidden" value="{{logic}}">'+
+    '									  <button class="btn  dropdown-toggle" style="width:52px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '									    or'+
+    '									    <span class="caret arrow-down"></span>'+
+    '									  </button>'+
+    '									  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:50px;min-width: 50px;text-align:left;">'+
+    '										{{#assist.logicList}}'+
+    '                                      	<li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
+    '										{{/assist.logicList}}'+
+    '									  </ul>'+
+    '									</div>'+
+    '								 </td>'+
+    '                                <td class="align_right">#{{index}}</td>'+
+    '                                <td class="align_center">'+
+    '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
+    '                                    <input name="eventId" type="hidden" value="{{eventId}}"  />'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                      Homepage'+
+    '                                      <span class="caret arrow-down"></span>'+
+    '                                    </button>'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '										{{#assist.eventList}}'+
+    '                                      	<li data-value="{{id}}"><a href="javascript:;">{{event_name}}</a></li>'+
+    '										{{/assist.eventList}}'+
+    '                                    </ul>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="align_center">'+
+    '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
+    '                                    <input name="receny" type="hidden" value="{{receny}}"  />'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                      Please select'+
+    '                                      <span class="caret arrow-down"></span>'+
+    '                                    </button>'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '										{{#assist.recencyList}}'+
+    '                                      <li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
+    '										{{/assist.recencyList}}'+
+    '                                    </ul>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="">'+
+    '                                  <div class="rangeBox">'+
+    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <input type="text" style="width:30px" title="{{frequencyMin}}" value="{{frequencyMin}}" name="frequencyMin">'+
+    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                                <td class="">'+
+    '                                  <div class="rangeBox">'+
+    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <input type="text" style="width:30px" title="{{frequencyMax}}" value="{{frequencyMax}}" name="frequencyMax">'+
+    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                  </div>'+
+    '                                </td>'+
+    '                              </tr>'+
+    '								{{/data.settings}}'+
+    '                            </tbody>'+
+    '                          </table>'+
+    '                        </div>'+
+    '                        </div>'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  <div class="control-group">'+
+    '                    <label style="width:100%;">Total Audience: - | Last Updated: -</label>'+
+    '                  </div>'+
+    '                </form>'+
+    '              </div>'+
+    '              <div class="modal-footer slide-bottom">'+
+    '                <button type="button" class="btn btn-success" onclick="{{saveFn}}">Save</button>'+
+    '                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>'+
+    '              </div>'+
+    '            </div>'+
+    '          </div>'+
+    '        </div>'+
+    '    </div>'+
+    '  </div>'+
+    '</div>'
 }
