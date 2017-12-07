@@ -1291,7 +1291,89 @@
                             <div class="plan-group">
                               <i class="fa fa-plus-square showHideIco"></i>
                               <label class="plan-label">Footfall Targeting</label>
-                              <div class="plans" style="display:none;margin-top:0;">
+                              <div class="plans" style="display:none;">
+                                 <div class="select-radio-con">
+                                    <div class="radio radio-primary radio-switch">
+                                        <input type="radio" name="productType_location" data-target="" id="productType_location0" value="0" checked="checked">
+                                        <label for="productType_location0">Set your own footfall targeting</label>
+                                    </div>
+                                    <div class="radio radio-primary radio-switch">
+                                        <input type="radio" name="productType_location" data-target="chooseplan" id="productType_location1" value="1">
+                                        <label for="productType_location1">Import footfall segments from other existing audience plans</label>
+                                    </div>
+                                  </div>
+                                  <div class="products-con" style="display:none">
+                                    <div class="addproduct chooseplan">
+                                      <i class="fa fa-chevron-down" style="position: absolute; top: 10px; left: 10px;"></i>
+                                      <div class="dropdown tree-stop" style="width:auto;">
+                                        <input name="plan" id="plan" type="hidden" value=""/>
+                                        <button class="btn  dropdown-toggle dropdown-stop" data-type="plan" type="button" style="width:auto;" id="dropdownMenu1" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true">
+                                          Choose plan
+                                        </button>
+                                        <div class="dropdown-menu dropdown-tree-con" aria-labelledby="dropdownMenu1">
+                                          <div class="dropdown-tree-category">
+                                            <div class="parent_layer">
+                                                <div class="pannel">
+                                                  <span>Audience Plan: <b>7</b></span>
+                                                  <span style="float:right; margin: 0 5px 0 0!important;">
+                                                    <i class="fa fa-angle-right"></i>
+                                                  </span>
+                                                </div>
+                                                <ul class="tree">
+                                                  <li>
+                                                    <a href="javascript:;">Estee Lauder - Makeup</a>
+                                                    <ul class="childs" style="display:none">
+                                                      <li>
+                                                        <span>My Brand</span>
+                                                        <ul class="childs">
+                                                          <li>
+                                                            <a href="javascript:;">Estee Lauder / Skincare</a>
+                                                             <ul class="childs" style="display:none">
+                                                                <li>
+                                                                  <span>All</span>
+                                                                  <ul class="childs">
+                                                                    <li><a href="javascript:;">Stay / Concealer</a></li>
+                                                                    <li><a href="javascript:;">Perferct Brown</a></li>
+                                                                  </ul>
+                                                                </li>
+                                                            </ul>
+                                                          </li>
+                                                        </ul>
+                                                      </li>
+                                                      <li>
+                                                        <span>Competitors</span>
+                                                        <ul class="childs">
+                                                          <li><a href="javascript:;">Lancome / Concealer</a></li>
+                                                          <li><a href="javascript:;">Bobbi Brown</a></li>
+                                                        </ul>
+                                                      </li>
+                                                      <li><span>Other Market Description</span></li>
+                                                      <li>
+                                                        <span>Advanced</span>
+                                                        <ul class="childs">
+                                                          <li><a href="javascript:;">Own Data</a></li>
+                                                          <li><a href="javascript:;">3rd Party Data</a></li>
+                                                          <li><a href="javascript:;">Onsite Audience</a></li>
+                                                        </ul>
+                                                      <li>
+                                                    </ul>
+                                                  </li>
+                                                  <li><a href="javascript:;">Estee Lauder - Cleanser</a></li>
+                                                  <li><a href="javascript:;">Estee Lauder - Foundation</a></li>
+                                                  <li><a href="javascript:;">Estee Lauder - Concealer</a></li>
+                                                  <li><a href="javascript:;">Estee Lauder vs Lancome</a></li>
+                                                  <li><a href="javascript:;">Shiseido vs Lancome</a></li>
+                                                  <li><a href="javascript:;">SK2 vs Shiseido</a></li>
+                                                </ul>
+                                            </div>
+                                            
+                                          </div>
+                                        </div>
+                                        <label class="dropdown-plan-infos"></label>
+
+                                      </div>
+                                    </div>
+                                </div>
                                 <div class="location-con">
                                   <div class="location-suggest-con">
                                     <label class="location-label">Keywords</label>
@@ -1303,6 +1385,18 @@
                                        <button class="btn dropdown-toggle" type="button">
                                         Add one more Keyword&nbsp;            
                                        </button>  
+                                    </div>
+                                  </div>
+                                  <div class="location-suggest-con">
+                                    <label class="location-label">Distance</label>
+                                    <div class="slide-bar" style="width:380px;">
+                                     
+                                    </div>
+                                  </div>
+                                  <div class="location-suggest-con">
+                                    <label class="location-label">City</label>
+                                    <div class="cityChoose_city">
+                                     
                                     </div>
                                   </div>
                                 </div>
@@ -1382,99 +1476,56 @@
                                           <input type="radio" name="age" id="age1" value="1">
                                           <label for="age1">Customize</label>
                                       </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="select-radio-con">
-                                    <label class="location-label">Geography</label>
-                                    <div class="radio radio-primary radio-switch">
-                                        <input type="radio" name="productType_location" data-target="" id="productType_location0" value="0" checked="checked">
-                                        <label for="productType_location0">Select locations that you want to target</label>
-                                    </div>
-                                    <div class="radio radio-primary radio-switch">
-                                        <input type="radio" name="productType_location" data-target="chooseplan" id="productType_location1" value="1">
-                                        <label for="productType_location1">Import locations from other existing audience plans</label>
-                                    </div>
-                                  </div>
-                                  <div class="products-con" style="display:none">
-                                    <div class="addproduct chooseplan">
-                                      <i class="fa fa-chevron-down" style="position: absolute; top: 10px; left: 10px;"></i>
-                                      <div class="dropdown tree-stop" style="width:auto;">
-                                        <input name="plan" id="plan" type="hidden" value=""/>
-                                        <button class="btn  dropdown-toggle dropdown-stop" data-type="plan" type="button" style="width:auto;" id="dropdownMenu1" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true">
-                                          Choose plan
-                                        </button>
-                                        <div class="dropdown-menu dropdown-tree-con" aria-labelledby="dropdownMenu1">
-                                          <div class="dropdown-tree-category">
-                                            <div class="parent_layer">
-                                                <div class="pannel">
-                                                  <span>Audience Plan: <b>7</b></span>
-                                                  <span style="float:right; margin: 0 5px 0 0!important;">
-                                                    <i class="fa fa-angle-right"></i>
-                                                  </span>
-                                                </div>
-                                                <ul class="tree">
-                                                  <li>
-                                                    <a href="javascript:;">Estee Lauder - Makeup</a>
-                                                    <ul class="childs" style="display:none">
-                                                      <li>
-                                                        <span>My Brand</span>
-                                                        <ul class="childs">
-                                                          <li>
-                                                            <a href="javascript:;">Estee Lauder / Skincare</a>
-                                                             <ul class="childs" style="display:none">
-                                                                <li>
-                                                                  <span>All</span>
-                                                                  <ul class="childs">
-                                                                    <li><a href="javascript:;">Stay / Concealer</a></li>
-                                                                    <li><a href="javascript:;">Perferct Brown</a></li>
-                                                                  </ul>
-                                                                </li>
-                                                            </ul>
-                                                          </li>
-                                                        </ul>
-                                                      </li>
-                                                      <li>
-                                                        <span>Competitors</span>
-                                                        <ul class="childs">
-                                                          <li><a href="javascript:;">Lancome / Concealer</a></li>
-                                                          <li><a href="javascript:;">Bobbi Brown</a></li>
-                                                        </ul>
-                                                      </li>
-                                                      <li><span>Other Market Description</span></li>
-                                                      <li>
-                                                        <span>Advanced</span>
-                                                        <ul class="childs">
-                                                          <li><a href="javascript:;">Own Data</a></li>
-                                                          <li><a href="javascript:;">3rd Party Data</a></li>
-                                                          <li><a href="javascript:;">Onsite Audience</a></li>
-                                                        </ul>
-                                                      <li>
-                                                    </ul>
-                                                  </li>
-                                                  <li><a href="javascript:;">Estee Lauder - Cleanser</a></li>
-                                                  <li><a href="javascript:;">Estee Lauder - Foundation</a></li>
-                                                  <li><a href="javascript:;">Estee Lauder - Concealer</a></li>
-                                                  <li><a href="javascript:;">Estee Lauder vs Lancome</a></li>
-                                                  <li><a href="javascript:;">Shiseido vs Lancome</a></li>
-                                                  <li><a href="javascript:;">SK2 vs Shiseido</a></li>
-                                                </ul>
-                                            </div>
-                                            
+                                       <div class="hide" id="age_1" style="margin:10px 0">
+                                          <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                              <input type="checkbox" name="ageGroup" id="ageGroup0" value="0" checked="checked">
+                                              <label for="ageGroup0">18~24</label>
                                           </div>
-                                        </div>
-                                        <label class="dropdown-plan-infos"></label>
+                                          <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                              <input type="checkbox" name="ageGroup" id="ageGroup1" value="1">
+                                              <label for="ageGroup1">25~34</label>
+                                          </div>
+                                          <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                              <input type="checkbox" name="ageGroup" id="ageGroup2" value="2">
+                                              <label for="ageGroup2">35~44</label>
+                                          </div>
+                                          <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                              <input type="checkbox" name="ageGroup" id="ageGroup3" value="3">
+                                              <label for="ageGroup3">45~54</label>
+                                          </div>
+                                          <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                              <input type="checkbox" name="ageGroup" id="ageGroup4" value="4">
+                                              <label for="ageGroup4">55~64</label>
+                                          </div>
+                                          <div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch">
+                                              <input type="checkbox" name="ageGroup" id="ageGroup5" value="5">
+                                              <label for="ageGroup5">65+</label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                  </div>
 
+                                 
+
+                                  <div class="location-suggest-con">
+                                    <label class="location-label">Region</label>
+                                    <div class="location-radio">
+                                      <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                          <input type="radio" name="region" id="region0" value="0" checked="checked">
+                                          <label for="region0">Unspecified</label>
+                                      </div>
+                                      <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                                          <input type="radio" name="region" id="region1" value="1">
+                                          <label for="region1">Customize</label>
+                                      </div>
+                                      <div class="hide" id="region_1" style="margin:10px 0">
+                                          <div class="cityChoose">
+                                     
+                                          </div>
                                       </div>
                                     </div>
                                   </div>
 
-                                  <div class="location-suggest-con">
-                                    <label class="location-label">City</label>
-                                    <div class="cityChoose">
-                                     
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -2375,7 +2426,34 @@
             };
         })
         //城市选择组件
-        $(".cityChoose").cityChoose({data:cityJson});
+        $("[name='age']").on("change",function(){
+          var checkedVal = $("[name='age']:checked").val();
+          $("#age_"+checkedVal).show();
+          if(checkedVal==1){
+            $("#age_0").hide();
+          }else{
+            $("#age_1").hide();
+          }
+        })
+        $("[name='region']").on("change",function(){
+          var checkedVal = $("[name='region']:checked").val();
+          $("#region_"+checkedVal).show();
+          if(checkedVal==1){
+            $("#region_0").hide();
+          }else{
+            $("#region_1").hide();
+          }
+        })
+        $(".slide-bar").sliderBar({current:1},function(){
+          console.log("callback");
+        });
+        $(".cityChoose_city").cityChoose({
+          data:cityJson,
+          max:10
+        });
+        $(".cityChoose").cityChoose({
+          data:cityJson,
+        });
     });
     var cp;
     function cancelPlan(){

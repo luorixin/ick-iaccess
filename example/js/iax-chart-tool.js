@@ -6078,7 +6078,7 @@ var IAX_CHART_TOOL = {
               extraCssText:'text-align:left;',
               formatter: function(params){
                 console.log(params)
-                var header = '<span style="font-size: 12px;float:left;overflow:hidden;text-overflow:ellipsis;width:120px;margin-bottom:5px;">'+params.name+'</span><span style="float:right;">'+params.value[params.dataIndex]+'%</span>';
+                var header = '<span style="font-size: 12px;float:left;overflow:hidden;text-overflow:ellipsis;width:150px;margin-bottom:5px;">'+params.name+'</span><span style="float:right;">'+params.value[params.dataIndex]+'%</span>';
                 var ul_li=  liCon[params.name];
                 return '<div style="width:180px;overflow:hidden;zoom:1;">'+header+ul_li+'</div>';
               }

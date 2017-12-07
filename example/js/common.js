@@ -369,3 +369,81 @@ $(function(){
 
 
 });
+//来自iaccess
+(function($, window) {
+     $.fn.extend({
+         sliderBar:function(params,callback){
+            var _self = this;
+            var options;
+            var init = {
+                current:1, //当前bar显示在哪个刻度位置
+                data:[1,20], 
+                step:0.5,
+                scale:1,
+                unit:'km' //x轴刻度单位
+            };
+
+            options = $.extend(init,params);
+
+            //取值
+            if(params == undefined){
+                return $(_self).data('current');
+            }
+
+            $(_self).data('current',params.current);
+
+            options.current = options.current / options.scale;
+
+            var $scalewrap = $('<div class="sliderBar-wrap"></div');
+            var $bar = $('<div class="sliderBar-bar"><span></span></div>');
+            var real_val = $('<div class="realval" >'+options.current+'km</div>');
+
+            $scalewrap.append($bar).append(real_val);
+
+            $(_self).append($scalewrap);
+
+            var parentWidth = $bar.parent().parent().width()-$bar.width();
+            var bar_scale = (options.data[1] - options.data[0]) / parentWidth;
+
+            var init_left = (options.current - options.data[0])/bar_scale;
+
+            $bar.css('left',init_left);
+           
+            //bar x轴拖动
+            $bar.on('mousedown',function(ev){
+                var _bar = this;
+                var parentLeft = $(_bar).parent().offset().left;
+                var curval;
+                var distance = ev.pageX - $(this).offset().left;
+                $(document).on('mousemove',function(ev){
+                    var left_dis = ev.pageX - distance - parentLeft;
+                    ev.preventDefault();
+                   
+                    if(left_dis <= 0){
+                        left_dis = 0;
+                    }else if(left_dis >= parentWidth){
+                        left_dis = parentWidth;
+                    }
+
+                    curval = left_dis*bar_scale;
+                    curval = curval - curval%options.step;
+
+                    curval = curval > options.data[1] ? options.data[1] : curval;
+
+                   $('.sliderBar-wrap .realval').html(Number(options.data[0]) + Number(curval) +options.unit);
+                   $(_bar).css('left',left_dis);
+
+                }); 
+                var oScale = $(_bar).parent().find('.slider-item');
+                
+                $(document).on('mouseup',function(){
+                    var oBarLeft = $bar.position().left;
+                    $(_self).data('current',Number(options.data[0]*options.scale) + Number(curval*options.scale));
+                    callback && callback();
+                    $(document).off('mousemove');
+                });
+            });
+
+        },
+     })
+})(jQuery, window);

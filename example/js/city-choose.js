@@ -7,10 +7,17 @@
 			maxSelect = opts.max;
 			this.each(function(){
 				var self = $(this);
+				self.data('results', results);
+				self.data('searchId', searchId);
+				self.data('searchOnIndex', searchOnIndex);
+				self.data('maxSelect', maxSelect);
 				_render(self,opts);
 				_call(self,opts.onInit,opts);
 			})
 			return this;
+		},
+		data: function(){
+			return $(this).data("results");
 		}	
 	}
 	function _render(elem,opts){
@@ -47,7 +54,7 @@
 			cityPannel = ' <div class="pannel">'+
 					     '    <span>'+translate["city_layer"]+'</span>'+
 					     '  </div><ul class="tree"></ul>',
-			$selectedAreaHtml = $('<div class="city-choose-area"><label>'+translate["choose_label"]+'<span class="err-msg"></span></label><ul><li class="noResult">'+translate["noSelects"]+'</li></ul></div>');
+			$selectedAreaHtml = $('<div class="city-choose-area"><label>'+translate["choose_label"]+'</label><ul><li class="noResult">'+translate["noSelects"]+'</li></ul></div><span class="err-msg"></span>');
 
 
 		$tierHtml.append(tierPannel);
@@ -96,13 +103,14 @@
 		$baseHtml.append($selectedAreaHtml);
 		elem.append($baseHtml);
 		//编辑回填
+		var results = elem.data('results');
 		if (results.length>0) {
 			for (var i = 0; i < results.length; i++) {
 				var id = results[i].id;
 				elem.find(".province-layer").find("li[_id='"+id+"']").find("a:first").find("i").attr("class","fa fa-check-square");
 			};
 			_justifyCheck(elem);
-			_addChooseLi(elem)
+			_getResult(elem,opts);
 		};
 		_bindEvent(elem,opts);
 		$tierHtml.find('.tree').find("li:first").click();
@@ -134,6 +142,7 @@
 			var $parent = $elem.find(".city-choose-content").find("."+$(this).attr("data-value"));
 			$parent.show();
 			var searchText = $.trim($elem.find(".city-choose-search").find("input").val());
+			var searchId = $elem.data('searchId');
 			if (searchId!="" && searchText!="") {
 				_searchById($elem,searchId);
 			}else{
@@ -179,13 +188,15 @@
 			var translate = $.fn.cityChoose.langConfig[otps.lang];
 			_check($(this));
 			var className = $(this).attr("class");
+			var results = $elem.data('results');
 			var selecteds = results.length;
 			var isError = false;
+			var maxSelect = $elem.data('maxSelect');
 			if (isParent) {
 				if (isTier) {
 					var level = $(this).parent().parent().attr("level");
 					$elem.find(".province-layer").find("[level='"+level+"']").each(function(){
-						if (selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
+						if (maxSelect=="" || selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
 							$(this).find("a:first").find("i").attr("class",className);
 							id = $(this).attr("_id");
 							$elem.find(".content-child").find("[_id='"+id+"']").find("a:first").find("i").attr("class",className);
@@ -197,7 +208,7 @@
 				}else{
 					if($(this).parent().next().length>0){
 						$(this).parent().next().find("li").each(function(){
-							if (selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
+							if (maxSelect=="" || selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
 								$(this).find("a:first").find("i").attr("class",className);
 								id = $(this).attr("_id");
 								$elem.find(".content-child").find("[_id='"+id+"']").find("a:first").find("i").attr("class",className);
@@ -209,7 +220,7 @@
 					}
 				}
 			}else{
-				if (selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
+				if (maxSelect=="" || selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
 					$elem.find(".content-parent").find("[_id='"+id+"']").find("a:first").find("i").attr("class",className);
 					className.indexOf("fa-check-square")>-1 ? selecteds++ : selecteds--;
 				}else{
@@ -217,13 +228,15 @@
 				}
 			}
 			//验证子元素判断父元素
-			_justifyCheck($elem);
-			_getResult($elem,otps);
 			if (isError) {
-				_call($elem,otps.onError,translate['rangeErr']+maxSelect);
+				_check($(this),false);
+				_call($elem,otps.onError,translate['rangeErr'][0]+maxSelect+translate['rangeErr'][1]);
 			}else{
 				$elem.find(".err-msg").hide();
 			}
+			_justifyCheck($elem);
+			//结果显示根据max有无设置会有所不同，如果没设置max，需要混合展示省份和城市
+			_getResult($elem,otps);
 			e.stopPropagation();
         	e.preventDefault();
 		})
@@ -245,19 +258,20 @@
 			var id = $(this).attr("_id");
 			if (id) {
 				_searchById($elem,id);
-	            searchId = id;
+	            $elem.data('searchId',id);
 				$(this).parent().parent().parent().find("input").val($(this).text());
 			};
 			$(this).parent().parent().hide();
  		})
  		$elem.on("click",".filter-search-ico",function(){
  			var searchText = $.trim($elem.find(".city-choose-search").find("input").val());
+ 			var searchId = $elem.data('searchId');
 			if (searchId!="" && searchText!="") {
 				_searchById($elem,searchId);
 			}
  		})
  		$elem.on("mouseover",".filter-result li",function(){
- 			searchOnIndex = $(this).index();
+ 			$elem.data('searchOnIndex',$(this).index());
  			$(this).parent().find(".on").removeClass("on");
  			$(this).addClass("on");
  		})
@@ -279,6 +293,7 @@
         var keycode = event.keyCode;
         var lis = $(input).parent().find(".filter-result").find("li");
         var len = lis.length;
+        var searchOnIndex = $(input).parents("city-choose").parent().data('searchOnIndex');
 		switch(keycode){
             case 40: //向下箭头↓
                 searchOnIndex++;
@@ -302,6 +317,7 @@
             default:
                 break;
         }
+        $(input).parents("city-choose").parent().data('searchOnIndex',searchOnIndex);
 	}
 	function _check($elem,checked){
 		if (checked=="true") {
@@ -309,9 +325,9 @@
 		}else if(checked=="false"){
 			$elem.attr("class","fa fa-square-o");
 		}else{
-			if ($elem.hasClass('fa-check-square')) {
+			if ($elem.hasClass('fa-check-square') || $elem.hasClass('fa-minus-square')) {
                 $elem.attr("class","fa fa-square-o");
-            } else {
+            }else {
                 $elem.attr("class","fa fa-check-square");
             }
 		}
@@ -342,8 +358,17 @@
 	}
 	function _getResult($elem,opts){
 		var json = {};
+		var results = $elem.data('results'),mixResults=[],isAllSelected=false;
 		results = [];
 		$elem.find(".province-layer").find("li[level='undefined']").each(function(){
+			isAllSelected = $(this).find("a:first").find("i").hasClass("fa-check-square");
+			if (isAllSelected) {
+				mixResults.push({
+					id:$(this).attr("_id"),
+					name:$(this).attr("title"),
+					level:$(this).attr("level")
+				})
+			};
 			$(this).find(".childs").find("li").each(function(){
 				if ($(this).find("a:first").find("i").hasClass("fa-check-square")) {
 					json = {
@@ -352,13 +377,21 @@
 						level:$(this).attr("level")
 					}
 					results.push(json);
+					if (!isAllSelected) mixResults.push(json);
 				};
 			})
 		})
-		_addChooseLi($elem);
+		_citySort(results,opts);
+		_citySort(mixResults,opts);
+		$elem.data('results',results);
+		if (opts.max=="") {
+			_addChooseLi($elem,mixResults);
+		}else{
+			_addChooseLi($elem,results);
+		}
 		_call($elem,opts.callback,results);
 	}
-	function _addChooseLi($elem){
+	function _addChooseLi($elem,results){
 		var li = $elem.find(".city-choose-area").find(".noResult").clone().prop("outerHTML");
 		$elem.find(".city-choose-area").find("ul").empty();
 		$elem.find(".city-choose-area").find("ul").append(li);
@@ -428,6 +461,18 @@
             scrollTop: $selectLi.prop('offsetTop'),
         }, 200);	
 	}
+	function _citySort(city_obj,opts){
+        if(opts.lang=='en'){
+            city_obj = city_obj.sort(function(a,b){
+                return a.name > b.name;
+            }); 
+        }else{
+            city_obj = city_obj.sort(function(a, b){
+                    return a.name.localeCompare(b.name, 'zh-Hans-CN', {sensitivity: 'accent'});
+            });
+        }
+        return city_obj;
+    }
 	function _call(elem, func, param){
 		if(func && typeof func === 'function'){
 			if(param){
@@ -449,8 +494,8 @@
 	$.fn.cityChoose.defaults = {
 		lang:"en",
 		data:"",
-		max:10,
-		results:[{id: "1156110000", name: "BEIJING", level: "1"}],
+		max:"",
+		results:[],//[{id: "1156110000", name: "BEIJING", level: "1"}],
 		continent:"Asia",
 		country:"China",
 		onInit : function(){},
@@ -472,7 +517,7 @@
 			'tiers_input':["一线城市","二线城市","三线城市","四线城市","未分级城市"],
 			'noResult':'没有结果',
 			'noSelects':'No selected cities',
-			'rangeErr':'超过最大上限'
+			'rangeErr':['Max. ',' cities']
 		},
 		'en':{
 			'tab_tiers':"By City Tiers",
@@ -485,7 +530,7 @@
 			'tiers_input':["First-tier City","Second-tier City","Third-tier City","Fourth-tier City","Non-tier City"],
 			'noResult':'No Results',
 			'noSelects':'No selected cities',
-			'rangeErr':'You can select no more than'
+			'rangeErr':['Max. ',' cities']
 		}
 	}
 })(jQuery)

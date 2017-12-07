@@ -160,10 +160,10 @@
 .city-choose .city-choose-area label{
 	font-weight: bold;
 }
-.city-choose .city-choose-area .err-msg{
+.city-choose .err-msg{
 	color: #ef4136;
-	margin-left: 10px;
 	display: inline-block;
+	float: left;
 }
 .city-choose .city-choose-area ul{
 	position: relative;

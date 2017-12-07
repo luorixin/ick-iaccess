@@ -1236,6 +1236,10 @@ th.align_right, td.align_right, .align_right {
 }
 .interest-multi ul li{
   box-sizing:border-box;
+  white-space: nowrap;
+  width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: left;
   cursor: pointer;
   padding: 5px;
@@ -3297,6 +3301,28 @@ th.align_right, td.align_right, .align_right {
   margin-bottom: 0;
   padding-top: 7px;
   min-height: 28px; 
+}
+/******************************* slider ***************************************/
+.sliderBar-wrap{
+  position:relative;
+  width:100%;
+  height:10px;
+  background:#E7E7E7;
+  border:1px solid #d9d9d9;
+  border-radius:10px!important;
+}
+.sliderBar-bar{
+  width: 12px;
+  height: 16px;
+  background: #ef4136;
+  position: absolute;
+  top:-6px;
+  cursor:pointer;
+}
+.sliderBar-wrap .sliderBar-bar span{position:absolute;bottom:-12px;width:0;height:0;border-width:6px;border-style:solid;border-color:transparent;border-top-color:#ef4136;border-top-left-radius:2px!important;border-top-right-radius:2px!important;}
+.sliderBar-wrap .realval{
+    text-align: center;
+    margin-top: 13px;
 }
 /******************************* dropdown tree ********************************/
 .dropdown-tree-con{
