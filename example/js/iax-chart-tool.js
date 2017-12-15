@@ -4383,7 +4383,7 @@ var IAX_CHART_TOOL = {
             formatter: function(params){
               var value = params.value;
               if (isNaN(params.value)) return;
-              return "<p><b>Provicne: "+params.name+"</b></p><p>Audience: "+_this.formatNum(value,0)+"</p>";
+              return "<p><b>Province: "+params.name+"</b></p><p>Audience: "+_this.formatNum(value,0)+"</p>";
             } 
           },
           visualMap: {
@@ -4402,6 +4402,9 @@ var IAX_CHART_TOOL = {
               itemWidth:8,
               itemHeight:15,
               seriesIndex: [0],
+              textStyle:{
+                fontFamily:"Open Sans, Noto Sans SC,Arial,sans-serif",
+              },
               inRange: {
                   symbolSize:symbolSizeRange,
                   color: rangeColor
@@ -4493,7 +4496,7 @@ var IAX_CHART_TOOL = {
       $("#"+id).parent().parent().find(".result-graph-word-content").empty();
       //省份城市选择tab
       var selectTab = '<ul class="region-select-tab" style="visibility:visible">'+
-                        '<li class="selected" data-value="0">Provicne</li>'+
+                        '<li class="selected" data-value="0">Province</li>'+
                         '<li class="" data-value="1">City</li></ul>'+
                       '</ul><hr style="width:100%;visibility:visible;display: inline-block;margin: 0px 0 10px 0;"/>';
       $("#"+id).parent().parent().find(".result-graph-word-content").append(selectTab);
@@ -4730,6 +4733,7 @@ var IAX_CHART_TOOL = {
               visualMap: {
                   min: 0,
                   max: 200,
+                  show:false,
                   type: 'piecewise',
                   left: 'left',
                   top: 'bottom',
@@ -4743,6 +4747,9 @@ var IAX_CHART_TOOL = {
                   itemWidth:8,
                   itemHeight:15,
                   seriesIndex: [0],
+                  textStyle:{
+                    fontFamily:"Open Sans, Noto Sans SC,Arial,sans-serif",
+                  },
                   inRange: {
                       symbolSize:symbolSizeRange,
                       color: rangeColor
@@ -4796,8 +4803,16 @@ var IAX_CHART_TOOL = {
           },{
             notMerge:true,
           })
+          //添加visualMap样式
+          var symbolCircle="",symbolSize=[5,7,9,11,13,15];
+          for (var i = rangeColor.length-1; i >=0 ; i--) {
+            symbolCircle += '<li style="float:left"><span style="vertical-align:middle;background:'+rangeColor[i]+';width:'+symbolSize[i]+'px;height:'+symbolSize[i]+'px;border-radius:'+symbolSize[i]+'px!important;display:inline-block;margin-left:2px;"></span></li>'
+          };
+          var visualMapHtml = '<ul style="position:absolute;left:25px;bottom:-16px;"><li style="float:left">High</li>'+symbolCircle+'<li style="float:left">Low</li></ul>'
+          $("#"+id).next("label").after(visualMapHtml);
           _this.initRegionsPart(id,cityData,myChart);
         }else{
+          $("#"+id).next("label").next().remove();
           myChart.setOption(option,{
             notMerge:true,
           });
@@ -4977,7 +4992,7 @@ var IAX_CHART_TOOL = {
       };
       //省份城市选择tab
       var selectTab = '<label style="margin-bottom:10px;text-align:left;float:left;">'+
-                        // '<a class="selected">Provicne</a>'+
+                        // '<a class="selected">Province</a>'+
                         '<b class="">Cities of '+city.name+'</li></b>'+
                       '</label><hr style="width:100%;display: inline-block;margin: 0px 0 10px 0;"/>';
       $("#"+id).parent().parent().find(".result-graph-word-content").append(selectTab);

@@ -122,7 +122,7 @@ $(function(){
            var reg = new RegExp(this_val,"gi");
            var searchResult=$(".x-top-result").find("li").map(function(){
 
-              return {"obj":$(this).find("a"),"text":$(this).find("span:first").text(),"tag":$(this).find("span:last").text()};
+              return {"obj":$(this).find("a"),"text":$(this).find("span:first").text(),"tag":$(this).find("span:last").text(),"clientid":$(this).attr("clientid")};
             }).get();
 
           var $ul = $("#x-top-show-result");
@@ -132,7 +132,7 @@ $(function(){
                   // search_doUpShow(searchResult[i]["obj"],true);
                   // if(!findIt(objArr,searchResult[i]["obj"])){
                     liHtml = searchResult[i]["obj"].prop('outerHTML');
-                    $ul.append("<li>"+liHtml+"</li>");
+                    $ul.append("<li class='x-user-client' clientid='"+searchResult[i]["clientid"]+"'>"+liHtml+"</li>");
                     objArr.push(liHtml);
                   // }
 
@@ -150,6 +150,29 @@ $(function(){
         }
 
     })
+  $(".x-top-result").on('click',"li:not(.x-user-client)",function(e){
+    e = e  || window.event
+    // e.stopPropagation()
+    // e.preventDefault()
+    var childs = $(this).find(".x-top-tree-child");
+    if (childs.length>0) {
+      if (childs.is(":hidden")) {
+        childs.show();
+        childs.prev().find("i").removeClass("fa-caret-right").addClass("fa-caret-down")
+      }else{
+        childs.hide();
+        childs.prev().find("i").removeClass("fa-caret-down").addClass("fa-caret-right")
+      }
+     
+    }
+   
+  })
+   $(document).on('click','.x-user-client',function(event){
+       var clientId = $(this).attr("clientId");
+       var param = {"clientId":clientId}; 
+       alert(clientId)
+       
+        });
     function findIt(arr,obj){
       if(arr.length>0){
         for (var i=0;i<arr.length;i++){
@@ -202,16 +225,16 @@ $(function(){
     switch(target.nodeName){
       case 'I'://点击A标签展开和收缩树形目录
 
-        if(tp&&tp.nodeName == 'UL'){
-          if(tp.style.display != 'block' ){
-            tp.style.display = 'block';
-            target.className = 'fa fa-caret-down' ;
-          }else{
-            tp.style.display = 'none';
-            target.className = 'fa fa-caret-right' ;
-          }
+        // if(tp&&tp.nodeName == 'UL'){
+        //   if(tp.style.display != 'block' ){
+        //     tp.style.display = 'block';
+        //     target.className = 'fa fa-caret-down' ;
+        //   }else{
+        //     tp.style.display = 'none';
+        //     target.className = 'fa fa-caret-right' ;
+        //   }
 
-        }
+        // }
         break;
       case 'SPAN'://点击图标只展开或者收缩
 
@@ -236,6 +259,11 @@ $(function(){
     //   $('.x-top-search-list').css('overflow-y', 'hidden');
     //   $(".x-top-search").attr("style","position:relative;top:0px;");
     //   $(".x-top-recent").css("margin-top","0");
+  })
+  $('.x-top-search-list').hover( function(){
+
+  },function(){
+    // $(this).css({visibility: "hidden",opacity: 0})
   })
   // search position adjust
   var leftTrue = 0;
@@ -348,7 +376,11 @@ $(function(){
         }
       });
     $(document).on('click', '.dropdown-stop .dropdown-toggle',function(event) {
-      $(this).parent().addClass('open');
+      if ($(this).parent().hasClass('open')) {
+        $(this).parent().removeClass('open')
+      }else{
+        $(this).parent().addClass('open');
+      }
     });
     // function resizeFooter(){
     //   if($(".x-main").height()<$(".x-sidebar").height()){

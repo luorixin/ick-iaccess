@@ -391,18 +391,69 @@
             <div class="filter-search-ico"><i class="fa fa-search"></i></div> 
           </li>
         </ul>
-        
+        <div class="button-right">
+          <div class="dropdown dropdown-stop">
+            <i class="fa fa-columns" style="position: absolute; top: 10px; left: 10px;"></i> 
+            <input name="status" type="hidden" value="">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuColumns" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true" style="padding-left:25px;padding-right:20px;">
+              Cusotmers Columns&nbsp;
+              <span class="caret arrow-down"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-click" aria-labelledby="dropdownMenuColumns" style="right:0;left:auto;max-height:300px;top:98%!important;border-top:1px solid #dfdfdf!important;">
+              <li class="dropdown-checkbox">
+                <div class="checkbox checkbox-primary">
+                    <input type="checkbox" class="toggle-vis" id="toggle-vis1" value="1" checked="checked">
+                    <label for="toggle-vis1">My Brand Audience</label>
+                </div>
+              </li>
+              <li class="dropdown-checkbox">
+                <div class="checkbox checkbox-primary">
+                    <input type="checkbox" class="toggle-vis" id="toggle-vis2" value="2" checked="checked">
+                    <label for="toggle-vis2">Competitor’s Audience</label>
+                </div>
+              </li>
+              <li class="dropdown-checkbox">
+                <div class="checkbox checkbox-primary">
+                    <input type="checkbox" class="toggle-vis" id="toggle-vis3" value="3" checked="checked">
+                    <label for="toggle-vis3">Potential Audience</label>
+                </div>
+              </li>
+              <li class="dropdown-checkbox">
+                <div class="checkbox checkbox-primary">
+                    <input type="checkbox" class="toggle-vis" id="toggle-vis4" value="4" checked="checked">
+                    <label for="toggle-vis4">Market Audience</label>
+                </div>
+              </li>
+              <li class="dropdown-checkbox">
+                <div class="checkbox checkbox-primary">
+                    <input type="checkbox" class="toggle-vis" id="toggle-vis5" value="5">
+                    <label for="toggle-vis5">Onsite Audience</label>
+                </div>
+              </li>
+              <li class="dropdown-checkbox">
+                <div class="checkbox checkbox-primary">
+                    <input type="checkbox" class="toggle-vis" id="toggle-vis6" value="6">
+                    <label for="toggle-vis6">Owned Audience</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div style="clear:both"></div>
 				<div class="table_white" style="float:left;width:100%">
-					<table id="client_list" class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">
+					<table id="client_list" class="table table-bordered table-condensed" cellspacing="0" style="min-width:100%;max-width:200%;table-layout:fixed">
 			        <thead>
 			            <tr>
 			                <th>Audience Plan Name</th>
-			                <th>Brand Audience</th>
-			                <th>Compeititor Audience</th>
-			                <th>Potential Audience</th>
-                      <th>Market Audience</th>
-                      <th>Analysis Status</th>
-                      <th>Action</th>
+			                <th class="align_center">Brand Audience</th>
+			                <th class="align_center">Compeititor Audience</th>
+			                <th class="align_center">Potential Audience</th>
+                      <th class="align_center">Market Audience</th>
+                      <th class="align_center">Onstie Audience</th>
+                      <th class="align_center">Owned Audience</th>
+                      <th class="align_center">Export to iAccess</th>
+                      <th class="align_center">Analysis Status</th>
+                      <th class="align_center">Action</th>
 			            </tr>
 			        </thead>
 
@@ -428,17 +479,31 @@
                         <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
-                       
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                        <td class="align_center" style="position:relative;">
+                        <a href="javascript:;" class="underline" onclick="getDownHistory(22)">Export Completed</a>
+                      </td>
                       <td class="align_center">
                         <a href="javascript:;" class="redlink underline" onclick="startAnalysis(this)">Start Analysis</a>
                       </td>
-                       <td class="align_center">
+                       <td class="align_center" style="position:relative;">
                         <a href="javascript:;" class="fa-icon-box" title="Edit" >
                           <i class="fa fa-edit"></i>
                         </a>
                         <a href="javascript:;" class="fa-icon-box" onclick="runPlan(this)">
                           <i class="fa fa-play"></i>
                         </a>
+                        <a href="javascript:;" class="fa-icon-box" onmouseover="showDropdown(this)">
+                          <i class="fa fa-share" aria-hidden="true"></i>
+                        </a>
+                        
                         <a href="javascript:;" class="fa-icon-box" title="History" onclick="getHistory(121)">
                           <i class="fa fa-history"></i>
                         </a>
@@ -468,8 +533,18 @@
                         <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
-                       
-                      <td class="align_center">
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                       <td class="align_center" style="position:relative;">
+                        <a href="javascript:;" class="underline" onclick="getDownHistory(22)">Export Completed</a>
+                      </td>
+                      <td class="align_center" style="position:relative;">
                         <a href="javascript:;" class="redlink underline" onclick="startAnalysis(this)">Start Analysis</a>
                       </td>
                        <td class="align_center">
@@ -479,6 +554,10 @@
                         <a href="javascript:;" class="fa-icon-box" onclick="runPlan(this)">
                           <i class="fa fa-play"></i>
                         </a>
+                        <a href="javascript:;" class="fa-icon-box" onmouseover="showDropdown(this)">
+                          <i class="fa fa-share" aria-hidden="true"></i>
+                        </a>
+                        
                         <a href="javascript:;" class="fa-icon-box" title="History" onclick="getHistory(122)">
                           <i class="fa fa-history"></i>
                         </a>
@@ -507,17 +586,31 @@
                         <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
                         <label style="float:right">15,212K</label>
                       </td>
-                       
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                       <td style="position:relative">
+                        <i class="fa fa-bar-chart-o" style="cursor:pointer" onmouseover="showGraph(this)"></i>
+                        <label style="float:right">15,212K</label>
+                      </td>
+                        <td class="align_center" style="position:relative;">
+                        <a href="javascript:;" class="underline" onclick="getDownHistory(22)">Export Completed</a>
+                      </td>
                       <td class="align_center">
                         <a href="./audienceAnalysis_market_market.html" class="orangelink underline">View Result</a>
                       </td>
-                       <td class="align_center">
+                       <td class="align_center" style="position:relative;">
                         <a href="javascript:;" class="fa-icon-box" title="Edit" >
                           <i class="fa fa-edit"></i>
                         </a>
                         <a href="javascript:;" class="fa-icon-box" onclick="runPlan(this)">
                           <i class="fa fa-play"></i>
                         </a>
+                        <a href="javascript:;" class="fa-icon-box" onmouseover="showDropdown(this)">
+                          <i class="fa fa-share" aria-hidden="true"></i>
+                        </a>
+                       
                         <a href="javascript:;" class="fa-icon-box" title="History" onclick="getHistory(123)">
                           <i class="fa fa-history"></i>
                         </a>
@@ -529,6 +622,12 @@
 
 				        </tbody>
 				    </table>
+             <div class="table-edit-menu">
+                <ul>
+                  <li class="custom"><a href="javascript:;">Export Custom Audience</a></li>
+                  <li class="footfall"><a href="javascript:;">Export Footfall Audience</a></li>
+                </ul>
+              </div>
 				</div>
       </div>
     </div>
@@ -550,7 +649,7 @@
       var oTable;
     	$(function(){
         //顶部消息条
-        IAX_TOOL.notification("You have reached the limit for number of audience plans you can create at this time. <a style='text-decoration:underline;' href='http://www.baidu.com' target='_blank'>Upgrade your iAudience package now.</a>","info",3000000);
+        IAX_TOOL.notification(" Export to footfall audience in iAccess successfully. Click <a style='text-decoration:underline;' href='http://www.baidu.com' target='_blank'>here</a> to iAccess.","info",3000000);
 			 oTable=$('#client_list').dataTable({
 					"oLanguage": {
 						"sProcessing":   "Loading data... Please wait...",
@@ -579,14 +678,18 @@
 					  "aaSorting": [],
             "columnDefs" : [ {
                    orderable : false,//禁用排序
-                   targets : [ 0, 0 ]
+                   width:"160px",
+                   targets : [0]
                  //指定的列
                  } ,{
-                  width:"150px",
-                  targets : [1,2,3,4]
+                  width:"120px",
+                  targets : [1,2,3,4,5,6,7,8]
                  },{
-                  width:"96px",
-                  targets : [6]
+                  width:"135px",
+                  targets : [9]
+                 },{
+                  bVisible:false,
+                  targets:[5,6]
                  }],
             "fnInitComplete": function (oSettings, json) {
                 // $("#client_list").find("tr").each(function(){
@@ -608,9 +711,17 @@
                 //     }
                 //   };
                 // })
-
+                $("#client_list").wrap("<div style='overflow-x:auto'></div>");
+                $("#client_list").find("th").css({"overflow":"hidden","text-overflow":"ellipsis"})
             }
 				});
+        $('input:checkbox.toggle-vis').change(function(e) {
+          var pageNumVal = $("input.pageinate_input_box").val();
+            e.preventDefault();
+            var colNum = $(this).attr('value');
+            oTable.fnSetColumnVis(colNum, $(this).is(':checked'));
+            $('.pageinate_input_box').val(pageNumVal).trigger("change");
+        });
         //搜索
         $('input.global_filter').on('keyup', function() {
           var regx = false, smart = true, caseInsen = true,value = $(this).val();
@@ -637,31 +748,18 @@
         'callbackFun' : callbackFun,
       };
       //name是实际展示内容，detail是鼠标移上去展示内容，第一列最多95个字符
-      paramJson.tableData = {
-        "tId" : "history_table_"+id,
-        "tHead" : [{'name':'Modifications'},{'name':'Last Modified Date'},{'name':'Last Modified By'}],
-        "tBody" : [ {'tdValues' : [
-                        {'name':'My Brand - Name, Market, Product#1, #2'},
-                        {'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [
-                        {'name':' Competitor 1 - Keywords, Product#2'},
-                        {'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [
-                        {'name':'My Brand - Name, Market, Product#1, #2 ; Competitor 1 - Keywords, Product#2 ; Competitor 2...',
-                         'detail':'My Brand - Name, Market, Product#1, #2 ; Competitor 1 - Keywords, Product#2 ; Competitor 2 - Name, Keywords ; Advanced Settings - Other terms, Location Targeting'},
-                        {'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [
-                        {'name':' Advanced Settings - Other terms, Location Targeting'},
-                        {'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [
-                        {'name':' Advanced Settings - Other terms, Location Targeting'},
-                        {'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                    {'tdValues' : [
-                        {'name':' Advanced Settings - Other terms, Location Targeting'},
-                        {'name':'2017-05-11 11:11:11'},{'name':'Grace Liang'}]},
-                  ],
-        "detailFun":"detailFun(this)",
-      }
+      paramJson = {"title":"History","tableData":{"tId":"history_table_139","detailFun":"detailFun(this)","tHead":{"content":"Modifications","createTime":"Last Modified Date"},"tBody":[{"operateType":null,"user":null,"jsonAfter":null,"jsonBefore":null,"planId":null,"refId":null,"remark":null,"content":"My Brand - Product (支付宝) : [Add New] ; Product (雅培) : [Add New] ;","contentOmit":"My Brand - Product (支付宝) : [Add New] ; Product (雅培) : [Add New] ;","userName":null,"createTime":"2017-11-15 11:33:12","pageNumber":0,"pageSize":0,"typeEnums":null,"allTyps":[]}]}}
+      IAX_TOOL.getAudienceHistory(paramJson);
+    }
+    function getDownHistory(id){
+      //根据id获取对于历史信息
+      var paramJson = {
+        'title' : 'History of Export to iAccess',
+        'tableData' : {},
+        'callbackFun' : callbackFun,
+      };
+      //name是实际展示内容，detail是鼠标移上去展示内容，第一列最多95个字符
+      paramJson = {"title":"History of Export to iAccess","tableData":{"tId":"history_table_139","detailFun":"detailFun(this)","tHead":{"content":"Audience Type","createTime":"Last Export Date","userName":'Last Exported By'},"tBody":[{"operateType":null,"user":null,"jsonAfter":null,"jsonBefore":null,"planId":null,"refId":null,"remark":null,"content":"My Brand - Product (支付宝) : [Add New] ; Product (雅培) : [Add New] ;","contentOmit":"My Brand - Product (支付宝) : [Add New] ; Product (雅培) : [Add New] ;","userName":"test","createTime":"2017-11-15 11:33:12","pageNumber":0,"pageSize":0,"typeEnums":null,"allTyps":[]}]}}
       IAX_TOOL.getAudienceHistory(paramJson);
     }
     function detailFun(thi){
@@ -788,11 +886,13 @@
       var left = 15;
       var right = $(window).width()-$(_this).offset().left-$(window).scrollLeft();
       if(right<500){
-        left=-500;
+        left=500;
       }
-      $(_this).after('<div class="table-graph" style="left:'+left+'px"><div id="_chart" style="width:100%;height:180px;"></div></div>');
+      var _left = $(_this).offset().left - $(".table-edit-menu").parent().offset().left - left + 23;
+      var _top = $(_this).offset().top - $(".table-edit-menu").parent().offset().top  + 23
+      $(".table-edit-menu").after('<div class="table-graph" style="left:'+_left+'px;top:'+_top+'px"><div id="_chart" style="width:100%;height:180px;"></div></div>');
       $(_this).parent().mouseleave(function(){
-        $(".table-graph").hide();
+        // $(".table-graph").hide();
       });
 
       var myChart = echarts.init(document.getElementById('_chart'));
@@ -969,5 +1069,23 @@
       myChart.setOption(option);
    
    }
+   $(document).on("mouseleave",".table-graph",function(){
+    $(".table-graph").hide();
+   })
+   function showDropdown(_this){
+    var id = $(_this).parents("tr").attr("id").split("_").pop();
+    var left = $(_this).offset().left - $(".table-edit-menu").parent().offset().left - $(".table-edit-menu").width() + 23;
+    var top = $(_this).offset().top - $(".table-edit-menu").parent().offset().top  + 23
+    $(".table-edit-menu").css({"left":left+"px","top":top+"px","display":"block"});
+    $(".table-edit-menu").attr("id",id);
+   }
+   $(".table-edit-menu").on("click",".custom",function(){
+    var id = $(".table-edit-menu").attr("id")
+
+   })
+    $(".table-edit-menu,.table_white").mouseleave(function(){
+        $(".table-edit-menu").hide();
+        $(".table-graph").hide();
+      });
    </script>
 </html>

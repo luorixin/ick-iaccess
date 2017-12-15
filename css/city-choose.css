@@ -177,6 +177,7 @@
 	margin-bottom: 5px;
 	text-transform: capitalize;
 	border:1px solid #dfdfdf;
+	cursor: default;
 }
 .city-choose .city-choose-area ul li.noResult{
 	color: #999;

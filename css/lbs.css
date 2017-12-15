@@ -1,7 +1,8 @@
 .lbs-container{
 	position: relative;
 	border: 1px solid #dfdfdf;
-	min-height: 500px;
+	min-height: 300px;
+	box-sizing: border-box;
 	height: 100%;
 	width: 100%;
 }
@@ -104,6 +105,8 @@
 .lbs-container .lbs-info .lbs-list-search{
 	position: relative;
 	margin-top: 5px;
+	width: 210px;
+    box-sizing: border-box;
 }
 .lbs-container .lbs-info .lbs-list-search input{
 	height: 30px;
@@ -229,6 +232,8 @@
 }
 .lbs-item-list>li{
 	padding:4px;
+	width: 210px;
+    box-sizing: border-box;
 }
 .lbs-item-list>li:hover{
 	background:#f2f2f2;

@@ -1209,51 +1209,51 @@
     function _modalHtml($elem,opts){
     	var translate = $.fn.lbs.langConfig[opts.lang],
     	    editHtml =  '<div class="modal fade" style="display:none;">'+
-						'       <div class="modal-dialog" style="width:800px;">'+
-						'         <div class="modal-content">'+
-						'           <div class="modal-body">'+
-						'             <p class="modal-title" style="font-size:20px;">'+translate["edit"]+'</p>'+
-						'             <div class="plan-container" style="padding:0;">'+
-						'               <form class="form-horizontal"  method="post">'+
-						'                 <div class="plan-group">'+
-						'					<div class="plans">'+
-						'						<div class="location-con">'+
-				        '                         <div class="location-suggest-con">'+
-				        '                           <label class="location-label">'+translate["keywords"]+'</label>'+
-				        '                           <div style="position:relative;">'+
-				        '                             <input type="text" value="" id="tipinput" placeholder="'+translate["search"]+'" name="Locations">'+
-				        '                           </div>'+
-				        '                           <div class="plus-area">            '+
-				        '                             <i class="fa fa-plus-circle"></i>  '+         
-				        '                              <button class="btn dropdown-toggle" type="button">'+
-				        '                               '+translate["addkeyword"]+'&nbsp;            '+
-				        '                              </button>  '+
-				        '                           </div>'+
-				        '                         </div>'+
-				        '                         <div class="location-suggest-con">'+
-				        '                           <label class="location-label">'+translate["distance"]+'</label>'+
-				        '                           <div class="slide-bar" style="width:380px;">'+
-				        '                           </div>'+
-				        '                         </div>'+
-				        '                         <div class="location-suggest-con">'+
-				        '                           <label class="location-label">'+translate["city"]+'</label>'+
-				        '                           <div class="cityChoose_city">'+
-				        '                           </div>'+
-				        '                         </div>'+
-				        '                       </div>'+
-						'					</div>'+
-						'				  </div>'+
-						'               </form>'+
-						'             </div>'+
-						'           </div>'+
-						'           <div class="modal-footer" style="background-color:#fff;">'+
-						'             <button type="button" style="float:left;" class="btn btn-success analysis" >'+translate["save"]+'</button>'+
-						'             <button type="button" style="float:left;" class="btn btn-cancel" data-dismiss="modal">'+translate["cancel"]+'</button>'+
-						'             <label style="display:none;color:#ef4136;float:left;line-height:30px;margin-left:10px;">'+translate["noDataBox"]+'</label>'+
-						'           </div>'+
-						'         </div>'+
-						'       </div>'+
-						'     </div>';
+						'  <div class="modal-dialog" style="width:800px;">'+
+						'    <div class="modal-content">'+
+						'      <div class="modal-body">'+
+						'        <p class="modal-title" style="font-size:20px;">'+translate["edit"]+'</p>'+
+						'        <div class="plan-container" style="padding:0;">'+
+						'          <form class="form-horizontal"  method="post">'+
+						'            <div class="plan-group">'+
+						'				<div class="plans">'+
+						'					<div class="location-con">'+
+				        '                    <div class="location-suggest-con">'+
+				        '                      <label class="location-label">'+translate["keywords"]+'</label>'+
+				        '                      <div style="position:relative;">'+
+				        '                        <input type="text" value="" id="tipinput" placeholder="'+translate["search"]+'" name="Locations">'+
+				        '                      </div>'+
+				        '                      <div class="plus-area">            '+
+				        '                        <i class="fa fa-plus-circle"></i>  '+         
+				        '                         <button class="btn dropdown-toggle" type="button">'+
+				        '                          '+translate["addkeyword"]+'&nbsp;            '+
+				        '                         </button>  '+
+				        '                      </div>'+
+				        '                    </div>'+
+				        '                    <div class="location-suggest-con">'+
+				        '                      <label class="location-label">'+translate["distance"]+'</label>'+
+				        '                      <div class="slide-bar" style="width:380px;">'+
+				        '                      </div>'+
+				        '                    </div>'+
+				        '                    <div class="location-suggest-con">'+
+				        '                      <label class="location-label">'+translate["city"]+'</label>'+
+				        '                      <div class="cityChoose_city">'+
+				        '                      </div>'+
+				        '                    </div>'+
+				        '                  </div>'+
+						'				</div>'+
+						'			  </div>'+
+						'          </form>'+
+						'        </div>'+
+						'      </div>'+
+						'      <div class="modal-footer" style="background-color:#fff;">'+
+						'        <button type="button" style="float:left;" class="btn btn-success analysis" >'+translate["save"]+'</button>'+
+						'        <button type="button" style="float:left;" class="btn btn-cancel" data-dismiss="modal">'+translate["cancel"]+'</button>'+
+						'        <label style="display:none;color:#ef4136;float:left;line-height:30px;margin-left:10px;">'+translate["noDataBox"]+'</label>'+
+						'      </div>'+
+						'    </div>'+
+						'  </div>'+
+						'</div>';
 		return editHtml;				
     }
 

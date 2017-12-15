@@ -1009,4 +1009,13 @@ body#scroll-spy .sub-menu li.active span{font-weight: normal;color: #999;}
 }
 .nofooter .x-body{
   margin-bottom: 0!important;
+  min-height: 0!important;
+  height: 100%;
+}
+.nofooter .x-sidebar{
+  min-height: 0!important;
+  height: 100%
+}
+.nofooter .x-main{
+  min-height: 0!important;
 }

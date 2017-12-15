@@ -148,7 +148,7 @@
                           </a>
                           <ul class="x-top-tree-child">
 
-      										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0123</span></a></li>
+      										<li clientid="1212"><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0123</span></a></li>
       										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0124</span></a></li>
       										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0125</span></a></li>
       										<li ><a href="javascript:;"><span>Adobe</span><span class="x-top-result-tag">AD0126</span></a></li>
@@ -3192,13 +3192,19 @@
         }else if(tab=="location"){
           $("body").addClass("nofooter");
           //调整高度
-          var height =$("#x-sidebar").height()-100;
+          var trueHeight =document.body.offsetHeight;;
+          var topHeight = $("#for_export_location").offset().top;
+
+          height = trueHeight -topHeight;
           // if (height>500) {
           //   height = height-200;
           // }
            $("#lbs-container").css("height",height+"px");
           locationGraph(json);
         }
+      }
+      function getScrollHeight(){  
+          return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);  
       }
       function brandGraph(json){
         IAX_CHART_TOOL.initData(json.data);
@@ -3305,6 +3311,7 @@
           lbsData:lbsData,//lbs数据
           heatmapData:heatmapData,//热力图数据
           cityJson:cityJson,//城市组件数据
+          lang:"en",
           params:{
             id:1,
             name:'Estee Lauder',
@@ -3317,7 +3324,7 @@
             //编辑后根据params调用ajax重新获取lbsdata
             var _lbsData = lbsData;
             var _heatmapData = heatmapData;
-            callback(_lbsData,heatmapData);
+            callback(_lbsData,_heatmapData);
           },
           onSaveLocation:function(pdata,callback){
             //保存，调用ajax保存

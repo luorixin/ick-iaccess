@@ -282,7 +282,11 @@ $(function(){
         }
       });
     $(document).on('click', '.dropdown-stop .dropdown-toggle',function(event) {
-      $(this).parent().addClass('open');
+      if ($(this).parent().hasClass('open')) {
+        $(this).parent().removeClass('open')
+      }else{
+        $(this).parent().addClass('open');
+      }
     });
     function resizeFooter(){
       if($(".x-main").height()<$(".x-sidebar").height()){
