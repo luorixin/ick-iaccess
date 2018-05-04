@@ -54,8 +54,8 @@
     <script type="text/javascript" src="./js/iax-tool.js"></script>
     <script type="text/javascript" src="./js/iax-template.js"></script>
     <script type="text/javascript" src="./js/iax-chart-tool.js"></script>
-     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=62a73830c63e6a4953da07f6dc92d898&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
-     <script type="text/javascript" src="https://a.amap.com/jsapi_demos/static/resource/heatmapData.js"></script>
+     <script type="text/javascript" src="//webapi.amap.com/maps?v=1.3&key=62a73830c63e6a4953da07f6dc92d898&plugin=AMap.Autocomplete,AMap.PlaceSearch"></script>
+     <script type="text/javascript" src="//a.amap.com/jsapi_demos/static/resource/heatmapData.js"></script>
     <script type="text/javascript" src="./js/jqcloud-1.0.4.js"></script>
     <script type="text/javascript" src="./js/echarts-map/HK.js"></script>
     <script type="text/javascript" src="./js/lbsData.js"></script>
@@ -757,6 +757,10 @@
                        <label class="simulator-check-content">Owned Audience</label> 
                       </li>
                     </ul>
+                    <div name="audience-type-tip">
+                      <span>No Onsite Audience defined in this audience plan. Please setup in plan settings.</span>
+                      <span style="margin-left:100px;">No Owned Audience defined in this audience plan. Please setup in plan settings.</span>
+                    </div>
                     <hr style="margin:10px -20px 7.5px -20px"/>
                     <div class="plan-reports-result-inner" style="width:33%;">
                       <!--性别-->
@@ -850,7 +854,7 @@
                       <div class="plan-result-graph graph-region" style="width:100%;padding:0 0 0 7.5px;" id="select_province">
                         <div class="plan-result-text">
                           <div class="result-text-header clearfix">
-                            <label>Regions</label>
+                            <label>Location</label>
                           </div>
                           <div class="result-graph-info x-mt10">
                             <div class="result-graph-word word-impr" style="margin:0 auto;">
@@ -1570,33 +1574,26 @@
                                 "sub": ["Skin Care","Make-up / Customer"]
                             },
                             "_others":{
-                                "name": "Other Related Interests",
+                                "name": "Leisure Travel & Business Travel",
                                 "value": 20,
                                 "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
                             }
                         },
-                        "regions":[
-                              {"name": "BeiJing", "value": "123"},
-                              {"name": "TianJin", "value": "61"},
-                              {"name": "ShanXi", "value": "123"},
-                              {"name": "NeiMeng", "value": "62"},
-                              {"name": "HeBei", "value": "1223"},
-                              {"name": "JiLin", "value": "123"},
-                              {"name": "JiangXi", "value": "123"},
-                              {"name": "ShanDong", "value": "33"},
-                              {"name": "ChongQing", "value": "123"},
-                              {"name": "SiChuan", "value": "62"},
-                              {"name": "GuiZhou",  "value": "1223"},
-                              {"name": "YunNan",  "value": "123"},
-                              {"name": "XiZang", "value": "33"},
-                              {"name": "ShanXi1", "value": "123"},
-                              {"name": "GanSu", "value": "62"},
-                              {"name": "QingHai", "value": "4223"},
-                              {"name": "NingXia", "value": "123"},
-                              {"name": "XinJiang", "value": "123"},
-                              {"name": "Heilongjiang", "value": "33"},
-                              {"name": "Overseas", "value": "5551"}
-                          ]
+                        "regions":[{"index":0,"name":"BeiJing","value":2022989},{"index":0,"name":"GuangDong","value":761403},{"index":0,"name":"Zhejiang","value":563651},{"index":0,"name":"Jiangsu","value":404039},{"index":0,"name":"ShanDong","value":365793},{"index":0,"name":"Overseas","value":339612},{"index":0,"name":"HeNan","value":319394},{"index":0,"name":"Shanghai","value":281549},{"index":0,"name":"HuBei","value":270085},{"index":0,"name":"SiChuan","value":246830},{"index":0,"name":"HeBei","value":221177},{"index":0,"name":"AnHui","value":180451},{"index":0,"name":"HuNan","value":159475},{"index":0,"name":"FuJian","value":156276},{"index":0,"name":"JiangXi","value":141052},{"index":0,"name":"ShanXi1","value":129144},{"index":0,"name":"LiaoNing","value":112474},{"index":0,"name":"GuangXi","value":106378},{"index":0,"name":"TianJin","value":93054},{"index":0,"name":"ChongQing","value":90689},{"index":0,"name":"ShanXi","value":86311},{"index":0,"name":"JiLin","value":81861},{"index":0,"name":"GuiZhou","value":81454},{"index":0,"name":"Heilongjiang","value":76784},{"index":0,"name":"YunNan","value":58907},{"index":0,"name":"TaiWan","value":47966},{"index":0,"name":"HaiNan","value":38846},{"index":0,"name":"GanSu","value":37060},{"index":0,"name":"XinJiang","value":34484},{"index":0,"name":"HongKong","value":23189},{"index":0,"name":"NingXia","value":14367},{"index":0,"name":"QingHai","value":9954},{"index":0,"name":"XiZang","value":5742},{"index":0,"name":"Macao","value":1615}],
+                        "citys":[
+                             {name: "鄂尔多斯", value: 12},
+                             {name: "Ulanqab", value: 12},
+                             {name: "舟山", value: 12},
+                             {name: "齐齐哈尔", value: 14},
+                             {name: "盐城", value: 15},
+                             {name: "赤峰", value: 16},
+                             {name: "青岛", value: 18},
+                             {name: "乳山", value: 18},
+                             {name: "金昌", value: 19},
+                             {name: "泉州", value: 21},
+                             {name: "莱西", value: 21},
+                             {name: "日照", value: 21}
+                        ]
 
                       }},
                     ],
@@ -1670,28 +1667,7 @@
                                 "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / Customer"]
                             }
                         },
-                        "regions":[
-                              {"name": "BeiJing", "value": "123"},
-                              {"name": "TianJin", "value": "61"},
-                              {"name": "ShanXi", "value": "123"},
-                              {"name": "NeiMeng", "value": "62"},
-                              {"name": "HeBei", "value": "1223"},
-                              {"name": "JiLin", "value": "123"},
-                              {"name": "JiangXi", "value": "123"},
-                              {"name": "ShanDong", "value": "33"},
-                              {"name": "ChongQing", "value": "123"},
-                              {"name": "SiChuan", "value": "62"},
-                              {"name": "GuiZhou",  "value": "1223"},
-                              {"name": "YunNan",  "value": "123"},
-                              {"name": "XiZang", "value": "33"},
-                              {"name": "ShanXi1", "value": "123"},
-                              {"name": "GanSu", "value": "62"},
-                              {"name": "QingHai", "value": "4223"},
-                              {"name": "NingXia", "value": "123"},
-                              {"name": "XinJiang", "value": "123"},
-                              {"name": "Heilongjiang", "value": "33"},
-                              {"name": "Overseas", "value": "5551"}
-                          ]
+                        "regions":[{"index":0,"name":"BeiJing","value":2022989},{"index":0,"name":"GuangDong","value":761403},{"index":0,"name":"Zhejiang","value":563651},{"index":0,"name":"Jiangsu","value":404039},{"index":0,"name":"ShanDong","value":365793},{"index":0,"name":"Overseas","value":339612},{"index":0,"name":"HeNan","value":319394},{"index":0,"name":"Shanghai","value":281549},{"index":0,"name":"HuBei","value":270085},{"index":0,"name":"SiChuan","value":246830},{"index":0,"name":"HeBei","value":221177},{"index":0,"name":"AnHui","value":180451},{"index":0,"name":"HuNan","value":159475},{"index":0,"name":"FuJian","value":156276},{"index":0,"name":"JiangXi","value":141052},{"index":0,"name":"ShanXi1","value":129144},{"index":0,"name":"LiaoNing","value":112474},{"index":0,"name":"GuangXi","value":106378},{"index":0,"name":"TianJin","value":93054},{"index":0,"name":"ChongQing","value":90689},{"index":0,"name":"ShanXi","value":86311},{"index":0,"name":"JiLin","value":81861},{"index":0,"name":"GuiZhou","value":81454},{"index":0,"name":"Heilongjiang","value":76784},{"index":0,"name":"NeiMeng","value":60488},{"index":0,"name":"YunNan","value":58907},{"index":0,"name":"TaiWan","value":47966},{"index":0,"name":"HaiNan","value":38846},{"index":0,"name":"GanSu","value":37060},{"index":0,"name":"XinJiang","value":34484},{"index":0,"name":"HongKong","value":23189},{"index":0,"name":"NingXia","value":14367},{"index":0,"name":"QingHai","value":9954},{"index":0,"name":"XiZang","value":5742},{"index":0,"name":"Macao","value":1615}]
 
                       }},
                       {"date":"Week 2","name":"Potential","value":"131","graphData":{
@@ -1978,10 +1954,10 @@
                       {"date":"Week 2","name":"Brand","value":"161","graphData":{}},
                       {"date":"Week 3","name":"Brand","value":"151","graphData":{}},
                       {"date":"Week 4","name":"Brand","value":"41","graphData":{}},
-                      {"date":"Week 1","name":"Visitor","value":"81","graphData":{}},
-                      {"date":"Week 2","name":"Visitor","value":"181","graphData":{}},
-                      {"date":"Week 3","name":"Visitor","value":"191","graphData":{}},
-                      {"date":"Week 4","name":"Visitor","value":"51","graphData":{}},
+                      {"date":"Week 1","name":"Onsite","value":"81","graphData":{}},
+                      {"date":"Week 2","name":"Onsite","value":"181","graphData":{}},
+                      {"date":"Week 3","name":"Onsite","value":"191","graphData":{}},
+                      {"date":"Week 4","name":"Onsite","value":"51","graphData":{}},
                       {"date":"Week 1","name":"Owned","value":"31","graphData":{}},
                       {"date":"Week 2","name":"Owned","value":"31","graphData":{}},
                       {"date":"Week 3","name":"Owned","value":"91","graphData":{}},
@@ -2844,7 +2820,6 @@
                     "PC": 1246,
                     "UNKNOWN": 179
                 },
-                "sentiment":26,
                 "gender": {
                     "female": 11,
                     "male": 55,
@@ -2918,7 +2893,7 @@
                       {"date":"2017-06-15","name":"Brand Market Share","value":"0.8"},
                     ]},
                     "topBrands":[
-                      {"date":"2017-05-20","articles":[
+                      {"date":"2017-05-20","sentiment":26,"articles":[
                         {"date":"2017/05/20 12:15","index":"A","title":"How to Build a Beauty Brand in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
                         {"date":"2017/05/20 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
@@ -2931,7 +2906,7 @@
                           {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
-                      {"date":"2017-06-01","articles":[
+                      {"date":"2017-06-01","sentiment":36,"articles":[
                         {"date":"2017/06/01 12:15","index":"A","title":"AAAAAA AAAAA AAAA the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
                         {"date":"2017/06/01 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
                         {"date":"2017/06/01 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
@@ -2944,7 +2919,7 @@
                           {"date":"2017/05/20 12:15","index":"H","title":"12 cheap beauty hacks every make-up addict should know","content":"BT.com","pic":"../images/icon_news.png"},
                         ]
                       },
-                      {"date":"2017-06-15","articles":[
+                      {"date":"2017-06-15","sentiment":16,"articles":[
                         {"date":"2017/06/15 12:15","index":"A","title":"BBBB BBBB in the Digital Age","content":"The Business of Fashion","pic":"../images/icon_news.png"},
                         {"date":"2017/06/15 18:15","index":"B","title":"Pom Pom Makeup Is The Latest Cute and Crafty Beaut...","content":"Cosmopolitan.com","pic":"../images/icon_news.png"},
                         {"date":"2017/06/15 18:15","index":"C","title":"Distraction May Make Us Less Able to Appreciate Beauty","content":"Smithsonian","pic":"../images/icon_news.png"},
@@ -3200,6 +3175,7 @@
           //   height = height-200;
           // }
            $("#lbs-container").css("height",height+"px");
+           $(".x-sidebar").css("height",($(".x-body").height())+"px")
           locationGraph(json);
         }
       }
@@ -3300,7 +3276,6 @@
         IAX_CHART_TOOL.initMixTrend("mix_chart","select_trend_article","daterange",json.data);
         IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
         IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,520);
-        IAX_CHART_TOOL.initSentiment("sentiment-map",json.data);
         IAX_CHART_TOOL.resizeChart();
       }
       function locationGraph(json){
@@ -3315,10 +3290,10 @@
           params:{
             id:1,
             name:'Estee Lauder',
-            keywords:["机场","航站楼"],
+            keywords:["机场"],
             distance:"8",
-            cities:[{name:"Beijing",id:"1156110000"},{name:"TianJin",id:"1156120000"},{name:"Shenyang",id:"1156210100"},{name:"Shanghai",id:"1156310000"}],
-            filter_total:[{"city":"北京市","code":1156110000,"district":[{"name":"大兴区","checked":0},{"name":"密云区","checked":0},{"name":"西城区","checked":0},{"name":"丰台区","checked":0},{"name":"顺义区","checked":1}],"street":[{"name":"李桥镇","district":"顺义区","checked":0}],"poi":[]},{"city":"广州市","code":1156440100,"district":[{"name":"荔湾区","checked":0},{"name":"增城区","checked":0},{"name":"海珠区","checked":0}],"street":[],"poi":[]},{"city":"上海市","code":1156310000,"district":[{"name":"浦东新区","checked":1}],"street":[{"name":"惠南镇","district":"浦东新区","checked":0},{"name":"梅园新村街道","district":"浦东新区","checked":0},{"name":"高东镇","district":"浦东新区","checked":0}],"poi":[]},{"city":"沈阳市","code":1156210100,"district":[{"name":"浑南区","checked":0},{"name":"大东区","checked":0},{"name":"沈河区","checked":0}],"street":[],"poi":[]}]
+            cities:[{name:"Beijing",id:"1156110000"},{name:"TianJin",id:"1156120000"},{name:"Shanghai",id:"1156310000"}],
+            filter:[{"city":"北京市","code":1156110000,"district":[{"name":"大兴区","checked":0},{"name":"密云区","checked":0},{"name":"西城区","checked":0},{"name":"丰台区","checked":0},{"name":"顺义区","checked":1}],"street":[{"name":"李桥镇","district":"顺义区","checked":0}],"poi":[]},{"city":"广州市","code":1156440100,"district":[{"name":"荔湾区","checked":0},{"name":"增城区","checked":0},{"name":"海珠区","checked":0}],"street":[],"poi":[]},{"city":"上海市","code":1156310000,"district":[{"name":"浦东新区","checked":1}],"street":[{"name":"惠南镇","district":"浦东新区","checked":0},{"name":"梅园新村街道","district":"浦东新区","checked":0},{"name":"高东镇","district":"浦东新区","checked":0}],"poi":[]}]
           },
           onGetLbsData:function(params,callback){
             //编辑后根据params调用ajax重新获取lbsdata
@@ -3328,8 +3303,23 @@
           },
           onSaveLocation:function(pdata,callback){
             //保存，调用ajax保存
-            IAX_TOOL.notification("Audience plan saved successfully.","info",3000);
-            callback();
+            var setProcess = IAX_CHART_TOOL.loadingGif("tab-location");
+            $("#lbs-container").css({'opacity':'0.15'});
+            $(".lbs-container").append('<a href="javascript:;" class="_overlap" style="position:absolute;top:0;left:0;right:0;bottom:0;"></a>')
+            $(".analysis-loading").css({'position':'absolute','left':'50%','margin-left':'-150px','top':'150px'})
+            setTimeout(function(){
+              setProcess(true);
+              setTimeout(function(){
+                $(".analysis-loading").remove();
+                $("._overlap").remove();
+                $("#lbs-container").css({'opacity':'1'});
+                IAX_TOOL.notification("Audience plan saved successfully.","info",3000);
+                callback();
+              },100)
+              
+            },5000)
+            
+            
           }
         })
         

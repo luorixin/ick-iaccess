@@ -5,12 +5,15 @@
 			var opts = $.extend({},$.fn.cityChoose.defaults,options);
 			results = opts.results;
 			maxSelect = opts.max;
+			minSelect = opts.min;
 			this.each(function(){
 				var self = $(this);
 				self.data('results', results);
 				self.data('searchId', searchId);
 				self.data('searchOnIndex', searchOnIndex);
 				self.data('maxSelect', maxSelect);
+				self.data('minSelect', minSelect);
+				self.data('repeatName',[]);
 				_render(self,opts);
 				_call(self,opts.onInit,opts);
 			})
@@ -68,7 +71,7 @@
 			//补充等级数据
 			for (var i = 0; i < tiersName.length; i++) {
 				var level = i+1;
-				if (level==tiersName.length) level=0;
+				if (level==tiersName.length-1) level=0;
 				tierJson = {
 					name : tiersName[i],
 					level : level
@@ -89,9 +92,26 @@
 			};
 			if (countryData) {
 				liDoms = "<ul class='tree'>";
-				_createItem(countryData.province,opts);
+				_createItem(elem,countryData.province,opts);
 				liDoms+="</ul>";
 				$provinceHtml.append(liDoms);
+				//重名数据处理
+				console.log(elem.data('repeatName'))
+				for (var i = elem.data('repeatName').length - 1; i >= 0; i--) {
+					var repeat = elem.data('repeatName')[i].toUpperCase();
+					var $repeatElem = $provinceHtml.find("[title='"+repeat+"']");
+					var level = $repeatElem.attr("level");
+					if (level!="undefined") {
+						var repeatElemParent = $repeatElem.parent().parent().attr('title');
+						var repeatSearch = $repeatElem.attr('search');
+						var newRepeatName = repeat+" ("+repeatElemParent+")";
+						console.log(newRepeatName)
+						$repeatElem.attr('title',newRepeatName);
+						$repeatElem.attr('search',repeatSearch.replace(repeat,newRepeatName));
+						$repeatElem.find("span").text(newRepeatName.toLowerCase());
+					};
+					
+				};
 			};
 		};
 		$contentHtml.append($tierHtml);
@@ -110,25 +130,46 @@
 				elem.find(".province-layer").find("li[_id='"+id+"']").find("a:first").find("i").attr("class","fa fa-check-square");
 			};
 			_justifyCheck(elem);
-			_getResult(elem,opts);
 		};
+		_getResult(elem,opts);
 		_bindEvent(elem,opts);
 		$tierHtml.find('.tree').find("li:first").click();
 	}
-	function _createItem(data,opts){
+	function _createItem($elem,data,opts,province){
 		var nameIndex = {'en':'name_en_us','zh':'name_zh_cn'};
-		var search= "";
+		var search= "",repeatName = $elem.data('repeatName');
 		if (data && data.length>0) {
 			for(var i=0;i<data.length;i++){
 	            try{
-	              search = data[i]['name_en_us']+"|"+data[i]['name_zh_cn']+"|"+data[i]['id'];
-	              liDoms += '<li _id="'+data[i].id+'" level="'+data[i].tier_level+'" title="'+data[i][nameIndex[opts.lang]]+'" search="'+search+'"><a href="javascript:;"><i class="fa fa-square-o"></i><span>'+data[i][nameIndex[opts.lang]].toLowerCase()+'</span></a>';
-	              if(data[i]["city"] != null && data[i]["city"].length>0){
-	                 liDoms += '<ul class="childs" style="display:none">';
-	                 _createItem(data[i]["city"],opts);
-	                 liDoms += '</ul>';
-	              }
-	              liDoms += "</li>";
+	              if (data[i]['id']=='1344000000' || data[i]['id']=='1446000000') {
+	              	data[i]['tier_level'] = 6
+	              };
+	              if (data[i]['id'] == '1158000000') {
+	              	data[i]['tier_level'] = 5
+	              };
+	              if (data[i]['name_en_us']=='MACAO') {
+	              	data[i]['name_en_us']='MACAU';
+	              };
+	              //重名数据处理
+	              var name_en = data[i]['name_en_us'];
+	              if (province && data[i]['name_en_us'].indexOf("1")>-1) {
+	              	repeatName.push(data[i]['name_en_us'].split("1")[0]);
+	              	name_en = name_en.split("1")[0]+" ("+province+")";
+	              };
+	              search = name_en+"|"+data[i]['name_zh_cn']+"|"+data[i]['id'];
+	              var name = data[i][nameIndex[opts.lang]].toLowerCase();
+	              if (opts.lang=='en') {
+	              	name = name_en.toLowerCase();
+	              };
+	              if (data[i]['name_en_us'].toLowerCase()!='qita') {
+	              	liDoms += '<li _id="'+data[i].id+'" level="'+data[i].tier_level+'" title="'+name.toUpperCase()+'" search="'+search+'"><a href="javascript:;"><i class="fa fa-square-o"></i><span>'+name+'</span></a>';
+		            if(data[i]["city"] != null && data[i]["city"].length>0){
+		               liDoms += '<ul class="childs" style="display:none">';
+		               _createItem($elem,data[i]["city"],opts,name_en);
+		               liDoms += '</ul>';
+		            }
+		            liDoms += "</li>";
+	              };
 	            }catch(e){}
 	        }
 	        return liDoms;
@@ -192,15 +233,23 @@
 			var selecteds = results.length;
 			var isError = false;
 			var maxSelect = $elem.data('maxSelect');
+			var minSelect = $elem.data('minSelect');
 			if (isParent) {
 				if (isTier) {
 					var level = $(this).parent().parent().attr("level");
 					$elem.find(".province-layer").find("[level='"+level+"']").each(function(){
-						if (maxSelect=="" || selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
+						var rangeVerify = (maxSelect=="" || selecteds < maxSelect)
+						if (className.indexOf("fa-square-o")>-1) {
+							rangeVerify = (minSelect=="" || selecteds > minSelect)
+						};
+						if (rangeVerify) {
+							var oldClassName = $(this).find("a:first").find("i").attr("class");
 							$(this).find("a:first").find("i").attr("class",className);
 							id = $(this).attr("_id");
 							$elem.find(".content-child").find("[_id='"+id+"']").find("a:first").find("i").attr("class",className);
-							className.indexOf("fa-check-square") ? selecteds++ : selecteds--;
+							if (oldClassName!=className) {
+								className.indexOf("fa-check-square")>-1 ? selecteds++ : selecteds--;
+							};
 						}else{
 							isError = true;
 						}
@@ -208,11 +257,18 @@
 				}else{
 					if($(this).parent().next().length>0){
 						$(this).parent().next().find("li").each(function(){
-							if (maxSelect=="" || selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
+							var rangeVerify = (maxSelect=="" || selecteds < maxSelect)
+							if (className.indexOf("fa-square-o")>-1) {
+								rangeVerify = (minSelect=="" || selecteds > minSelect)
+							};
+							if (rangeVerify) {
+								var oldClassName = $(this).find("a:first").find("i").attr("class");
 								$(this).find("a:first").find("i").attr("class",className);
 								id = $(this).attr("_id");
 								$elem.find(".content-child").find("[_id='"+id+"']").find("a:first").find("i").attr("class",className);
-								className.indexOf("fa-check-square") ? selecteds++ : selecteds--;
+								if (oldClassName!=className) {
+									className.indexOf("fa-check-square")>-1 ? selecteds++ : selecteds--;
+								};
 							}else{
 								isError = true;
 							}
@@ -220,9 +276,16 @@
 					}
 				}
 			}else{
-				if (maxSelect=="" || selecteds < maxSelect || className.indexOf("fa-square-o")>-1) {
+				var rangeVerify = (maxSelect=="" || selecteds < maxSelect)
+				if (className.indexOf("fa-square-o")>-1) {
+					rangeVerify = (minSelect=="" || selecteds > minSelect)
+				};
+				if (rangeVerify) {
+					var oldClassName = $elem.find(".content-parent").find("[_id='"+id+"']").find("a:first").find("i").attr("class");
 					$elem.find(".content-parent").find("[_id='"+id+"']").find("a:first").find("i").attr("class",className);
-					className.indexOf("fa-check-square")>-1 ? selecteds++ : selecteds--;
+					if (oldClassName!=className) {
+						className.indexOf("fa-check-square")>-1 ? selecteds++ : selecteds--;
+					};
 				}else{
 					isError = true;
 				}
@@ -230,7 +293,15 @@
 			//验证子元素判断父元素
 			if (isError) {
 				_check($(this),false);
-				_call($elem,otps.onError,translate['rangeErr'][0]+maxSelect+translate['rangeErr'][1]);
+				var errmsgArr = [ translate['rangeErr'][0]+minSelect+translate['rangeErr'][2], translate['rangeErr'][1]+maxSelect+translate['rangeErr'][2] ];
+				var errmsg = errmsgArr.join(";");
+				if (minSelect=="") {
+					errmsg = errmsgArr[1]
+				};
+				if (maxSelect=="") {
+					errmsg = errmsgArr[0]
+				};
+				_call($elem,otps.onError,errmsg);
 			}else{
 				$elem.find(".err-msg").hide();
 			}
@@ -359,6 +430,7 @@
 	function _getResult($elem,opts){
 		var json = {};
 		var results = $elem.data('results'),mixResults=[],isAllSelected=false;
+		var translate = $.fn.cityChoose.langConfig[opts.lang];
 		results = [];
 		$elem.find(".province-layer").find("li[level='undefined']").each(function(){
 			isAllSelected = $(this).find("a:first").find("i").hasClass("fa-check-square");
@@ -389,6 +461,29 @@
 		}else{
 			_addChooseLi($elem,results);
 		}
+		var errmsgArr = [ translate['rangeErr'][0]+opts.min+translate['rangeErr'][2], translate['rangeErr'][1]+opts.max+translate['rangeErr'][2] ];
+		var errmsg = errmsgArr.join(";");
+		var verify = "";
+		if (opts.min!="" && opts.max!="") {
+			verify = (results.length < parseInt(opts.max) && results.length > parseInt(opts.min) )
+		};
+		if (opts.min=="") {
+			errmsg = "";
+			if (opts.max!="") {
+				errmsg = errmsgArr[1];
+				verify = (results.length < parseInt(opts.max))
+			};
+		};
+		if (opts.max=="") {
+			errmsg = "";
+			if (opts.min!="") {
+				errmsg = errmsgArr[0]
+				verify = (results.length > parseInt(opts.min))
+			};
+		};
+		if (errmsg && !verify) {
+			_call($elem,opts.onError,errmsg);
+		};
 		_call($elem,opts.callback,results);
 	}
 	function _addChooseLi($elem,results){
@@ -407,6 +502,7 @@
 	}
 	function _createUI(elem,opts){
 		var value = $.trim($(elem).val());
+		value = value.split("(")[0];
 		var reg = new RegExp(value + "|\\|" + value, 'gi');
 		var translate = $.fn.cityChoose.langConfig[opts.lang];
 		var searchResult = [],searchArr=[];
@@ -494,7 +590,8 @@
 	$.fn.cityChoose.defaults = {
 		lang:"en",
 		data:"",
-		max:"",
+		min:"",//最少
+		max:"",//最多
 		results:[],//[{id: "1156110000", name: "BEIJING", level: "1"}],
 		continent:"Asia",
 		country:"China",
@@ -514,10 +611,10 @@
 			'city_layer':"Cities",
 			'province_layer':"Provinces",
 			'choose_label':'Selected City(ies)',
-			'tiers_input':["一线城市","二线城市","三线城市","四线城市","未分级城市"],
+			'tiers_input':["一线城市","二线城市","三线城市","四线城市","未分级城市","海外城市"],
 			'noResult':'没有结果',
 			'noSelects':'No selected cities',
-			'rangeErr':['Max. ',' cities']
+			'rangeErr':['at least ','Max. ',' cities ']
 		},
 		'en':{
 			'tab_tiers':"By City Tiers",
@@ -527,10 +624,10 @@
 			'city_layer':"Cities",
 			'province_layer':"Provinces",
 			'choose_label':'Selected City(ies)',
-			'tiers_input':["First-tier City","Second-tier City","Third-tier City","Fourth-tier City","Non-tier City"],
+			'tiers_input':["First-tier Cities","Second-tier Cities","Third-tier Cities","Fourth-tier Cities","Other Cities/Towns","Overseas Cities"],
 			'noResult':'No Results',
 			'noSelects':'No selected cities',
-			'rangeErr':['Max. ',' cities']
+			'rangeErr':['at least ','Max. ',' cities ']
 		}
 	}
 })(jQuery)

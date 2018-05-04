@@ -790,5 +790,434 @@ var IAX_TEMPLATE = {
     '        </div>'+
     '    </div>'+
     '  </div>'+
-    '</div>'
+    '</div>',
+'editUserBox':
+	'<div class="modal fade slide-box user-edit-box" style="display:none;">'+
+    '  <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>'+
+    '  <div class="slide-content">'+
+    '      <div class="modal-content">'+
+    '        <div class="modal-body">'+
+    '          <ul class="nav nav-tabs sub-nav-tabs" id="myTab">'+
+    '            <li class="active">'+
+    '              <a data-toggle="tab" href="#tab-edit-user">Edit User</a>'+
+    '            </li>'+
+    '          </ul>'+
+    '          <div class="tab-content" id="myTabContent">'+
+    '            <div class="tab-pane fade in active" id="tab-edit-user">'+
+    '              <div class="edit-container">'+
+    '                <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">User Name</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                        <input type="hidden" name="id" value="{{data.id}}" />'+
+    '                        <input type="text" name="name" disabled value="{{data.name}}" />'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Role</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                        <input type="hidden" name="roleId" value="{{data.roleId}}" />'+
+    '                        <input type="text" name="roleName" disabled value="{{data.roleName}}" />'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Status - CN Ver.</label>'+
+    '                    <div class="controls">'+
+	'						<div class="dropdown modifylabel">'+
+    '                         <input name="statusCN" type="hidden" value="{{data.statusCN}}"  />'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Active'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '                           <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>'+
+    '                           <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>'+
+    '                         </ul>'+
+    '                       </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Status - HK Ver.</label>'+
+    '                    <div class="controls">'+
+	'						<div class="dropdown modifylabel">'+
+    '                         <input name="statusHK" type="hidden" value="{{data.statusHK}}"  />'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Active'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '                           <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>'+
+    '                           <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>'+
+    '                         </ul>'+
+    '                       </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Account Rights</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="">'+
+    '                        <div id="dropdownTree"></div>'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                </form>'+
+    '              </div>'+
+    '              <div class="modal-footer slide-bottom">'+
+    '                <button type="button" class="btn btn-success" onclick="{{saveFn}}">Save</button>'+
+    '                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>'+
+    '              </div>'+
+    '            </div>'+
+    '          </div>'+
+    '        </div>'+
+    '    </div>'+
+    '  </div>'+
+    '</div>',
+'editPlanBox':
+	'<div class="modal fade slide-box plan-edit-box" style="display:none;">'+
+    '  <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>'+
+    '  <div class="slide-content">'+
+    '      <div class="modal-content">'+
+    '        <div class="modal-body">'+
+    '          <ul class="nav nav-tabs sub-nav-tabs" id="myTab">'+
+    '            <li class="active">'+
+    '              <a data-toggle="tab" href="#tab-edit-plan">Edit Audience Plan</a>'+
+    '            </li>'+
+    '          </ul>'+
+    '          <div class="tab-content" id="myTabContent">'+
+    '            <div class="tab-pane fade in active" id="tab-edit-plan">'+
+    '              <div class="edit-container">'+
+    '                <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Audience Plan Name</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                        <input type="hidden" name="id" value="{{data.id}}" />'+
+    '                        <input type="text" name="name" disabled value="{{data.name}}" />'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Status</label>'+
+    '                    <div class="controls">'+
+	'						<div class="dropdown modifylabel">'+
+    '                         <input name="status" type="hidden" value="{{data.status}}"  />'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Active'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '                           <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>'+
+    '                           <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>'+
+    '                         </ul>'+
+    '                       </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Account Rights</label>'+
+    '                    <div class="controls">'+
+    '						<div class="label-input" style="padding-top: 5px; margin-top: 0px; line-height: 18px;">'+
+	'					      Agency'+
+	'					    </div>'+
+	'						<div class="dropdown modifylabel">'+
+    '                         <input name="agency" type="hidden" value="{{data.agency}}" onchange="{{changeAgency}}"/>'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Agency'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '							{{#assist.accountRight}}'+
+    '                              <li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
+    '							{{/assist.accountRight}}'+
+    '                         </ul>'+
+    '                       </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group" style="padding-top:0">'+
+    '                    <div class="controls">'+
+    '						<div class="label-input" style="padding-top: 5px; margin-top: 0px; line-height: 18px;">'+
+	'					      Advertiser'+
+	'					    </div>'+
+	'						<div class="dropdown modifylabel">'+
+    '                         <input name="advertiser" type="hidden" value="{{data.advertiser}}"  />'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Active'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '                         </ul>'+
+    '                       </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                </form>'+
+    '              </div>'+
+    '              <div class="modal-footer slide-bottom">'+
+    '                <button type="button" class="btn btn-success" onclick="{{saveFn}}">Save</button>'+
+    '                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>'+
+    '              </div>'+
+    '            </div>'+
+    '          </div>'+
+    '        </div>'+
+    '    </div>'+
+    '  </div>'+
+    '</div>',
+'editAdvertiserBox':
+	'<div class="modal fade slide-box advertiser-edit-box" style="display:none;">'+
+    '  <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>'+
+    '  <div class="slide-content">'+
+    '      <div class="modal-content">'+
+    '        <div class="modal-body">'+
+    '          <ul class="nav nav-tabs sub-nav-tabs" id="myTab">'+
+    '            <li class="active">'+
+    '              <a data-toggle="tab" href="#tab-edit-advertiser">Edit Advertiser</a>'+
+    '            </li>'+
+    '          </ul>'+
+    '          <div class="tab-content" id="myTabContent">'+
+    '            <div class="tab-pane fade in active" id="tab-edit-advertiser">'+
+    '              <div class="edit-container">'+
+    '                <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Advertiser Name</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                        <input type="hidden" name="id" value="{{data.id}}" />'+
+    '                        <input type="text" name="name" disabled value="{{data.name}}" />'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Agency</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                        <input type="hidden" name="agencyId" value="{{data.agencyId}}" />'+
+    '                        <input type="text" name="agencyName" disabled value="{{data.agencyName}}" />'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Plan Limit</label>'+
+    '                    <div class="controls">'+
+    '						<div class="rangeBox">'+
+    '                         <button class="btn minus" type="button" >'+
+    '                           <i class="fa fa-minus"></i>'+
+    '                         </button>'+
+    '						  <input type="text" style="width:300px" value="{{data.planLimit}}" title="{{data.planLimit}}" name="planLimit">'+
+    '                         <button class="btn plus" type="button" >'+
+    '                           <i class="fa fa-plus"></i>'+
+    '                         </button>'+
+    '                       </div>'+
+    '						<div class="label-input">'+
+	'			        		Plan Usage: {{data.usage}} (You can add up to {{data.limit}} plans)'+
+	'			      		</div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Start Date</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '						 <div class="date-range" style="width:380px;">'+
+	'           			   <div class="date-range-ico"><i class="fa fa-calendar"></i></div> '+
+	'           			   <input type="text" id="startDate" name="startDate" placeholder="please select a period" value="{{data.startDate}}" style="width:339px;" class="form-control date-range-input xmoCalendarInputSchedule">'+
+	'           			    <span class="caret arrow-calendar"></span>'+
+	'           			 </div>'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">End Date</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                       <div class="clearfix">'+
+    '						 <div class="date-range" style="width:380px;">'+
+	'           			   <div class="date-range-ico"><i class="fa fa-calendar"></i></div> '+
+	'           			   <input type="text" id="endDate" name="endDate" placeholder="please select a period" value="{{data.endDate}}" style="width:339px;" class="form-control date-range-input xmoCalendarInputSchedule">'+
+	'           			    <span class="caret arrow-calendar"></span>'+
+	'           			 </div>'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Status</label>'+
+    '                    <div class="controls">'+
+	'						<div class="dropdown modifylabel">'+
+    '                         <input name="status" type="hidden" value="{{data.status}}"  />'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Active'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '                           <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>'+
+    '                           <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>'+
+    '                         </ul>'+
+    '                       </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Account Rights</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="">'+
+    '                        <div class="table_white">'+
+    '                          <table class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">'+
+    '                            <thead>'+
+    '                                <tr>'+
+    '                                    <th>User</th>'+
+    '                                    <th>Added Date</th>'+
+    '                                    <th style="width:50px;align:center">Action</th>'+
+    '                                </tr>'+
+    '                            </thead>'+
+    '                            <tbody>'+
+    '							{{#data.accountRights}}'+
+    '								<tr>'+
+    '									<td>{{name}}</td>'+
+    '									<td>{{addDate}}</td>'+
+    '									<td class="align_center">'+
+    '										<a href="javascript:;" class="fa-icon-box" onclick="$(this).parent().parent().remove()">'+
+    '                   					 <i class="fa fa-close"></i>'+
+    '                  						</a>'+
+    '                  					</td>'+
+    '								</tr>'+
+    '							{{/data.accountRights}}'+
+    '							 </tbody>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                </form>'+
+    '              </div>'+
+    '              <div class="modal-footer slide-bottom">'+
+    '                <button type="button" class="btn btn-success" onclick="{{saveFn}}">Save</button>'+
+    '                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>'+
+    '              </div>'+
+    '            </div>'+
+    '          </div>'+
+    '        </div>'+
+    '    </div>'+
+    '  </div>'+
+    '</div>',
+'editAgencyBox':
+	'<div class="modal fade slide-box agency-edit-box" style="display:none;">'+
+    '  <div class="slide-close" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i></div>'+
+    '  <div class="slide-content">'+
+    '      <div class="modal-content">'+
+    '        <div class="modal-body">'+
+    '          <ul class="nav nav-tabs sub-nav-tabs" id="myTab">'+
+    '            <li class="active">'+
+    '              <a data-toggle="tab" href="#tab-edit-agency">Edit Agency</a>'+
+    '            </li>'+
+    '          </ul>'+
+    '          <div class="tab-content" id="myTabContent">'+
+    '            <div class="tab-pane fade in active" id="tab-edit-agency">'+
+    '              <div class="edit-container">'+
+    '                <form class="form-horizontal" id="modifyForm" action="{{action}}" ref="adjust" method="post">'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Agency Name</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                        <input type="hidden" name="id" value="{{data.id}}" />'+
+    '                        <input type="text" name="name" disabled value="{{data.name}}" />'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Plan Type</label>'+
+    '                    <div class="controls">'+
+    '						<div class="dropdown modifylabel">'+
+    '                         <input name="planType" type="hidden" value="{{data.planType}}"  />'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Active'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '							{{#assist.planTypes}}'+
+    '                           	<li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
+    '							{{/assist.planTypes}}'+
+    '                         </ul>'+
+    '                       </div>'+
+    '						<div class="label-input">'+
+	'			        		Plan Limit: {{data.limit}} | Plan Usage: {{data.usage}}'+
+	'			      		</div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Start Date</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '						 <div class="date-range" style="width:380px;">'+
+	'           			   <div class="date-range-ico"><i class="fa fa-calendar"></i></div> '+
+	'           			   <input type="text" id="startDate" placeholder="please select a period" value="{{data.startDate}}" style="width:339px;" class="form-control date-range-input xmoCalendarInputSchedule">'+
+	'           			    <span class="caret arrow-calendar"></span>'+
+	'           			 </div>'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">End Date</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="clearfix">'+
+    '                       <div class="clearfix">'+
+    '						 <div class="date-range" style="width:380px;">'+
+	'           			   <div class="date-range-ico"><i class="fa fa-calendar"></i></div> '+
+	'           			   <input type="text" id="endDate" placeholder="please select a period" value="{{data.endDate}}" style="width:339px;" class="form-control date-range-input xmoCalendarInputSchedule">'+
+	'           			    <span class="caret arrow-calendar"></span>'+
+	'           			 </div>'+
+    '                      </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Status</label>'+
+    '                    <div class="controls">'+
+	'						<div class="dropdown modifylabel">'+
+    '                         <input name="status" type="hidden" value="{{data.status}}"  />'+
+    '                         <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                           Active'+
+    '                           <span class="caret arrow-down"></span>'+
+    '                         </button>'+
+    '                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">'+
+    '                           <li data-value="ACTIVE"><a href="javascript:;">Active</a></li>'+
+    '                           <li data-value="PAUSED"><a href="javascript:;">Paused</a></li>'+
+    '                         </ul>'+
+    '                       </div>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                  <div class="control-group">'+
+    '                    <label class="control-label">Account Rights</label>'+
+    '                    <div class="controls">'+
+    '                      <div class="">'+
+    '                        <div class="table_white">'+
+    '                          <table class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">'+
+    '                            <thead>'+
+    '                                <tr>'+
+    '                                    <th>User</th>'+
+    '                                    <th>Added Date</th>'+
+    '                                    <th style="width:50px;align:center">Action</th>'+
+    '                                </tr>'+
+    '                            </thead>'+
+    '                            <tbody>'+
+    '							{{#data.accountRights}}'+
+    '								<tr>'+
+    '									<td>{{name}}</td>'+
+    '									<td>{{addDate}}</td>'+
+    '									<td class="align_center">'+
+    '										<a href="javascript:;" class="fa-icon-box" onclick="$(this).parent().parent().remove()">'+
+    '                   					 <i class="fa fa-close"></i>'+
+    '                  						</a>'+
+    '                  					</td>'+
+    '								</tr>'+
+    '							{{/data.accountRights}}'+
+    '							 </tbody>'+
+    '                    </div>'+
+    '                  </div>'+
+    '                </form>'+
+    '              </div>'+
+    '              <div class="modal-footer slide-bottom">'+
+    '                <button type="button" class="btn btn-success" onclick="{{saveFn}}">Save</button>'+
+    '                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>'+
+    '              </div>'+
+    '            </div>'+
+    '          </div>'+
+    '        </div>'+
+    '    </div>'+
+    '  </div>'+
+    '</div>',
 }

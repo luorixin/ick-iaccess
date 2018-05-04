@@ -5,7 +5,8 @@ var IAX_CHART_TOOL = {
   currentBubble:"",
   bubbleData:"",
   charts:[],
-  version:"CN",
+  regionsHand:false,
+  version:"zh_cn",
   init : function(){
     this.bindEvent();
   },
@@ -127,7 +128,31 @@ var IAX_CHART_TOOL = {
       };
     }
   },
+  loadingStaticGif:function(id){
+    $("#myTab").append('<div class="loading-unclicklayer"></div>');
+    $(".x-sidebar").find("li.selected").css("position","relative").append('<div class="loading-unclicklayer"></div>');
+    var html ='<div style="width:510px;left:50%;margin-top:20px;margin-left:-200px;position:relative">'+
+              ' <img src="../images/loading3.gif">'+
+              '</div>';
+    $("#"+id).append('<div class="analysis-loading">'+html+'</div>');      
+    function setProcess(terminal){   
+      if(terminal){  
+         window.clearInterval(intervalTimer);  
+         $(".loading-unclicklayer").remove();
+      }  
+     }  
+    var intervalTimer = window.setInterval(function(){setProcess();},100); 
+    return setProcess;    
+  },
   loadingGif:function(id){
+    var percentage = '    <p data-per="0" style="color:#ef4136;margin-top:5px;text-align:center;">0.00%</p>';
+    var changeText = ["Defining the market"," Looking for your brand audience ","Analysing your brand keywords and products","Searching for your brand related LBS audience","Looking for your brand potential audience ","Looking for competitor audience"," Analysing your competitor keywords and products","Comparing your brand with competitors","Comparing your brand products with competitor products","Comparing your brand products with competitor products"];
+    var grayText = 'Audience plan is running and that can take a few moments. Hang in there, the analysis will be worth the wait.';
+    if (id=="tab-location") {
+      percentage = '    <p data-per="0" style="color:#ef4136;margin-top:5px;text-align:center;display:none;">0.00%</p>';
+      grayText = 'Footfall analysis is running and that can take a few moments. Hang in there, the analysis will be worth the wait.';
+      changeText = ['Calculating the estimited footfall audience...']
+    };
     $("#myTab").append('<div class="loading-unclicklayer"></div>');
     $(".x-sidebar").find("li.selected").css("position","relative").append('<div class="loading-unclicklayer"></div>');
     var html ='<div style="width:510px;left:50%;margin-top:20px;margin-left:-200px;position:relative">'+
@@ -136,22 +161,28 @@ var IAX_CHART_TOOL = {
               '      <span class="gender-map-ico loading-hide"></span> '+
               '      <span class="gender-map-ico" style=""></span> '+
               '    </div>'+
-              '    <p data-per="0" style="color:#ef4136;margin-top:5px;text-align:center;">0.00%</p>'+
+              percentage+
               '  </div>'+
               '  <div style="float:left;width:310px;">'+
               '    <p style="display:table;text-align:left;height:60px;"><label style="display:table-cell;vertical-align: middle;font-size:20px;line-height:30px;"><span style="font-size:20px;line-height:30px;">Defining the market</span><dot>...</dot></label></p><hr/>'+
-              '    <p style="color:#999;text-align:left;width:310px;font-size:12px;">Audience plan is running and that can take a few moments. Hang in there, the analysis will be worth the wait.</p>'+
+              '    <p style="color:#999;text-align:left;width:310px;font-size:12px;">'+grayText+'</p>'+
               '  </div>'+
               '</div>';
     $("#"+id).append('<div class="analysis-loading">'+html+'</div>');
-    var changeText = ["Defining the market"," Looking for your brand audience ","Analysing your brand keywords and products","Searching for your brand related LBS audience","Looking for your brand potential audience ","Looking for competitor audience"," Analysing your competitor keywords and products","Comparing your brand with competitors","Comparing your brand products with competitor products","Comparing your brand products with competitor products"];
+    
     function setProcess(terminal){  
       var processbar = $(".analysis-loading").find(".loading-hide");  
       var widthArr = processbar.parent().next().text();
-      var width = parseFloat(widthArr) + 1.7 ;
+      var upRate = 1.7;
+      var text = changeText[parseInt(width/10)];
+      if (id=="tab-location") {
+        upRate = 5;
+        text = changeText[0];
+      };
+      var width = parseFloat(widthArr) + 5 ;
       if (width>100 || terminal) width=100;
       // console.log(width)
-      var text = changeText[parseInt(width/10)];
+      
       var bgy = width*1.54-154;
       var top = -width*1.54+154;
       processbar.attr("style","background-position-y:"+bgy+"px;top:"+top+"px;");
@@ -236,9 +267,11 @@ var IAX_CHART_TOOL = {
     };
     $("#"+id).find(".bubble-info").find("ul").html(liHtml);
     $("#"+id).find(".bubble-info-selected span").text("The market");
+    $("#"+id).find(".bubble-info-selected span").attr("title","The market");
   },
   initBubble:function(id,sets){
     if (!sets || sets.length==0) return;
+    if (sets.length==1 && sets[0].size==0) {sets[0].size=1};
     var _this = this;
     _this.sets = sets;
     var width = 380*0.7;
@@ -374,6 +407,7 @@ var IAX_CHART_TOOL = {
           $(market).find(".result-text-header label").html(marketTitle);
           $(market).find(".result-graph-word-content>label").text(subTitle);
           $("#"+id).find(".bubble-info-selected span").text(selectLabel);
+          $("#"+id).find(".bubble-info-selected span").attr("title",selectLabel);
           $('[data-toggle="tooltip"]').tooltip();
           if (_this.currentBubble != _this.brandData[0].id) {
             _this.initMarketGraphByBubble(_this.brandData[0]);
@@ -382,6 +416,16 @@ var IAX_CHART_TOOL = {
           //文字变会正常色
          $("#"+id).find(".label").attr("fill","#333"); 
       })
+      function getMousePos(event) {
+             var e = event || window.event;
+             var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+             var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+             var x = e.pageX || e.clientX + scrollX;
+             var y = e.pageY || e.clientY + scrollY;
+             //alert('x: ' + x + '\ny: ' + y);
+             return { 'x': x, 'y': y };
+      }
+      var bubbleTip = $(".bubbleTip").length>0 ? d3.select(".bubbleTip") : d3.select("body").append("div").attr("class", "bubbleTip");
       $("#"+id).on("mouseover",".bubble-map",function(e){
           e = e || window.event;
           e.stopPropagation();
@@ -389,15 +433,90 @@ var IAX_CHART_TOOL = {
             $(this).css("opacity","1");
             return
           }
+          bubbleTip.transition().duration(400).style("opacity", .9);
+          var isMinus = $("#"+id).find(".bubble-main-title").find(".fa-minus-circle").length>0;
+          var label,audiences;
+          if (isMinus) {
+            label = "<b>The Market</b><br>";
+            audiences = "Audience: "+IAX_TOOL.formatNum(_this.brandData[0].data.audience+"",0);
+          }else{
+            label = "<b>Potiential Audience</b><br>";
+            audiences = "Audience: "+IAX_TOOL.formatNum(_this.brandData[_this.brandData.length-1].data.audience+"",0);
+          }
+          bubbleTip.html(label+audiences);
           $(this).css("opacity","0.8");
+      })
+      $("#"+id).on("mousemove",".bubble-map",function(e){
+          var pos = getMousePos(e);
+          bubbleTip.style("left", (pos.x + 10) + "px")
+                 .style("top", (pos.y - 38) + "px")
+                 .style("z-index","1000");
       })
       $("#"+id).on("mouseout",".bubble-map",function(e){
           e = e || window.event;
           e.stopPropagation();
           $(this).css("opacity","1");
+          bubbleTip.transition().duration(400).style("opacity", 0).style("z-index","1");;
       })
       //初始化背景圆的文字标题
-      $("#"+id).find(".bubble-map").append('<label class="bubble-main-title">The Market</label>');
+      $("#"+id).find(".bubble-map").append('<label class="bubble-main-title">The Market <i class="fa fa-minus-circle audienceChange" style="cursor:pointer;"></i></label>');
+      $("#"+id).on("click",".audienceChange",function(e){
+          e = e || window.event;
+          e.stopPropagation();
+          e.preventDefault();
+          var isMinus = $(this).hasClass("fa-minus-circle");
+          var oldText = $("#"+id).find(".bubble-info-selected span").attr("title");
+          var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
+          if (!oldText) {
+            oldText = $("#"+id).find(".bubble-info-selected span").text();
+          };
+          if (isMinus) {
+            $("#"+id).find(".bubble-info-selected span").text("Potential Audience");
+            $(this).parent().parent().append('<div class="overlapsMap" style="position:absolute;left:0;right:0;bottom:0;top:0;z-index:9999;opacity:0.5;"></div>');
+            $(this).parent().parent().find("svg").css("fill-opacity","0.3");
+            $(this).parent().css("color","#333");
+            $(this).parent().css("z-index","10000");
+            $(this).parent().parent().addClass("bubble-select");
+            $(this).parent().html('Potential Audience <i class="fa fa-plus-circle audienceChange" style="cursor:pointer;"></i>');
+            $(market).find(".result-graph-word-content>label").text("Potential Audience vs. The Market");
+            d3.selectAll(".path_select")
+              .classed("path_select",false)
+              .style("stroke-width", 0);
+            d3.select("#"+id).selectAll(".venn-circle path")
+              .style("stroke-opacity", 1)
+              .style("stroke", "#eee")
+              .style("stroke-width", 3)
+            $("#"+id).find(".label").attr("fill","#333"); 
+            //potiential 相关数据切换
+            _this.initMarketGraphByBubble(_this.brandData[_this.brandData.length-1]);
+            _this.currentBubble = _this.brandData[_this.brandData.length-1].id;
+          }else{
+            // $("#"+id).find(".bubble-info-selected span").text(oldText);
+            $(this).parent().parent().find(".overlapsMap").remove();
+            $(this).parent().parent().find("svg").css("fill-opacity","1");
+            d3.select("#"+id).selectAll(".venn-circle path")
+              .style("stroke-opacity", 1)
+              .style("stroke", "#fff")
+              .style("stroke-width", 0)
+            $(this).parent().css("color","");
+            $(this).parent().css("z-index","");
+            $(this).parent().parent().trigger("click");
+            $(this).parent().html('The Market <i class="fa fa-minus-circle audienceChange" style="cursor:pointer;"></i>')
+          }
+          // $("#"+id).find(".bubble-info-selected span").attr("title",oldText);
+      })
+      $("#"+id).on("click",".overlapsMap",function(e){
+          e = e || window.event;
+          e.stopPropagation();
+          e.preventDefault();
+      }) 
+      $("#"+id).on("click",".bubble-main-title",function(e){
+          e = e || window.event;
+          if ($(this).find(".fa-plus-circle").length>0) {
+            e.stopPropagation();
+            e.preventDefault();
+          };
+      })  
   },
   showCampare: function(id,d){
     var _this = this;
@@ -446,6 +565,7 @@ var IAX_CHART_TOOL = {
     $(market).find(".result-text-header label").html(marketTitle);
     $(market).find(".result-graph-word-content>label").text(subTitle);
     $("#"+id).find(".bubble-info-selected span").text(label);
+    $("#"+id).find(".bubble-info-selected span").attr("title",label);
     for (var i = 0; i < _this.brandData.length; i++) {
       if(_this.brandData[i].id == bubbleid){
         bubbleData = _this.brandData[i];
@@ -916,6 +1036,9 @@ var IAX_CHART_TOOL = {
       $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").next().remove();
       $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").after(itemtitle);
       $("#"+articleId).find(".pic-title-list").html(itemHtmls);
+      if (data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].sentiment) {
+        _this.initSentiment("sentiment-map",data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].sentiment);
+      };
     };
     // $("#"+id).find(".fa").remove();
     // $("#"+id).append('<i class="fa fa-caret-up" style="position:absolute;color:#999;font-size:18px;transform: translateX(-50%);left:592px;top:128px;"></i>')
@@ -1068,7 +1191,7 @@ var IAX_CHART_TOOL = {
           bottom:0
         },
         grid : {
-            left : '0',
+            left : '10',
             bottom : '40',
             top:'40',
             right:'20',
@@ -1111,11 +1234,14 @@ var IAX_CHART_TOOL = {
           // }
           // var date = params.name;
           var date = $(this).parent().next().find("p:first").text();
-          var articles = "";
+          var articles = "",sentiment;
           for (var i = 0; i < data.mixTrend.topBrands.length; i++) {
             var json = data.mixTrend.topBrands[i];
             if (json.date==date) {
               articles = json.articles;
+              if (json.sentiment) {
+                sentiment = json.sentiment
+              };
             };
           };
           var itemtitle = '<b>'+date.replace(/-/g,"/")+'</b>';
@@ -1123,6 +1249,10 @@ var IAX_CHART_TOOL = {
           $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").next().remove();
           $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").after(itemtitle);
           $("#"+articleId).find(".pic-title-list").html(itemHtmls);
+          //sentiment
+          if (sentiment) {
+            _this.initSentiment("sentiment-map",sentiment);
+          };
           //小三角显示在报表中
           // console.log(params);
           // var offsetX = params.event.offsetX;
@@ -1341,7 +1471,7 @@ var IAX_CHART_TOOL = {
               hoverAnimation:false,
               lineStyle : {
                 normal : {
-                  color:"#4484CF",
+                  color:"#946EDB",
                 }
               },
               axisPointer:{
@@ -1356,7 +1486,7 @@ var IAX_CHART_TOOL = {
                   opacity:0
                 }
               },
-              data : [{"value":result[j].value,"textStyle":{"color":"#999","fontSize":10},"color":"#4484CF"},],
+              data : [{"value":result[j].value,"textStyle":{"color":"#999","fontSize":10},"color":"#946EDB"},],
             }
             if(i=="bar"){
               seriesJson.barWidth=40;
@@ -1364,7 +1494,7 @@ var IAX_CHART_TOOL = {
             }else{
               seriesJson.itemStyle = {
                 normal : {
-                  color:"#4484CF",
+                  color:"#946EDB",
                 }
               }
             }
@@ -1434,17 +1564,65 @@ var IAX_CHART_TOOL = {
         yAxisIndex++;
       }
     };
-    //重组顺序，potential要在brand前面(Bar 由上而下應為Potential > Brand > Visitor (不是Onsite) > Owned,)
-    var newSeries = [],newSeriesJson={};
+    //重组顺序，potential要放到最前(Bar 由上而下應為 Potential > Brand > Visitor (不是Onsite) > Owned > Share  ,)
+    var newSeries = [],newSeriesJson={},newColorMap = [],newLegends=[],leftLegends=[];
     for (var i = 0; i < series.length; i++) {
-      if (series[i].name=="Brand" || series[i].name=="Potential" || series[i].name=="Visitor" || series[i].name=="Owned") {
+      if (series[i].name=="Brand" || series[i].name=="Potential" || series[i].name=="Visitor" || series[i].name=="Onsite" || series[i].name=="Owned") {
         newSeriesJson[series[i].name]=series[i];
       }else{
         newSeries.push(series[i]);
+        newColorMap.push("#946EDB")
+        newLegends.push({
+          icon:'circle',
+          name:series[i].name
+        })
       }
        
     };
-    newSeries.splice(0,0,newSeriesJson["Brand"],newSeriesJson["Potential"]);
+    if (newSeriesJson["Potential"]) {
+      newSeries.splice(0,0,newSeriesJson["Potential"]);
+      newColorMap.splice(0,0,"#dfdfdf")
+      leftLegends.push({
+        icon:'circle',
+        name:"Potential"
+      })
+    };
+    if (newSeriesJson["Brand"]) {
+      newSeries.splice(0,0,newSeriesJson["Brand"]);
+      newColorMap.splice(0,0,"#ef4136")
+      leftLegends.push({
+        icon:'circle',
+        name:"Brand"
+      })
+    };
+    if (newSeriesJson["Visitor"]) {
+      newSeries.splice(0,0,newSeriesJson["Visitor"]);
+      newColorMap.splice(0,0,"#FFBD00")
+      leftLegends.push({
+        icon:'circle',
+        name:"Visitor"
+      })
+    };
+    if (newSeriesJson["Onsite"]) {
+      newSeries.splice(0,0,newSeriesJson["Onsite"]);
+      newColorMap.splice(0,0,"#FFBD00")
+      leftLegends.push({
+        icon:'circle',
+        name:"Onsite"
+      })
+    };
+    if (newSeriesJson["Owned"]) {
+      newSeries.splice(0,0,newSeriesJson["Owned"]);
+      newColorMap.splice(0,0,"#4484cf")
+      leftLegends.push({
+        icon:'circle',
+        name:"Owned"
+      })
+    };
+    newLegends = leftLegends.concat(newLegends);
+    console.log(newSeries)
+    console.log(newLegends)
+    console.log(newColorMap)
     var option = {
         title : {
           text: title,
@@ -1454,7 +1632,7 @@ var IAX_CHART_TOOL = {
             'fontSize' : 12,
           }
         },
-        color:[ '#FFBD00', '#EF4136', '#8D7B7B', '#54C7B0','#F47920','#194283','#59C754'],
+        color:newColorMap,
         tooltip : {
             trigger : 'item',
             backgroundColor : "#f2f2f2",
@@ -1495,7 +1673,7 @@ var IAX_CHART_TOOL = {
           itemWidth:8,
           itemHeight:8,
           itemGap:20,
-          data:legends,
+          data:newLegends,
           bottom:0,
         },
         grid : {
@@ -1738,6 +1916,7 @@ var IAX_CHART_TOOL = {
         markPoint:{
           symbol:"circle",
           symbolSize:bubbleSize,
+          symbolOffset:[0,-bubbleSize/2],
           data:genderMarkPointData,
           label:{
               normal:{
@@ -1767,7 +1946,7 @@ var IAX_CHART_TOOL = {
               value:ageGroup_data.data[j].value,
               trueValue:ageGroup_data.data[j].trueValue,
               xAxis: xAxis,
-              yAxis: ageGroup_data.data[j].value
+              yAxis: ageGroup_data.data[j].value,
           })
           xAxis++;
         };
@@ -1784,6 +1963,7 @@ var IAX_CHART_TOOL = {
         markPoint:{
           symbol:"circle",
           symbolSize:bubbleSize,
+          symbolOffset:[0,-bubbleSize/2],
           data:ageGroupMarkPointData,
           label:{
               normal:{
@@ -1878,7 +2058,7 @@ var IAX_CHART_TOOL = {
       // bottom=120;
     };
     for (var i = 0; i < series.length; i++) {
-      ymax = 100;
+      ymax = 200;
     };
     if (series.length-legend.length>1) {
       xSplitLine = {
@@ -2020,68 +2200,116 @@ var IAX_CHART_TOOL = {
     if (!xy) xy = ["Market Share (%)","Market Growth (%)"];
     if (!xArea) xArea = [0, 100];
     if (!yArea) yArea = [-100,100];
-    if(!data) {
-      data = {
-        'Lancome':[
-          [40,70,40,70,0],
-        ],
-        'Estee Lauder':[
-          [90,90,90,90,1]
-        ],
-        'SKII':[
-          [10,30,10,30,5]
-        ],
-        'Bobbi Brown':[
-          [90,-70,90,-70,7]
-        ],
-        'Shiseido':[
-          [60,-60,60,-60,6]
-        ]
-      };
-    };
+   
+    //动态获取x,y轴的最小最大值
+    var xAreaMin=-999,xAreaMax=0,yAreaMin=-999,yAreaMax=0;
+    for(var i in data){
+      if(xAreaMin==-999 || xAreaMin>data[i][0][0]){
+        xAreaMin = data[i][0][0];  
+      }
+      if(xAreaMax<data[i][0][0]){
+        xAreaMax = data[i][0][0];  
+      }
+      if(yAreaMin==-999 || yAreaMin>data[i][0][1]){
+        yAreaMin = data[i][0][1];  
+      }
+      if(yAreaMax<data[i][0][1]){
+        yAreaMax = data[i][0][1];  
+      }
+    }
+
+    var interX = xAreaMax-xAreaMin;
+    var perX = interX/10;
+    var interY = yAreaMax-yAreaMin;
+    var perY = interY/10;
+    // xAreaMin = Math.ceil(xAreaMin/10)*10;
+    // xAreaMax = Math.ceil(xAreaMax/10)*10;
+    // yAreaMin = Math.ceil(yAreaMin/10)*10;
+    // yAreaMax = Math.ceil(yAreaMax/10)*10;
+    
+    // if (xAreaMax>0) {
+    //   if (xAreaMin<0) {
+    //     if (Math.abs(xAreaMin)<Math.abs(xAreaMax)) {
+    //       xAreaMin = -xAreaMax;
+    //     }else{
+    //       xAreaMax = -xAreaMin;
+    //     }
+    //   };
+    // }else{
+    //   xAreaMax=100;
+    // }
+    // if (yAreaMax>0) {
+    //   if (Math.abs(yAreaMin)<Math.abs(yAreaMax)) {
+    //     yAreaMin = -yAreaMax;
+    //   }else{
+    //     yAreaMax = -yAreaMin;
+    //   }
+    // }else{
+    //   yAreaMax= 100;
+    // }
+    console.log(xAreaMin,xAreaMax,yAreaMin,yAreaMax);
+    xArea = [xAreaMin-perX,xAreaMax+perX];
+    yArea = [yAreaMin-perY,yAreaMax+perY];
     echarts.dispose(document.getElementById(id));
     var myChart = echarts.init(document.getElementById(id));
     var _this = this;
     var legend=[];
     var picData = [];
     
-    var picSeriesArr = [],sizeBubble=[45,50,55,60,70,80,85,90,100],labeLimit=[5,5,6,7,9,10,11,12,13];
+    var picSeriesArr = [],sizeBubble=[30,40,50,55,60,65,70,75,80],labeLimit=[5,5,6,7,9,10,11,12,13];
+    var seriesIndexCount=0,seriesIndexCountArr = {};
+    //按照audience大小排序
+    var newDataJson = [],newData={};
     for(var i in data){
+      newDataJson.push({
+        name:i,
+        size:data[i][0][4],
+        value:data[i]
+      })
+    }
+    newDataJson = newDataJson.sort(_this.sortJson("desc","size","parseFloat"));
+    console.log(newDataJson)
+    for (var i = 0; i < newDataJson.length; i++) {
       var series = {
-          name: i,
+          name: newDataJson[i].name,
           type: 'scatter',
-          seriesIndex:0,
+          seriesIndex:seriesIndexCount,
           hoverAnimation:false,
           label:{
             normal:{
               show:true,
               position:"inside",
               formatter:function(params){
-                var limit = labeLimit[params.value[4]];
-                return _this.substrByLength(params.seriesName,limit);
+                // var limit = labeLimit[params.value[4]];
+                // return _this.substrByLength(params.seriesName,limit);
+                return params.seriesName;
               },
               textStyle:{
-                color:"#fff",
+                color:"#333",
               }
             }
           },
           itemStyle: {
             normal: {
               opacity: 1,
+              borderColor:"#fff",
+              borderWidth:3,
             },
             emphasis:{
               borderColor:"#dfdfdf",
-              borderWidth:5,
+              borderWidth:3,
             }
           },
-          data: data[i],
+          data: newDataJson[i]["value"],
           symbolSize: function(val) {
               return sizeFunction(val);
           }
       }
       // series.label.normal.show=false;
       picSeriesArr.push(series);
-      legend.push(i);
+      legend.push(newDataJson[i].name);
+      seriesIndexCountArr[newDataJson[i].name] = seriesIndexCount;
+      seriesIndexCount++;
     }
     function sizeFunction(val){
       var x = val[4];
@@ -2096,7 +2324,7 @@ var IAX_CHART_TOOL = {
     picSeriesArr.push({
         name: 'test' ,
         type: 'scatter',
-        seriesIndex:1,
+        seriesIndex:10,
         cursor:'default',
         label:{
           normal:{
@@ -2124,7 +2352,7 @@ var IAX_CHART_TOOL = {
         silent:false,
         symbolSize:1,
         hoverAnimation:false,
-        data: [[100, 0]],
+        data: [[xArea[1], (yArea[0]+yArea[1])/2]],
     });
   
     var imageEl = document.createElement('img'); // use DOM HTMLImageElement
@@ -2143,19 +2371,25 @@ var IAX_CHART_TOOL = {
             itemHeight:8,
             itemGap:20,
             bottom:0,
+            icon:"circle",
         },
         grid: {
             y: '20',
             right:10,
             left:10,
-            bottom:'10',
-            top:30,
+            bottom:'30',
+            top:45,
         },
         tooltip: {
-            // trigger:"item",
+            // trigger:"axis",
             formatter: function (params) {
+              // params = params[0]
               if (params.seriesName!="test") {
-                return "<p><b>"+params.seriesName+"</b></p><p>Market Growth: "+params.value[3]+"%</p><p>Market Share: "+_this.formatNum(params.value[2],0)+"%</p>";
+                if(id=='brandAssociation_share'){
+                  return "<p><b>"+params.seriesName+"</b></p><p>Association Score: ("+_this.formatNum(Math.ceil(params.value[2]*100)/100,2)+" , "+_this.formatNum(Math.ceil(params.value[3]*100)/100,2)+")</p>";
+                }else{
+                  return "<p><b>"+params.seriesName+"</b></p><p>"+xy[1].split(' (%)')[0]+": "+_this.formatNum(Math.ceil(params.value[3]*100)/100,2)+"%</p><p>"+xy[0].split(' (%)')[0]+": "+_this.formatNum(Math.ceil(params.value[2]*100)/100,2)+"%</p>";
+                }
               }
             },
             // axisPointer:{
@@ -2199,6 +2433,8 @@ var IAX_CHART_TOOL = {
               }
             },
             axisLabel:{
+              showMinLabel:false,
+              showMaxLabel:false,
               textStyle: {
                   color: '#999',
                   fontSize:10,
@@ -2209,7 +2445,7 @@ var IAX_CHART_TOOL = {
             min:xArea[0],
             splitNumber:10,
             boundaryGap:["10%","10%"],
-            offset:-200,
+            offset:-190,
             splitLine: {
                 show: false
             },
@@ -2224,16 +2460,18 @@ var IAX_CHART_TOOL = {
                 color: '#333',
                 fontSize: 12
             },
-            max:100,
-            min:-100,
+            max:yArea[1],
+            min:yArea[0],
             splitNumber:10,
-            offset:-255,
+            offset:-225,
             axisLine:{
               lineStyle:{
                 color:"#dfdfdf"
               }
             },
             axisLabel:{
+              showMinLabel:false,
+              showMaxLabel:false,
               textStyle: {
                   color: '#999',
                   fontSize:10,
@@ -2258,6 +2496,23 @@ var IAX_CHART_TOOL = {
     };
     myChart.setOption(option);
 
+    var brandHtml = "<ul name='product_cross_legend' style='position:absolute;bottom:0;width:100%;display:flex; justify-content:center;'>";
+    for(var i =0 ;i<legend.length;i++){
+      brandHtml += '<li data-value="'+legend[i]+'" style="cursor:pointer;width:100px;line-height:25px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+colorMap[i]+';display:inline-block;margin-right:5px;"></span>'+legend[i]+'</li>'
+    }
+    $("#"+id).find('[name=product_cross_legend]').remove();
+    $("#"+id).append(brandHtml+"</ul>");
+    $("#"+id).find('[name=product_cross_legend]').find("li").on("mouseover",function(){
+      var name = $(this).attr("data-value");
+      myChart.dispatchAction({type: 'hideTip'});
+      myChart.dispatchAction({type: 'downplay'});
+      myChart.dispatchAction({type: 'showTip',  seriesIndex:seriesIndexCountArr[name],dataIndex:0});
+      myChart.dispatchAction({type: 'highlight', seriesName: name});
+    })
+    $("#"+id).find('[name=product_cross_legend]').find("li").on("mouseout",function(){
+      myChart.dispatchAction({type: 'hideTip'});
+      myChart.dispatchAction({type: 'downplay'});
+    })
     var isExists = false;
     for (var i = 0; i < this.charts.length; i++) {
       if(this.charts[i].id == id){
@@ -2273,8 +2528,30 @@ var IAX_CHART_TOOL = {
     if(!data) return;
     if (!document.getElementById(id)) return;
     if (!ytype) ytype="dailyGrowthP";
-    var sizeBubble = [15,20,25,30,35,37,40,43,47,50,53,57,60,65,70];
-    var brands = {},timeCircle={},audience=0,times=[],minY=0,maxY=0;
+    var sizeBubble = [5,10,15,20,22,24,26,28,30,32,34,36,38,40,45];
+    var brands = {},timeCircle={},audience=0,times=[],minY=0,maxY=0,minX=-999,maxX=0;
+    var colorMapArr = {
+                       '#EF4136':['#EF4136','#F26B62','#F6948E','#F9BEBA','#FDE8E6','#E5C1BF','#E09B96','#D06D66','#C64E46'],
+                       '#FFBD00':['#FFBD00','#FFCB38','#FFDA70','#FFE8A8','#FFF7E0','#E7D8B2','#E5CA7E','#E0B949','#E7B11A'],
+                       '#4484CF':['#4484CF','#6D9FD9','#96BAE4','#BFD5EE','#E8F0F9','#CDD9E8','#9AB0CB','#779AC4','#4D7AB1'],
+                       '#946EDB':['#946EDB','#AB8EE3','#C3AEEB','#DACDF2','#F2EDFA','#D9D1E7','#B6A8D2','#A38DCE','#8F73C2'],
+                       '#8D7B7B':['#8D7B7B','#A69898','#BFB5B5','#D8D2D2','#F1EFEF','#E4E0E0','#CBC3C3','#B2A6A6','#998989'],
+                       '#54C7B0':['#54C7B0','#7AD3C1','#9FDFD3','#C5ECE4','#EAF8F5','#C3DED8','#A5D0C7','#7DC1B3','#5DB6A5'],
+                       '#F47920':['#F47920','#F69651','#F9B482','#FBD1B3','#FDEFE4','#E2C7B3','#E7B48F','#DE9662','#DB7B35'],
+                       '#194283':['#194283','#4C6B9E','#7E95B9','#B1BED5','#E3E8F0','#B7BFCB','#8697B1','#576D92','#2F4D7D'],
+                       '#59C754':['#59C754','#7DD37A','#A2DF9F','#C6ECC5','#EBF8EA','#C4D9C3','#9FC49D','#78AF75','#5AA357']
+                     }
+    var colorMapIndex= {
+      '#EF4136': 0,
+      '#FFBD00': 0,
+      '#4484CF': 0,
+      '#946EDB': 0,
+      '#8D7B7B': 0,
+      '#54C7B0': 0,
+      '#F47920': 0,
+      '#194283': 0,
+      '#59C754': 0
+    }             
     for (var i = 0; i < data.length; i++) {
       if (brands[data[i].brandName]) {
       }else{
@@ -2283,55 +2560,74 @@ var IAX_CHART_TOOL = {
       audience += parseInt(data[i].audience);
       if (minY > data[i][ytype]) minY=data[i][ytype];
       if (maxY < data[i][ytype]) maxY=data[i][ytype];
+      if (minX==-999 || minX > data[i]["value"]) minX=data[i]["value"];
+      if (maxX < data[i]["value"]) maxX=data[i]["value"];
     };
     if (minY >= 0 || Math.abs(minY) < Math.abs(maxY)) minY = -maxY;
     if (maxY <= 0 || Math.abs(maxY) < Math.abs(minY)) maxY = -minY;
-    console.log(minY,maxY)
+    //上下限各加10%
+    minX = minX - Math.abs(minX)*0.1;
+    maxX = maxX + maxX*0.1
+    console.log(minY,maxY,minX,maxX)
+    console.log(data)
     for (var i = 0; i < data.length; i++) {
-      var percent = parseFloat((parseInt(data[i].value) +100)/200);
+      var percent = 1-parseFloat((parseInt(data[i].value) - minX)/(maxX-minX));
       var percentY = parseFloat(data[i][ytype]/maxY);
+      var width = parseFloat($("#"+id).css("width"));
       timeCircle = {};
       timeCircle.id = "time_"+data[i].brandId+"_"+data[i].productId;
       timeCircle.name = data[i].productName;
-      timeCircle.color = data[i].color;
+      timeCircle.brandName = data[i].brandName;
+      timeCircle.color = colorMapArr[data[i].color][colorMapIndex[data[i].color]];
       timeCircle.r = sizeBubble[Math.ceil(parseInt(data[i].audience)/(audience/15))];
-      timeCircle.left = (890-130) * percent + timeCircle.r/2;
+      timeCircle.left = (width-130) * percent + timeCircle.r/2;
       timeCircle.top = 330/2 - 135 * percentY;
       timeCircle.marginTop = -timeCircle.r -3;
-      timeCircle.index = Math.ceil(timeCircle.left);
+      timeCircle.index = 100-Math.ceil(timeCircle.r);
       timeCircle.audience = data[i]["audience"];
       timeCircle.y = data[i][ytype];
       timeCircle.x = data[i]["value"];
       times.push(timeCircle);
+      colorMapIndex[data[i].color] = colorMapIndex[data[i].color]+1;
     };
     var html = "",isRight="";
     times = times.sort(this.sortJson("desc","left","parseFloat"));
     if (isChage) {
       for (var i = 0; i < times.length; i++) {
-        var direct = times[i].y>0? "top" :"bottom";
+        var direct = times[i].y<0? "top" :"bottom";
         $("#"+times[i].id).css("left",times[i].left+"px");
         $("#"+times[i].id).css("top",times[i].top+"px");
-        var innerhtml = '<span style="top:50%;position:absolute;width:100%;transform: translateY(-50%);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;left:0;color:#fff;">'+times[i].name+'</span>'
-                    // '<span style="'+direct+':-30px;position:absolute;width:200px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
+        var tag = "";
+        if(times[i].y>0){
+          tag = "+";
+        }
+        var innerhtml = //'<span style="top:50%;position:absolute;width:100%;transform: translateY(-50%);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;left:0;color:#fff;">'+times[i].name+'</span>'
+                     '<span style="'+direct+':-20px;position:absolute;width:200px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
                     +'<div class="tooltip-content '+isRight+'">'
                     +' <p><b>'+times[i].name+'</b></p>'
-                    +' <p style="font-weight:normal">Association: '+times[i].x+'</p>'
-                    +' <p style="font-weight:normal">Audience: '+times[i].audience+'</p>'
+                    +' <p style="font-weight:normal">Brand: '+times[i].brandName+'</p>'
+                    +' <p style="font-weight:normal">Association Score: '+times[i].x+'</p>'
+                    +' <p style="font-weight:normal">Growth Rate: '+tag+times[i].y+'%</p>'
                     +'</div>';
 
         $("#"+times[i].id).html(innerhtml);
       }
     }else{
       for (var i = 0; i < times.length; i++) {
-        var direct = times[i].y>0? "top" :"bottom";
+        var direct = times[i].y<0? "top" :"bottom";
+        var tag = "";
+        if(times[i].y>0){
+          tag = "+";
+        }
         // console.log(times[i]);
         html += '<div id="'+times[i].id+'" class="time-circle" style="background:'+times[i].color+';left:'+times[i].left+'px;top:'+times[i].top+'px;margin-top:'+times[i].marginTop+'px;width:'+times[i].r*2+'px;height:'+times[i].r*2+'px;border-radius:'+times[i].r*2+'px!important;z-index:'+times[i].index+';">'
-                // +'<span style="'+direct+':-30px;position:absolute;width:200px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
-                +'<span style="top:50%;position:absolute;width:100%;transform: translateY(-50%);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;left:0;color:#fff;">'+times[i].name+'</span>'
+                +'<span style="'+direct+':-20px;position:absolute;width:200px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
+               // +'<span style="top:50%;position:absolute;width:100%;transform: translateY(-50%);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;left:0;color:#fff;">'+times[i].name+'</span>'
                 +'<div class="tooltip-content '+isRight+'">'
                 +' <p><b>'+times[i].name+'</b></p>'
-                +' <p style="font-weight:normal">Association: '+times[i].x+'</p>'
-                +' <p style="font-weight:normal">Audience: '+times[i].audience+'</p>'
+                +' <p style="font-weight:normal">Brand: '+times[i].brandName+'</p>'
+                +' <p style="font-weight:normal">Association Score: '+times[i].x+'</p>'
+                +' <p style="font-weight:normal">Growth Rate: '+tag+times[i].y+'%</p>'
                 +'</div>'
                 +'</div>';
       };
@@ -2339,7 +2635,7 @@ var IAX_CHART_TOOL = {
     }
     var brandHtml = "<ul id='product_association_legend' style='position:absolute;bottom:0;width:100%;display:flex; justify-content:center;'>";
     for(var i in brands){
-      brandHtml += '<li style="width:200px;line-height:25px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+brands[i]+';display:inline-block;margin-right:5px;"></span>'+i+'</li>'
+      brandHtml += '<li style="width:100px;line-height:25px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+brands[i]+';display:inline-block;margin-right:5px;"></span>'+i+'</li>'
     }
     $("#"+id).parent().find('#product_association_legend').remove();
     $("#"+id).after(brandHtml+"</ul>");
@@ -2362,17 +2658,73 @@ var IAX_CHART_TOOL = {
                        '#194283':['#194283','#4C6B9E','#7E95B9','#B1BED5','#E3E8F0','#B7BFCB','#8697B1','#576D92','#2F4D7D'],
                        '#59C754':['#59C754','#7DD37A','#A2DF9F','#C6ECC5','#EBF8EA','#C4D9C3','#9FC49D','#78AF75','#5AA357']
                      }
-    var index = 0,all=0;
-    for (var i in allCategoryJSON) {
-      allCategoryJSON[i] = allCategoryJSON[i].sort(_this.sortJson("desc","value","parseInt"));
-      colorMap.push(_this.colorMap[index]);
-      for(var j=0;j<allCategoryJSON[i].length;j++){
-        productPie.push(allCategoryJSON[i][j]);
-        outerColorMap.push(colorMapArr[_this.colorMap[index]][j]);
-        all+=allCategoryJSON[i][j].value;
+    var index = 0,all=0,maxCategory=5,maxProduct=3;
+    //处理数据，超过5个categories后面归纳为other，超过3个products后面归纳为other
+    var newCategoryPie = categoryPie;
+    var newCategoryJSON = {};
+    var categoryOther={},categoryOtherAuience = 0,productOther={},productOtherAudience=0;
+    if (newCategoryPie.length>maxCategory) {
+      //超过5个categories后面归纳为other
+      newCategoryPie = newCategoryPie.sort(_this.sortJson("desc","value","parseInt"));
+      for (var i = 0; i < newCategoryPie.length; i++) {
+        if (i>maxCategory-1) {
+          categoryOtherAuience += newCategoryPie[i].value;
+        }else{
+          newCategoryJSON[newCategoryPie[i].name] = allCategoryJSON[newCategoryPie[i].name];
+        }
+      };
+      categoryOther = {"name":"Others", value:categoryOtherAuience};
+      newCategoryPie = newCategoryPie.slice(0,maxCategory);
+      newCategoryPie.push(categoryOther);
+      newCategoryJSON["Others"] = [{'name':'Others',id:-1,value:categoryOtherAuience}];
+    }else{
+      newCategoryJSON = allCategoryJSON;
+    }
+    for (var i = 0; i < newCategoryPie.length; i++) {
+      if (i<=maxCategory-1) {
+        //超过3个products后面归纳为other
+        productOtherAudience = 0;
+        var _thisCategory = newCategoryJSON[newCategoryPie[i].name].sort(_this.sortJson("desc","value","parseInt"));
+        if (_thisCategory.length>maxProduct) {
+          for (var j = 0; j < _thisCategory.length; j++) {
+            if (j>maxProduct-1) {
+              productOtherAudience += _thisCategory[j].value;
+            };
+          };
+          productOther = {"name":"Others","value":productOtherAudience,"id":-1};
+          _thisCategory = _thisCategory.slice(0,maxProduct);
+          _thisCategory.push(productOther);
+        };
+        newCategoryJSON[newCategoryPie[i].name] = _thisCategory;
+      }
+    };
+    console.log(newCategoryJSON)
+    var leftChartJson = $.extend(true,{},newCategoryJSON);
+    console.log(leftChartJson)
+    for (var i in leftChartJson) {
+      if (i=='Others') {
+        colorMap.push(["#dfdfdf"]);
+      }else{
+        colorMap.push(_this.colorMap[index]);
+      }
+      for(var j=0;j<leftChartJson[i].length;j++){
+        if (leftChartJson[i][j].name=="Others" && i!="Others") {
+          leftChartJson[i][j].name = i + "_Others";
+        }else{
+          leftChartJson[i][j].name = leftChartJson[i][j].name + "_Outers_" +i;
+        }
+        productPie.push(leftChartJson[i][j]);
+        if (i=="Others") {
+          outerColorMap.push("#dfdfdf");
+        }else{
+          outerColorMap.push(colorMapArr[_this.colorMap[index]][j]);
+        }
+        
+        all+=leftChartJson[i][j].value;
       }
       index++;
     };
+    console.log(outerColorMap)
     var option = {
       tooltip: {
           trigger:"item",
@@ -2380,7 +2732,9 @@ var IAX_CHART_TOOL = {
             if (params.seriesName!="product") {
                return "<p><b>"+params.name+"</b></p><p>Audience / All products: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
             }else{
-               return "<p><b>"+params.name+"</b></p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
+                var productName = params.name.split('_Outers_')[0];
+                var categoryName = params.name.split("_Outers_")[1];
+               return "<p><b>"+productName+"</b></p><p>Brand: "+categoryName+"</p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
             }
           },
           backgroundColor:"#f2f2f2",
@@ -2412,7 +2766,7 @@ var IAX_CHART_TOOL = {
                   show: false
               }
           },
-          data:categoryPie
+          data:newCategoryPie
         },
         {
             name:'product',
@@ -2426,7 +2780,7 @@ var IAX_CHART_TOOL = {
                 normal: {
                     color:"#333",
                     formatter: function(params){
-                      return _this.substrByLength(params.name,12);
+                      return _this.substrByLength(params.name.split("_Outers_")[0],12);
                     },
                 }
             },
@@ -2441,7 +2795,7 @@ var IAX_CHART_TOOL = {
         }
       ]
     }
-    console.log(categoryPie)
+    console.log(newCategoryPie)
     console.log(productPie)
     console.log(outerColorMap)
     myChart.setOption(option,{
@@ -2461,21 +2815,29 @@ var IAX_CHART_TOOL = {
     
     index = 0;
     $("#"+productsId).empty();
-    for (var i in allCategoryJSON) {
-      allCategoryJSON[i] = allCategoryJSON[i].sort(_this.sortJson("desc","value","parseInt"));
+    for (var i in newCategoryJSON) {
+      newCategoryJSON[i] = newCategoryJSON[i].sort(_this.sortJson("desc","value","parseInt"));
       var productId = productsId+"_product_"+new Date().getTime();
       var categoryValue = 0;
-      for(var j=0;j<allCategoryJSON[i].length;j++){
-        categoryValue+=allCategoryJSON[i][j].value;
+      for(var j=0;j<newCategoryJSON[i].length;j++){
+        categoryValue+=newCategoryJSON[i][j].value;
       }
-      var percent = ((categoryValue/all)*100).toFixed(2);
-      var title = '<div style="width:180px;line-height:20px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+_this.colorMap[index]+';display:inline-block;margin-right:5px;"></span>'+i+'</div><p>'+percent+'%</p>';
-      $("#"+productsId).append('<div style="height:200px;width:180px;float:left;position:relative;"><div style="position:absolute;top:-10px;left:50%;transform: translateX(-50%);">'+title+'</div><div style="height:200px;width:180px;" id="'+productId+'"></div>');
-      _this.initProductsAnalysis(productId,allCategoryJSON[i],colorMapArr[_this.colorMap[index]]);
+      if (i!="Others") {
+        var percent = ((categoryValue/all)*100).toFixed(2);
+        var title = '<div style="width:180px;line-height:20px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+_this.colorMap[index]+';display:inline-block;margin-right:5px;"></span>'+i+'</div><p>'+percent+'%</p>';
+        $("#"+productsId).append('<div style="height:200px;width:180px;float:left;position:relative;"><div style="position:absolute;top:-10px;left:50%;transform: translateX(-50%);">'+title+'</div><div style="height:200px;width:180px;" id="'+productId+'"></div>');
+        _this.initProductsAnalysis(productId,newCategoryJSON[i],colorMapArr[_this.colorMap[index]],i);
+      }else{
+        var percent = ((categoryValue/all)*100).toFixed(2);
+        var title = '<div style="width:180px;line-height:20px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:#dfdfdf;display:inline-block;margin-right:5px;"></span>'+i+'</div><p>'+percent+'%</p>';
+        $("#"+productsId).append('<div style="height:200px;width:180px;float:left;position:relative;"><div style="position:absolute;top:-10px;left:50%;transform: translateX(-50%);">'+title+'</div><div style="height:200px;width:180px;" id="'+productId+'"></div>');
+        _this.initProductsAnalysis(productId,newCategoryJSON[i],["#dfdfdf"],i);
+      }
+     
       index++;
     };
   },
-  initProductsAnalysis: function(id,data,colorMap){
+  initProductsAnalysis: function(id,data,colorMap,categoryName){
     if(!data) return;
     if (!document.getElementById(id)) return;
     echarts.dispose(document.getElementById(id));
@@ -2501,7 +2863,8 @@ var IAX_CHART_TOOL = {
       tooltip: {
           trigger:"item",
           formatter: function (params) {
-              return "<p><b>"+params.name+"</b></p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
+            console.log(params)
+              return "<p><b>"+params.name+"</b></p><p>Brand: "+categoryName+"</p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
           },
           backgroundColor:"#f2f2f2",
           borderColor:"#dfdfdf",
@@ -2552,7 +2915,7 @@ var IAX_CHART_TOOL = {
   initSentiment: function(id,data){
     if(!data) return;
     if (!document.getElementById(id)) return;
-    var sentiment = (180/100)*(data.sentiment+50);
+    var sentiment = (180/100)*(data+50);
     var degreeArr = ["0~22.5","22.5~67.5","67.5~112.5","112.5~157.5","157.5~180"];
     var scaleArr = ["10~17.5","17.5~22.5","22.5~27.5","27.5~32.5","55~62.5","62.5~67.5","67.5~72.5","72.5~77.5","100~107.5","107.5~112.5","112.5~117.5","117.5~122.5","145~152.5","152.5~157.5","157.5~162.5","162.5~167.5"];
     var origin = 15;
@@ -2566,6 +2929,7 @@ var IAX_CHART_TOOL = {
       $(this).css("transform","rotate("+(rotate-180)+"deg)");
       $(this).css("left",left+"px");
       $(this).css("bottom",bottom+"px");
+      $(this).css("background","");
     })
     $("#"+id).find(".sentiment-selected").removeClass("sentiment-selected");
     $("#"+id).find(".sentiment-scale").removeClass("selected");
@@ -2598,9 +2962,21 @@ var IAX_CHART_TOOL = {
       for (var i = scaleIndex; i < degreeIndex; i++) {
         $("#"+id).find("div").eq(i).addClass("selected");
       };
+      
+      var $prev = $("#"+id).find("div").eq(scaleIndex).prev();
+    }else{
+      var $prev = $("#"+id).find("div").eq(degreeIndex).prev();
+    }
+    //渐变色简单处理。。
+    var isFirstScale = $("#"+id).find("div.selected").length<2 || $("#"+id).find("div.selected").eq(0).hasClass("sentiment-scale");
+    if ($prev.hasClass("sentiment-scale") && isFirstScale) {
+      $prev.css("background","#F2675E");
+      var $prever = $prev.prev();
+      if ($prever.hasClass("sentiment-scale")) {
+         $prever.css("background","#F7A09A");
+      }
     };
-    
-    $("#"+id).find(".sentiment-pointer").css("transform","rotate("+(sentiment-180)+"deg)");
+    $("#"+id).find(".sentiment-pointer").css("transform","rotate("+(sentiment-180+75)+"deg)");
   },
   changeToGroupIndex:function(data){
     if (!data) return "";
@@ -3611,6 +3987,9 @@ var IAX_CHART_TOOL = {
         value = _this.formatNum(plus55,0);
       };
       per55 -=per.toFixed(0);
+      if (per < 0) {
+        per = 0;
+      }
       var barHeight = 128 * (per) * 0.01 ;
       if ($("#"+id).find(".result-graph-word-content").hasClass("min-age-group")) {
         var barHeight = 100 * (per) * 0.01 ;
@@ -3694,6 +4073,9 @@ var IAX_CHART_TOOL = {
             trueValue = parseFloat(plus55);
           };
           per55 -=per.toFixed(0);
+          if (per < 0) {
+            per = 0;
+          }
           if(max < per) max = parseInt(per);
           var json = {
             name:name,
@@ -4140,197 +4522,342 @@ var IAX_CHART_TOOL = {
         };
       };
     };
+    var areasMap = {"en_us":{"Overseas":["OVERSEAS"],"Central":["JiangXi","HuNan","HuBei","HeNan"],"East":["Zhejiang","Shanghai","Jiangsu","FuJian","AnHui"],"HK, MO & TW":["HongKong","TaiWan","Macao"],"North":["TianJin","ShanXi","ShanDong","NeiMeng","HeBei","BeiJing"],"Northeast":["LiaoNing","JiLin","Heilongjiang"],"Northwest":["XinJiang","ShanXi1","QingHai","NingXia","GanSu"],"South":["HaiNan","GuangXi","GuangDong"],"Southwest":["ChongQing","YunNan","XiZang","SiChuan","GuiZhou"]},"zh_cn":{"海外":["海外"],"东北地区":["辽宁省","吉林省","黑龙江省"],"华东地区":["浙江省","上海市","江苏省","福建省","安徽省"],"华中地区":["江西省","湖南省","湖北省","河南省"],"华北地区":["天津市","山西省","山东省","内蒙古自治区","河北省","北京市"],"华南地区":["海南省","广西壮族自治区","广东省"],"港澳台地区":["香港","台湾","澳门"],"西北地区":["新疆维吾尔自治区","陕西省","青海省","宁夏回族自治区","甘肃省"],"西南地区":["重庆市","云南省","西藏自治区","四川省","贵州省"]}};
     var geoCoordMap = {
-      "海门":[121.15,31.89],
-      "鄂尔多斯":[109.781327,39.608266],
-      "招远":[120.38,37.35],
-      "舟山":[122.207216,29.985295],
-      "齐齐哈尔":[123.97,47.33],
-      "盐城":[120.13,33.38],
-      "赤峰":[118.87,42.28],
-      "青岛":[120.33,36.07],
-      "乳山":[121.52,36.89],
-      "金昌":[102.188043,38.520089],
-      "泉州":[118.58,24.93],
-      "莱西":[120.53,36.86],
-      "日照":[119.46,35.42],
-      "胶南":[119.97,35.88],
-      "南通":[121.05,32.08],
-      "拉萨":[91.11,29.97],
-      "云浮":[112.02,22.93],
-      "梅州":[116.1,24.55],
-      "文登":[122.05,37.2],
-      "上海":[121.48,31.22],
-      "攀枝花":[101.718637,26.582347],
-      "威海":[122.1,37.5],
-      "承德":[117.93,40.97],
-      "厦门":[118.1,24.46],
-      "汕尾":[115.375279,22.786211],
-      "潮州":[116.63,23.68],
-      "丹东":[124.37,40.13],
-      "太仓":[121.1,31.45],
-      "曲靖":[103.79,25.51],
-      "烟台":[121.39,37.52],
-      "福州":[119.3,26.08],
-      "瓦房店":[121.979603,39.627114],
-      "即墨":[120.45,36.38],
-      "抚顺":[123.97,41.97],
-      "玉溪":[102.52,24.35],
-      "张家口":[114.87,40.82],
-      "阳泉":[113.57,37.85],
-      "莱州":[119.942327,37.177017],
-      "湖州":[120.1,30.86],
-      "汕头":[116.69,23.39],
-      "昆山":[120.95,31.39],
-      "宁波":[121.56,29.86],
-      "湛江":[110.359377,21.270708],
-      "揭阳":[116.35,23.55],
-      "荣成":[122.41,37.16],
-      "连云港":[119.16,34.59],
-      "葫芦岛":[120.836932,40.711052],
-      "常熟":[120.74,31.64],
-      "东莞":[113.75,23.04],
-      "河源":[114.68,23.73],
-      "淮安":[119.15,33.5],
-      "泰州":[119.9,32.49],
-      "南宁":[108.33,22.84],
-      "营口":[122.18,40.65],
-      "惠州":[114.4,23.09],
-      "江阴":[120.26,31.91],
-      "蓬莱":[120.75,37.8],
-      "韶关":[113.62,24.84],
-      "嘉峪关":[98.289152,39.77313],
-      "广州":[113.23,23.16],
-      "延安":[109.47,36.6],
-      "太原":[112.53,37.87],
-      "清远":[113.01,23.7],
-      "中山":[113.38,22.52],
-      "昆明":[102.73,25.04],
-      "寿光":[118.73,36.86],
-      "盘锦":[122.070714,41.119997],
-      "长治":[113.08,36.18],
-      "深圳":[114.07,22.62],
-      "珠海":[113.52,22.3],
-      "宿迁":[118.3,33.96],
-      "咸阳":[108.72,34.36],
-      "铜川":[109.11,35.09],
-      "平度":[119.97,36.77],
-      "佛山":[113.11,23.05],
-      "海口":[110.35,20.02],
-      "江门":[113.06,22.61],
-      "章丘":[117.53,36.72],
-      "肇庆":[112.44,23.05],
-      "大连":[121.62,38.92],
-      "临汾":[111.5,36.08],
-      "吴江":[120.63,31.16],
-      "石嘴山":[106.39,39.04],
-      "沈阳":[123.38,41.8],
-      "苏州":[120.62,31.32],
-      "茂名":[110.88,21.68],
-      "嘉兴":[120.76,30.77],
-      "长春":[125.35,43.88],
-      "胶州":[120.03336,36.264622],
-      "银川":[106.27,38.47],
-      "张家港":[120.555821,31.875428],
-      "三门峡":[111.19,34.76],
-      "锦州":[121.15,41.13],
-      "南昌":[115.89,28.68],
-      "柳州":[109.4,24.33],
-      "三亚":[109.511909,18.252847],
-      "自贡":[104.778442,29.33903],
-      "吉林":[126.57,43.87],
-      "阳江":[111.95,21.85],
-      "泸州":[105.39,28.91],
-      "西宁":[101.74,36.56],
-      "宜宾":[104.56,29.77],
-      "呼和浩特":[111.65,40.82],
-      "成都":[104.06,30.67],
-      "大同":[113.3,40.12],
-      "镇江":[119.44,32.2],
-      "桂林":[110.28,25.29],
-      "张家界":[110.479191,29.117096],
-      "宜兴":[119.82,31.36],
-      "北海":[109.12,21.49],
-      "西安":[108.95,34.27],
-      "金坛":[119.56,31.74],
-      "东营":[118.49,37.46],
-      "牡丹江":[129.58,44.6],
-      "遵义":[106.9,27.7],
-      "绍兴":[120.58,30.01],
-      "扬州":[119.42,32.39],
-      "常州":[119.95,31.79],
-      "潍坊":[119.1,36.62],
-      "重庆":[106.54,29.59],
-      "台州":[121.420757,28.656386],
-      "南京":[118.78,32.04],
-      "滨州":[118.03,37.36],
-      "贵阳":[106.71,26.57],
-      "无锡":[120.29,31.59],
-      "本溪":[123.73,41.3],
-      "克拉玛依":[84.77,45.59],
-      "渭南":[109.5,34.52],
-      "马鞍山":[118.48,31.56],
-      "宝鸡":[107.15,34.38],
-      "焦作":[113.21,35.24],
-      "句容":[119.16,31.95],
-      "北京":[116.46,39.92],
-      "徐州":[117.2,34.26],
-      "衡水":[115.72,37.72],
-      "包头":[110,40.58],
-      "绵阳":[104.73,31.48],
-      "乌鲁木齐":[87.68,43.77],
-      "枣庄":[117.57,34.86],
-      "杭州":[120.19,30.26],
-      "淄博":[118.05,36.78],
-      "鞍山":[122.85,41.12],
-      "溧阳":[119.48,31.43],
-      "库尔勒":[86.06,41.68],
-      "安阳":[114.35,36.1],
-      "开封":[114.35,34.79],
-      "济南":[117,36.65],
-      "德阳":[104.37,31.13],
-      "温州":[120.65,28.01],
-      "九江":[115.97,29.71],
-      "邯郸":[114.47,36.6],
-      "临安":[119.72,30.23],
-      "兰州":[103.73,36.03],
-      "沧州":[116.83,38.33],
-      "临沂":[118.35,35.05],
-      "南充":[106.110698,30.837793],
-      "天津":[117.2,39.13],
-      "富阳":[119.95,30.07],
-      "泰安":[117.13,36.18],
-      "诸暨":[120.23,29.71],
-      "郑州":[113.65,34.76],
-      "哈尔滨":[126.63,45.75],
-      "聊城":[115.97,36.45],
-      "芜湖":[118.38,31.33],
-      "唐山":[118.02,39.63],
-      "平顶山":[113.29,33.75],
-      "邢台":[114.48,37.05],
-      "德州":[116.29,37.45],
-      "济宁":[116.59,35.38],
-      "荆州":[112.239741,30.335165],
-      "宜昌":[111.3,30.7],
-      "义乌":[120.06,29.32],
-      "丽水":[119.92,28.45],
-      "洛阳":[112.44,34.7],
-      "秦皇岛":[119.57,39.95],
-      "株洲":[113.16,27.83],
-      "石家庄":[114.48,38.03],
-      "莱芜":[117.67,36.19],
-      "常德":[111.69,29.05],
-      "保定":[115.48,38.85],
-      "湘潭":[112.91,27.87],
-      "金华":[119.64,29.12],
-      "岳阳":[113.09,29.37],
-      "长沙":[113,28.21],
-      "衢州":[118.88,28.97],
-      "廊坊":[116.7,39.53],
-      "菏泽":[115.480656,35.23375],
-      "合肥":[117.27,31.86],
-      "武汉":[114.31,30.52],
-      "大庆":[125.03,46.58]
+      "北京市&Beijing":  [116.3809433,39.9236145],
+      "天津市&Tianjin": [117.2034988,39.13111877],
+      "上海市&Shanghai": [121.4692688,31.23817635],
+      "重庆市&Chongqing": [106.5103378,29.55817604],
+      "七台河市&Qitaihe": [130.8753967, 45.80927277],
+      "三亚市&Sanya": [109.5078201, 18.23404312],
+      "三明市&Sanming": [117.6012268, 26.22301292],
+      "三门峡市&Sanmenxia": [111.1952591, 34.78076935],
+      "上饶市&Shangrao": [117.9634018, 28.45326614],
+      "东莞市&Dongguan": [113.7487717, 23.0485363],
+      "东营市&Dongying": [118.4959564, 37.46191406],
+      "中卫市&Zhongwei": [105.18661, 37.513252],
+      "中山市&Zhongshan": [113.3714523, 22.52685356],
+      "临夏回族自治州&Linxia": [103.2108906, 35.60121067],
+      "临汾市&Linfen": [111.5141678, 36.08282471],
+      "临沂市&Linyi": [118.3379593, 35.06945038],
+      "临沧市&Lincang": [100.0878067, 23.8799305],
+      "丹东市&Dandong": [124.3814621, 40.13518143],
+      "丽水市&Lishui": [119.9165573, 28.44883728],
+      "丽江市&Lijiang": [100.2342529, 26.87666512],
+      "乌兰察布市&Ulanqab": [113.0985184, 41.03116608],
+      "乌海市&Wuhai": [106.8148727, 39.67420197],
+      "乌鲁木齐市&Urumqi": [87.60611725, 43.79093933],
+      "乐山市&Leshan": [103.7514038, 29.56822395],
+      "九江市&Jiujiang": [115.984581, 29.72321129],
+      "云浮市&Yunfu": [112.03999, 22.933193],
+      "亳州市&Bozhou": [115.7709, 33.879292],
+      "伊犁哈萨克自治州&Ili": [81.32412996, 43.91686827],
+      "佛山市&Foshan": [113.1145172, 23.03487778],
+      "佳木斯市&Jiamusi": [130.36232, 46.81366348],
+      "保定市&Baoding": [115.5001831, 38.85707092],
+      "保山市&Baoshan": [99.16872406, 25.11680222],
+      "信阳市&Xinyang": [114.0677185, 32.13063049],
+      "儋州市&Zhanzhou": [109.5806849, 19.52092966],
+      "克孜勒苏柯尔克孜自治州&Kezilesu": [76.16660835, 39.71529724],
+      "克拉玛依市&Kelamayi": [84.86360931, 45.59651184],
+      "六安市&Liuan": [116.4927902, 31.75352287],
+      "六盘水市&Liupanshui": [104.8732529, 26.5767746],
+      "兰州市&Lanzhou": [103.7500534, 36.06803894],
+      "兴安盟&Hinggan": [122.0381598, 46.08207144],
+      "内江市&Neijiang": [105.0534363, 29.57756805],
+      "凉山彝族自治州&Liangshan": [102.2674383, 27.88162244],
+      "包头市&Baotou": [109.8517075, 40.6664238],
+      "北海市&Beihai": [109.1191711, 21.47979736],
+      "十堰市&Shiyan": [110.7827988, 32.65213013],
+      "南京市&Nanjing": [118.7727814, 32.04761505],
+      "南充市&Nanchong": [106.0816269, 30.79582214],
+      "南宁市&Nanning": [108.3117676, 22.80654335],
+      "南平市&Nanping": [118.1691208, 26.64484215],
+      "南昌市&Nanchang": [115.8999176, 28.67599106],
+      "南通市&Nantong": [120.8555679, 32.01506805],
+      "南阳市&Nanyang": [112.5375137, 32.99901962],
+      "博尔塔拉蒙古自治州&Bortala": [82.06674632, 44.90603596],
+      "厦门市&Xiamen": [118.0875168, 24.45743561],
+      "双鸭山市&Shuangyashan": [131.1521607, 46.6376915],
+      "台州市&Taizhou": [121.4205629, 28.6561185],
+      "台湾&Taiwan": [120.960515, 23.69781],
+      "合肥市&Hefei": [117.2757034, 31.86325455],
+      "吉安市&Ji'An": [114.9704285, 27.1062088],
+      "吉林市&Jilin": [126.5668182, 43.88667679],
+      "吐鲁番市&Turpancity": [89.1895474, 42.95130195],
+      "吕梁市&Lvliang": [111.1348114, 37.512043],
+      "吴忠市&Wuzhong": [106.1991119, 37.98549652],
+      "周口市&Zhoukou": [114.6372528, 33.62804031],
+      "呼伦贝尔市&Hulun": [119.7305603, 49.21152878],
+      "呼和浩特市&Hohhot": [111.6632996, 40.82094193],
+      "和田地区&Hotan": [79.92243983, 37.11429217],
+      "咸宁市&Xianning": [114.2687378, 29.89432716],
+      "咸阳市&Xianyang": [108.7101288, 34.33721542],
+      "哈尔滨市&Harbin": [126.6433411, 45.74149323],
+      "唐山市&Tangshan": [118.2017288, 39.62533951],
+      "商丘市&Shangqiu": [115.6471863, 34.44358444],
+      "商洛市&Shangluo": [109.9403909, 33.87035105],
+      "喀什地区&Gashi": [75.98973068, 39.47039628],
+      "嘉兴市&Jiaxing": [120.7536316, 30.77111435],
+      "嘉峪关市&Jiayuguan": [98.27471161, 39.80265427],
+      "四平市&Siping": [124.377449, 43.16560745],
+      "固原市&Guyuan": [106.2785873, 36.01325989],
+      "塔城地区&Tacheng": [82.98043953, 46.74531234],
+      "大兴安岭地区&Da": [124.5921351, 51.9239847],
+      "大同市&Datong": [113.2963333, 40.0971489],
+      "大庆市&Daqing": [125.0248566, 46.59545136],
+      "大理白族自治州&Dali": [100.2676255, 25.60646837],
+      "大连市&Dalian": [121.6008377, 38.91780472],
+      "天水市&Tianshui": [105.7152405, 34.58426666],
+      "太原市&Taiyuan": [112.5693512, 37.87111282],
+      "威海市&Weihai": [122.1116867, 37.50076294],
+      "娄底市&Loudi": [111.9938965, 27.74133492],
+      "孝感市&Xiaogan": [113.9113312, 30.92845535],
+      "宁德市&Ningde": [119.5183182, 26.6664772],
+      "宁波市&Ningbo": [121.5412827, 29.87066841],
+      "安庆市&Anqing": [117.0344315, 30.51264572],
+      "安康市&Ankang": [109.0257874, 32.68986511],
+      "安阳市&Anyang": [114.3500519, 36.09685135],
+      "安顺市&Anshun": [105.9260712, 26.24425888],
+      "定西市&Dingxi": [104.6185684, 35.57523727],
+      "宜宾市&Yibin": [104.6168671, 28.77025604],
+      "宜昌市&Yichang": [111.2852707, 30.70395279],
+      "宜春市&Yichun": [114.3746109, 27.79557419],
+      "宝鸡市&Baoji": [107.1383591, 34.38228607],
+      "宣城市&Xuancheng": [118.7586551, 30.94078918],
+      "宿迁市&Suqian": [118.29706, 33.958302],
+      "山南市&Shannan": [91.77308713, 29.23701982],
+      "岳阳市&Yueyang": [113.0980682, 29.37461853],
+      "崇左市&Chongzuo": [107.35506, 22.420197],
+      "巴中市&Bazhong": [106.75476, 31.849014],
+      "巴彦淖尔市&Bayannur": [107.3945694, 40.76234055],
+      "巴音郭楞蒙古自治州&Bayingolin": [86.14517515, 41.76404026],
+      "常州市&Changzhou": [119.9502869, 31.78393364],
+      "常德市&Changde": [111.6876297, 29.03820992],
+      "平凉市&Pingliang": [106.6830673, 35.53551865],
+      "平顶山市&Pingdingshan": [113.3001938, 33.74362946],
+      "广元市&Guangyuan": [105.8317032, 32.44396973],
+      "广安市&Guang'An": [106.63175, 30.474428],
+      "广州市&Guangzhou": [113.2614288, 23.11891174],
+      "庆阳市&Qingyang": [107.6362305, 35.73855972],
+      "廊坊市&Langfang": [116.6898575, 39.51511002],
+      "延安市&Yan'An": [109.471283, 36.59387207],
+      "延边朝鲜族自治州&Yanbian": [129.5091262, 42.89120266],
+      "开封市&Kaifeng": [114.3461685, 34.7851944],
+      "张家口市&Zhangjiakou": [114.8787766, 40.81744003],
+      "张家界市&Zhangjiajie": [110.4814835, 29.13187981],
+      "张掖市&Zhangye": [100.4502869, 38.93505859],
+      "徐州市&Xuzhou": [117.1856079, 34.26752853],
+      "德宏傣族景颇族自治州&Dehong": [98.58484387, 24.4323115],
+      "德州市&Dezhou": [116.2878723, 37.45369339],
+      "德阳市&Deyang": [104.3915482, 31.13044548],
+      "忻州市&Xinzhou": [112.7315521, 38.39920807],
+      "怀化市&Huaihua": [109.9542313, 27.54740715],
+      "怒江傈僳族自治州&Nujiang": [98.85671501, 25.81753271],
+      "恩施土家族苗族自治州&Enshi": [109.4881804, 30.27218711],
+      "惠州市&Huizhou": [114.3924027, 23.08795738],
+      "成都市&Chengdu": [104.0817566, 30.66105652],
+      "扬州市&Yangzhou": [119.4368362, 32.39188767],
+      "承德市&Chengde": [117.9223404, 40.96760178],
+      "抚州市&Fuzhou": [116.3010483, 27.93483162],
+      "抚顺市&Fushun": [123.9295578, 41.84786606],
+      "拉萨市&Lasa": [91.11445308, 29.64411352],
+      "揭阳市&Jieyang": [116.34977, 23.542976],
+      "攀枝花市&Panzhihua": [101.6984177, 26.55479813],
+      "文山壮族苗族自治州&Wenshan": [104.2150486, 23.39868766],
+      "新乡市&Xinxiang": [113.8685532, 35.30746841],
+      "新余市&Xinyu": [114.9293823, 27.80654717],
+      "无锡市&Wuxi": [120.2991333, 31.57723045],
+      "日喀则市&Rikaze": [88.88110958, 29.26701395],
+      "日照市&Rizhao": [119.4515533, 35.42756271],
+      "昆明市&Kunming": [102.704567, 25.04384422],
+      "昌吉回族自治州&Changji": [87.30817902, 44.01114114],
+      "昌都市&Changducity": [97.17220509, 31.14069782],
+      "昭通市&Zhaotong": [103.7149277, 27.34227943],
+      "晋中市&Jinzhong": [112.7453613, 37.67613983],
+      "晋城市&Jincheng": [112.84272, 35.50651169],
+      "普洱市&Puer": [100.9752121, 22.79548073],
+      "景德镇市&Jingdezhen": [117.1179428, 29.19516754],
+      "曲靖市&Qujing": [103.7947006, 25.49616623],
+      "朔州市&Shuozhou": [112.4232712, 39.31313324],
+      "朝阳市&Chaoyang": [120.4514694, 41.57785797],
+      "本溪市&Benxi": [123.7645035, 41.28758621],
+      "来宾市&Laibin": [109.23294, 23.73144],
+      "杭州市&Hangzhou": [120.1592484, 30.26599503],
+      "松原市&Songyuan": [124.82204, 45.172604],
+      "林芝市&Linzhicity": [94.36153102, 29.64893975],
+      "果洛藏族自治州&Golog": [100.2447092, 34.47138225],
+      "枣庄市&Zaozhuang": [117.556282, 34.87264633],
+      "柳州市&Liuzhou": [109.4028091, 24.31040573],
+      "株洲市&Zhuzhou": [113.1520615, 27.85422325],
+      "桂林市&Guilin": [110.2866821, 25.28188324],
+      "梅州市&Meizhou": [116.1079407, 24.31450081],
+      "梧州市&Wuzhou": [111.3059464, 23.48661995],
+      "楚雄彝族自治州&Chuxiong": [101.5276607, 25.04494301],
+      "榆林市&Yulin": [109.7574463, 38.29727554],
+      "武威市&Wuwei": [102.633461, 37.9269104],
+      "武汉市&Wuhan": [114.2919388, 30.56751442],
+      "毕节市&Bijie": [105.2824173, 27.3062954],
+      "永州市&Yongzhou": [111.6121979, 26.2112999],
+      "汉中市&Hanzhong": [107.0343933, 33.07814789],
+      "汕头市&Shantou": [116.6837997, 23.36269188],
+      "汕尾市&Shanwei": [115.3640137, 22.77868652],
+      "江门市&Jiangmen": [113.0847473, 22.59119034],
+      "池州市&Chizhou": [117.4773331, 30.65686607],
+      "沈阳市&Shenyang": [123.4116821, 41.7966156],
+      "沧州市&Cangzhou": [116.8607712, 38.30884171],
+      "河池市&Hechi": [108.0516281, 24.69689179],
+      "河源市&Heyuan": [114.6938171, 23.73484039],
+      "泉州市&Quanzhou": [118.5896378, 24.91591835],
+      "泰安市&Tai'An": [117.1241074, 36.1871109],
+      "泸州市&Luzhou": [105.4378433, 28.88199425],
+      "洛阳市&Luoyang": [112.4247971, 34.66804123],
+      "济南市&Jinan": [117.0056, 36.6670723],
+      "济宁市&Jining": [116.576561, 35.40924072],
+      "海东市&Haidong": [102.4017109, 36.48207227],
+      "海北藏族自治州&Haibei": [100.9009262, 36.95451784],
+      "海南藏族自治州&Hainan": [100.6203395, 36.28660837],
+      "海口市&Haikou": [110.3465118, 20.03179359],
+      "海西蒙古族藏族自治州&Haixi": [97.37119774, 37.37707972],
+      "淄博市&Zibo": [118.0560532, 36.7935791],
+      "淮北市&Huaibei": [116.7874985, 33.9704895],
+      "淮南市&Huainan": [117.0207291, 32.6166954],
+      "淮安市&Huaian": [119.14111, 33.502789],
+      "深圳市&Shenzhen": [114.110672, 22.55639648],
+      "清远市&Qingyuan": [113.0212631, 23.71959686],
+      "温州市&Wenzhou": [120.6502914, 28.01647568],
+      "渭南市&Weinan": [109.5008392, 34.50152588],
+      "湖州市&Huzhou": [120.0971298, 30.86603928],
+      "湘潭市&Xiangtan": [112.9150238, 27.87335014],
+      "湘西土家族苗族自治州&Xiangxi": [109.7389287, 28.31173554],
+      "湛江市&Zhanjiang": [110.3992233, 21.19499779],
+      "滁州市&Chuzhou": [118.3011627, 32.31653214],
+      "滨州市&Binzhou": [118.0217667, 37.36781311],
+      "漯河市&Luohe": [114.0410919, 33.57250977],
+      "漳州市&Zhangzhou": [117.6530914, 24.51816368],
+      "潍坊市&Weifang": [119.1068497, 36.7040863],
+      "潮州市&Chaozhou": [116.63666, 23.667706],
+      "澳门&Macao": [113.5440083, 22.20167546],
+      "濮阳市&Puyang": [115.0149536, 35.70189667],
+      "烟台市&Yantai": [121.3799362, 37.53561401],
+      "焦作市&Jiaozuo": [113.2217865, 35.24735642],
+      "牡丹江市&Mudanjiang": [129.5984955, 44.58392334],
+      "玉树藏族自治州&Yushu": [97.00645511, 33.00525219],
+      "玉溪市&Yuxi": [102.5332336, 24.35497284],
+      "珠海市&Zhuhai": [113.5682602, 22.27258873],
+      "甘南藏族自治州&Gannan": [102.9109863, 34.98324974],
+      "甘孜藏族自治州&Garze": [101.962514, 30.04930605],
+      "白城市&Baicheng": [122.8395767, 45.61641693],
+      "白山市&Baishan": [126.421608, 41.93033218],
+      "白银市&Baiyin": [104.1837769, 36.53941727],
+      "百色市&Bose": [106.6121063, 23.90158272],
+      "益阳市&Yiyang": [112.3340683, 28.60197067],
+      "盐城市&Yancheng": [120.1351776, 33.38982773],
+      "盘锦市&Panjin": [122.0476303, 41.18847656],
+      "眉山市&Meishan": [103.83146, 30.050497],
+      "石嘴山市&Shizuishan": [106.3820572, 39.02428055],
+      "石家庄市&Shijiazhuang": [114.4897766, 38.04512787],
+      "秦皇岛市&Qinhuangdao": [119.5982971, 39.92430878],
+      "红河哈尼族彝族自治州&Honghe": [103.3755878, 23.36421652],
+      "绍兴市&Shaoxing": [120.5739288, 30.01093102],
+      "绥化市&Suihua": [126.98349, 46.63701248],
+      "绵阳市&Mianyang": [104.7485504, 31.45634842],
+      "聊城市&Liaocheng": [115.9884262, 36.44943237],
+      "肇庆市&Zhaoqing": [112.4514084, 23.05788231],
+      "自贡市&Zigong": [104.7763519, 29.36772156],
+      "舟山市&Zhoushan": [122.1016083, 30.02004242],
+      "芜湖市&Wuhu": [118.3598328, 31.33449554],
+      "苏州市&Suzhou": [120.6187286, 31.31645203],
+      "茂名市&Maoming": [110.8888474, 21.67071724],
+      "荆州市&Jingzhou": [112.2477875, 30.31733513],
+      "荆门市&Jingmen": [112.2002106, 31.03021622],
+      "莆田市&Putian": [119.0103226, 25.43813705],
+      "莱芜市&Laiwu": [117.66173, 36.205116],
+      "菏泽市&Heze": [115.4457626, 35.24853897],
+      "萍乡市&Pingxiang": [113.841423, 27.63298988],
+      "营口市&Yingkou": [122.2241516, 40.66835022],
+      "葫芦岛市&Huludao": [120.8474808, 40.75334168],
+      "蚌埠市&Bengbu": [117.3613815, 32.93924332],
+      "衡水市&Hengshui": [115.7081909, 37.72782135],
+      "衡阳市&Hengyang": [112.5993576, 26.90055466],
+      "衢州市&Quzhou": [118.8691788, 28.9584446],
+      "襄阳市&Xiangyang": [112.1411133, 32.04539871],
+      "西双版纳傣族自治州&Xishuangbanna": [100.7973892, 22.0074942],
+      "西宁市&Xining": [101.7778162, 36.61728828],
+      "西安市&Xi'An": [108.949028, 34.26168442],
+      "许昌市&Xuchang": [113.8215866, 34.02685928],
+      "贵港市&Guigang": [109.60844, 23.099092],
+      "贵阳市&Guiyang": [106.7113724, 26.57687378],
+      "贺州市&Hezhou": [111.53455, 24.417259],
+      "资阳市&Ziyang": [104.65019, 30.122671],
+      "赣州市&Ganzhou": [114.9336777, 25.85288239],
+      "赤峰市&Chifeng": [118.9498215, 42.26798248],
+      "辽源市&Liaoyuan": [125.1372833, 42.90859222],
+      "辽阳市&Liaoyang": [123.1617432, 41.26513672],
+      "达州市&Dazhou": [107.5003433, 31.22469711],
+      "运城市&Yuncheng": [110.9911499, 35.01391602],
+      "连云港市&Lianyungang": [119.1668015, 34.60517883],
+      "迪庆藏族自治州&Diqing": [99.70302652, 27.81906659],
+      "通化市&Tonghua": [125.9231262, 41.7232933],
+      "通辽市&Tongliao": [122.2603302, 43.61156082],
+      "遂宁市&Suining": [105.5697098, 30.50339317],
+      "遵义市&Zunyi": [106.9293976, 27.69538689],
+      "邢台市&Xingtai": [114.4950867, 37.06558991],
+      "那曲地区&Naqu": [92.0513207, 31.47611103],
+      "邯郸市&Handan": [114.4729538, 36.60151672],
+      "邵阳市&Shaoyang": [111.4773789, 27.25023651],
+      "郑州市&Zhengzhou": [113.6500473, 34.7570343],
+      "郴州市&Chenzhou": [113.0286484, 25.80229187],
+      "鄂尔多斯市&Eerduosi": [109.7808671, 39.60844559],
+      "鄂州市&Ezhou": [114.8811874, 30.40276718],
+      "酒泉市&Jiuquan": [98.51111603, 39.74496841],
+      "金华市&Jinhua": [119.6522064, 29.11081696],
+      "金昌市&Jinchang": [102.1657486, 38.49519348],
+      "钦州市&Qinzhou": [108.6147003, 21.94986916],
+      "铁岭市&Tieling": [123.844429, 42.29558182],
+      "铜仁市&Tongren": [109.1926804, 27.72216606],
+      "铜川市&Tongchuan": [109.0572815, 35.07545853],
+      "铜陵市&Tongling": [117.813179, 30.92524719],
+      "银川市&Yinchuan": [106.2719421, 38.46800995],
+      "锡林郭勒盟&Xilin": [116.0477155, 43.9331762],
+      "锦州市&Jinzhou": [121.1333695, 41.11112595],
+      "镇江市&Zhenjiang": [119.4442978, 32.20589829],
+      "长春市&Changchun": [125.3154297, 43.89256287],
+      "长沙市&Changsha": [112.9812698, 28.20082474],
+      "长治市&Changzhi": [113.1055679, 36.18191147],
+      "阜新市&Fuxin": [121.6488037, 42.00795364],
+      "阜阳市&Fuyang": [115.8097305, 32.90220642],
+      "防城港市&Fangchenggang": [108.35658, 21.768936],
+      "阳江市&Yangjiang": [111.9578934, 21.84523392],
+      "阳泉市&Yangquan": [113.5742569, 37.86065674],
+      "阿克苏地区&Aksu": [80.2600596, 41.1684029],
+      "阿勒泰地区&Altay": [88.14031038, 47.8456187],
+      "阿坝藏族羌族自治州&Aba": [102.2247375, 31.89937935],
+      "阿拉善盟&Alashan": [105.7289837, 38.8515317],
+      "阿里地区&Ali": [81.14540521, 30.40052298],
+      "陇南市&Longnan": [104.92928, 33.39484],
+      "随州市&Suizhou": [113.36982, 31.715105],
+      "雅安市&Ya'An": [102.9826965, 29.98229408],
+      "青岛市&Qingdao": [120.3581696, 36.13386154],
+      "鞍山市&Anshan": [122.9843826, 41.11525726],
+      "韶关市&Shaoguan": [113.6053925, 24.80877686],
+      "香港&Hongkong": [114.109497, 22.396428],
+      "马鞍山市&Maanshan": [118.4807129, 31.72492409],
+      "驻马店市&Zhumadian": [114.0356903, 32.97904205],
+      "鸡西市&Jixi": [130.9477539, 45.2970047],
+      "鹤壁市&Hebi": [114.1546707, 35.94008255],
+      "鹤岗市&Hegang": [130.2761993, 47.33728409],
+      "鹰潭市&Yingtan": [117.0302811, 28.2455864],
+      "黄冈市&Huanggang": [114.8649292, 30.44901848],
+      "黄南藏族自治州&Huangnan": [102.0150337, 35.51988388],
+      "黄山市&Huangshan": [118.3090668, 29.72084427],
+      "黄石市&Huangshi": [115.0749893, 30.21379852],
+      "黑河市&Heihe": [127.4869385, 50.24448776],
+      "黔东南苗族侗族自治州&Qiandongnan": [107.9841392, 26.5836279],
+      "黔南布依族苗族自治州&Qiannan": [107.5222592, 26.25427309],
+      "黔西南布依族苗族自治州&Qianxinan": [104.9043531, 25.08987278],
+      "齐齐哈尔市&Qiqihaer": [123.9592667, 47.34136963],
+      "龙岩市&Longyan": [117.0303879, 25.10970306]
     };
     var nameMap = {
       "北京":"BeiJing", 
@@ -4368,6 +4895,61 @@ var IAX_CHART_TOOL = {
       "香港":"HongKong", 
       "澳门":"Macao"
     }
+    //获取区域数据
+    var minArea=0,maxArea=0,areaRegions=[],newDataRegions = $.extend(true,[],data.regions);
+    for(var i in areasMap['en_us']){
+      var areasName = i;
+      var areasData = 0;
+      for (var j = 0; j < areasMap['en_us'][i].length; j++) {
+        var provinceName = areasMap['en_us'][i][j];
+        for (var k = 0; k < newDataRegions.length; k++) {
+          if(provinceName.toUpperCase() == newDataRegions[k]["name"].toUpperCase()){
+            areasData += parseInt(newDataRegions[k]["value"]);
+            areasMap['en_us'][i][j] = newDataRegions[k]["name"];
+          }
+        };
+      };
+      areaRegions.push({
+        name : areasName,
+        value : areasData
+      })
+    }
+    //重新赋值省份数据,并获取最大最小值。
+    for (var i = 0; i < areaRegions.length; i++) {
+      var changeArr = areasMap['en_us'][areaRegions[i].name];
+      var changeValue = areaRegions[i].value;
+      for (var j = 0; j < changeArr.length; j++) {
+        var isNotExist = true;
+        for (var k = 0; k < newDataRegions.length; k++) {
+          if(changeArr[j].toUpperCase() == newDataRegions[k]["name"].toUpperCase()){
+            newDataRegions[k]["provinceValue"] = newDataRegions[k]["value"];
+            newDataRegions[k]["value"] = changeValue;
+            newDataRegions[k]["area"] = areaRegions[i].name;
+            isNotExist = false;
+          }
+        };
+        if (isNotExist) {
+          newDataRegions.push({
+            name:changeArr[j],
+            provinceValue:0,
+            value:changeValue,
+            area:areaRegions[i].name
+          })
+        };
+      };
+      var isOthers = areaRegions[i].name=="未知" || areaRegions[i].name=="Unknown" || areaRegions[i].name=="Overseas";
+      if (!isOthers) {
+        var value = parseInt(areaRegions[i].value);
+        if (i==0 || minArea>value) {
+          minArea = value;
+        };
+        if (maxArea<value) {
+          maxArea = value;
+        };
+      };
+    };
+
+
     if (true) {};
     var option = {
           tooltip: {
@@ -4496,6 +5078,7 @@ var IAX_CHART_TOOL = {
       $("#"+id).parent().parent().find(".result-graph-word-content").empty();
       //省份城市选择tab
       var selectTab = '<ul class="region-select-tab" style="visibility:visible">'+
+                        '<li class="" data-value="2">Region</li>'+
                         '<li class="selected" data-value="0">Province</li>'+
                         '<li class="" data-value="1">City</li></ul>'+
                       '</ul><hr style="width:100%;visibility:visible;display: inline-block;margin: 0px 0 10px 0;"/>';
@@ -4504,13 +5087,15 @@ var IAX_CHART_TOOL = {
       var convertData = function (data) {
           var res = [];
           for (var i = 0; i < data.length; i++) {
-              var geoCoord = geoCoordMap[data[i].name];
+            for(var j in geoCoordMap){
+              var geoCoord = j.indexOf(data[i].name)>-1;
               if (geoCoord) {
                   res.push({
                       name: data[i].name,
-                      value: geoCoord.concat(data[i].value)
+                      value: geoCoordMap[j].concat(data[i].value)
                   });
               }
+            }
           }
           return res;
       };
@@ -4521,7 +5106,9 @@ var IAX_CHART_TOOL = {
         $(this).parent().find(".selected").removeClass("selected");
         $(this).addClass("selected");
         if (value==1) {
-          var cityData =  [
+          var cityData =  data.citys;
+          if (!cityData) {
+            cityData =  [
                             {name: "海门", value: 9},
                             {name: "鄂尔多斯", value: 12},
                             {name: "招远", value: 12},
@@ -4713,6 +5300,22 @@ var IAX_CHART_TOOL = {
                             {name: "武汉", value: 273},
                             {name: "大庆", value: 279}
                         ]
+          };
+          var min = 0,max = 0;
+          for (var i = 0; i < cityData.length; i++) {
+            if (!cityData[i].name) cityData[i].name="null";
+            var isOthers = cityData[i].name=="未知" || cityData[i].name=="Unknown" || cityData[i].name=="Overseas";
+            if (!isOthers) {
+              var value = parseInt(cityData[i].value);
+              if (min==0 || min>value) {
+                min = value;
+              };
+              if (max<value) {
+                max = value;
+              };
+            };
+          };
+          
           myChart.setOption({
               tooltip: {
                 backgroundColor:"#f2f2f2",
@@ -4731,8 +5334,8 @@ var IAX_CHART_TOOL = {
                 } 
               },
               visualMap: {
-                  min: 0,
-                  max: 200,
+                  min: min,
+                  max: max,
                   show:false,
                   type: 'piecewise',
                   left: 'left',
@@ -4811,6 +5414,129 @@ var IAX_CHART_TOOL = {
           var visualMapHtml = '<ul style="position:absolute;left:25px;bottom:-16px;"><li style="float:left">High</li>'+symbolCircle+'<li style="float:left">Low</li></ul>'
           $("#"+id).next("label").after(visualMapHtml);
           _this.initRegionsPart(id,cityData,myChart);
+        }else if(value==2){
+          $("#"+id).next("label").next().remove();
+          myChart.setOption({
+            tooltip: {
+              backgroundColor:"#f2f2f2",
+              borderColor:"#dfdfdf",
+              borderWidth:1,
+              textStyle:{
+              fontSize:10,
+              fontFamily:"Open Sans, Noto Sans SC,Arial,sans-serif",
+              color:"#333"
+            },
+            extraCssText:'text-align:left;',
+              formatter: function(params){
+                var value = params.value;
+                if (isNaN(params.value)) return;
+                if (_this.regionsHand) {
+                  return "<p><b>Region: "+params.data.area+"</b></p><p>Audience: "+_this.formatNum(value,0)+"</p>";
+                }else{
+                  return "<p><b>Region: "+params.data.area+"</b></p><p><b>Province: "+params.name+"</b></p><p>Audience: "+_this.formatNum(params.data.provinceValue,0)+"</p>";
+                }
+              } 
+            },
+            visualMap: {
+                min: minArea,
+                max: maxArea,
+                type: 'piecewise',
+                left: 'left',
+                top: 'bottom',
+                text: ['High','Low'],
+                orient:'horizontal',
+                selectedMode:false,
+                hoverLink:true,
+                splitNumber:6,
+                inverse:true,
+                itemGap:3,
+                itemWidth:8,
+                itemHeight:15,
+                seriesIndex: [0],
+                textStyle:{
+                  fontFamily:"Open Sans, Noto Sans SC,Arial,sans-serif",
+                },
+                inRange: {
+                    symbolSize:symbolSizeRange,
+                    color: rangeColor
+                },
+                calculable : true
+            },
+            geo: {
+                map: 'china',
+                // roam: true,
+                cursor:'default',
+                label: {
+                    normal: {
+                        show: false,
+                        textStyle: {
+                            color: 'rgba(0,0,0,0.4)'
+                        }
+                    },
+                    emphasis:{
+                      show: false,
+                    }
+                },
+                itemStyle: {
+                    normal:{
+                        borderColor: '#fff'
+                    }
+                    ,emphasis:{
+                        areaColor: '',
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 10,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+                nameMap:nameMap
+            },
+            series : [
+                {
+                    name: '数量',
+                    type: 'map',
+                    cursor:'default',
+                    geoIndex: 0,
+                    silent:true,
+                    // tooltip: {show: false},
+                    label:{
+                        normal:{show:false},
+                        emphasis:{show:false}
+                    },
+                    data:newDataRegions,
+                },
+               {
+                   type: 'scatter',
+                   coordinateSystem: 'geo',
+                   cursor:'default',
+                   geoIndex: 1,
+                   data:[],
+                   symbolSize: 20,
+                   symbol: '',
+                   symbolRotate: 35,
+                   label: {
+                       normal: {
+                           formatter: '{b}',
+                           position: 'right',
+                           show: false
+                       },
+                       emphasis: {
+                           show: false
+                       }
+                   },
+                   itemStyle: {
+                       normal: {
+                            color: '#F06C00'
+                       }
+                   }
+                }
+                
+            ]
+          },{
+            notMerge:true,
+          })
+          _this.initRegionsPart(id,areaRegions,myChart,areasMap);
         }else{
           $("#"+id).next("label").next().remove();
           myChart.setOption(option,{
@@ -4998,7 +5724,7 @@ var IAX_CHART_TOOL = {
       $("#"+id).parent().parent().find(".result-graph-word-content").append(selectTab);
       _this.initRegionsPart(id,data.regions)
   },
-  initRegionsPart: function(id,regions,myChart){
+  initRegionsPart: function(id,regions,myChart,areasMap){
     var _this = this;
     var _total = 0;
     $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per").remove();
@@ -5012,20 +5738,24 @@ var IAX_CHART_TOOL = {
     var pageItem = 10;
     for (var i = 0; i < regions.length; i++) {
       if (!regions[i].name) regions[i].name="null";
-      var isOthers = regions[i].name=="未知" || regions[i].name=="Unknown" || regions[i].name=="Overseas";
+      var isOthers = regions[i].name=="未知" || regions[i].name=="Unknown" || regions[i].name=="UNKNOWN" || regions[i].name=="Overseas";
       var per = (parseFloat(regions[i].value)/_total)*100;
       var display = "block";
       if(index > pageItem){
         display = "none";
       }
+      var tooltipContent = "";
+      if (isOthers) {
+        tooltipContent = '<div class="tooltip-content">'+
+                          '  <p>Region: '+regions[i].name+'</p>'+
+                          ' <span>Audience: '+_this.formatNum(regions[i].value,0)+'</span>'+
+                          '</div>';
+      };                   
       var _html = '<div class="xmo-line_per" style="display:'+display+'">'+
                    '<span class="name">'+index+'.'+regions[i].name+'</span>'+
                     '<span class="result">'+per.toFixed(2)+'%</span>'+
                     '<span class="line_main">'+
-                      // '<div class="tooltip-content">'+
-                      // '  <p>Region: '+regions[i].name+'</p>'+
-                      // ' <span>Audience: '+_this.formatNum(regions[i].value,0)+'</span>'+
-                      // '</div>'+
+                      tooltipContent+
                       '<div class="xmo-progress-line left">'+
                         '<div style="width: '+(per*2).toFixed(2)+'%;" class="bar"></div>'+
                       '</div>'+
@@ -5060,12 +5790,25 @@ var IAX_CHART_TOOL = {
       var name = $(this).find(".name").text().split(".").pop();
       myChart.dispatchAction({type: 'hideTip', seriesIndex: '0'});
       myChart.dispatchAction({type: 'downplay', seriesIndex: '0'});
-      myChart.dispatchAction({type: 'showTip', seriesIndex: '0', name: name});
-      myChart.dispatchAction({type: 'highlight', seriesIndex: '0', name: name});
+      if (areasMap) {
+        _this.regionsHand = true;
+        var provinceArr = areasMap['en_us'][name];
+        for (var i = 0; i < provinceArr.length; i++) {
+          myChart.dispatchAction({type: 'showTip', seriesIndex: '0', name: provinceArr[i]});
+          myChart.dispatchAction({type: 'highlight', seriesIndex: '0', name: provinceArr[i]});
+        };
+      }else{
+        _this.regionsHand = false;
+        myChart.dispatchAction({type: 'showTip', seriesIndex: '0', name: name});
+        myChart.dispatchAction({type: 'highlight', seriesIndex: '0', name: name});
+      }
+      $(this).find(".tooltip-content").show();
     })
     $("#"+id).parent().parent().find(".result-graph-word-content").find(".xmo-line_per").on("mouseout",function(){
+      _this.regionsHand = false;
       myChart.dispatchAction({type: 'hideTip', seriesIndex: '0'});
       myChart.dispatchAction({type: 'downplay', seriesIndex: '0'});
+      $(this).find(".tooltip-content").hide();
     })
     var disabledPrev = "disabled",
         disabledNext = totalItem>pageItem ? "" : "disabled";
@@ -5154,9 +5897,12 @@ var IAX_CHART_TOOL = {
         //初始化副标题
         if($("#"+id).parent().parent().find(".result-graph-word-content").length>0){
           var _li = "";
-          for (var j = 0; j < newData[i].sub.length; j++) {
-            _li += '<li title="'+newData[i].sub[j]+'" style="color:#999">'+(j+1)+'.'+newData[i].sub[j]+'</li>';
+          if (newData[i].sub) {
+            for (var j = 0; j < newData[i].sub.length; j++) {
+              _li += '<li title="'+newData[i].sub[j]+'" style="color:#999">'+(j+1)+'.'+newData[i].sub[j]+'</li>';
+            };
           };
+          
           var _html = '<div class="result-graph-word-interest">'+
                             '<div class="result-graph-word-interest-inner">'+
                               '<label title="'+newData[i].name+'">'+newData[i].name+'</label>'+
@@ -5169,9 +5915,11 @@ var IAX_CHART_TOOL = {
           $("#"+id).parent().parent().find(".result-graph-word-content").append(_html);
         }
         var _li = "";
-        for (var j = 0; j < newData[i].sub.length; j++) {
-          _li += '<span style="z-index:99999;display:block;margin-top:5px;float:left;overflow:hidden;text-overflow:ellipsis;width:150px;color:#999;" title="'+newData[i].sub[j]+'">'+(j+1)+'.'+newData[i].sub[j]+'</span>';
-         };
+        if (newData[i].sub) {
+          for (var j = 0; j < newData[i].sub.length; j++) {
+            _li += '<span style="z-index:99999;display:block;margin-top:5px;float:left;overflow:hidden;text-overflow:ellipsis;width:150px;color:#999;" title="'+newData[i].sub[j]+'">'+(j+1)+'.'+newData[i].sub[j]+'</span>';
+           };
+        }
         var _html = _li
         liCon[newData[i].name] = _html;
     }
@@ -5227,9 +5975,12 @@ var IAX_CHART_TOOL = {
           liHtml += '  <span style="float:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:150px;">'+(i+1)+'.'+newData[i].name+'</span>';
           liHtml += '  <span style="float:right">'+newData[i].value+'%</span></li>';
           var _li = "";
-          for (var j = 0; j < newData[i].sub.length; j++) {
-            _li += '<span style="z-index:99999;display:block;margin-top:5px;float:left;overflow:hidden;text-overflow:ellipsis;width:150px;color:#999;" title="'+newData[i].sub[j]+'">'+(j+1)+'.'+newData[i].sub[j]+'</span>';
-           };
+          if (newData[i].sub) {
+            for (var j = 0; j < newData[i].sub.length; j++) {
+              _li += '<span style="z-index:99999;display:block;margin-top:5px;float:left;overflow:hidden;text-overflow:ellipsis;width:150px;color:#999;" title="'+newData[i].sub[j]+'">'+(j+1)+'.'+newData[i].sub[j]+'</span>';
+             };
+          };
+          
           var _html = _li
           liCon[newData[i].name] = _html;
         } 
@@ -5254,6 +6005,7 @@ var IAX_CHART_TOOL = {
   createSpiderByEchart: function(id,indicator,topPointArr,datas,liCon){
     echarts.dispose(document.getElementById(id));
     var myChart = echarts.init(document.getElementById(id));
+    var _this = this;
      //tooltip只能针对一整块图，所以新建5serires满足顶点tooltip
     //顺时针
     var start = datas[0];
@@ -5469,7 +6221,7 @@ var IAX_CHART_TOOL = {
                             offset:[-50,0],
                             formatter:function(params) {
                                 if(params.value==-1) return "";
-                                return params.name;
+                                return _this.substrByLength(params.name,25);
                             },
                             textStyle:{
                               color:'#333',
@@ -5499,7 +6251,7 @@ var IAX_CHART_TOOL = {
                       label: {
                           normal: {
                               show: true,
-                              offset:[-60,40],
+                              offset:[-50,50],
                               formatter:function(params) {
                                   if(params.value==-1) return "";
                                   return params.name;
@@ -5531,10 +6283,10 @@ var IAX_CHART_TOOL = {
                       label: {
                           normal: {
                               show: true,
-                              offset:[-60,20],
+                              offset:[-50,30],
                               formatter:function(params) {
                                   if(params.value==-1) return "";
-                                  return params.name;
+                                  return _this.substrByLength(params.name,25);
                               },
                               textStyle:{
                                 color:'#333',
@@ -5629,7 +6381,7 @@ var IAX_CHART_TOOL = {
                       label: {
                           normal: {
                               show: true,
-                              offset:[50,40],
+                              offset:[50,50],
                               formatter:function(params) {
                                   if(params.value==-1) return "";
                                   return params.name;
@@ -5661,10 +6413,10 @@ var IAX_CHART_TOOL = {
                         label: {
                             normal: {
                                 show: true,
-                                offset:[50,20],
+                                offset:[50,30],
                                 formatter:function(params) {
                                     if(params.value==-1) return "";
-                                    return params.name;
+                                    return _this.substrByLength(params.name,25);
                                 },
                                 textStyle:{
                                   color:'#333',
@@ -5729,7 +6481,7 @@ var IAX_CHART_TOOL = {
                                 offset:[50,0],
                                 formatter:function(params) {
                                     if(params.value==-1) return "";
-                                    return params.name;
+                                    return _this.substrByLength(params.name,25);
                                 },
                                 textStyle:{
                                   color:'#333',

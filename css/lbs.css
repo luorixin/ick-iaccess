@@ -29,6 +29,7 @@
 .lbs-container .lbs-control input{
 	padding: 5px;
 	background: #fff;
+	font-weight: bold;
 }
 .lbs-container .lbs-control input.selected{
 	background: #f2f2f2;
@@ -76,6 +77,7 @@
 	margin-bottom: 5px;
 	text-transform: capitalize;
 	border:1px solid #dfdfdf;
+	cursor: pointer;
 }
 .lbs-container .lbs-info .lbs-info-detail .tag-city li{
 	text-transform: capitalize;
@@ -101,6 +103,10 @@
 }
 .lbs-container .lbs-info .lbs-info-detail .area-level-box li.active{
 	background: #f2f2f2;
+}
+.lbs-container .lbs-info .lbs-info-detail .area-level-box li.disabled{
+	color: #cacaca;
+	cursor: default;
 }
 .lbs-container .lbs-info .lbs-list-search{
 	position: relative;
@@ -160,7 +166,16 @@
 .lbs-container .del-confirm-content{
 	font-weight: normal;
 }
-
+.lbs-container~div .city-choose-area{
+	width: 750px;
+}
+.lbs-container .keywords-btn li:nth-child(1).keyword-active {background: #C1E0FE;}
+.lbs-container .keywords-btn li:nth-child(2).keyword-active {background: #D4F5BF;}
+.lbs-container .keywords-btn li:nth-child(3).keyword-active {background: #FCE6A8;}
+.lbs-container .keywords-btn li:nth-child(4).keyword-active {background: #F7C1B8;}
+.lbs-container .keywords-btn li:nth-child(5).keyword-active {background: #DBCEEA;}
+.lbs-container .keywords-btn li:nth-child(6).keyword-active {background: #D9D2CD;}
+.lbs-container.not-allowed .fa{cursor: not-allowed;}
 
 .lbs-slider-bar{
 	position:absolute;

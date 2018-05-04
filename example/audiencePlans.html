@@ -371,7 +371,30 @@
 
 
 		  </div>
-		  <div class="row"><div class="client-row"><h1>Audience Plans</h1></div></div>
+		  <div class="row">
+        <div class="client-row">
+          <h1>Audience Plans</h1>
+        </div>
+        <div class="client-info">
+          <i class="fa fa-info-circle" ></i>
+          <div class="client-info-content">
+            <label>Agency Count</label>
+            <ul>
+              <li>Plan Type: Enterprise</li>
+              <li>Plan Usage: 5 / Unlimited</li>
+              <li>Start Date: 2018/01/01</li>
+              <li>End Data: 2018/03/01</li>
+            </ul>
+            <label style="margin-top:20px;">Advertiser Account</label>
+            <ul>
+              <li>Plan Usage: 3 / 5</li>
+              <li>Start Date: 2018/01/01</li>
+              <li>End Date: 2018/12/31</li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
  		</div>
 		  <!-- Page title -->
 
@@ -396,7 +419,7 @@
             <i class="fa fa-columns" style="position: absolute; top: 10px; left: 10px;"></i> 
             <input name="status" type="hidden" value="">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuColumns" data-toggle="dropdown-stop" aria-haspopup="true" aria-expanded="true" style="padding-left:25px;padding-right:20px;">
-              Cusotmers Columns&nbsp;
+              Customized Columns&nbsp;
               <span class="caret arrow-down"></span>
             </button>
             <ul class="dropdown-menu dropdown-click" aria-labelledby="dropdownMenuColumns" style="right:0;left:auto;max-height:300px;top:98%!important;border-top:1px solid #dfdfdf!important;">
@@ -445,15 +468,15 @@
 			        <thead>
 			            <tr>
 			                <th>Audience Plan Name</th>
-			                <th class="align_center">Brand Audience</th>
-			                <th class="align_center">Compeititor Audience</th>
-			                <th class="align_center">Potential Audience</th>
-                      <th class="align_center">Market Audience</th>
-                      <th class="align_center">Onstie Audience</th>
-                      <th class="align_center">Owned Audience</th>
-                      <th class="align_center">Export to iAccess</th>
-                      <th class="align_center">Analysis Status</th>
-                      <th class="align_center">Action</th>
+			                <th class="">Brand Audience</th>
+			                <th class="">Compeititor Audience</th>
+			                <th class="">Potential Audience</th>
+                      <th class="">Market Audience</th>
+                      <th class="">Onstie Audience</th>
+                      <th class="">Owned Audience</th>
+                      <th class="">Export to iAccess</th>
+                      <th class="">Analysis Status</th>
+                      <th class="">Action</th>
 			            </tr>
 			        </thead>
 
@@ -711,8 +734,14 @@
                 //     }
                 //   };
                 // })
-                $("#client_list").wrap("<div style='overflow-x:auto'></div>");
+                // $("#client_list").wrap("<div style='overflow-x:auto'></div>");
                 $("#client_list").find("th").css({"overflow":"hidden","text-overflow":"ellipsis"})
+                $(".myheading").css("cssText","position:fixed!important");
+                $(".container").css("cssText","margin-top:60px!important");
+                $(".x-sidebar").css("cssText","position: fixed !important; top: 60px !important;");
+                $(window).unbind("scroll");
+                $(window).unbind("resize");
+                $(".notification-box").css("top","60px");
             }
 				});
         $('input:checkbox.toggle-vis').change(function(e) {

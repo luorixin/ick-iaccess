@@ -448,7 +448,15 @@
                               <div class="result-graph-info x-mt10">
                                 <div class="result-graph-word word-impr" style="margin:0 auto;height:500px;">
                                   <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
-                                    <div id="marketCross_share" class="line-chart-map" style="width:470px;margin:50px auto 0 auto;height:450px;">
+                                    <div class="cross_share">
+                                      <ul>
+                                        <li data-value="daily" class="selected">Daily</li>
+                                        <li data-value="weekly">Weekly</li>
+                                        <li data-value="monthly">Monthly</li>
+                                      </ul>
+                                    </div>
+
+                                    <div id="marketCross_share" class="line-chart-map" style="width:470px;margin:20px auto 0 auto;height:450px;">
                                     </div>
                                   </div>
                                 </div>
@@ -507,8 +515,8 @@
       			<div class="tab-pane fade" id="tab-product">
                 <div class="" id="for_export_product">
                   <div class="plan-reports" id="report_content" style="margin-top:-7.5px;">
-                    <p>Brands (You can select max. 5 brands)</p>
-                    <ul class="simulator-check-container multi_choose_brand_limit" style="margin-bottom:2.5px;">
+                    <p>Brands</p>
+                    <ul class="multi_choose_brand_limit cross_brand_choose" style="margin-bottom:2.5px;">
                       
                     </ul>
                     <hr style="margin:10px -20px 7.5px -20px"/>
@@ -645,6 +653,8 @@
     
   	$(function(){
         var brandData = {};
+        var productData = {};
+        var crossProductData = {};
         var dataArr = [{"result": [{
            "data": {
               "age_group": {
@@ -1205,7 +1215,7 @@
         },
         {
             "data": {
-                "audience": "11312312312",
+                "audience": "5122232",
                 "allMarket": "26712312",
                 "sentiment":156,
                 "mixTrend":{
@@ -1316,12 +1326,16 @@
                   "market_show":50,
                 },
                 "market_show_growth":{
-                  "market_show":"60%",
-                  "market_growth":"-60%"
+                  "market_show_daily":"0.00123123%",
+                  "market_growth_daily":"-60%",
+                  "market_show_weekly":"50%",
+                  "market_growth_weekly":"20%",
+                  "market_show_monthly":"60%",
+                  "market_growth_monthly":"-50%"
                 },
                 "brand_association":[
                   {"category":"Whitening","value":"30"},
-                  {"category":"Moisturizing","value":"20"},
+                  {"category":"Moisturizing","value":"50"},
                   {"category":"Black","value":"-30"},
                   {"category":"Color","value":"40"},
                   {"category":"Green","value":"80"},
@@ -1999,12 +2013,16 @@
                   "market_show":50,
                 },
                 "market_show_growth":{
-                  "market_show":"70%",
-                  "market_growth":"40%"
+                  "market_show_daily":"70%",
+                  "market_growth_daily":"40%",
+                  "market_show_weekly":"60%",
+                  "market_growth_weekly":"33%",
+                  "market_show_monthly":"55%",
+                  "market_growth_monthly":"20%"
                 },
                 "brand_association":[
-                  {"category":"Whitening","value":"-30"},
-                  {"category":"Moisturizing","value":"-50"},
+                  {"category":"Whitening","value":"20"},
+                  {"category":"Moisturizing","value":"45"},
                   {"category":"Black","value":"70"},
                   {"category":"Color","value":"90"},
                   {"category":"Green","value":"-10"},
@@ -2144,7 +2162,7 @@
             "data": {//格式:productId:data
               "5":{
                   "productName":"Stay-in-Place Makeup2",
-                  "category":"Green",
+                  "category":"Yellow",
                   "age_group": {
                       "0-17": 20,
                       "18-24": 30,
@@ -2584,7 +2602,7 @@
                   ]
               },
               "4":{
-                  "productName":"Elite Cream2",
+                  "productName":"Green",
                   "category":"Green",
                   "age_group": {
                       "0-17": 20,
@@ -2619,8 +2637,8 @@
                       },
                   },
                   "product_association":[
-                    {"category":"Whitening","value":"-22","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
-                    {"category":"Moisturizing","value":"50","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Whitening","value":"-0.22","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
+                    {"category":"Moisturizing","value":"50.11","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
                     {"category":"Black","value":"-70","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
                     {"category":"Color","value":"90","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
                     {"category":"Green","value":"10","dailyGrowthP":28.18,"weeklyGrowthP": -22.22,"monthlyGrowthP": 10.0,},
@@ -2847,8 +2865,12 @@
                   "market_show":50,
                 },
                 "market_show_growth":{
-                  "market_show":"30%",
-                  "market_growth":"10%"
+                  "market_show_daily":"30%",
+                  "market_growth_daily":"10%",
+                  "market_show_weekly":"30%",
+                  "market_growth_weekly":"10%",
+                  "market_show_monthly":"30%",
+                  "market_growth_monthly":"10%"
                 },
                 "brand_association":[
                   {"category":"Whitening","value":"30"},
@@ -2872,7 +2894,7 @@
       dataArr.splice(0,0,_brand[0]);
       var data=dataArr[0],brandId=dataArr[0].id;
        //根据data获取brand选择列表
-      var lihtml = "",lihtml_multi="",maxBrand=5,allProducts=[],allProductsJson={},lihtml_multi_corss="",productAssociation=[],categoryAssociation={};
+      var lihtml = "",lihtml_multi="",maxBrand=999,maxProducts=999,allProducts=[],allProductsJson={},lihtml_multi_corss="",productAssociation=[],categoryAssociation={};
       for (var i = 0; i < dataArr.length; i++) {
         var isselected = i==0 ? "selected" : "";
         var checkTitle = i==0 ? "My Brand" : "Competitor";
@@ -2891,11 +2913,47 @@
                       '    <label class="simulator-check-content">'+dataArr[i].name+'</label>'+
                       '  </div>'+
                       '</li>';
+        //cross_product_brand
+        //生成对应product列表
+        var productsLi = "";
+        for (var j in dataArr[i].result) {
+          if (dataArr[i].result[j].name=="product") {
+            for (var k in dataArr[i].result[j].data) {
+              var prodata = dataArr[i].result[j].data[k];
+              var proJson = $.extend({
+                id:k,
+                brandId:dataArr[i].id,
+                brandName:dataArr[i].name,
+                brandColor:IAX_CHART_TOOL.colorMap[i]
+              },prodata);
+              allProducts.push(proJson);
+              allProductsJson[dataArr[i].id+"_"+k] = proJson;
+              productsLi += '<li data-value="'+dataArr[i].id+"_"+k+'" class="">'+
+                              '<div class="checkbox checkbox-primary checkbox-inline checkbox-minwidth checkbox-switch"> '+
+                              '<input type="checkbox" name="cross_brand_checkbox" id="cross_brand_checkbox'+dataArr[i].id+"_"+k+'" value="'+dataArr[i].id+"_"+k+'">      <label for="cross_brand_checkbox'+dataArr[i].id+"_"+k+'">'+prodata.productName+'</label>  '+
+                              '</div></li>';
+            };
+          };
+        }
+        //对应的brand
+        if (productsLi=="") {
+          productsLi = "<div style='padding:10px;color:#999;'><p>No results</p><p>(There is no products defined under this competitor. Please elaborate them in the audience plan.</p></div>";
+        };
+        lihtml_multi_corss += '<li data-value="'+dataArr[i].id+'">'+
+                              '  <div class="dropdown modifylabel dropdown-stop">'+
+                              '    <input name="addBrand_name" type="hidden" value="" title="">'+
+                              '    <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown-cross" aria-haspopup="true">'+
+                              '    <p style="color:#999;line-height:14px;font-size:10px;">'+checkTitle+'</p>'+
+                              '    <b>'+dataArr[i].name+'</b>'+
+                              '    <span class="caret arrow-down"></span></button>'+
+                              '    <ul class="dropdown-menu dropdown-cross" aria-labelledby="dropdownMenu1">'+productsLi+'</ul>'+
+                              '  </div>'+
+                              '</li>';
         //根据顺序固定颜色。
         dataArr[i].graphColor = IAX_CHART_TOOL.colorMap[i];
       };
       $(".multi_choose_brand").html(lihtml_multi);
-      $(".multi_choose_brand_limit").html(lihtml_multi);
+      $(".multi_choose_brand_limit").html(lihtml_multi_corss);
       
       //默认选中所有brand。
       if (dataArr.length>1) {
@@ -2909,6 +2967,18 @@
         $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").html(html);
         $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").find("li:first").addClass("selected");
       }
+      //默认选中top5产品
+      //先进行排序
+      allProducts = allProducts.sort(IAX_CHART_TOOL.sortJson("desc","audience","parseFloat"));
+      var toplength = allProducts.length>maxProducts ? maxProducts : allProducts.length;
+      for (var i = 0; i < toplength; i++) {
+        var id = allProducts[i].id;
+        var brandId = allProducts[i].brandId;
+        crossProductData[brandId+"_"+id] = allProducts[i];
+        crossProductData[brandId+"_"+id].graphColor = IAX_CHART_TOOL.colorMap[i];
+        $(".multi_choose_brand_limit").find("[data-value='"+brandId+"']").addClass("selected");
+        $(".multi_choose_brand_limit").find("[data-value='"+brandId+"']").find("[data-value='"+brandId+"_"+id+"']").addClass("selected").find("[name=cross_brand_checkbox]").prop("checked",true);
+      };
       //获取排序好的audience
       var audienceArr = [];
       for (var i = 0; i < dataArr.length; i++) {
@@ -2960,6 +3030,53 @@
           productGraph();
         }
       }
+      $(".dropdown-stop").on("mouseover",function(){
+        $(".dropdown-stop").removeClass("open");
+        var isOpen = $(this).hasClass("open");
+        if(!isOpen) $(this).addClass("open")
+      })
+      $(".dropdown-stop").on("mouseout",function(){
+        $(this).removeClass("open");
+      })
+      $(document).on("click",".dropdown-stop",function(e){
+        $(".dropdown-stop").removeClass("open");
+        if ($(this).hasClass("open")){
+          $(this).removeClass("open")
+        }else{
+          $(this).addClass("open");
+        }
+      })
+      $(document).on("click",".dropdown-cross li",function(e){
+        e = e || window.event;
+
+        var length = $(this).parents(".cross_brand_choose").find(".dropdown-cross").find(".selected").length;
+        var isChecked = $(this).hasClass("selected");
+        if (!isChecked && length==maxProducts) {
+          $(this).find("[type=checkbox]").prop("checked",false);
+          return;
+        };
+        if (isChecked && length==2) {
+          $(this).find("[type=checkbox]").prop("checked",true);
+          return;
+        };
+        $(this).find("[type=checkbox]").prop("checked",!isChecked);
+        if (isChecked) {
+          $(this).removeClass("selected");
+          length--;
+        }else{
+          $(this).addClass("selected");
+          length++;
+        }
+        if ($(this).parents(".dropdown-cross").find(".selected").length>0) {
+          $(this).parents(".dropdown-cross").parents("li").addClass("selected");
+        }else{
+          $(this).parents(".dropdown-cross").parents("li").removeClass("selected");
+        }
+        
+        productGraph();
+        e.stopPropagation();
+        e.preventDefault();
+      })
       var bubbleColorMap = [];
       function shareGraph(json){
         IAX_CHART_TOOL.initData(dataArr);
@@ -2987,7 +3104,7 @@
           };
         });
         
-        var shareData = [],shareGrowthData = {},showAssociationData={},associationXY=[],associationList=[];
+        var shareData = [],shareGrowthData={},shareGrowthDataArr=[],shareGrowthDataDaily = {},shareGrowthDataWeekly = {},shareGrowthDataMonthly = {},showAssociationData={},associationXY=[],associationList=[];
         
         for (var j in brandData) {
           var _data = brandData[j],_json={};
@@ -3016,9 +3133,13 @@
               audienceIndex = 8;
             };
           };
-          shareGrowthData[_data.productName] = [[parseFloat(_data.market_show_growth.market_show),parseFloat(_data.market_show_growth.market_growth),parseFloat(_data.market_show_growth.market_show),parseFloat(_data.market_show_growth.market_growth),audienceIndex]];
+          shareGrowthDataDaily[_data.productName] = [[parseFloat(_data.market_show_growth.market_show_daily),parseFloat(_data.market_show_growth.market_growth_daily),parseFloat(_data.market_show_growth.market_show_daily),parseFloat(_data.market_show_growth.market_growth_daily),audienceIndex]];
 
+          shareGrowthDataWeekly[_data.productName] = [[parseFloat(_data.market_show_growth.market_show_weekly),parseFloat(_data.market_show_growth.market_growth_weekly),parseFloat(_data.market_show_growth.market_show_weekly),parseFloat(_data.market_show_growth.market_growth_weekly),audienceIndex]];
+
+          shareGrowthDataMonthly[_data.productName] = [[parseFloat(_data.market_show_growth.market_show_monthly),parseFloat(_data.market_show_growth.market_growth_monthly),parseFloat(_data.market_show_growth.market_show_monthly),parseFloat(_data.market_show_growth.market_growth_monthly),audienceIndex]];
         }
+        shareGrowthDataArr={"daily":shareGrowthDataDaily,"weekly":shareGrowthDataWeekly,"monthly":shareGrowthDataMonthly};
         //association下拉框
         if (associationList.length>0) {
           $("#brandAssociation_share").prev().find(".dropdown-menu").html(associationList.join(""));
@@ -3030,7 +3151,20 @@
             $(this).parent().find(".btn:first").html(label+value+"<span class='caret arrow-down'></span>");
           })
         };
+        var dateType = $(".cross_share").find(".selected").attr("data-value");
+        shareGrowthData = shareGrowthDataArr[dateType];
+        $(".cross_share li").off("click");
+        $(".cross_share li").on("click",function(){
+            $(this).parent().find(".selected").removeClass("selected");
+            $(this).addClass("selected");
+            dateType = $(this).attr("data-value");
+            shareGrowthData = shareGrowthDataArr[dateType];
+            IAX_CHART_TOOL.initBubbleCross(bubbleColorMap,"marketCross_share",shareGrowthData,["Market Share (%)","Market Growth (%)"]);
+        });
         getShowAssociationData(showAssociationData,associationXY);
+        console.log(shareGrowthData)
+        console.log(showAssociationData)
+        console.log(associationXY)
         IAX_CHART_TOOL.initData(json.data);
         IAX_CHART_TOOL.initBubbleCross(bubbleColorMap,"marketCross_share",shareGrowthData,["Market Share (%)","Market Growth (%)"]);
         IAX_CHART_TOOL.initBubbleCross(bubbleColorMap,"brandAssociation_share",showAssociationData,associationXY,[-100,100]);
@@ -3058,61 +3192,68 @@
               audienceIndex = 8;
             };
           };
-          showAssociationData[_data.productName] = [[x,y,parseFloat(_data.market_show_growth.market_show),parseFloat(_data.market_show_growth.market_growth),audienceIndex]];
+          showAssociationData[_data.productName] = [[x,y,x,y,audienceIndex]];
         }
         return showAssociationData;
       }
       function productGraph(){
+        //下拉框方向问题
+        $(".cross_brand_choose").find(".dropdown-cross").each(function(){
+          var right = $(window).width()-$(this).parent().offset().left-$(window).scrollLeft();
+          console.log(right)
+          if (right<500) {
+            $(this).css({right:0,left:"initial"});
+          };
+        })
         IAX_CHART_TOOL.initData(dataArr);
         productAssociation = [];
-        var id="",association={};
+        
         //饼图数据
         var categoryPie = [],productPie=[];
-        $(".multi_choose_brand_limit [name=brand_checkbox]:checked").each(function(){
+        var crossProductData_choose = {};
+        var id="",association={};
+        $("[name=cross_brand_checkbox]:checked").each(function(){
           id = $(this).val();
-          if (!association[id]) {
-            var _json ;
-            for (var i = 0; i < dataArr.length; i++) {
-              if(dataArr[i].id == id){
-                var result = dataArr[i].result;
-                for (var j = 0; j < result.length; j++) {
-                  if("product"==result[j].name){
-                    _json = result[j].data;
-                    //{"category":"xxx","brandName":"yyy","productName":"zzz","color":"aaa","value":"11","audience":"123"}
-                    for(var z in _json){
-                      if (_json[z].product_association) {
-                        for (var t = 0; t < _json[z].product_association.length; t++) {
-                          var assoJson = _json[z].product_association[t];
-                          association = {
-                            category:assoJson.category,
-                            value:parseFloat(assoJson.value),
-                            dailyGrowthP:parseFloat(assoJson.dailyGrowthP),
-                            weeklyGrowthP:parseFloat(assoJson.weeklyGrowthP),
-                            monthlyGrowthP:parseFloat(assoJson.dailyGrowthP),
-                            brandId:id,
-                            brandName:dataArr[i].name,
-                            productName:_json[z].productName,
-                            productId:z,
-                            color:dataArr[i].graphColor,
-                            audience:parseInt(_json[z].audience)
-                          }
-                          productAssociation.push(association);
-                        };
-                      }
-                      productPie.push({
-                        category:_json[z].category,
-                        name:_json[z].productName,
-                        id:z,
-                        value:parseInt(_json[z].audience),
-
-                      })
-                    }
-                  }
-                };
-              }
+          if (!crossProductData_choose[id]) {
+            var _json = crossProductData[id];
+            if (_json) {
+              crossProductData_choose[id] = _json;
             };
           };
         });
+        console.log(crossProductData_choose)
+        for(var id in crossProductData_choose){
+          if (!association[id]) {
+            var _json = crossProductData_choose[id];
+            if (_json.product_association) {
+              for (var t = 0; t < _json.product_association.length; t++) {
+                var assoJson = _json.product_association[t];
+                association = {
+                  category:assoJson.category,
+                  value:parseFloat(assoJson.value),
+                  dailyGrowthP:parseFloat(assoJson.dailyGrowthP),
+                  weeklyGrowthP:parseFloat(assoJson.weeklyGrowthP),
+                  monthlyGrowthP:parseFloat(assoJson.dailyGrowthP),
+                  brandId:id,
+                  brandName:_json.brandName,
+                  productName:_json.productName,
+                  productId:_json.id,
+                  color:_json.brandColor,
+                  audience:parseInt(_json.audience)
+                }
+                productAssociation.push(association);
+              };
+            }
+            productPie.push({
+              category:_json.category,
+              name:_json.productName,
+              id:_json.id,
+              value:parseInt(_json.audience),
+
+            })
+          }
+        }
+       
         //组装category的报表所需数据,方便画图
         categoryAssociation={};
         for (var i = 0; i < productAssociation.length; i++) {

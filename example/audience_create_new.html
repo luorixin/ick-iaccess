@@ -2445,15 +2445,17 @@
             $("#region_1").hide();
           }
         })
-        $(".slide-bar").sliderBar({current:1},function(){
+        $(".slide-bar").sliderBar({current:5},function(){
           console.log("callback");
         });
         $(".cityChoose_city").cityChoose({
           data:cityJson,
+          min:1,
           max:10
         });
         $(".cityChoose").cityChoose({
           data:cityJson,
+          min:5
         });
     });
     var cp;

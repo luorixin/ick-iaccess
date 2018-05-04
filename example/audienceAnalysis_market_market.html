@@ -804,7 +804,7 @@
                         <div class="plan-result-graph graph-region" style="width:100%;padding-left:7.5px;" id="select_province">
                           <div class="plan-result-text">
                             <div class="result-text-header clearfix">
-                              <label>Regions</label>
+                              <label>Location</label>
                             </div>
                             <div class="result-graph-info x-mt10">
                               <div class="result-graph-word word-impr">
@@ -890,7 +890,7 @@
   	$(function(){
         var data = {"result": [{
             "data": {
-              "bubble": [{"label":"周大福","ranking":0,"sets":[0],"size":129400,"audience":129400},{"label":"施華洛世奇","ranking":1,"sets":[1],"size":256837,"audience":256837},{"overlap":"0","ranking":0,"sets":[0,1],"size":1094,"audience":1094},{"label":"謝瑞麟","ranking":2,"sets":[2],"size":16532,"audience":16532},{"overlap":"0","ranking":0,"sets":[0,2],"size":174,"audience":174},{"label":"周生生","ranking":3,"sets":[3],"size":231700,"audience":231700},{"overlap":"0","ranking":0,"sets":[0,3],"size":977,"audience":977},{"label":"卡地亞","ranking":4,"sets":[4],"size":332099,"audience":332099},{"overlap":"80","ranking":0,"sets":[0,4],"size":104503,"audience":104503},{"label":"老鳳祥","ranking":5,"sets":[5],"size":91054,"audience":91054},{"overlap":"0","ranking":0,"sets":[0,5],"size":655,"audience":655},{"label":"周六福","ranking":6,"sets":[6],"size":4789,"audience":4789},{"overlap":"0","ranking":0,"sets":[0,6],"size":59,"audience":59},{"label":"六福珠寶","ranking":7,"sets":[7],"size":39602,"audience":39602},{"overlap":"0","ranking":0,"sets":[0,7],"size":139,"audience":139}],
+              "bubble": [{"label":"周大福","ranking":0,"sets":[0],"size":52940,"audience":52940},{"label":"施華洛世奇","ranking":1,"sets":[1],"size":2568,"audience":2568},{"overlap":"0","ranking":0,"sets":[0,1],"size":1094,"audience":1094},{"label":"謝瑞麟","ranking":2,"sets":[2],"size":1653,"audience":1653},{"overlap":"0","ranking":0,"sets":[0,2],"size":174,"audience":174},{"label":"周生生","ranking":3,"sets":[3],"size":2317,"audience":2317},{"overlap":"0","ranking":0,"sets":[0,3],"size":977,"audience":977},{"label":"卡地亞","ranking":4,"sets":[4],"size":13209,"audience":13209},{"overlap":"80","ranking":0,"sets":[0,4],"size":10453,"audience":10453},{"label":"老鳳祥","ranking":5,"sets":[5],"size":9104,"audience":9104},{"overlap":"0","ranking":0,"sets":[0,5],"size":655,"audience":655},{"label":"周六福","ranking":6,"sets":[6],"size":478,"audience":478},{"overlap":"0","ranking":0,"sets":[0,6],"size":59,"audience":59},{"label":"六福珠寶","ranking":7,"sets":[7],"size":3960,"audience":3960},{"overlap":"0","ranking":0,"sets":[0,7],"size":139,"audience":139}],
                 "top5brand":{
                   "Estee Lauder":852,
                   "Lancome":789,
@@ -938,8 +938,8 @@
                         "65+": 1022,
                         "UNKNOWN": 1022,
                     },
-                    "audience": "3.3M",
-                    "allMarket": "3.3M",
+                    "audience": "333",
+                    "allMarket": "3333",
                     "device": {
                         "Mobile": 222,
                         "PC": 646,
@@ -1296,8 +1296,93 @@
                   },
                   "id": "0-1",
                   "type": "mixBrand" 
-                }
-
+                },
+                {
+                  "data":{
+                    "age_group": {
+                        "0-17": 2022,
+                        "18-24": 2022,
+                        "25-34": 1522,
+                        "35-44": 3522,
+                        "45-54": 2022,
+                        "55-64": 1022,
+                        "65+": 1022,
+                        "UNKNOWN": 1022,
+                    },
+                    "audience": "444",
+                    "allMarket": "4444",
+                    "device": {
+                        "Mobile": 23,
+                        "PC": 111,
+                        "UNKNOWN": 222
+                    },
+                    "gender": {
+                        "female": 33,
+                        "UNKNOWN":55,
+                    },
+                    "product_share": {
+                        "Stay-in-Place Makeup": 23500,
+                        "Prefectionist": 12246,
+                        "Advanced Night Cream": 11179,
+                        "Resilience Lift":10000,
+                    },
+                    
+                    "market_share":{
+                      "market":222,
+                      "market_show":111,
+                    },
+                    "interest": {
+                        "Arts & Entertainment": {
+                            "name": "Arts & Entertainment",
+                            "value": 21,
+                            "sub": ["Skin Care","Make-up / Customer"]
+                        },
+                        "Cooking & Recipes": {
+                            "name": "Cooking & Recipes",
+                            "value": 19,
+                            "sub": ["Skin Care","Make-up / Customer"]
+                        },
+                        "Female Fashion": {
+                            "name": "Female Fashion",
+                            "value": 20,
+                            "sub": ["Skin Care","Make-up / Customer"]
+                        },
+                        "Food & Drink": {
+                            "name": "Food & Drink",
+                            "value": 20,
+                            "sub": ["Skin Care","Make-up / Customer"]
+                        },
+                        "Restaurants": {
+                            "name": "Restaurants",
+                            "value": 20,
+                            "sub": ["Skin Care","Make-up / Customer"]
+                        },
+                        "_others":{
+                            "name": "Other Related Interests",
+                            "value": 20,
+                            "sub": ["Skin Care","Make-up / Customer","Make-up / Customer","Make-up / CustomerMake-up / CustomerMake-up / Customer"]
+                        }
+                    },
+                    "regions":[{"index":0,"name":"BeiJing","value":2022989},{"index":0,"name":"GuangDong","value":761403},{"index":0,"name":"Zhejiang","value":563651},{"index":0,"name":"Jiangsu","value":404039},{"index":0,"name":"ShanDong","value":365793},{"index":0,"name":"Overseas","value":339612},{"index":0,"name":"HeNan","value":319394},{"index":0,"name":"Shanghai","value":281549},{"index":0,"name":"HuBei","value":270085},{"index":0,"name":"SiChuan","value":246830},{"index":0,"name":"HeBei","value":221177},{"index":0,"name":"AnHui","value":180451},{"index":0,"name":"HuNan","value":159475},{"index":0,"name":"FuJian","value":156276},{"index":0,"name":"JiangXi","value":141052},{"index":0,"name":"ShanXi1","value":129144},{"index":0,"name":"LiaoNing","value":112474},{"index":0,"name":"GuangXi","value":106378},{"index":0,"name":"TianJin","value":93054},{"index":0,"name":"ChongQing","value":90689},{"index":0,"name":"ShanXi","value":86311},{"index":0,"name":"JiLin","value":81861},{"index":0,"name":"GuiZhou","value":81454},{"index":0,"name":"Heilongjiang","value":76784},{"index":0,"name":"NeiMeng","value":60488},{"index":0,"name":"YunNan","value":58907},{"index":0,"name":"TaiWan","value":47966},{"index":0,"name":"HaiNan","value":38846},{"index":0,"name":"GanSu","value":37060},{"index":0,"name":"XinJiang","value":34484},{"index":0,"name":"HongKong","value":23189},{"index":0,"name":"NingXia","value":14367},{"index":0,"name":"QingHai","value":9954},{"index":0,"name":"XiZang","value":5742},{"index":0,"name":"Macao","value":1615}],
+                    "citys":[
+                               {name: "海门", value: 9},
+                             {name: "鄂尔多斯", value: 12},
+                             {name: "招远", value: 12},
+                             {name: "舟山", value: 12},
+                             {name: "齐齐哈尔", value: 14},
+                             {name: "盐城", value: 15},
+                             {name: "赤峰", value: 16},
+                             {name: "青岛", value: 18},
+                             {name: "乳山", value: 18},
+                             {name: "金昌", value: 19},
+                             {name: "泉州", value: 21},
+                             {name: "莱西", value: 21},
+                             {name: "日照", value: 21}
+                        ]
+                  },
+                  "id": "potential",
+                  "type": "potential" 
+                },
 
               ],
             },

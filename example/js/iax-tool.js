@@ -172,6 +172,55 @@ IAX_TOOL=
     ))
     $(".retargeting-audience-create-box").modal("show");
   },
+  //users弹出框
+  editUserBox:function(paramsJson){
+    if (!paramsJson) return false;
+    if ($(".user-edit-box").length) {
+      $(".user-edit-box").modal("hide");
+      $(".user-edit-box").remove();
+    };
+    $("body").append(Hogan.compile(IAX_TEMPLATE.editUserBox).render(
+      paramsJson
+    ))
+    $(".user-edit-box").modal("show");
+  },
+  //plan弹出框
+  editPlanBox:function(paramsJson){
+    if (!paramsJson) return false;
+    if ($(".plan-edit-box").length) {
+      $(".plan-edit-box").modal("hide");
+      $(".plan-edit-box").remove();
+    };
+    $("body").append(Hogan.compile(IAX_TEMPLATE.editPlanBox).render(
+      paramsJson
+    ))
+    $(".plan-edit-box").modal("show");
+  },
+  //advertiser弹出框
+  editAdvertiserBox:function(paramsJson){
+    if (!paramsJson) return false;
+    if ($(".advertiser-edit-box").length) {
+      $(".advertiser-edit-box").modal("hide");
+      $(".advertiser-edit-box").remove();
+    };
+    $("body").append(Hogan.compile(IAX_TEMPLATE.editAdvertiserBox).render(
+      paramsJson
+    ))
+    $(".advertiser-edit-box").modal("show");
+  },
+  //agency弹出框
+  editAgencyBox:function(paramsJson){
+    if (!paramsJson) return false;
+    if ($(".agency-edit-box").length) {
+      $(".agency-edit-box").modal("hide");
+      $(".agency-edit-box").remove();
+    };
+    $("body").append(Hogan.compile(IAX_TEMPLATE.editAgencyBox).render(
+      paramsJson
+    ))
+    $(".agency-edit-box").modal("show");
+  },
+  
 	//数字格式化
 	formatNum:function(str,len){
 		var newStr = "";

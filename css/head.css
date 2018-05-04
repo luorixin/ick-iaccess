@@ -1019,3 +1019,12 @@ body#scroll-spy .sub-menu li.active span{font-weight: normal;color: #999;}
 .nofooter .x-main{
   min-height: 0!important;
 }
+.nofooter .container{
+  margin-top:0;
+  padding-top:60px;
+}
+@media (max-width: 1280px) {
+  .nofooter .container{
+    padding-top: 0;
+  }
+}

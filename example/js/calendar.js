@@ -360,8 +360,9 @@ xmoCalendar.prototype.init_Event = function(){
       var targetInput = $('.inputing',_this.wrapperBox);
       var dateFrom = $('.xmoCalendarMainHead .xmoCalendarFrom',_this.wrapperBox);
       var dateTo = $('.xmoCalendarMainHead .xmoCalendarTo',_this.wrapperBox);
+      var isDefault = (targetInput.length==0);
       // 默认第一个日期输入框
-      if(targetInput.length==0){
+      if(isDefault){
     	  _this.selecting();
     	  $('.xmoCalendarFrom',_this.wrapperBox).addClass('inputing');
     	  targetInput = $('.xmoCalendarFrom',_this.wrapperBox);
@@ -424,11 +425,17 @@ xmoCalendar.prototype.init_Event = function(){
           }else{
             _this.dateFrom = date;
           }
+          if (isDefault) {
+            dateTo.val("");
+          };
           _this.focusCheck();
       }
       _this.updateRemoved();
       targetInput.blur();
       _this.reTableList();
+      // if (isDefault) {
+      //   dateTo[0].focus();
+      // };
   })
   $(document).on('mouseover','#' + _this.boxId + ' table th a',function(){
       var index = $(this).attr('index');

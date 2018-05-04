@@ -100,7 +100,7 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #4484cf;
 }
 a {
   color: #0088cc;
@@ -1570,8 +1570,10 @@ table .span12 {
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
+  *
+  border-right-width: 2px;
+  *
+  border-bottom-width: 2px;
 }
 .dropdown-menu.bottom-up {
   top: auto;
@@ -2860,7 +2862,7 @@ button.btn.small, input[type="submit"].btn.small {
 .tooltip {
   position: absolute;
   z-index: 1020;
-  display: block;
+  /* display: block; */
   visibility: visible;
   padding: 5px;
   font-size: 11px;
