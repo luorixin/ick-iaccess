@@ -562,13 +562,16 @@
                           <label class="control-label">Tacking Type</label>
                           <div class="controls">
                             <div class="">
-                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                              <div class="radio radio-primary">
                                   <input type="radio" name="tacking" id="tacking0" value="0" checked="checked">
-                                  <label for="tacking0">Insight tag</label>
+                                  <label for="tacking0">Track by Insight tag
+                                  </label>
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Used to track variables for a particular event such as Order No., Customer ID, Sales Amount, etc. This can be installed on specific pages on a website."></i>
                               </div>
-                              <div class="radio radio-primary radio-inline radio-minwidth radio-switch">
+                              <div class="radio radio-primary">
                                   <input type="radio" name="tacking" id="tacking1" value="1">
-                                  <label for="tacking1">Universal tag</label>
+                                  <label for="tacking1">Track by Universal tag</label>
+                                  <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="Used to track complete conversion paths of different media and channels. This can be installed on all pages of a website."></i>
                               </div>
                               <div class="" id="tacking_0" style="margin:10px 0">
                                 <div class="table_white">
@@ -615,7 +618,7 @@
 
                                           <tr style="background-color:#fff;">
                                             <td class="align_right"><span>#1</span></td>
-                                            <td class="align_center"><input style="width:150px;" name="ename" value="Counter" disabled type="text"/></td>
+                                            <td class="align_center"><input style="width:150px;" name="ename" value="" type="text"/></td>
                                             <td class="align_center">
                                               <div class="dropdown modifylabel" style="width:120px;" >
                                                 <input name="etype" type="hidden" value="counter"  />
@@ -637,10 +640,9 @@
                                         </tbody>
                                       </table>
                                     </div>
-                                <div class="note-message">
+                                <div class="">
                                   <div class="clearfix">
-                                   Note: Please notify your client to replace the default values inside the generated insight tag with their actual 
-                                    parameter values in order for the tracking to work correctly.
+                                   <span style="font-weight:bold;color:#ef4136;">NOTE:</span> Used for counting number of this event.Please notify your client to replace the default sample value inside the generated insight tag with their actual parameter values for correct tracking.
                                   </div>
                                 </div>
                               </div>
@@ -657,7 +659,12 @@
                                   </ul>
                                 </div>
                                 <div style="margin:20px 0">
+                                  <p style="margin-bottom:5px;">Keywords/Phrases - One per line</p>
                                   <textarea class="input-xlarge span4" name="goalevent[urls]" placeholder="Enter tags. You may enter one tag per line or separate tags by commas." style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
+                                </div>
+                                 <div style="margin:20px 0">
+                                  <p style="margin-bottom:5px;">Third Party Script</p>
+                                  <textarea class="input-xlarge span4" name="goalevent[urls]" placeholder="Enter Third Party Script" style="width: 360px !important;height:100px;" rows="5" cols="20"></textarea>
                                 </div>
                                 <div style="margin:20px 0">
                                   <button type="button" class="btn btn-success" onclick="testTacking()">Test</button>
@@ -680,6 +687,7 @@
                                   <label for="duplicate1">Enable (Only the "Text/Key" parameter can be used for de-duplication)</label>
                               </div>
                               <div class="hide" id="duplicate_1" style="margin:10px 0">
+                                <p>Remove duplicates based on:</p>
                                 <div class="dropdown modifylabel">
                                   <input name="goalevent[deduplication_type]" type="hidden" value="-1"  />
                                   <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

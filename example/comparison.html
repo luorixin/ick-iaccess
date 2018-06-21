@@ -385,11 +385,16 @@
             </li>
           </ul>
           <div class="button-right" style="margin:-40px 0 10px 0;">
-            <div class="dropdown btn-iclick dropdown-stop">
-              <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i>
-              <button class="btn dropdown-toggle" type="button" id="export-pdf">
-                Export&nbsp;
+            <div class="dropdown">
+              <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i> 
+              <input name="status" type="hidden" value="">
+              <button class="btn dropdown-toggle" type="button" style="padding:5px 16px 5px 28px;min-width:120px;" id="dropdownMenuColumns" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Export&nbsp;<span class="caret arrow-down"></span>
               </button>
+              <ul class="dropdown-menu dd" aria-labelledby="dropdownMenuColumns" style="min-width:118px; max-height: 300px;">
+                <li><a href="javascript:;" id="export-pdf">&nbsp;PDF</a></li>
+                <li><a href="javascript:;" id="export-excel">&nbsp;Excel</a></li>
+              </ul>
             </div>
           </div>
 
@@ -438,7 +443,7 @@
                         </div>
                         <div class="plan-reports-result-inner">
                          <!--Market Cross-->
-                          <div class="plan-result-graph" style="width:50%;height:550px;">
+                          <div class="plan-result-graph" style="width:50%;min-height:570px;height:auto;">
                             <div class="plan-result-text">
                               <div class="result-text-header">
                                 <label>Market Share vs. Market Growth of Brands
@@ -446,8 +451,8 @@
                                 </label>
                               </div>
                               <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr" style="margin:0 auto;height:500px;">
-                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                <div class="result-graph-word word-impr" style="margin:0 auto;min-height:530px;height:auto;">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px 20px 20px;position:relative;box-sizing:border-box;">
                                     <div class="cross_share">
                                       <ul>
                                         <li data-value="daily" class="selected">Daily</li>
@@ -464,7 +469,7 @@
                             </div>
                           </div>
                           <!--Market Share vs. Market Growth of Brands-->
-                          <div class="plan-result-graph" style="width:50%;padding-left:7.5px;height:550px;">
+                          <div class="plan-result-graph" style="width:50%;padding-left:7.5px;min-height:570px;height:auto;">
                             <div class="plan-result-text">
                               <div class="result-text-header clearfix">
                                 <label>Brand Association
@@ -472,8 +477,8 @@
                                 </label>
                               </div>
                               <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr" style="margin:0 auto;height:460px;">
-                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                <div class="result-graph-word word-impr" style="margin:0 auto;min-height:530px;height:auto;">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px 20px 20px;position:relative;box-sizing:border-box;">
                                     <div class="comparison-vs-con">
                                       <div class="dropdown">
                                         <input name="comparison_left" type="hidden" value="0"/>
@@ -523,7 +528,7 @@
                     <div class="plan-reports-result">
                       <div class="plan-reports-result-inner">
                           <!--Total-->
-                          <div class="plan-result-graph" style="width:100%;height:430px;padding:0;">
+                          <div class="plan-result-graph" style="width:100%;min-height:440px;padding:0;height:auto;">
                             <div class="plan-result-text">
                               <div class="result-text-header">
                                 <label id="date_header">Product Association
@@ -531,8 +536,8 @@
                                 </label>
                               </div>
                               <div class="result-graph-info x-mt10">
-                                <div class="result-graph-word word-impr">
-                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
+                                <div class="result-graph-word word-impr" style="min-height:360px;height:auto;">
+                                  <div class="result-graph-word-content" style="width:100%;padding:0 20px 20px 20px;box-sizing:border-box;position:relative;">
                                     <div id="product_association" class="line-chart-map" style="width:100%;height:360px;">
                                       <div class="correlation-con">
                                         <div class="correlation-bg-con">
@@ -957,7 +962,7 @@
                       },
                   },
                   "product_association":[
-                    {"category":"Whitening","value":"-10","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
+                    {"category":"Whitening","value":"0","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
                     {"category":"Moisturizing","value":"90","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
                     {"category":"Black","value":"50","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
                     {"category":"Color","value":"-5","dailyGrowthP":0,"weeklyGrowthP": -33.33,"monthlyGrowthP": 5.0},
@@ -1104,7 +1109,7 @@
                       },
                   },
                   "product_association":[
-                    {"category":"Whitening","value":"-23","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 10.0},
+                    {"category":"Whitening","value":"0","dailyGrowthP":0,"weeklyGrowthP": -32.22,"monthlyGrowthP": 10.0},
                     {"category":"Moisturizing","value":"10","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 10.0},
                     {"category":"Black","value":"20","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 20.0},
                     {"category":"Color","value":"90","dailyGrowthP":45.18,"weeklyGrowthP": -32.22,"monthlyGrowthP": 20.0},
@@ -1215,7 +1220,7 @@
         },
         {
             "data": {
-                "audience": "5122232",
+                "audience": "3122232",
                 "allMarket": "26712312",
                 "sentiment":156,
                 "mixTrend":{
@@ -2754,7 +2759,7 @@
         },
         {
             "data": {
-                "audience": "721897",
+                "audience": "121897",
                 "allMarket": "322222",
                 "sentiment":156,
                 "mixTrend":{
@@ -2873,8 +2878,8 @@
                   "market_growth_monthly":"10%"
                 },
                 "brand_association":[
-                  {"category":"Whitening","value":"30"},
-                  {"category":"Moisturizing","value":"50"},
+                  {"category":"Whitening","value":"0"},
+                  {"category":"Moisturizing","value":"0"},
                   {"category":"Black","value":"-70"},
                   {"category":"Color","value":"90"},
                   {"category":"Green","value":"10"},
@@ -2940,9 +2945,10 @@
           productsLi = "<div style='padding:10px;color:#999;'><p>No results</p><p>(There is no products defined under this competitor. Please elaborate them in the audience plan.</p></div>";
         };
         lihtml_multi_corss += '<li data-value="'+dataArr[i].id+'">'+
+                              '<i style="font-size:19px;width:15px;color:#ccc;vertical-align:middle;margin-right:5px;position: absolute;left: 5px;top: 17px;z-index:995;" id="bubble-brandall" class="fa fa-square-o"></i>'+
                               '  <div class="dropdown modifylabel dropdown-stop">'+
                               '    <input name="addBrand_name" type="hidden" value="" title="">'+
-                              '    <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown-cross" aria-haspopup="true">'+
+                              '    <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown-cross" style="padding-left:25px;" aria-haspopup="true">'+
                               '    <p style="color:#999;line-height:14px;font-size:10px;">'+checkTitle+'</p>'+
                               '    <b>'+dataArr[i].name+'</b>'+
                               '    <span class="caret arrow-down"></span></button>'+
@@ -2967,18 +2973,37 @@
         $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").html(html);
         $(".multi_choose_brand").parents(".tab-pane").find(".multi-tab").find("li:first").addClass("selected");
       }
-      //默认选中top5产品
+
       //先进行排序
+      var defaultProducts = 10;
       allProducts = allProducts.sort(IAX_CHART_TOOL.sortJson("desc","audience","parseFloat"));
-      var toplength = allProducts.length>maxProducts ? maxProducts : allProducts.length;
-      for (var i = 0; i < toplength; i++) {
+      var toplength = allProducts.length>defaultProducts ? defaultProducts : allProducts.length;
+      //将所有product数据组装
+      for (var i = 0; i < allProducts.length; i++) {
         var id = allProducts[i].id;
         var brandId = allProducts[i].brandId;
         crossProductData[brandId+"_"+id] = allProducts[i];
         crossProductData[brandId+"_"+id].graphColor = IAX_CHART_TOOL.colorMap[i];
+      };
+      //默认选中defaultProducts产品
+      for (var i = 0; i < toplength; i++) {
+        var id = allProducts[i].id;
+        var brandId = allProducts[i].brandId;
         $(".multi_choose_brand_limit").find("[data-value='"+brandId+"']").addClass("selected");
         $(".multi_choose_brand_limit").find("[data-value='"+brandId+"']").find("[data-value='"+brandId+"_"+id+"']").addClass("selected").find("[name=cross_brand_checkbox]").prop("checked",true);
       };
+      //多产品中父节点选中状态
+      $(".cross_brand_choose").find("li").each(function(){
+        var length = $(this).find(".dropdown-cross").find("li").length;
+        var selectedLen = $(this).find(".dropdown-cross").find("li.selected").length;
+        if (selectedLen>0 && selectedLen==length) {
+          $(this).find("i").attr("class","fa fa-check-square");
+          $(this).find("i").css("color","#5AAAEA")
+        }else if(selectedLen>0 && selectedLen<length){
+          $(this).find("i").attr("class","fa fa-minus-square");
+          $(this).find("i").css("color","#5AAAEA")
+        }
+      })
       //获取排序好的audience
       var audienceArr = [];
       for (var i = 0; i < dataArr.length; i++) {
@@ -3030,21 +3055,24 @@
           productGraph();
         }
       }
-      $(".dropdown-stop").on("mouseover",function(){
+      $(document).on("mouseover",".cross_brand_choose>li",function(){
         $(".dropdown-stop").removeClass("open");
-        var isOpen = $(this).hasClass("open");
-        if(!isOpen) $(this).addClass("open")
+        var isOpen = $(this).find(".dropdown-stop").hasClass("open");
+        if(!isOpen) $(this).find(".dropdown-stop").addClass("open")
       })
-      $(".dropdown-stop").on("mouseout",function(){
-        $(this).removeClass("open");
+      $(document).on("mouseout",".cross_brand_choose>li",function(){
+        $(this).find(".dropdown-stop").removeClass("open");
       })
       $(document).on("click",".dropdown-stop",function(e){
+        e = e || window.event;
         $(".dropdown-stop").removeClass("open");
         if ($(this).hasClass("open")){
           $(this).removeClass("open")
         }else{
           $(this).addClass("open");
         }
+        e.stopPropagation();
+        e.preventDefault();
       })
       $(document).on("click",".dropdown-cross li",function(e){
         e = e || window.event;
@@ -3067,15 +3095,59 @@
           $(this).addClass("selected");
           length++;
         }
-        if ($(this).parents(".dropdown-cross").find(".selected").length>0) {
+        var thisSelectLen = $(this).parents(".dropdown-cross").find(".selected").length;
+        var thisLen = $(this).parents(".dropdown-cross").find("li").length;
+        if (thisSelectLen>0) {
           $(this).parents(".dropdown-cross").parents("li").addClass("selected");
+          $(this).parents(".dropdown-cross").parents("li").find("i").css("color","#5AAAEA")
+          if (thisSelectLen == thisLen) {
+            $(this).parents(".dropdown-cross").parents("li").find("i").attr("class","fa fa-check-square")
+          }else{
+            $(this).parents(".dropdown-cross").parents("li").find("i").attr("class","fa fa-minus-square")
+          }
         }else{
           $(this).parents(".dropdown-cross").parents("li").removeClass("selected");
+          $(this).parents(".dropdown-cross").parents("li").find("i").attr("class","fa fa-square-o")
+          $(this).parents(".dropdown-cross").parents("li").find("i").css("color","#ccc")
         }
         
         productGraph();
         e.stopPropagation();
         e.preventDefault();
+      })
+      $(document).on("click",".cross_brand_choose i",function(e){
+         e = e || window.event;
+         var cls = $(this).attr("class");
+         var length = $(this).parents(".cross_brand_choose").find(".dropdown-cross").find(".selected").length;
+         if (cls.indexOf("fa-square-o")>-1 || cls.indexOf("fa-minus-square")>-1) {
+            $(this).attr("class","fa fa-check-square");
+            $(this).css("color","#5AAAEA")
+            $(this).next().find("li").addClass("selected");
+            $(this).next().find("li").find("[type=checkbox]").prop("checked",true);
+            $(this).parent().addClass("selected");
+         }else{
+            $(this).attr("class","fa fa-square-o");
+            $(this).css("color","#ccc")
+            $(this).next().find("li").removeClass("selected");
+            $(this).next().find("li").find("[type=checkbox]").prop("checked",false);
+            length = $(this).parents(".cross_brand_choose").find(".dropdown-cross").find(".selected").length;
+            //至少一个吧
+            if (length==0) {
+              $(this).attr("class","fa fa-minus-square");
+              $(this).css("color","#5AAAEA")
+              $(this).next().find("li:first").addClass("selected");
+              $(this).next().find("li:first").find("[type=checkbox]").prop("checked",true);
+            }else{
+              $(this).parent().removeClass("selected");
+            }
+            
+         }
+         productGraph();
+         e.stopPropagation();
+         e.preventDefault();
+      })
+      $(window).resize(function() {
+        productGraph();
       })
       var bubbleColorMap = [];
       function shareGraph(json){
@@ -3233,7 +3305,7 @@
                   value:parseFloat(assoJson.value),
                   dailyGrowthP:parseFloat(assoJson.dailyGrowthP),
                   weeklyGrowthP:parseFloat(assoJson.weeklyGrowthP),
-                  monthlyGrowthP:parseFloat(assoJson.dailyGrowthP),
+                  monthlyGrowthP:parseFloat(assoJson.monthlyGrowthP),
                   brandId:id,
                   brandName:_json.brandName,
                   productName:_json.productName,
@@ -3241,12 +3313,15 @@
                   color:_json.brandColor,
                   audience:parseInt(_json.audience)
                 }
-                productAssociation.push(association);
+                if (assoJson.category != ""){
+                  productAssociation.push(association);
+                }
               };
             }
             productPie.push({
               category:_json.category,
               name:_json.productName,
+              brandName:_json.brandName,
               id:_json.id,
               value:parseInt(_json.audience),
 
@@ -3261,7 +3336,7 @@
               value:productAssociation[i].value,
               dailyGrowthP:productAssociation[i].dailyGrowthP,
               weeklyGrowthP:productAssociation[i].weeklyGrowthP,
-              monthlyGrowthP:productAssociation[i].dailyGrowthP,
+              monthlyGrowthP:productAssociation[i].monthlyGrowthP,
               brandId:productAssociation[i].brandId,
               brandName:productAssociation[i].brandName,
               productName:productAssociation[i].productName,
@@ -3289,6 +3364,7 @@
         for (var i = 0; i < productPie.length; i++) {
           var productPieJson = {
               name:productPie[i].name,
+              brandName:productPie[i].brandName,
               id:productPie[i].id,
               value:productPie[i].value,
           };

@@ -600,11 +600,11 @@
                                             <td class="align_center">
                                               <div class="dropdown modifylabel" style="width:120px;" >
                                                 <input name="etype" type="hidden" value=""  />
-                                                <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <button class="btn  dropdown-toggle" style="width:120px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                   Select
                                                   <span class="caret arrow-down"></span>
                                                 </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 118px;text-align:left;top:98%!important;border-top:1px solid #dfdfdf!important;" >
                                                   <li data-value="counter"><a href="javascript:;">COUNTER</a></li>
                                                   <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
                                                   <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
@@ -621,11 +621,11 @@
                                             <td class="align_center">
                                               <div class="dropdown modifylabel" style="width:120px;" >
                                                 <input name="etype" type="hidden" value="counter"  />
-                                                <button class="btn  dropdown-toggle" style="width:120px;" disabled type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <button class="btn  dropdown-toggle" style="width:120px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" disabled type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                   COUNTER
                                                   <span class="caret arrow-down"></span>
                                                 </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 118px;text-align:left;top:98%!important;border-top:1px solid #dfdfdf!important;" >
                                                   <li data-value="counter"><a href="javascript:;">COUNTER</a></li>
                                                   <li data-value="STOPPED"><a href="javascript:;">Stopped</a></li>
                                                   <li data-value="SUSPENDED"><a href="javascript:;">Suspended</a></li>
@@ -775,7 +775,7 @@
               {
                 "eventId": "389",
                 "frequencyMax": "9999",
-                "frequencyMin": "10",
+                "frequencyMin": "9999",
                 "index": 1,
                 "logic": "",
                 "receny": "6MONTHS"
@@ -868,6 +868,7 @@
           })
         }
         //range box
+        
         $(document).on("click",".rangeBox .btn",function(){
           var isMin = $(this).hasClass("minus");
           var $minInput = $(this).parents("tr").find(".rangeBox:first").find('input');
@@ -899,6 +900,7 @@
             var formatVal = IAX_TOOL.formatNum(thisValue+"",0);
             $(this).parent().find("input").val(formatVal);
             $(this).parent().find("input").attr("title",thisValue);
+            verifyRangeDisabled($(this).parent());
           }
           return false;
         })
@@ -929,6 +931,7 @@
             }else{
               $(this).attr("title",value);
               $(this).val(IAX_TOOL.formatNum(value+"",0));
+              
             }
           }else{
             if (value < minValue || value > 9999) {
@@ -936,10 +939,53 @@
             }else{
               $(this).attr("title",value);
               $(this).val(IAX_TOOL.formatNum(value+"",0));
+              
             }
           }
+          verifyRangeDisabled($(this).parent());
         });
       })
+      function verifyRangeDisabled($range){
+          var $minInput = $range.parents("tr").find(".rangeBox:first").find('input');
+          var $maxInput = $range.parents("tr").find(".rangeBox:last").find('input');
+          var $thisInput = $range.find("input");
+          var hasNext = ($range.parent().next().length>0) && ($range.parent().next().find(".rangeBox").length>0);
+          var minValue = parseFloat($minInput.attr("title"));
+          var maxValue = parseFloat($maxInput.attr("title"));
+          var thisValue = parseFloat($thisInput.attr("title"));
+          var minInputValue = 1,maxInputValue = 9999;//另一个rangebox框判断
+
+          if (hasNext) {
+            minValue = 1;
+            minInputValue = thisValue;
+            //另外一个rangebox判断
+            $maxInput.parent().find(".btn").removeClass("disabled");
+            if (maxValue == minInputValue) {
+              $maxInput.prev().addClass("disabled");
+            };
+            if (maxValue == maxInputValue) {
+              $maxInput.next().addClass("disabled");
+            };
+          }else{
+            maxValue = 9999;
+            maxInputValue = thisValue;
+            //另外一个rangebox判断
+            $minInput.parent().find(".btn").removeClass("disabled");
+            if (minValue == minInputValue) {
+              $minInput.prev().addClass("disabled");
+            };
+            if (minValue == maxInputValue) {
+              $minInput.next().addClass("disabled");
+            };
+          }
+          $range.find(".btn").removeClass("disabled");
+          if (thisValue == minValue) {
+            $range.find(".btn:first").addClass("disabled");
+          };
+          if (thisValue == maxValue) {
+            $range.find(".btn:last").addClass("disabled");
+          };
+        }
       function nextRetarget(thi){
         $(thi).attr("disabled",true);
         setTimeout(function(){
@@ -947,7 +993,7 @@
           $(thi).attr("disabled",false);
           json.data ={};
           json.saveFn = "saveAudience(this)";
-          IAX_TOOL.retargetAudienceBox(json);
+          IAX_TOOL.retargetAudienceBox(json); 
           setRetargetDropDown();
           // $(".retargeting-audience-create-box").modal("show");
         },1000)
@@ -967,6 +1013,10 @@
           }else{
             $(this).find(".dropdown-menu").find("li[data-value='"+value+"']").trigger("click");
           }
+        })
+         //设置rangebox的disable
+        $(".retargeting-audience-create-box").find("tr").each(function(){
+          verifyRangeDisabled($(this).find(".rangeBox:first"));
         })
       }
       function saveAudience(that){

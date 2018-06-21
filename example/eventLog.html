@@ -407,7 +407,7 @@
         </div>
         <!-- table -->
 		<div class="table_white" style="float:left;width:100%">
-			<table id="client_list" class="table table-bordered table-condensed width_100" cellspacing="0" width="100%">
+			<table id="client_list" class="table table-bordered table-condensed width_100" style="min-width:100%;max-width:200%;table-layout:fixed" cellspacing="0" width="100%">
 	        <thead>
 	            <tr>
 	                <th>Event Time</th>
@@ -425,8 +425,8 @@
 	                <td>BookingUpdateZH</td>
                   <td>2017/06/15 15:15</td>
                   <td>2017/06/15 15:15</td>
-	                <td>
-                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
+	                <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" title="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
                     </td>
                     <td class="align_center">
                       203.176.231.2
@@ -437,8 +437,8 @@
 	                <td>BookingUpdateZH</td>
                   <td>2017/06/15 15:15</td>
                   <td>2017/06/15 15:15</td>
-	                <td>
-                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
+	                <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" title="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
                     </td>
                     <td class="align_center">
                       203.176.231.2
@@ -449,8 +449,8 @@
 	                <td>BookingUpdateZH</td>
                   <td>2017/06/15 15:15</td>
                   <td>2017/06/15 15:15</td>
-	                <td>
-                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
+	                <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                        <a href="http://www.airnewzealand.com.hk/new-zealand-24h-sale" title="http://www.airnewzealand.com.hk/new-zealand-24h-sale" class="bluelink">http://www.airnewzealand.com.hk/new-zealand-24h-sale</a>
                     </td>
                     <td class="align_center">
                       203.176.231.2
@@ -481,7 +481,8 @@
 
     var oTable;
     $(function(){
-	 oTable=$('#client_list').dataTable({
+    var columnurl = $('#client_list').find("thead").find("th").length-2;
+   oTable=$('#client_list').dataTable({
 			"oLanguage": {
             "sProcessing":   "Loading data... Please wait...",
             "sLengthMenu":   "Show _MENU_ entries",
@@ -511,7 +512,10 @@
                orderable : false,//禁用排序
                targets : [ 0, 0 ]
              //指定的列
-             } ]
+             } ,{
+                  width:"200px",
+                  targets : [columnurl]
+                 }]
 		});
 		initCalendar("daterange");
 

@@ -77,7 +77,7 @@
 	margin-bottom: 5px;
 	text-transform: capitalize;
 	border:1px solid #dfdfdf;
-	cursor: pointer;
+	cursor: default;
 }
 .lbs-container .lbs-info .lbs-info-detail .tag-city li{
 	text-transform: capitalize;

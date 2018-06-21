@@ -1777,7 +1777,7 @@
         'zh':{
             'edit':'Edit Footfall Targeting',
             'myBrand':'My brand',
-            'keywords':'keywords',
+            'keywords':'Keywords',
             'keywords_all':'All',
             'distance':'Distance',
             'cities':'Selected City(ies)',
@@ -1804,7 +1804,7 @@
         'en':{
             'edit':'Edit Footfall Targeting',
             'myBrand':'My brand',
-            'keywords':'keywords',
+            'keywords':'Keywords',
             'keywords_all':'All',
             'distance':'Distance',
             'cities':'Selected City(ies)',

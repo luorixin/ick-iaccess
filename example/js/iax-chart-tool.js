@@ -78,6 +78,25 @@ var IAX_CHART_TOOL = {
           }, hideDelay);
           return false;
     });
+    $(document).off("click","#brandall")
+    $(document).on("click","#brandall",function(e){
+       e = e || window.event;
+        e.stopPropagation();
+        e.preventDefault();
+      var className=  $(this).find("i").attr("class");
+      if (className.indexOf("fa-check-square")>-1) {
+        $(this).find("i").attr("class","fa fa-minus-square");
+        $("[name=bubble-brand]").prop("checked","");
+        $(".venn-area").hide();
+        $("[data-venn-sets='0']").show();
+
+      }else{
+        $(this).find("i").attr("class","fa fa-check-square");
+        $("[name=bubble-brand]").prop("checked","checked");
+        $(".venn-area").show();
+        
+      }
+    })
     $(document).on("click","[name='bubble-brand']",function(){
       var unselectArr = $("[name='bubble-brand']").filter(function(){
                           return !$(this).is(":checked") && $(this).val()!="all";
@@ -87,6 +106,7 @@ var IAX_CHART_TOOL = {
       var newBubbleData = $.extend(true,[],_this.bubbleData);
       var vennSets = [];
       //去除泡泡
+     console.log(unselectArr.length,$("[name='bubble-brand']").length);
       for (var i = 0; i < unselectArr.length; i++) {
         var unselectId = unselectArr[i];
         for (var j = 0; j < _this.bubbleData.length; j++) {
@@ -97,18 +117,28 @@ var IAX_CHART_TOOL = {
           };
         };
       };
-      newBubbleData = newBubbleData.filter(function(data){
-        return !data.remove;
-      })
-      $(this).parents(".bubble-container").find(".bubble-map svg").click();
+      if(unselectArr.length == 0){
+        $("#bubble-brandall").attr("class","fa fa-check-square");
+      }else if (unselectArr.length == $("[name='bubble-brand']").length) {
+        $("#bubble-brandall").attr("class","fa fa-square-o");
+      }else if(unselectArr.length < $("[name='bubble-brand']").length){
+        $("#bubble-brandall").attr("class","fa fa-minus-square");
+      }
+       // 重新绘图
+      // newBubbleData = newBubbleData.filter(function(data){
+      //   return !data.remove;
+      // })
+      // $(this).parents(".bubble-container").find(".bubble-map svg").click();
 
-      $(this).parents(".bubble-container").find(".bubble-map").empty();
-      _this.initBubble($(this).parents(".bubble-container").attr("id"),newBubbleData);
-      $("g").show();
+      // $(this).parents(".bubble-container").find(".bubble-map").empty();
+      // _this.initBubble($(this).parents(".bubble-container").attr("id"),newBubbleData);
+      // $("g").show();
 
-      // for (var i = 0; i < vennSets.length; i++) {
-      //   $("[data-venn-sets='"+vennSets[i]+"']").hide();
-      // };
+      //单纯去除
+      $(".venn-area").show();
+      for (var i = 0; i < vennSets.length; i++) {
+        $("[data-venn-sets='"+vennSets[i]+"']").hide();
+      };
     })
     //将泡泡中文字居中
     $(".venn-circle").each(function(){
@@ -250,38 +280,48 @@ var IAX_CHART_TOOL = {
   initBubbleInfo:function(id,keywords){
     if (!keywords || keywords.length==0) return;
     if (!document.getElementById(id)) return;
-    var liHtml =  '<li style="display:block;"><div class="checkbox checkbox-primary checkbox-switch">'+
-                  '    <input type="checkbox" name="bubble-brand" disabled id="bubble-brandall" value="all" checked="checked">'+
-                  '    <label for="bubble-brandall">The market</label>'+
-                  '</div></li>';
+    var colourScheme = ['#EF4136', '#FFBD00', '#4484CF', '#946EDB', '#8D7B7B', '#54C7B0','#F47920','#194283','#59C754'];
+    var liHtml =  '<li style="display:block;"><a id="brandall" style="text-decoration: none!important;" href="javascript:;">'+
+                  '    <i style="font-size:19px;width:15px;color:#5AAAEA;vertical-align:middle;margin-right:5px;" id="bubble-brandall" class="fa fa-check-square"></i>'+
+                  '    <span>My Brand & Competitors</span>'+
+                  '</a></li>';
     
     for (var i = 0; i < keywords.length; i++) {
-      var style = "";
+      var style = "margin-left:20px";
       if (i==0) {
-        style = "display:none";
-      }
-      liHtml += '<li style="'+style+'"><div class="checkbox checkbox-primary checkbox-switch">'+
+        liHtml += '<li style="'+style+'"><a style="text-decoration: none!important;" href="javascript:;">'+
+                  '    <i style="font-size:19px;width:15px;color:#999;vertical-align:middle;margin-right:5px;" class="fa fa-check-square"></i>'+
+                  '    <span style="width:8px;height:8px;border-radius:8px!important;background:'+colourScheme[i]+';display:inline-block;margin-right:5px;"></span><span>'+keywords[i]+'</span>'+
+                  '</a></li>';
+      }else{
+        liHtml += '<li style="'+style+'"><div class="checkbox checkbox-primary checkbox-switch">'+
                 '    <input type="checkbox" name="bubble-brand" id="bubble-brand'+i+'" value="'+i+'" checked="checked">'+
-                '    <label for="bubble-brand'+i+'">'+keywords[i]+'</label>'+
+                '    <label for="bubble-brand'+i+'"><span style="width:8px;height:8px;border-radius:8px!important;background:'+colourScheme[i]+';display:inline-block;margin-right:5px;"></span>'+keywords[i]+'</label>'+
                 '</div></li>';
+      }
+      
     };
+    liHtml += '<li style="display:block;"><a style="text-decoration: none!important;" href="javascript:;">'+
+                  '    <i style="font-size:19px;width:15px;color:#999;vertical-align:middle;margin-right:5px;" class="fa fa-check-square"></i>'+
+                  '    <span style="width:8px;height:8px;border-radius:8px!important;background:#dfdfdf;display:inline-block;margin-right:5px;"></span><span>Others</span>'+
+                  '</a></li>';
     $("#"+id).find(".bubble-info").find("ul").html(liHtml);
-    $("#"+id).find(".bubble-info-selected span").text("The market");
-    $("#"+id).find(".bubble-info-selected span").attr("title","The market");
+    $("#"+id).find(".bubble-info-selected span").text("Market");
+    $("#"+id).find(".bubble-info-selected span").attr("title","Market");
   },
   initBubble:function(id,sets){
     if (!sets || sets.length==0) return;
     if (sets.length==1 && sets[0].size==0) {sets[0].size=1};
     var _this = this;
     _this.sets = sets;
-    var width = 380*0.7;
-    var paddingtop = (380-width)/2;
+    var width = 350*0.7;
+    var paddingtop = (350-width)/2;
     var chart = venn.VennDiagram()
                  .width(width)
                  .height(width);
     $("#"+id).find(".bubble-map").empty();
     var div = d3.select("#"+id).select(".bubble-map");
-    div.attr("style","padding-top:"+paddingtop+"px")
+    div.attr("style","padding-top:"+paddingtop+"px;")
     div.datum(sets).call(chart);
 
     var tooltip = $(".venntooltip").length>0 ? d3.select(".venntooltip") : d3.select("body").append("div").attr("class", "venntooltip");
@@ -397,7 +437,7 @@ var IAX_CHART_TOOL = {
               .style("stroke-width", 0)
           $(this).css("opacity","1");
           $(this).addClass("bubble-select");
-          var subTitle = "The Market";
+          var subTitle = "Market";
           var audience = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[0];
           var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
           var selectLabel = $("#"+id).find(".bubble-info").find("#bubble-brandall").next().text();
@@ -434,13 +474,13 @@ var IAX_CHART_TOOL = {
             return
           }
           bubbleTip.transition().duration(400).style("opacity", .9);
-          var isMinus = $("#"+id).find(".bubble-main-title").find(".fa-minus-circle").length>0;
+          var isMinus = $("#"+id).find(".bubble-change").find(".selected").attr("data-value")=="market";
           var label,audiences;
           if (isMinus) {
-            label = "<b>The Market</b><br>";
+            label = "<b>Market</b><br>";
             audiences = "Audience: "+IAX_TOOL.formatNum(_this.brandData[0].data.audience+"",0);
           }else{
-            label = "<b>Potiential Audience</b><br>";
+            label = "<b>Others</b><br>";
             audiences = "Audience: "+IAX_TOOL.formatNum(_this.brandData[_this.brandData.length-1].data.audience+"",0);
           }
           bubbleTip.html(label+audiences);
@@ -459,49 +499,68 @@ var IAX_CHART_TOOL = {
           bubbleTip.transition().duration(400).style("opacity", 0).style("z-index","1");;
       })
       //初始化背景圆的文字标题
-      $("#"+id).find(".bubble-map").append('<label class="bubble-main-title">The Market <i class="fa fa-minus-circle audienceChange" style="cursor:pointer;"></i></label>');
-      $("#"+id).on("click",".audienceChange",function(e){
+      $("#"+id).find(".bubble-map").append('<label class="bubble-main-title">Market</label>');
+      $("#"+id).on("click",".bubble-change li",function(e){
           e = e || window.event;
           e.stopPropagation();
           e.preventDefault();
-          var isMinus = $(this).hasClass("fa-minus-circle");
+          $(".bubble-change").find("li").removeClass("selected");
+          $(this).addClass("selected");
+          var changeValue = $(this).attr("data-value");
+          var isMinus = changeValue=="other";
           var oldText = $("#"+id).find(".bubble-info-selected span").attr("title");
           var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
           if (!oldText) {
             oldText = $("#"+id).find(".bubble-info-selected span").text();
           };
+          var $map = $(this).parents(".bubble-change");
+          var colourScheme = ['#EF4136', '#FFBD00', '#4484CF', '#946EDB', '#8D7B7B', '#54C7B0','#F47920','#194283','#59C754'];
           if (isMinus) {
-            $("#"+id).find(".bubble-info-selected span").text("Potential Audience");
-            $(this).parent().parent().append('<div class="overlapsMap" style="position:absolute;left:0;right:0;bottom:0;top:0;z-index:9999;opacity:0.5;"></div>');
-            $(this).parent().parent().find("svg").css("fill-opacity","0.3");
-            $(this).parent().css("color","#333");
-            $(this).parent().css("z-index","10000");
-            $(this).parent().parent().addClass("bubble-select");
-            $(this).parent().html('Potential Audience <i class="fa fa-plus-circle audienceChange" style="cursor:pointer;"></i>');
-            $(market).find(".result-graph-word-content>label").text("Potential Audience vs. The Market");
+            $("#"+id).find(".bubble-info-selected span").text("Others");
+            $map.next().find(".bubble-main-title").text("Others");
+            $map.next().append('<div class="overlapsMap" style="position:absolute;left:0;right:0;bottom:0;top:0;z-index:9999;opacity:0.5;"></div>');
+            $map.next().find("svg").css("fill-opacity","0.3");
+            $map.next().addClass("bubble-select");
+            // $map.next().css("cursor","default");
+            $(market).find(".result-graph-word-content>label").text("Others");
             d3.selectAll(".path_select")
               .classed("path_select",false)
               .style("stroke-width", 0);
             d3.select("#"+id).selectAll(".venn-circle path")
               .style("stroke-opacity", 1)
-              .style("stroke", "#eee")
-              .style("stroke-width", 3)
+              .style("stroke", "#999")
+              .style("stroke-width", 1)
+              .style("stroke-dasharray", [3,3])
+              .style("fill-opacity",0.8)
+            d3.select("#"+id).selectAll(".venn-intersection path")
+              .style("stroke-width", 2)
+            d3.select("#"+id).selectAll("path")
+              .style("fill","#fff");
             $("#"+id).find(".label").attr("fill","#333"); 
             //potiential 相关数据切换
             _this.initMarketGraphByBubble(_this.brandData[_this.brandData.length-1]);
             _this.currentBubble = _this.brandData[_this.brandData.length-1].id;
           }else{
-            // $("#"+id).find(".bubble-info-selected span").text(oldText);
-            $(this).parent().parent().find(".overlapsMap").remove();
-            $(this).parent().parent().find("svg").css("fill-opacity","1");
+            $("#"+id).find(".bubble-info-selected span").text("Market");
+            $map.next().find(".bubble-main-title").text("Market");
+            $map.next().find(".overlapsMap").remove();
+            $map.next().find("svg").css("fill-opacity","1");
+            // $map.next().css("cursor","");
             d3.select("#"+id).selectAll(".venn-circle path")
               .style("stroke-opacity", 1)
               .style("stroke", "#fff")
               .style("stroke-width", 0)
-            $(this).parent().css("color","");
-            $(this).parent().css("z-index","");
-            $(this).parent().parent().trigger("click");
-            $(this).parent().html('The Market <i class="fa fa-minus-circle audienceChange" style="cursor:pointer;"></i>')
+              .style("stroke-dasharray", [0,0])
+            d3.select("#"+id).selectAll(".venn-intersection path")
+              .style("stroke-width", 0)
+            d3.select("#"+id).selectAll(".venn-intersection path")
+              .style("fill","");
+            $("#"+id).find(".venn-circle").each(function(){
+              var setsId = $(this).attr("data-venn-sets");
+              d3.select("#"+id).select("[data-venn-sets='"+setsId+"']").select("path")
+                .style("fill",colourScheme[setsId]);
+            })
+            $map.next().trigger("click");
           }
           // $("#"+id).find(".bubble-info-selected span").attr("title",oldText);
       })
@@ -523,17 +582,17 @@ var IAX_CHART_TOOL = {
     var label = d.label ? d.label:"";
     var bubbleid = d.sets.join("-");
     var bubbleData = "";
-    var subTitle = label + " vs. The Market";
+    var subTitle = label + " vs. Market";
     var audience = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[0];
     var market = $("#"+id).parents(".plan-reports-result").find(".audience_total").find(".plan-result-text")[1];
     var tooltip_title_num = 'The number of audience in competitors.';
-    var tooltip_title_per = 'The audience percentage of competitors that overlaps the market.';
+    var tooltip_title_per = 'The audience percentage of competitors that overlaps market.';
     //文字变会正常色
     $("#"+id).find(".label").attr("fill","#333"); 
     if (label!="") {
       if (d.sets[0]==0) {
         tooltip_title_num = 'The number of audience in my brand.';
-        tooltip_title_per = 'The audience percentage of my brand that overlaps the market.';
+        tooltip_title_per = 'The audience percentage of my brand that overlaps market.';
       }
     };
     var audienceTitle = 'Audience Size <i class="fa fa-question-circle-o" data-toggle="tooltip" data-placement="bottom" data-original-title="'+tooltip_title_num+'"></i>';
@@ -861,6 +920,12 @@ var IAX_CHART_TOOL = {
            menu : [ "last_7_days", "last_30_days", "this_week", "this_month",
                 "last_week", "last_month" ],
            submitCallback : function(){
+            var html ='<a href="javascript:;"  class="loading-unclicklayer" style="background:#fff;opacity:0.5;z-index:998;"></a>'+
+                      '<div style="margin-top:-32px;top:50%;position:relative;z-index:999;">'+
+                      ' <img src="../images/loading3.gif">'+
+                      '</div>';
+            $("#"+dateId).parent().parent().next().append('<div class="loading-unclicklayer">'+html+'</div>');
+
             var during = $("#" + dateId).val();
             $("#" + dateId).attr("value",during);
             var duringArr = during.split(" ~ ");
@@ -887,6 +952,7 @@ var IAX_CHART_TOOL = {
                 }
             })
             _this.dataZoomAction(myChart,duringArr);
+            $("#"+dateId).parent().parent().next().find(".loading-unclicklayer").remove();
             // search_column && typeof(search_column)==='function' && search_column(dateId);
            },
          }
@@ -1036,7 +1102,7 @@ var IAX_CHART_TOOL = {
       $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").next().remove();
       $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").after(itemtitle);
       $("#"+articleId).find(".pic-title-list").html(itemHtmls);
-      if (data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].sentiment) {
+      if (typeof data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].sentiment !="undefined") {
         _this.initSentiment("sentiment-map",data.mixTrend.topBrands[data.mixTrend.topBrands.length-1].sentiment);
       };
     };
@@ -1250,7 +1316,7 @@ var IAX_CHART_TOOL = {
           $("#"+articleId).find("#acticle-title").find(".pic-title-title").find("b").after(itemtitle);
           $("#"+articleId).find(".pic-title-list").html(itemHtmls);
           //sentiment
-          if (sentiment) {
+          if (typeof sentiment!="undefined") {
             _this.initSentiment("sentiment-map",sentiment);
           };
           //小三角显示在报表中
@@ -2064,7 +2130,7 @@ var IAX_CHART_TOOL = {
       xSplitLine = {
         show:true,
         interval:function(index){
-          if (index===0 || index===series.length) return false;
+          if (index===0 || typeof index==="undefined") return false;
           return true;
         },
         lineStyle:{
@@ -2248,28 +2314,58 @@ var IAX_CHART_TOOL = {
     //   yAreaMax= 100;
     // }
     console.log(xAreaMin,xAreaMax,yAreaMin,yAreaMax);
+    //如果都是0，则显示no data画面
+    if (xAreaMin==xAreaMax && xAreaMax==0 && yAreaMin==yAreaMax && yAreaMax==0) {
+        var defaultHtml = '<div class="result-graph-default">'+
+                          '     <div class="result-graph-default-bg"></div>'+
+                          '     <div class="result-graph-default-label">'+
+                          '       <p>No results</p>'+
+                          '     </div>'+
+                          '</div>';
+        echarts.dispose(document.getElementById(id));
+        $("#"+id).next().remove();
+        $("#"+id).html(defaultHtml);
+        return;
+    };
     xArea = [xAreaMin-perX,xAreaMax+perX];
     yArea = [yAreaMin-perY,yAreaMax+perY];
+    if (yArea[0]==yArea[1] && yArea[0]==0) {
+      yArea[1] = 1;
+    };
+    if (xArea[0]==xArea[1] && xArea[0]==0) {
+      xArea[1] = 1;
+    };
+    if (yArea[0]==yArea[1] && yArea[0]>0) {
+      yArea[0] = yArea[1]-30;
+    }
     echarts.dispose(document.getElementById(id));
     var myChart = echarts.init(document.getElementById(id));
     var _this = this;
     var legend=[];
     var picData = [];
     
-    var picSeriesArr = [],sizeBubble=[30,40,50,55,60,65,70,75,80],labeLimit=[5,5,6,7,9,10,11,12,13];
+    var picSeriesArr = [],sizeBubble=[20,23,25,28,30,33,35,38,45],labeLimit=[5,5,6,7,9,10,11,12,13];
     var seriesIndexCount=0,seriesIndexCountArr = {};
     //按照audience大小排序
-    var newDataJson = [],newData={};
+    var newDataJson = [],newData={},colorIndex=0,newColorMap=[],newLegend=[];
     for(var i in data){
       newDataJson.push({
         name:i,
-        size:data[i][0][4],
-        value:data[i]
+        // size:data[i][0][4],
+        size:data[i][0][0],//改成根据横坐标
+        value:data[i],
+        color:colorMap[colorIndex]
       })
+      colorIndex++;
+      newLegend.push(i);
     }
     newDataJson = newDataJson.sort(_this.sortJson("desc","size","parseFloat"));
     console.log(newDataJson)
     for (var i = 0; i < newDataJson.length; i++) {
+      newDataJson[i]["value"][0][4] = 8-i;
+      if (i==newDataJson.length-1) {
+        newDataJson[i]["value"][0][4] = 0;
+      };
       var series = {
           name: newDataJson[i].name,
           type: 'scatter',
@@ -2278,7 +2374,7 @@ var IAX_CHART_TOOL = {
           label:{
             normal:{
               show:true,
-              position:"inside",
+              position:"bottom",
               formatter:function(params){
                 // var limit = labeLimit[params.value[4]];
                 // return _this.substrByLength(params.seriesName,limit);
@@ -2308,10 +2404,12 @@ var IAX_CHART_TOOL = {
       // series.label.normal.show=false;
       picSeriesArr.push(series);
       legend.push(newDataJson[i].name);
+      newColorMap.push(newDataJson[i].color);
       seriesIndexCountArr[newDataJson[i].name] = seriesIndexCount;
       seriesIndexCount++;
     }
     function sizeFunction(val){
+      console.log(val)
       var x = val[4];
       if (x<0) x = -x;
       return sizeBubble[x];
@@ -2359,7 +2457,7 @@ var IAX_CHART_TOOL = {
     imageEl.src = '../images/cross_bg.png';
     imageEl.alt = 'background';
     var option = {
-        color: colorMap,
+        color: newColorMap,
         backgroundColor:{
             image: imageEl, // 支持为 HTMLImageElement, HTMLCanvasElement，不支持路径字符串
             repeat: 'repeat' // 是否平铺, 可以是 'repeat-x', 'repeat-y', 'no-repeat'
@@ -2377,7 +2475,7 @@ var IAX_CHART_TOOL = {
             y: '20',
             right:10,
             left:10,
-            bottom:'30',
+            bottom:'20',
             top:45,
         },
         tooltip: {
@@ -2388,7 +2486,7 @@ var IAX_CHART_TOOL = {
                 if(id=='brandAssociation_share'){
                   return "<p><b>"+params.seriesName+"</b></p><p>Association Score: ("+_this.formatNum(Math.ceil(params.value[2]*100)/100,2)+" , "+_this.formatNum(Math.ceil(params.value[3]*100)/100,2)+")</p>";
                 }else{
-                  return "<p><b>"+params.seriesName+"</b></p><p>"+xy[1].split(' (%)')[0]+": "+_this.formatNum(Math.ceil(params.value[3]*100)/100,2)+"%</p><p>"+xy[0].split(' (%)')[0]+": "+_this.formatNum(Math.ceil(params.value[2]*100)/100,2)+"%</p>";
+                  return "<p><b>"+params.seriesName+"</b></p><p>"+xy[0].split(' (%)')[0]+": "+_this.formatNum(Math.ceil(params.value[2]*100)/100,2)+"%</p><p>"+xy[1].split(' (%)')[0]+": "+_this.formatNum(Math.ceil(params.value[3]*100)/100,2)+"%</p>";
                 }
               }
             },
@@ -2445,7 +2543,7 @@ var IAX_CHART_TOOL = {
             min:xArea[0],
             splitNumber:10,
             boundaryGap:["10%","10%"],
-            offset:-190,
+            offset:-195,
             splitLine: {
                 show: false
             },
@@ -2496,20 +2594,20 @@ var IAX_CHART_TOOL = {
     };
     myChart.setOption(option);
 
-    var brandHtml = "<ul name='product_cross_legend' style='position:absolute;bottom:0;width:100%;display:flex; justify-content:center;'>";
-    for(var i =0 ;i<legend.length;i++){
-      brandHtml += '<li data-value="'+legend[i]+'" style="cursor:pointer;width:100px;line-height:25px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+colorMap[i]+';display:inline-block;margin-right:5px;"></span>'+legend[i]+'</li>'
+    var brandHtml = "<ul name='product_cross_legend' style='position:relative;width:100%;padding-right:20px;box-sizing:border-box;display:flex; justify-content:left;flex-wrap:wrap;'>";
+    for(var i =0 ;i<newLegend.length;i++){
+      brandHtml += '<li data-value="'+newLegend[i]+'" style="cursor:pointer;margin-right:10px;line-height:25px;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+colorMap[i]+';display:inline-block;margin-right:5px;"></span>'+newLegend[i]+'</li>'
     }
-    $("#"+id).find('[name=product_cross_legend]').remove();
-    $("#"+id).append(brandHtml+"</ul>");
-    $("#"+id).find('[name=product_cross_legend]').find("li").on("mouseover",function(){
+    $("#"+id).parent().find('[name=product_cross_legend]').remove();
+    $("#"+id).parent().append(brandHtml+"</ul>");
+    $("#"+id).parent().find('[name=product_cross_legend]').find("li").on("mouseover",function(){
       var name = $(this).attr("data-value");
       myChart.dispatchAction({type: 'hideTip'});
       myChart.dispatchAction({type: 'downplay'});
       myChart.dispatchAction({type: 'showTip',  seriesIndex:seriesIndexCountArr[name],dataIndex:0});
       myChart.dispatchAction({type: 'highlight', seriesName: name});
     })
-    $("#"+id).find('[name=product_cross_legend]').find("li").on("mouseout",function(){
+    $("#"+id).parent().find('[name=product_cross_legend]').find("li").on("mouseout",function(){
       myChart.dispatchAction({type: 'hideTip'});
       myChart.dispatchAction({type: 'downplay'});
     })
@@ -2557,6 +2655,9 @@ var IAX_CHART_TOOL = {
       }else{
         brands[data[i].brandName] = data[i].color;
       }
+      if (isNaN(data[i].audience)) {
+        data[i].audience = 0;
+      };
       audience += parseInt(data[i].audience);
       if (minY > data[i][ytype]) minY=data[i][ytype];
       if (maxY < data[i][ytype]) maxY=data[i][ytype];
@@ -2565,13 +2666,42 @@ var IAX_CHART_TOOL = {
     };
     if (minY >= 0 || Math.abs(minY) < Math.abs(maxY)) minY = -maxY;
     if (maxY <= 0 || Math.abs(maxY) < Math.abs(minY)) maxY = -minY;
-    //上下限各加10%
-    minX = minX - Math.abs(minX)*0.1;
-    maxX = maxX + maxX*0.1
+    //如果都是0，则显示no data画面
+    if (minX==maxX && maxX==0 && minY==maxY && maxY==0) {
+        var defaultHtml = '<div class="result-graph-default">'+
+                          '     <div class="result-graph-default-bg"></div>'+
+                          '     <div class="result-graph-default-label">'+
+                          '       <p>No results</p>'+
+                          '     </div>'+
+                          '</div>';
+        $("#"+id).parent().parent().parent().next().remove();
+        $("#"+id).parent().parent().parent().find(".correlation-bg-con").hide();
+        $("#"+id).parent().parent().parent().find(".correlation-content").css("visibility","hidden");
+        // setTimeout(function(){
+          $("#"+id).parent().parent().parent().append(defaultHtml)
+        // },500);
+        return;
+    }else{
+        $("#"+id).parent().parent().parent().find(".correlation-bg-con").show();
+        $("#"+id).parent().parent().parent().find(".correlation-content").css("visibility","visible");
+        $("#"+id).parent().parent().parent().find(".result-graph-default").remove();
+    }
+    //上下限各加5%
+    var minusX = (maxX-minX)==0?1:(maxX-minX)
+    minX = minX - minusX*0.05;
+    maxX = maxX + minusX*0.05
     console.log(minY,maxY,minX,maxX)
     console.log(data)
+    minusX = (maxX-minX);
+    if (audience==0) {
+      audience = 1;
+    };
+    // data = data.sort(this.sortJson("desc","value","parseFloat"));
     for (var i = 0; i < data.length; i++) {
-      var percent = 1-parseFloat((parseInt(data[i].value) - minX)/(maxX-minX));
+      var percent = 0.5;
+      if (minusX!=0) {
+        percent = 1-parseFloat((parseFloat(data[i].value) - minX)/minusX);
+      };
       var percentY = parseFloat(data[i][ytype]/maxY);
       var width = parseFloat($("#"+id).css("width"));
       timeCircle = {};
@@ -2579,14 +2709,22 @@ var IAX_CHART_TOOL = {
       timeCircle.name = data[i].productName;
       timeCircle.brandName = data[i].brandName;
       timeCircle.color = colorMapArr[data[i].color][colorMapIndex[data[i].color]];
-      timeCircle.r = sizeBubble[Math.ceil(parseInt(data[i].audience)/(audience/15))];
-      timeCircle.left = (width-130) * percent + timeCircle.r/2;
+      var rIndex = Math.ceil(parseInt(data[i].audience)/(audience/15));
+      if (rIndex==15) {
+        rIndex = 14;
+      };
+      timeCircle.tipDirect = "";
+      if (percent>0.8) {
+        timeCircle.tipDirect = "toolright";
+      };
+      timeCircle.r = sizeBubble[rIndex];
+      timeCircle.left = (width-30) * percent + timeCircle.r/2;
       timeCircle.top = 330/2 - 135 * percentY;
       timeCircle.marginTop = -timeCircle.r -3;
       timeCircle.index = 100-Math.ceil(timeCircle.r);
       timeCircle.audience = data[i]["audience"];
       timeCircle.y = data[i][ytype];
-      timeCircle.x = data[i]["value"];
+      timeCircle.x = this.formatNum(Math.ceil(data[i]["value"]*100)/100,2);
       times.push(timeCircle);
       colorMapIndex[data[i].color] = colorMapIndex[data[i].color]+1;
     };
@@ -2594,7 +2732,8 @@ var IAX_CHART_TOOL = {
     times = times.sort(this.sortJson("desc","left","parseFloat"));
     if (isChage) {
       for (var i = 0; i < times.length; i++) {
-        var direct = times[i].y<0? "top" :"bottom";
+        // var direct = times[i].y<0? "top" :"bottom";
+        var direct = "bottom";
         $("#"+times[i].id).css("left",times[i].left+"px");
         $("#"+times[i].id).css("top",times[i].top+"px");
         var tag = "";
@@ -2602,8 +2741,8 @@ var IAX_CHART_TOOL = {
           tag = "+";
         }
         var innerhtml = //'<span style="top:50%;position:absolute;width:100%;transform: translateY(-50%);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;left:0;color:#fff;">'+times[i].name+'</span>'
-                     '<span style="'+direct+':-20px;position:absolute;width:200px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
-                    +'<div class="tooltip-content '+isRight+'">'
+                     '<span style="'+direct+':-20px;position:absolute;width:150px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
+                    +'<div class="tooltip-content '+times[i].tipDirect+'">'
                     +' <p><b>'+times[i].name+'</b></p>'
                     +' <p style="font-weight:normal">Brand: '+times[i].brandName+'</p>'
                     +' <p style="font-weight:normal">Association Score: '+times[i].x+'</p>'
@@ -2614,16 +2753,17 @@ var IAX_CHART_TOOL = {
       }
     }else{
       for (var i = 0; i < times.length; i++) {
-        var direct = times[i].y<0? "top" :"bottom";
+        // var direct = times[i].y<0? "top" :"bottom";
+        var direct = "bottom";
         var tag = "";
         if(times[i].y>0){
           tag = "+";
         }
         // console.log(times[i]);
         html += '<div id="'+times[i].id+'" class="time-circle" style="background:'+times[i].color+';left:'+times[i].left+'px;top:'+times[i].top+'px;margin-top:'+times[i].marginTop+'px;width:'+times[i].r*2+'px;height:'+times[i].r*2+'px;border-radius:'+times[i].r*2+'px!important;z-index:'+times[i].index+';">'
-                +'<span style="'+direct+':-20px;position:absolute;width:200px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
+                +'<span style="'+direct+':-20px;position:absolute;width:150px;transform: translateX(-50%);text-align:center;">'+times[i].name+'</span>'
                // +'<span style="top:50%;position:absolute;width:100%;transform: translateY(-50%);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;left:0;color:#fff;">'+times[i].name+'</span>'
-                +'<div class="tooltip-content '+isRight+'">'
+                +'<div class="tooltip-content '+times[i].tipDirect+'">'
                 +' <p><b>'+times[i].name+'</b></p>'
                 +' <p style="font-weight:normal">Brand: '+times[i].brandName+'</p>'
                 +' <p style="font-weight:normal">Association Score: '+times[i].x+'</p>'
@@ -2633,12 +2773,30 @@ var IAX_CHART_TOOL = {
       };
       $("#"+id).html(html);
     }
-    var brandHtml = "<ul id='product_association_legend' style='position:absolute;bottom:0;width:100%;display:flex; justify-content:center;'>";
+    $(document).off("mouseover",".time-circle");
+    $(document).off("mouseout",".time-circle");
+    $(document).on("mouseover",".time-circle",function(e){
+        e = e || window.event;
+        e.stopPropagation();
+        if (e.target.nodeName=="SPAN") {
+          return
+        }
+        $(this).find(".tooltip-content").show();
+    })
+    $(document).on("mouseout",".time-circle",function(e){
+        e = e || window.event;
+        e.stopPropagation();
+        if (e.target.nodeName=="SPAN") {
+          return
+        }
+        $(this).find(".tooltip-content").hide();
+    })
+    var brandHtml = "<ul id='product_association_legend' style='position:relative;width:100%;display:flex; justify-content:left;flex-wrap:wrap;padding-left:130px;box-sizing: border-box;'>";
     for(var i in brands){
-      brandHtml += '<li style="width:100px;line-height:25px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+brands[i]+';display:inline-block;margin-right:5px;"></span>'+i+'</li>'
+      brandHtml += '<li style="margin-right:20px;line-height:25px;"><span style="width:8px;height:8px;border-radius:8px!important;background:'+brands[i]+';display:inline-block;margin-right:5px;"></span>'+i+'</li>'
     }
-    $("#"+id).parent().find('#product_association_legend').remove();
-    $("#"+id).after(brandHtml+"</ul>");
+    $("#"+id).parent().parent().parent().parent().find('#product_association_legend').remove();
+    $("#"+id).parent().parent().parent().after(brandHtml+"</ul>");
   },
   initProductCategoryAnalysis: function(categoryId,productsId,categoryPie,allCategoryJSON){
     if (!categoryPie || !allCategoryJSON) return;
@@ -2676,7 +2834,7 @@ var IAX_CHART_TOOL = {
       categoryOther = {"name":"Others", value:categoryOtherAuience};
       newCategoryPie = newCategoryPie.slice(0,maxCategory);
       newCategoryPie.push(categoryOther);
-      newCategoryJSON["Others"] = [{'name':'Others',id:-1,value:categoryOtherAuience}];
+      newCategoryJSON["Others"] = [{'name':'Others',id:-1,value:categoryOtherAuience,'brandName':'Others'}];
     }else{
       newCategoryJSON = allCategoryJSON;
     }
@@ -2709,9 +2867,9 @@ var IAX_CHART_TOOL = {
       }
       for(var j=0;j<leftChartJson[i].length;j++){
         if (leftChartJson[i][j].name=="Others" && i!="Others") {
-          leftChartJson[i][j].name = i + "_Others";
+          leftChartJson[i][j].name = i + "_Others"+"_Outers_" +i;
         }else{
-          leftChartJson[i][j].name = leftChartJson[i][j].name + "_Outers_" +i;
+          leftChartJson[i][j].name = leftChartJson[i][j].name + "_Outers_" +i + "_Outers_"+leftChartJson[i][j].brandName ;
         }
         productPie.push(leftChartJson[i][j]);
         if (i=="Others") {
@@ -2734,7 +2892,11 @@ var IAX_CHART_TOOL = {
             }else{
                 var productName = params.name.split('_Outers_')[0];
                 var categoryName = params.name.split("_Outers_")[1];
-               return "<p><b>"+productName+"</b></p><p>Brand: "+categoryName+"</p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
+                var brandName = params.name.split("_Outers_")[2];
+                if (typeof brandName == "undefined") {
+                  brandName = "Others";
+                };
+               return "<p><b>"+productName+"</b></p><p>Product Category: "+categoryName+"</p><p>Brand: "+brandName+"</p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
             }
           },
           backgroundColor:"#f2f2f2",
@@ -2801,6 +2963,7 @@ var IAX_CHART_TOOL = {
     myChart.setOption(option,{
       notMerge:true
     });
+    // $("#"+id).find("canvas").css("cursor","default");
     //无需resize
     // var isExists = false;
     // for (var i = 0; i < this.charts.length; i++) {
@@ -2864,7 +3027,7 @@ var IAX_CHART_TOOL = {
           trigger:"item",
           formatter: function (params) {
             console.log(params)
-              return "<p><b>"+params.name+"</b></p><p>Brand: "+categoryName+"</p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
+              return "<p><b>"+params.name+"</b></p><p>Brand: "+params.data.brandName+"</p><p>Audience: "+params.percent+"% ("+_this.formatNum(params.value,0)+")</p>";
           },
           backgroundColor:"#f2f2f2",
           borderColor:"#dfdfdf",
@@ -2901,6 +3064,7 @@ var IAX_CHART_TOOL = {
       ]
     }
     myChart.setOption(option);
+    $("#"+id).find("canvas").css("cursor","default");
     var isExists = false;
     for (var i = 0; i < this.charts.length; i++) {
       if(this.charts[i].id == id){
@@ -2913,6 +3077,76 @@ var IAX_CHART_TOOL = {
     };
   },
   initSentiment: function(id,data){
+    if(typeof data == "undefined") return;
+    if (!document.getElementById(id)) return;
+    var sentiment = (data+50);
+    var leftAdd = 45;
+    $("#"+id).find(".sentiment-scale").each(function(i){
+      var left = 75/6+leftAdd;
+      if (i!=0) {
+        left+=5;//小圆点的直径
+      };
+      if (i%5==0 && i!=0) {
+        left += 75/6+45;
+      };
+      leftAdd = left;
+      if (i%5==0 && i!=0) {
+        left -= 5;
+      };
+      $(this).css("left",left+"px");
+      $(this).css("background","");
+    })
+    $("#"+id).find(".sentiment-selected").removeClass("sentiment-selected");
+    $("#"+id).find(".sentiment-scale").removeClass("selected");
+    var scaleIndex = 0,degreeIndex = 0;
+    var divIndex = Math.floor(sentiment/4);
+    if (sentiment==100) {
+      divIndex = 24;
+    };
+    var pointerLeft=0;
+    if (divIndex%6==0) {
+      $("#"+id).find("div").eq(divIndex).addClass("sentiment-selected");
+      //附近两边的点需要点亮
+      if (divIndex!=0&&divIndex!=24) {
+        $("#"+id).find("div").eq(divIndex-1).addClass("selected").css("background","#F2675E");
+        $("#"+id).find("div").eq(divIndex+1).addClass("selected").css("background","#F7A09A");
+      }
+      pointerLeft = parseFloat($("#"+id).find("div").eq(divIndex).css("left"));
+    }else{
+      //找到最近的sentiment点，点亮
+      $("#"+id).find("div").eq(divIndex).addClass("selected").css("background","#F6948E");;
+      if (divIndex%6<3) {
+        degreeIndex = Math.floor(divIndex/6)*6;
+      }else{
+        degreeIndex = Math.ceil(divIndex/6)*6;
+      }
+      $("#"+id).find("div").eq(degreeIndex).addClass("sentiment-selected");
+      //两者直接要点亮
+      scaleIndex = divIndex;
+
+      var middle=0;
+      var colorTrendMap = ['#EF4136','#F26B62','#F6948E']
+      if (scaleIndex>degreeIndex) {
+        middle = degreeIndex;
+        degreeIndex = scaleIndex;
+        scaleIndex = middle;
+        colorTrendMap = ['#F6948E','#F26B62','#EF4136']
+      };
+      console.log(scaleIndex,degreeIndex)
+      for (var i = scaleIndex; i < degreeIndex; i++) {
+        if (!$("#"+id).find("div").eq(i).hasClass("sentiment-selected")) {
+          $("#"+id).find("div").eq(i).addClass("selected").css("background",colorTrendMap[degreeIndex-i-1]);
+        };
+      };
+      pointerLeft = parseFloat($("#"+id).find("div").eq(divIndex).css("left"))-22+2.5;
+    }
+    
+    console.log(sentiment,divIndex)
+    
+    $("#"+id).find(".sentiment-pointer").css("left",pointerLeft+"px");
+    
+  },
+  initSentimentCircle: function(id,data){
     if(!data) return;
     if (!document.getElementById(id)) return;
     var sentiment = (180/100)*(data+50);
@@ -3785,6 +4019,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      $("#"+id).find("canvas").css("cursor","default");
       var isExists = false;
       for (var i = 0; i < this.charts.length; i++) {
         if(this.charts[i].id == id){
@@ -3877,6 +4112,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      $("#"+id).find("canvas").css("cursor","default");
       var isExists = false;
       for (var i = 0; i < this.charts.length; i++) {
         if(this.charts[i].id == id){
@@ -4199,6 +4435,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      $("#"+id).find("canvas").css("cursor","default");
       //图例样式不好控制，生成图例
       if (!showLegend) {
         $("#"+id).next().remove();
@@ -4341,6 +4578,7 @@ var IAX_CHART_TOOL = {
           ]
       };
       myChart.setOption(option);
+      $("#"+id).find("canvas").css("cursor","default");
       var isExists = false;
       for (var i = 0; i < this.charts.length; i++) {
         if(this.charts[i].id == id){
@@ -4435,6 +4673,7 @@ var IAX_CHART_TOOL = {
       };
       console.log(option)
       myChart.setOption(option);
+      $("#"+id).find("canvas").css("cursor","default");
       var isExists = false;
       for (var i = 0; i < this.charts.length; i++) {
         if(this.charts[i].id == id){
@@ -4506,12 +4745,12 @@ var IAX_CHART_TOOL = {
     var _this = this;
     echarts.dispose(document.getElementById(id));
     var myChart = echarts.init(document.getElementById(id));
-    var rangeColor = ['#f2e1e1', '#ecd3d3', '#eab7b7', '#eca5a7', '#fa7373', '#ef4136'];
-    var symbolSizeRange = [5,30];
+    var rangeColor = ['#e0c9c9', '#ecd3d3', '#eab7b7', '#eca5a7', '#fa7373', '#ef4136'];
+    var symbolSizeRange = [5,20];
     var min = 0,max = 0;
     for (var i = 0; i < data.regions.length; i++) {
       if (!data.regions[i].name) data.regions[i].name="null";
-      var isOthers = data.regions[i].name=="未知" || data.regions[i].name=="Unknown" || data.regions[i].name=="Overseas";
+      var isOthers = data.regions[i].name=="未知" || data.regions[i].name=="Unknown" || data.regions[i].name=="UNKNOWN" || data.regions[i].name=="Overseas";
       if (!isOthers) {
         var value = parseInt(data.regions[i].value);
         if (min==0 || min>value) {
@@ -4937,7 +5176,7 @@ var IAX_CHART_TOOL = {
           })
         };
       };
-      var isOthers = areaRegions[i].name=="未知" || areaRegions[i].name=="Unknown" || areaRegions[i].name=="Overseas";
+      var isOthers = areaRegions[i].name=="未知" || areaRegions[i].name=="Unknown" || areaRegions[i].name=="UNKNOWN" || areaRegions[i].name=="Overseas";
       if (!isOthers) {
         var value = parseInt(areaRegions[i].value);
         if (i==0 || minArea>value) {
@@ -5304,7 +5543,7 @@ var IAX_CHART_TOOL = {
           var min = 0,max = 0;
           for (var i = 0; i < cityData.length; i++) {
             if (!cityData[i].name) cityData[i].name="null";
-            var isOthers = cityData[i].name=="未知" || cityData[i].name=="Unknown" || cityData[i].name=="Overseas";
+            var isOthers = cityData[i].name=="未知" || cityData[i].name=="Unknown" || cityData[i].name=="UNKNOWN" || cityData[i].name=="Overseas";
             if (!isOthers) {
               var value = parseInt(cityData[i].value);
               if (min==0 || min>value) {
@@ -5562,8 +5801,8 @@ var IAX_CHART_TOOL = {
     echarts.dispose(document.getElementById(id));
     var myChart = echarts.init(document.getElementById(id));
     myChart.showLoading();
-    var rangeColor = ['#f2e1e1', '#ecd3d3', '#eab7b7', '#eca5a7', '#fa7373', '#ef4136'];
-    var symbolSizeRange = [5,30];
+    var rangeColor = ['#e0c9c9', '#ecd3d3', '#eab7b7', '#eca5a7', '#fa7373', '#ef4136'];
+    var symbolSizeRange = [5,20];
     var min = 0,max = 0;
     for (var i = 0; i < data.regions.length; i++) {
       if (!data.regions[i].name) data.regions[i].name="null";
@@ -5746,6 +5985,7 @@ var IAX_CHART_TOOL = {
       }
       var tooltipContent = "";
       if (isOthers) {
+        regions[i].name = "Overseas";
         tooltipContent = '<div class="tooltip-content">'+
                           '  <p>Region: '+regions[i].name+'</p>'+
                           ' <span>Audience: '+_this.formatNum(regions[i].value,0)+'</span>'+

@@ -390,11 +390,16 @@
             </li>
           </ul>
           <div class="button-right" style="margin:-40px 0 10px 0;">
-            <div class="dropdown btn-iclick dropdown-stop">
-              <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i>
-              <button class="btn dropdown-toggle" type="button" id="export-pdf">
-                Export&nbsp;
+            <div class="dropdown">
+              <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i> 
+              <input name="status" type="hidden" value="">
+              <button class="btn dropdown-toggle" type="button" style="padding:5px 16px 5px 28px;min-width:120px;" id="dropdownMenuColumns" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Export&nbsp;<span class="caret arrow-down"></span>
               </button>
+              <ul class="dropdown-menu dd" aria-labelledby="dropdownMenuColumns" style="min-width:118px; max-height: 300px;">
+                <li><a href="javascript:;" id="export-pdf">&nbsp;PDF</a></li>
+                <li><a href="javascript:;" id="export-excel">&nbsp;Excel</a></li>
+              </ul>
             </div>
           </div>
 
@@ -625,13 +630,19 @@
                                 <div class="result-graph-word-content" style="width:680px;">
                                   <div id="bubble-container" class="bubble-container">
                                     <div class="bubble-info">
-                                      <label>Brand(s)</label>
+                                      <label>Market includes</label>
                                       <ul>
                                        
                                       </ul>
                                       <div class="bubble-info-selected">
                                         Selected brands: <span></span>
                                       </div>
+                                    </div>
+                                    <div class="bubble-change cross_share">
+                                      <ul>
+                                        <li data-value="market" class="selected">Market</li>
+                                        <li data-value="other">Others</li>
+                                      </ul>
                                     </div>
                                     <div class="bubble-map">
                                     </div>

@@ -631,11 +631,11 @@ var IAX_TEMPLATE = {
     '                                <td class="align_center">'+
     '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
     '                                    <input name="receny" type="hidden" value=""  />'+
-    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
     '                                      Please select a option'+
     '                                      <span class="caret arrow-down"></span>'+
     '                                    </button>'+
-    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 118px;text-align:left;top:98%!important;border-top:1px solid #dfdfdf!important;" >'+
     '										{{#assist.recencyList}}'+
     '                                      <li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
     '										{{/assist.recencyList}}'+
@@ -644,7 +644,7 @@ var IAX_TEMPLATE = {
     '                                </td>'+
     '                                <td class="">'+
     '                                  <div class="rangeBox">'+
-    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <button class="btn minus disabled"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
     '                                    <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">'+
     '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
     '                                  </div>'+
@@ -653,7 +653,7 @@ var IAX_TEMPLATE = {
     '                                  <div class="rangeBox">'+
     '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
     '                                    <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">'+
-    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                    <button class="btn plus disabled"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
     '                                  </div>'+
     '                                </td>'+
     '                              </tr>'+
@@ -667,11 +667,11 @@ var IAX_TEMPLATE = {
     '                                <td class="align_center">'+
     '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
     '                                    <input name="eventId" type="hidden" value=""  />'+
-    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
     '                                      Please select'+
     '                                      <span class="caret arrow-down"></span>'+
     '                                    </button>'+
-    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 118px;text-align:left;top:98%!important;border-top:1px solid #dfdfdf!important;" >'+
     '										{{#assist.eventList}}'+
     '                                      	<li data-value="{{id}}"><a href="javascript:;">{{event_name}}</a></li>'+
     '										{{/assist.eventList}}'+
@@ -681,11 +681,11 @@ var IAX_TEMPLATE = {
     '                                <td class="align_center">'+
     '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
     '                                    <input name="receny" type="hidden" value=""  />'+
-    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
     '                                      Please select'+
     '                                      <span class="caret arrow-down"></span>'+
     '                                    </button>'+
-    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 118px;text-align:left;top:98%!important;border-top:1px solid #dfdfdf!important;" >'+
     '										{{#assist.recencyList}}'+
     '                                      <li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
     '										{{/assist.recencyList}}'+
@@ -694,7 +694,7 @@ var IAX_TEMPLATE = {
     '                                </td>'+
     '                                <td class="">'+
     '                                  <div class="rangeBox">'+
-    '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
+    '                                    <button class="btn minus disabled"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
     '                                    <input type="text" style="width:30px" title="1" value="1" name="frequencyMin">'+
     '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
     '                                  </div>'+
@@ -703,7 +703,7 @@ var IAX_TEMPLATE = {
     '                                  <div class="rangeBox">'+
     '                                    <button class="btn minus"><i class="fa fa-minus" aria-hidden="true"></i></button>'+
     '                                    <input type="text" style="width:30px" title="9999" value="9999" name="frequencyMax">'+
-    '                                    <button class="btn plus"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
+    '                                    <button class="btn plus disabled"><i class="fa fa-plus" aria-hidden="true"></i></button>'+
     '                                  </div>'+
     '                                </td>'+
     '                              </tr>'+ 	
@@ -729,11 +729,11 @@ var IAX_TEMPLATE = {
     '                                <td class="align_center">'+
     '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
     '                                    <input name="eventId" type="hidden" value="{{eventId}}"  />'+
-    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
     '                                      Homepage'+
     '                                      <span class="caret arrow-down"></span>'+
     '                                    </button>'+
-    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 118px;text-align:left;top:98%!important;border-top:1px solid #dfdfdf!important;" >'+
     '										{{#assist.eventList}}'+
     '                                      	<li data-value="{{id}}"><a href="javascript:;">{{event_name}}</a></li>'+
     '										{{/assist.eventList}}'+
@@ -743,11 +743,11 @@ var IAX_TEMPLATE = {
     '                                <td class="align_center">'+
     '                                  <div class="dropdown modifylabel" style="width:120px;" >'+
     '                                    <input name="receny" type="hidden" value="{{receny}}"  />'+
-    '                                    <button class="btn  dropdown-toggle" style="width:120px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+    '                                    <button class="btn  dropdown-toggle" style="width:120px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
     '                                      Please select'+
     '                                      <span class="caret arrow-down"></span>'+
     '                                    </button>'+
-    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:118px;min-width: 118px;text-align:left;" >'+
+    '                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 118px;text-align:left;top:98%!important;border-top:1px solid #dfdfdf!important;" >'+
     '										{{#assist.recencyList}}'+
     '                                      <li data-value="{{id}}"><a href="javascript:;">{{name}}</a></li>'+
     '										{{/assist.recencyList}}'+

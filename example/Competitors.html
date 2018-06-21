@@ -389,11 +389,16 @@
             </li>
           </ul>
           <div class="button-right" style="margin:-40px 0 10px 0;">
-            <div class="dropdown btn-iclick dropdown-stop">
-              <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i>
-              <button class="btn dropdown-toggle" type="button" id="export-pdf">
-                Export&nbsp;
+            <div class="dropdown">
+              <i class="fa fa-download" style="position: absolute; top: 10px; left: 10px;"></i> 
+              <input name="status" type="hidden" value="">
+              <button class="btn dropdown-toggle" type="button" style="padding:5px 16px 5px 28px;min-width:120px;" id="dropdownMenuColumns" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Export&nbsp;<span class="caret arrow-down"></span>
               </button>
+              <ul class="dropdown-menu dd" aria-labelledby="dropdownMenuColumns" style="min-width:118px; max-height: 300px;">
+                <li><a href="javascript:;" id="export-pdf">&nbsp;PDF</a></li>
+                <li><a href="javascript:;" id="export-excel">&nbsp;Excel</a></li>
+              </ul>
             </div>
           </div>
 
@@ -588,7 +593,7 @@
 	                        <!--end-->
 
 	                        <!--cloud tag-->
-	                        <div class="plan-result-graph graph-top" style="width:100%;height:585px;padding: 0 7.5px 0 0;" id="select_keywords_share">
+	                        <div class="plan-result-graph graph-top" style="width:100%;height:515px;padding: 0 7.5px 0 0;" id="select_keywords_share">
 	                          <div class="plan-result-text">
 	                            <div class="result-text-header clearfix">
 	                              <label>Brand Related Keywords
@@ -598,7 +603,7 @@
 	                            <div class="result-graph-info x-mt10">
 	                              <div class="result-graph-word word-impr">
 	                                <div class="result-graph-word-content">
-	                                    <div id="cloud_tag_share" class="cloud-tag" style="width:340px;margin:0 -20px;height:530px;">
+	                                    <div id="cloud_tag_share" class="cloud-tag" style="width:340px;margin:0 -20px;height:450px;">
 	                                    </div>
 	                                </div>
 	                              </div>
@@ -663,7 +668,7 @@
 	                          </div>
 	                        </div>
                           <!--Sentiment-->
-                          <div class="plan-result-graph" id="select_sentiment" style="padding: 0 0 0 7.5px;width: 100%;height:230px;">
+                          <div class="plan-result-graph" id="select_sentiment" style="padding: 0 0 0 7.5px;width: 100%;height:160px;">
                             <div class="plan-result-text">
                                 <div class="result-text-header clearfix">
                                   <label>Brand Sentiment</label>
@@ -672,11 +677,12 @@
                                   <div class="result-graph-word word-impr">
                                     <div class="result-graph-word-map">
                                       <!-- Math.sin(2*Math.PI / 360*45)*130-22-->
-                                      <div class="sentiment-map" id="sentiment-map" style="">
+                                      <div class="sentiment-map-line" id="sentiment-map" style="">
                                         <!--
                                         <div style="display: none; position: absolute;bottom: -130px;left: -30px;border: 1px solid #ef4136;width: 260px;height: 260px;border-radius: 260px!important;"></div>
                                       -->
                                         <div class="sentiment-awful"></div>
+                                        <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
@@ -686,7 +692,9 @@
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
+                                        <div class="sentiment-scale"></div>
                                         <div class="sentiment-normal"></div>
+                                        <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
@@ -696,8 +704,9 @@
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
                                         <div class="sentiment-scale"></div>
+                                        <div class="sentiment-scale"></div>
                                         <div class="sentiment-great"></div>
-                                        <div class="sentiment-pointer"></div>
+                                        <div class="sentiment-pointer fa fa-caret-up fa-fw"></div>
 
                                       </div>
                                     </div>
@@ -871,12 +880,12 @@
 	                          </div>
 	                        </div>
                           <!--gender target index-->
-                          <div class="plan-result-graph" style="width:33%;padding-left:7.5px;height:450px;">
+                          <div class="plan-result-graph" style="width:35%;padding-left:7.5px;height:450px;">
                             <div class="plan-result-text">
-                              <div class="result-text-header">
+                              <div class="result-text-header clearfix">
                                 <label style="line-height:20px;margin-top:10px;">Brand Preference Index by Gender</label>
                               </div>
-                              <label style="height:35px;">(Target Group Index)</label>
+                              <label style="height:35px;margin-top:-10px">(Target Group Index)</label>
                               <div class="result-graph-info x-mt10">
                                 <div class="result-graph-word word-impr" style="margin:0 auto;height:360px;">
                                   <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
@@ -888,7 +897,7 @@
                             </div>
                           </div>
                           <!--age group target index-->
-                          <div class="plan-result-graph" style="width:67%;padding-left:7.5px;height:450px;">
+                          <div class="plan-result-graph" style="width:65%;padding-left:7.5px;height:450px;">
                             <div class="plan-result-text">
                               <div class="result-text-header clearfix">
                                 <label>Brand Preference Index by Age Group</label>
@@ -1029,8 +1038,8 @@
                           <!--group target index-->
                           <div class="plan-result-graph" style="width:100%;padding:0px;height:450px!important;position:relative;" id="">
                             <!--gender target index-->
-                            <div class="plan-result-text" style="width:33%;float:left;border-right:none;">
-                              <div class="result-text-header">
+                            <div class="plan-result-text" style="width:35%;float:left;border-right:none;">
+                              <div class="result-text-header clearfix">
                                 <label>Brand Preference Index by Gender</label>
                               </div>
                                <label style="margin-top:-10px;height:35px;">(Target Group Index)</label>
@@ -1050,7 +1059,7 @@
                               </div>
                             </div>
                             <!--age group target index-->
-                            <div class="plan-result-text" style="width:67%;float:right;border-left:none;">
+                            <div class="plan-result-text" style="width:65%;float:right;border-left:none;">
                               <div class="result-text-header clearfix">
                                 <label>Brand Preference Index by Age Group</label>
                               </div>
@@ -1385,12 +1394,12 @@
 	                              </div>
 	                            </div>
                               <!--gender target index-->
-                              <div class="plan-result-graph" style="width:33%;padding-left:7.5px;height:450px;">
+                              <div class="plan-result-graph" style="width:35%;padding-left:7.5px;height:450px;">
                                 <div class="plan-result-text">
-                                  <div class="result-text-header">
+                                  <div class="result-text-header clearfix">
                                     <label style="line-height:20px;margin-top:10px;">Brand Preference Index by Gender</label>
                                   </div>
-                                  <label style="height:35px;">(Target Group Index)</label>
+                                  <label style="height:35px;margin-top:-10px">(Target Group Index)</label>
                                   <div class="result-graph-info x-mt10">
                                     <div class="result-graph-word word-impr" style="margin:0 auto;height:360px;">
                                       <div class="result-graph-word-content" style="width:100%;padding:0 20px;box-sizing:border-box;">
@@ -1402,7 +1411,7 @@
                                 </div>
                               </div>
                               <!--age group target index-->
-                              <div class="plan-result-graph" style="width:67%;padding-left:7.5px;height:450px;">
+                              <div class="plan-result-graph" style="width:65%;padding-left:7.5px;height:450px;">
                                 <div class="plan-result-text">
                                   <div class="result-text-header clearfix">
                                     <label>Brand Preference Index by Age Group</label>
@@ -1542,8 +1551,8 @@
                               <!--group target index-->
                               <div class="plan-result-graph" style="width:100%;padding:0px;height:450px!important;position:relative;" id="">
                                 <!--gender target index-->
-                                <div class="plan-result-text" style="width:33%;float:left;border-right:none;">
-                                  <div class="result-text-header">
+                                <div class="plan-result-text" style="width:35%;float:left;border-right:none;">
+                                  <div class="result-text-header clearfix">
                                     <label>Brand Preference Index by Gender</label>
                                   </div>
                                    <label style="margin-top:-10px;height:35px;">(Target Group Index)</label>
@@ -1563,7 +1572,7 @@
                                   </div>
                                 </div>
                                 <!--age group target index-->
-                                <div class="plan-result-text" style="width:67%;float:right;border-left:none;">
+                                <div class="plan-result-text" style="width:65%;float:right;border-left:none;">
                                   <div class="result-text-header clearfix">
                                     <label>Brand Preference Index by Age Group</label>
                                   </div>
@@ -4677,7 +4686,7 @@
         IAX_CHART_TOOL.initData(json.data);
         IAX_CHART_TOOL.initMixTrend("mix_chart","select_trend_article","daterange",json.data);
         IAX_CHART_TOOL.initTotalAudience("select_audience_share","audience_total_share","market-map_share",json.data);
-        IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,520);
+        IAX_CHART_TOOL.initCloudTag("cloud_tag_share",json.data,450);
         
         IAX_CHART_TOOL.initTop5Trend("line_chart_share","daterange_share",shareData);
         IAX_CHART_TOOL.resizeChart();

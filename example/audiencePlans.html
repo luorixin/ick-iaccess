@@ -29,6 +29,11 @@
   <script type="text/javascript" src="./js/hogan-2.0.0.min.js"></script>
   <script type="text/javascript" src="./js/iax-tool.js"></script>
   <script type="text/javascript" src="./js/iax-template.js"></script>
+  <script src="https://cdn.bootcss.com/jszip/3.1.5/jszip.min.js"></script>
+  <script type="text/javascript" src="js/datatables.js"></script>
+  <script type="text/javascript" src="js/buttons.html5.min.js"></script>
+  
+  
 
 </head>
     <body>
@@ -334,7 +339,7 @@
     </ul>
   </div>
   <div class="x-body" id="x-body">
-    <div class="top-choose">
+    <div class="top-choose" style="position:fixed;width:100%;z-index:998;">
       <div class="tab-bar-container">
         <div class="tab-bar">
           <div class="tab-bar-contents">
@@ -673,7 +678,7 @@
     	$(function(){
         //顶部消息条
         IAX_TOOL.notification(" Export to footfall audience in iAccess successfully. Click <a style='text-decoration:underline;' href='http://www.baidu.com' target='_blank'>here</a> to iAccess.","info",3000000);
-			 oTable=$('#client_list').dataTable({
+			 oTable=$('#client_list').DataTable({
 					"oLanguage": {
 						"sProcessing":   "Loading data... Please wait...",
             "sLengthMenu":   "Show _MENU_ entries",
@@ -742,13 +747,37 @@
                 $(window).unbind("scroll");
                 $(window).unbind("resize");
                 $(".notification-box").css("top","60px");
+                //将暂停的计划变色
+                $(".fa-play").each(function(){
+                  var $tr = $(this).parents("tr");
+                  $tr.find("td").css("color","#999");
+                  $tr.find("td").find("a").css("color","#999");
+                  $tr.find("td").find("label").text("-");
+                  $tr.find("td").find("label").css("color","#999");
+                  $tr.find("td").find("label").css("font-size","18px");
+                })
             }
 				});
+      new $.fn.dataTable.Buttons( oTable, {
+          buttons: [
+              'excel', 'pdf'
+          ]
+      } );
+        oTable.buttons().container().appendTo( $('.button-right') );
+
         $('input:checkbox.toggle-vis').change(function(e) {
           var pageNumVal = $("input.pageinate_input_box").val();
             e.preventDefault();
             var colNum = $(this).attr('value');
             oTable.fnSetColumnVis(colNum, $(this).is(':checked'));
+            $(".fa-play").each(function(){
+              var $tr = $(this).parents("tr");
+              $tr.find("td").css("color","#999");
+              $tr.find("td").find("a").css("color","#999");
+              $tr.find("td").find("label").text("-");
+              $tr.find("td").find("label").css("color","#999");
+              $tr.find("td").find("label").css("font-size","18px");
+            })
             $('.pageinate_input_box').val(pageNumVal).trigger("change");
         });
         //搜索
@@ -768,6 +797,7 @@
               $(".top-choose").find(".tab-bar-dropdown").css("display","none");
             });
         });
+
 		});
 		function getHistory(id){
       //根据id获取对于历史信息
@@ -906,6 +936,23 @@
       }else{
         $("#tr_"+id).find(".fa-play").removeClass("fa-play").addClass("fa-pause");
       }
+      //将暂停的计划变色
+      $(".fa-play").each(function(){
+          var $tr = $(this).parents("tr");
+          $tr.find("td").css("color","#999");
+          $tr.find("td").find("a").css("color","#999");
+          $tr.find("td").find("label").text("-");
+          $tr.find("td").find("label").css("color","#999");
+          $tr.find("td").find("label").css("font-size","18px");
+      })
+      //将运行的计划变色
+      $(".fa-pause").each(function(){
+          var $tr = $(this).parents("tr");
+          $tr.find("td").css("color","");
+          $tr.find("td").find("a").css("color","");
+          $tr.find("td").find("label").css("color","");
+          $tr.find("td").find("label").css("font-size","");
+      })
     }
     function showGraph(_this){
       //获取折线图数据
